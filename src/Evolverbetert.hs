@@ -22,7 +22,6 @@ import MyGraphics
 import MyRandom
 
 import qualified Control.Monad.Parallel as Par (mapM)
--- import Control.Monad.Random (getRandom, getRandomR, Rand, runRandT, getStdGen, setStdGen)
 
 
 main :: IO ()
