@@ -1,0 +1,29 @@
+[1 of 2] Compiling Main             ( /tmp/stack47146/uuagc-0.9.52.1/Setup.hs, /tmp/stack47146/uuagc-0.9.52.1/.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/setup/Main.o )
+[2 of 2] Compiling StackSetupShim   ( /home/karim/.stack/setup-exe-src/setup-shim-mPHDZzAJ.hs, /tmp/stack47146/uuagc-0.9.52.1/.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/setup/StackSetupShim.o )
+Linking /tmp/stack47146/uuagc-0.9.52.1/.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/setup/setup ...
+Configuring uuagc-0.9.52.1...
+Building uuagc-0.9.52.1...
+Preprocessing library uuagc-0.9.52.1...
+[ 1 of 63] Compiling Pretty           ( src/Pretty.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Pretty.o )
+
+src/Pretty.hs:37:8: warning: [-Wtabs]
+    Tab character found here, and in 28 further locations.
+    Please use spaces instead.
+[ 2 of 63] Compiling Paths_uuagc      ( .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/autogen/Paths_uuagc.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Paths_uuagc.o )
+[ 3 of 63] Compiling UU.UUAGC.Version ( src/UU/UUAGC/Version.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/UU/UUAGC/Version.o )
+[ 4 of 63] Compiling Version          ( src-version/Version.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Version.o )
+[ 5 of 63] Compiling Options          ( src-options/Options.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Options.o )
+[ 6 of 63] Compiling PPUtil           ( src/PPUtil.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/PPUtil.o )
+[ 7 of 63] Compiling LOAG.Chordal     ( src/LOAG/Chordal.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/LOAG/Chordal.o )
+[ 8 of 63] Compiling CommonTypes      ( src/CommonTypes.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/CommonTypes.o )
+[ 9 of 63] Compiling HsToken          ( src-generated/HsToken.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/HsToken.o )
+[10 of 63] Compiling Expression       ( src-generated/Expression.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Expression.o )
+[11 of 63] Compiling HsTokenScanner   ( src/HsTokenScanner.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/HsTokenScanner.o )
+[12 of 63] Compiling LOAG.Graphs      ( src/LOAG/Graphs.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/LOAG/Graphs.o )
+[13 of 63] Compiling LOAG.Common      ( src/LOAG/Common.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/LOAG/Common.o )
+[14 of 63] Compiling Macro            ( src-generated/Macro.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Macro.o )
+[15 of 63] Compiling Patterns         ( src-generated/Patterns.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Patterns.o )
+[16 of 63] Compiling ConcreteSyntax   ( src-generated/ConcreteSyntax.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/ConcreteSyntax.o )
+[17 of 63] Compiling TokenDef         ( src/TokenDef.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/TokenDef.o )
+[18 of 63] Compiling Scanner          ( src/Scanner.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Scanner.o )
+[19 of 63] Compiling Parser           ( src/Parser.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Parser.o )

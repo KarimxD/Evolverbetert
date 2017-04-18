@@ -1,0 +1,16 @@
+Configuring mersenne-random-1.0.0.1...
+Building mersenne-random-1.0.0.1...
+Preprocessing library mersenne-random-1.0.0.1...
+[1 of 1] Compiling System.Random.Mersenne ( System/Random/Mersenne.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/System/Random/Mersenne.o )
+
+System/Random/Mersenne.hs:57:22: warning: [-Wtabs]
+    Tab character found here.
+    Please use spaces instead.
+[1 of 1] Compiling System.Random.Mersenne ( System/Random/Mersenne.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/System/Random/Mersenne.p_o )
+
+System/Random/Mersenne.hs:57:22: warning: [-Wtabs]
+    Tab character found here.
+    Please use spaces instead.
+Installing library in
+/home/karim/.stack/snapshots/x86_64-linux/lts-8.5/8.0.2/lib/x86_64-linux-ghc-8.0.2/mersenne-random-1.0.0.1-Dow9ul4HzssG5QR72TG9Bw
+Registering mersenne-random-1.0.0.1...

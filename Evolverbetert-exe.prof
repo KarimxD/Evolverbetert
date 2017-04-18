@@ -1,0 +1,658 @@
+	Thu Apr 13 16:46 2017 Time and Allocation Profiling Report  (Final)
+
+	   Evolverbetert-exe +RTS -N -hc -p -RTS
+
+	total time  =       10.72 secs   (10724 ticks @ 1000 us, 1 processor)
+	total alloc = 15,263,933,736 bytes  (excludes profiling overheads)
+
+COST CENTRE               MODULE                                SRC                                               %time %alloc
+
+mutateLoci                Mutations                             src/Mutations.hs:(130,1)-(147,32)                  24.0   18.8
+randomDouble              MyRandom                              src/MyRandom.hs:(136,1)-(137,38)                    8.0   12.0
+hammDist                  World                                 src/World.hs:(235,1)-(237,78)                       7.5    1.9
+randomWord64              MyRandom                              src/MyRandom.hs:(143,1)-(146,38)                    4.9    5.2
+hammDistAg                World                                 src/World.hs:(241,1)-(242,90)                       4.7    7.4
+randomDouble.(...)        MyRandom                              src/MyRandom.hs:137:15-38                           4.5   10.3
+fitnessGST.d.this         World                                 src/World.hs:231:19-39                              4.3    5.9
+state                     Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22               4.0    3.4
+==                        World                                 src/World.hs:98:44-45                               3.8    2.2
+makeGst                   World                                 src/World.hs:(198,1)-(201,23)                       3.5    4.2
+randomWord64.mt           MyRandom                              src/MyRandom.hs:(145,5)-(146,38)                    2.9    3.4
+fitnessGST.d.target       World                                 src/World.hs:230:19-53                              2.9    5.9
+takeWhileInclusive        World                                 src/World.hs:(185,1)-(190,37)                       2.0    1.0
+reproduceAgent            Evolverbetert                         src/Evolverbetert.hs:(143,1)-(162,24)               1.9    0.9
+takeWhileInclusive.henk   World                                 src/World.hs:190:19-37                              1.7    3.1
+mutNet                    Mutations                             src/Mutations.hs:(96,1)-(104,26)                    1.7    2.6
+moore8                    Misc                                  src/Misc.hs:(15,1)-(18,38)                          1.7    0.9
+groupGeneTfbs             World                                 src/World.hs:(179,1)-(182,27)                       1.4    1.3
+==                        World                                 src/World.hs:106:36-37                              1.2    0.0
+reproduceAgent.neighbours Evolverbetert                         src/Evolverbetert.hs:150:21-72                      1.1    0.5
+lookupBlock               System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:79:1-61    0.8    1.7
+
+
+                                                                                                                                                          individual      inherited
+COST CENTRE                           MODULE                                SRC                                                      no.       entries  %time %alloc   %time %alloc
+
+MAIN                                  MAIN                                  <built-in>                                               14016          0    0.0    0.0   100.0  100.0
+ CAF                                  GHC.IO.Encoding                       <entire-module>                                          14072          0    0.0    0.0     0.0    0.0
+ CAF                                  GHC.IO.Handle.FD                      <entire-module>                                          14070          0    0.0    0.0     0.0    0.0
+ CAF                                  GHC.Event.Thread                      <entire-module>                                          14064          0    0.0    0.0     0.0    0.0
+ CAF                                  GHC.IO.Encoding.Iconv                 <entire-module>                                          14055          0    0.0    0.0     0.0    0.0
+ CAF                                  GHC.IO.Handle.Text                    <entire-module>                                          14051          0    0.0    0.0     0.0    0.0
+ CAF                                  Text.Read.Lex                         <entire-module>                                          14046          0    0.0    0.0     0.0    0.0
+ CAF                                  GHC.Conc.Signal                       <entire-module>                                          14043          0    0.0    0.0     0.0    0.0
+ CAF                                  GHC.Event.Poll                        <entire-module>                                          14030          0    0.0    0.0     0.0    0.0
+ CAF                                  GHC.Event.EPoll                       <entire-module>                                          14029          0    0.0    0.0     0.0    0.0
+ CAF:$fEqAgent1                       World                                 <no location info>                                       27855          0    0.0    0.0     0.0    0.0
+  ==                                  World                                 src/World.hs:98:44-45                                    28363          0    0.0    0.0     0.0    0.0
+ CAF:$fRandomGenPureMT1               MyRandom                              <no location info>                                       27778          0    0.0    0.0     0.0    0.0
+  randomWord64                        MyRandom                              src/MyRandom.hs:(143,1)-(146,38)                         28270          0    0.0    0.0     0.0    0.0
+   randomWord64.mt                    MyRandom                              src/MyRandom.hs:(145,5)-(146,38)                         28271          0    0.0    0.0     0.0    0.0
+ CAF:agent0                           World                                 src/World.hs:41:1-6                                      27921          0    0.0    0.0     0.0    0.0
+  agent0                              World                                 src/World.hs:(41,1)-(44,366)                             28072          1    0.0    0.0     0.0    0.0
+   devAg                              World                                 src/World.hs:(27,1)-(33,38)                              28074          0    0.0    0.0     0.0    0.0
+    devAg.takeUntilSame               World                                 src/World.hs:(29,5)-(33,38)                              28076          3    0.0    0.0     0.0    0.0
+     sameGST                          World                                 src/World.hs:(36,1)-(38,58)                              28077          3    0.0    0.0     0.0    0.0
+      geneStateTable                  World                                 src/World.hs:97:25-38                                    28203          6    0.0    0.0     0.0    0.0
+    updateAgent                       World                                 src/World.hs:(147,1)-(153,42)                            28079          3    0.0    0.0     0.0    0.0
+     updateAgent.newGST               World                                 src/World.hs:153:11-42                                   28080          3    0.0    0.0     0.0    0.0
+      gSTFromGenome                   World                                 src/World.hs:194:1-61                                    28081          3    0.0    0.0     0.0    0.0
+       makeGst                        World                                 src/World.hs:(198,1)-(201,23)                            28198         63    0.0    0.0     0.0    0.0
+        makeGst.k                     World                                 src/World.hs:200:11-18                                   28199         60    0.0    0.0     0.0    0.0
+         iD                           World                                 src/World.hs:119:25-26                                   28200         60    0.0    0.0     0.0    0.0
+        makeGst.val                   World                                 src/World.hs:201:11-23                                   28204         56    0.0    0.0     0.0    0.0
+         genSt                        World                                 src/World.hs:121:25-29                                   28205         56    0.0    0.0     0.0    0.0
+       reduceToGenes                  World                                 src/World.hs:(213,1)-(217,53)                            28083          0    0.0    0.0     0.0    0.0
+        reduceToGenes.filterGenes     World                                 src/World.hs:(215,9)-(217,53)                            28130        159    0.0    0.0     0.0    0.0
+     updateAgent.newGenome            World                                 src/World.hs:152:11-45                                   28084          3    0.0    0.0     0.0    0.0
+      updateGenome                    World                                 src/World.hs:156:1-34                                    28086          0    0.0    0.0     0.0    0.0
+       updateChrom                    World                                 src/World.hs:(159,1)-(161,22)                            28089        159    0.0    0.0     0.0    0.0
+        updateChrom.(...)             World                                 src/World.hs:160:11-46                                   28132        156    0.0    0.0     0.0    0.0
+         updateLoc                    World                                 src/World.hs:(164,1)-(172,32)                            28133        156    0.0    0.0     0.0    0.0
+          updateLoc.newState          World                                 src/World.hs:(169,9)-(171,35)                            28206         57    0.0    0.0     0.0    0.0
+        updateChrom.l'                World                                 src/World.hs:160:11-46                                   28131        156    0.0    0.0     0.0    0.0
+        updateChrom.accum'            World                                 src/World.hs:160:11-46                                   28207        118    0.0    0.0     0.0    0.0
+ CAF:agent0_defaultStates             World                                 src/World.hs:43:13-25                                    27805          0    0.0    0.0     0.0    0.0
+  agent0                              World                                 src/World.hs:(41,1)-(44,366)                             28183          0    0.0    0.0     0.0    0.0
+   agent0.defaultStates               World                                 src/World.hs:43:13-89                                    28184          1    0.0    0.0     0.0    0.0
+ CAF:agent10                          World                                 <no location info>                                       27797          0    0.0    0.0     0.0    0.0
+  agent0                              World                                 src/World.hs:(41,1)-(44,366)                             28108          0    0.0    0.0     0.0    0.0
+   agent0.genome0                     World                                 src/World.hs:44:13-366                                   28109          0    0.0    0.0     0.0    0.0
+ CAF:agent11                          World                                 <no location info>                                       27801          0    0.0    0.0     0.0    0.0
+  agent0                              World                                 src/World.hs:(41,1)-(44,366)                             28100          0    0.0    0.0     0.0    0.0
+   agent0.genome0                     World                                 src/World.hs:44:13-366                                   28101          0    0.0    0.0     0.0    0.0
+    splitOn                           Data.List.Split.Internals             src/Data/List/Split/Internals.hs:421:1-42                28102          0    0.0    0.0     0.0    0.0
+     dropDelims                       Data.List.Split.Internals             src/Data/List/Split/Internals.hs:295:1-39                28104          1    0.0    0.0     0.0    0.0
+ CAF:agent12                          World                                 <no location info>                                       27800          0    0.0    0.0     0.0    0.0
+  agent0                              World                                 src/World.hs:(41,1)-(44,366)                             28114          0    0.0    0.0     0.0    0.0
+   agent0.genome0                     World                                 src/World.hs:44:13-366                                   28115          0    0.0    0.0     0.0    0.0
+    splitOn                           Data.List.Split.Internals             src/Data/List/Split/Internals.hs:421:1-42                28116          0    0.0    0.0     0.0    0.0
+     onSublist                        Data.List.Split.Internals             src/Data/List/Split/Internals.hs:278:1-72                28117          0    0.0    0.0     0.0    0.0
+ CAF:agent13                          World                                 <no location info>                                       27798          0    0.0    0.0     0.0    0.0
+  agent0                              World                                 src/World.hs:(41,1)-(44,366)                             28118          0    0.0    0.0     0.0    0.0
+   agent0.genome0                     World                                 src/World.hs:44:13-366                                   28119          0    0.0    0.0     0.0    0.0
+ CAF:agent2                           World                                 <no location info>                                       27920          0    0.0    0.0     0.0    0.0
+  agent0                              World                                 src/World.hs:(41,1)-(44,366)                             28179          0    0.0    0.0     0.0    0.0
+   agent0.defaultGst                  World                                 src/World.hs:42:13-51                                    28180          1    0.0    0.0     0.0    0.0
+ CAF:agent3                           World                                 <no location info>                                       27919          0    0.0    0.0     0.0    0.0
+  agent0                              World                                 src/World.hs:(41,1)-(44,366)                             28181          0    0.0    0.0     0.0    0.0
+   agent0.defaultGst                  World                                 src/World.hs:42:13-51                                    28182          0    0.0    0.0     0.0    0.0
+ CAF:agent4                           World                                 <no location info>                                       27804          0    0.0    0.0     0.0    0.0
+  agent0                              World                                 src/World.hs:(41,1)-(44,366)                             28190          0    0.0    0.0     0.0    0.0
+   agent0.defaultStates               World                                 src/World.hs:43:13-89                                    28191          0    0.0    0.0     0.0    0.0
+ CAF:agent5                           World                                 <no location info>                                       27803          0    0.0    0.0     0.0    0.0
+  agent0                              World                                 src/World.hs:(41,1)-(44,366)                             28192          0    0.0    0.0     0.0    0.0
+   agent0.defaultStates               World                                 src/World.hs:43:13-89                                    28193          0    0.0    0.0     0.0    0.0
+ CAF:agent6                           World                                 <no location info>                                       27842          0    0.0    0.0     0.0    0.0
+  agent0                              World                                 src/World.hs:(41,1)-(44,366)                             28087          0    0.0    0.0     0.0    0.0
+   agent0.genome0                     World                                 src/World.hs:44:13-366                                   28088          1    0.0    0.0     0.0    0.0
+ CAF:agent8                           World                                 <no location info>                                       27841          0    0.0    0.0     0.0    0.0
+  agent0                              World                                 src/World.hs:(41,1)-(44,366)                             28090          0    0.0    0.0     0.0    0.0
+   agent0.genome0                     World                                 src/World.hs:44:13-366                                   28091          0    0.0    0.0     0.0    0.0
+    parseLoc                          World                                 src/World.hs:(111,1)-(115,47)                            28136         52    0.0    0.0     0.0    0.0
+     parseLoc.h                       World                                 src/World.hs:115:15-26                                   28137         52    0.0    0.0     0.0    0.0
+     parseLoc.s                       World                                 src/World.hs:115:29-47                                   28141         47    0.0    0.0     0.0    0.0
+      splitOn                         Data.List.Split.Internals             src/Data/List/Split/Internals.hs:421:1-42                28142         47    0.0    0.0     0.0    0.0
+       onSublist                      Data.List.Split.Internals             src/Data/List/Split/Internals.hs:278:1-72                28147         47    0.0    0.0     0.0    0.0
+       split                          Data.List.Split.Internals             src/Data/List/Split/Internals.hs:249:1-68                28143         47    0.0    0.0     0.0    0.0
+        fromElem                      Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(116,1)-(117,24)        28173         94    0.0    0.0     0.0    0.0
+        splitInternal                 Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(139,1)-(148,70)        28154         94    0.0    0.0     0.0    0.0
+         splitInternal.(...)          Data.List.Split.Internals             src/Data/List/Split/Internals.hs:144:3-31                28156         94    0.0    0.0     0.0    0.0
+          breakDelim                  Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(151,1)-(156,36)        28157        264    0.0    0.0     0.0    0.0
+           matchDelim                 Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(73,1)-(77,23)          28165        304    0.0    0.0     0.0    0.0
+            matchDelim.\              Data.List.Split.Internals             src/Data/List/Split/Internals.hs:76:60-71                28178         67    0.0    0.0     0.0    0.0
+           breakDelim.(...)           Data.List.Split.Internals             src/Data/List/Split/Internals.hs:155:25-52               28175        170    0.0    0.0     0.0    0.0
+           breakDelim.ys              Data.List.Split.Internals             src/Data/List/Split/Internals.hs:155:25-52               28174        170    0.0    0.0     0.0    0.0
+           breakDelim.match           Data.List.Split.Internals             src/Data/List/Split/Internals.hs:155:25-52               28210         90    0.0    0.0     0.0    0.0
+         splitInternal.xs             Data.List.Split.Internals             src/Data/List/Split/Internals.hs:144:3-31                28155         94    0.0    0.0     0.0    0.0
+         splitInternal.match          Data.List.Split.Internals             src/Data/List/Split/Internals.hs:144:3-31                28208         47    0.0    0.0     0.0    0.0
+         splitInternal.toSplitList    Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(146,3)-(148,70)        28209         47    0.0    0.0     0.0    0.0
+        delimiter                     Data.List.Split.Internals             src/Data/List/Split/Internals.hs:25:30-38                28158         47    0.0    0.0     0.0    0.0
+        postProcess                   Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(163,1)-(168,45)        28144         47    0.0    0.0     0.0    0.0
+         condensePolicy               Data.List.Split.Internals             src/Data/List/Split/Internals.hs:32:30-43                28153         47    0.0    0.0     0.0    0.0
+         delimPolicy                  Data.List.Split.Internals             src/Data/List/Split/Internals.hs:27:30-40                28146         47    0.0    0.0     0.0    0.0
+         doCondense                   Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(178,1)-(183,20)        28152         47    0.0    0.0     0.0    0.0
+         doDrop                       Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(172,1)-(173,14)        28168         47    0.0    0.0     0.0    0.0
+         doMerge                      Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(205,1)-(207,14)        28145         47    0.0    0.0     0.0    0.0
+         dropFinal                    Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(236,1)-(241,26)        28171         47    0.0    0.0     0.0    0.0
+         dropInitial                  Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(231,1)-(232,19)        28169         47    0.0    0.0     0.0    0.0
+         finalBlankPolicy             Data.List.Split.Internals             src/Data/List/Split/Internals.hs:37:30-45                28172         47    0.0    0.0     0.0    0.0
+         initBlankPolicy              Data.List.Split.Internals             src/Data/List/Split/Internals.hs:35:30-44                28170         47    0.0    0.0     0.0    0.0
+         insertBlanks                 Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(189,1)-(191,38)        28166         47    0.0    0.0     0.0    0.0
+          insertBlanks'               Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(195,1)-(201,49)        28167        141    0.0    0.0     0.0    0.0
+ CAF:agent9                           World                                 <no location info>                                       27802          0    0.0    0.0     0.0    0.0
+  agent0                              World                                 src/World.hs:(41,1)-(44,366)                             28092          0    0.0    0.0     0.0    0.0
+   agent0.genome0                     World                                 src/World.hs:44:13-366                                   28093          0    0.0    0.0     0.0    0.0
+    splitOn                           Data.List.Split.Internals             src/Data/List/Split/Internals.hs:421:1-42                28094          1    0.0    0.0     0.0    0.0
+     onSublist                        Data.List.Split.Internals             src/Data/List/Split/Internals.hs:278:1-72                28099          1    0.0    0.0     0.0    0.0
+     split                            Data.List.Split.Internals             src/Data/List/Split/Internals.hs:249:1-68                28095          1    0.0    0.0     0.0    0.0
+      fromElem                        Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(116,1)-(117,24)        28138         52    0.0    0.0     0.0    0.0
+      splitInternal                   Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(139,1)-(148,70)        28107         52    0.0    0.0     0.0    0.0
+       splitInternal.(...)            Data.List.Split.Internals             src/Data/List/Split/Internals.hs:144:3-31                28111         52    0.0    0.0     0.0    0.0
+        breakDelim                    Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(151,1)-(156,36)        28112        314    0.0    0.0     0.0    0.0
+         matchDelim                   Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(73,1)-(77,23)          28120        364    0.0    0.0     0.0    0.0
+          matchDelim.\                Data.List.Split.Internals             src/Data/List/Split/Internals.hs:76:60-71                28197         51    0.0    0.0     0.0    0.0
+         breakDelim.(...)             Data.List.Split.Internals             src/Data/List/Split/Internals.hs:155:25-52               28177        262    0.0    0.0     0.0    0.0
+         breakDelim.match             Data.List.Split.Internals             src/Data/List/Split/Internals.hs:155:25-52               28196        262    0.0    0.0     0.0    0.0
+         breakDelim.ys                Data.List.Split.Internals             src/Data/List/Split/Internals.hs:155:25-52               28176        222    0.0    0.0     0.0    0.0
+       splitInternal.match            Data.List.Split.Internals             src/Data/List/Split/Internals.hs:144:3-31                28194         52    0.0    0.0     0.0    0.0
+       splitInternal.toSplitList      Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(146,3)-(148,70)        28195         52    0.0    0.0     0.0    0.0
+       splitInternal.xs               Data.List.Split.Internals             src/Data/List/Split/Internals.hs:144:3-31                28110         52    0.0    0.0     0.0    0.0
+      delimiter                       Data.List.Split.Internals             src/Data/List/Split/Internals.hs:25:30-38                28113          1    0.0    0.0     0.0    0.0
+      postProcess                     Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(163,1)-(168,45)        28096          1    0.0    0.0     0.0    0.0
+       condensePolicy                 Data.List.Split.Internals             src/Data/List/Split/Internals.hs:32:30-43                28106          1    0.0    0.0     0.0    0.0
+       delimPolicy                    Data.List.Split.Internals             src/Data/List/Split/Internals.hs:27:30-40                28098          1    0.0    0.0     0.0    0.0
+       doCondense                     Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(178,1)-(183,20)        28105          1    0.0    0.0     0.0    0.0
+       doDrop                         Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(172,1)-(173,14)        28125          1    0.0    0.0     0.0    0.0
+       doMerge                        Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(205,1)-(207,14)        28097          1    0.0    0.0     0.0    0.0
+       dropFinal                      Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(236,1)-(241,26)        28128          1    0.0    0.0     0.0    0.0
+       dropInitial                    Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(231,1)-(232,19)        28126          1    0.0    0.0     0.0    0.0
+       finalBlankPolicy               Data.List.Split.Internals             src/Data/List/Split/Internals.hs:37:30-45                28129          1    0.0    0.0     0.0    0.0
+       initBlankPolicy                Data.List.Split.Internals             src/Data/List/Split/Internals.hs:35:30-44                28127          1    0.0    0.0     0.0    0.0
+       insertBlanks                   Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(189,1)-(191,38)        28123          1    0.0    0.0     0.0    0.0
+        insertBlanks'                 Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(195,1)-(201,49)        28124        104    0.0    0.0     0.0    0.0
+ CAF:allocateBlock_r5lo               System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:43:1-13         27726          0    0.0    0.0     0.0    0.0
+  allocateBlock                       System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(43,1)-(48,32)  28246          1    0.0    0.0     0.0    0.0
+ CAF:blockLen                         System.Random.Mersenne.Pure64.Base    System/Random/Mersenne/Pure64/Base.hsc:59:1-8            27729          0    0.0    0.0     0.0    0.0
+  blockLen                            System.Random.Mersenne.Pure64.Base    System/Random/Mersenne/Pure64/Base.hsc:59:1-16           28272          1    0.0    0.0     0.0    0.0
+ CAF:blockSize                        System.Random.Mersenne.Pure64.Base    System/Random/Mersenne/Pure64/Base.hsc:63:1-9            27730          0    0.0    0.0     0.0    0.0
+  blockSize                           System.Random.Mersenne.Pure64.Base    System/Random/Mersenne/Pure64/Base.hsc:63:1-18           28247          1    0.0    0.0     0.0    0.0
+ CAF:deathRate                        Parameters                            src/Parameters.hs:23:1-9                                 27947          0    0.0    0.0     0.0    0.0
+  deathRate                           Parameters                            src/Parameters.hs:23:1-23                                28275          1    0.0    0.0     0.0    0.0
+ CAF:defaultSplitter                  Data.List.Split.Internals             src/Data/List/Split/Internals.hs:58:1-15                 27758          0    0.0    0.0     0.0    0.0
+  defaultSplitter                     Data.List.Split.Internals             src/Data/List/Split/Internals.hs:(58,1)-(63,28)          28103          1    0.0    0.0     0.0    0.0
+ CAF:devAg                            World                                 src/World.hs:27:1-5                                      27913          0    0.0    0.0     0.0    0.0
+  devAg                               World                                 src/World.hs:(27,1)-(33,38)                              28073          1    0.0    0.0     0.0    0.0
+ CAF:devTime                          Parameters                            src/Parameters.hs:8:1-7                                  27932          0    0.0    0.0     0.0    0.0
+  devTime                             Parameters                            src/Parameters.hs:8:1-19                                 28075          1    0.0    0.0     0.0    0.0
+ CAF:display                          Parameters                            src/Parameters.hs:14:1-7                                 27944          0    0.0    0.0     0.0    0.0
+  display                             Parameters                            src/Parameters.hs:14:1-23                                28042          1    0.0    0.0     0.0    0.0
+ CAF:envSwitchProb                    Parameters                            src/Parameters.hs:24:1-13                                27948          0    0.0    0.0     0.0    0.0
+  envSwitchProb                       Parameters                            src/Parameters.hs:24:1-28                                28258          1    0.0    0.0     0.0    0.0
+ CAF:f_rcjR                           World                                 src/World.hs:181:11                                      27832          0    0.0    0.0     0.0    0.0
+  groupGeneTfbs                       World                                 src/World.hs:(179,1)-(182,27)                            28335          0    0.0    0.0     0.0    0.0
+   groupGeneTfbs.f                    World                                 src/World.hs:181:11-39                                   28336          1    0.0    0.0     0.0    0.0
+ CAF:fitnessGST1                      World                                 <no location info>                                       27808          0    0.0    0.0     0.0    0.0
+  fitnessGST                          World                                 src/World.hs:(225,1)-(231,39)                            28310          0    0.0    0.0     0.0    0.0
+   fitnessGST.dmax                    World                                 src/World.hs:228:9-41                                    28311          0    0.0    0.0     0.0    0.0
+ CAF:getBool                          MyRandom                              src/MyRandom.hs:35:1-7                                   27789          0    0.0    0.0     0.0    0.0
+  getBool                             MyRandom                              src/MyRandom.hs:35:1-26                                  28465          1    0.0    0.0     0.0    0.0
+   state                              Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28466          1    0.0    0.0     0.0    0.0
+ CAF:getDouble                        MyRandom                              src/MyRandom.hs:38:1-9                                   27792          0    0.0    0.0     0.0    0.0
+  getDouble                           MyRandom                              src/MyRandom.hs:38:1-30                                  28235          1    0.0    0.0     0.0    0.0
+   state                              Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28236          1    0.0    0.0     0.0    0.0
+ CAF:getMyStdGen1                     MyRandom                              <no location info>                                       27787          0    0.0    0.0     0.0    0.0
+  getMyStdGen                         MyRandom                              src/MyRandom.hs:174:1-36                                 28227          1    0.0    0.0     0.0    0.0
+ CAF:getRange                         MyRandom                              src/MyRandom.hs:41:1-8                                   27791          0    0.0    0.0     0.0    0.0
+  getRange                            MyRandom                              src/MyRandom.hs:41:1-26                                  28381          1    0.0    0.0     0.0    0.0
+ CAF:getRange1                        MyRandom                              <no location info>                                       27790          0    0.0    0.0     0.0    0.0
+  getRange                            MyRandom                              src/MyRandom.hs:41:1-26                                  28383          0    0.0    0.0     0.0    0.0
+   state                              Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28384          1    0.0    0.0     0.0    0.0
+ CAF:height                           Parameters                            src/Parameters.hs:13:1-6                                 27935          0    0.0    0.0     0.0    0.0
+  height                              Parameters                            src/Parameters.hs:13:1-18                                28059          1    0.0    0.0     0.0    0.0
+ CAF:lvl1_r1hO                        Parameters                            <no location info>                                       27940          0    0.0    0.0     0.0    0.0
+  worldCoods                          Parameters                            src/Parameters.hs:17:1-61                                28066          0    0.0    0.0     0.0    0.0
+ CAF:lvl1_rcjz                        World                                 <no location info>                                       27807          0    0.0    0.0     0.0    0.0
+  devAg.takeUntilSame                 World                                 src/World.hs:(29,5)-(33,38)                              28201          0    0.0    0.0     0.0    0.0
+   sameGST                            World                                 src/World.hs:(36,1)-(38,58)                              28202          0    0.0    0.0     0.0    0.0
+ CAF:lvl23_rkg0                       Evolverbetert                         <no location info>                                       27975          0    0.0    0.0     0.0    0.0
+  reproduceAgent                      Evolverbetert                         src/Evolverbetert.hs:(143,1)-(162,24)                    28313          0    0.0    0.0     0.0    0.0
+   reproduceAgent.fitnesses           Evolverbetert                         src/Evolverbetert.hs:(151,21)-(152,60)                   28314          0    0.0    0.0     0.0    0.0
+ CAF:lvl4_rb4Y                        Mutations                             <no location info>                                       27794          0    0.0    0.0     0.0    0.0
+  randGeneType                        Mutations                             src/Mutations.hs:177:1-42                                28479          0    0.0    0.0     0.0    0.0
+ CAF:lvl7_rb53                        Mutations                             <no location info>                                       27796          0    0.0    0.0     0.0    0.0
+  chGenThres                          Mutations                             src/Mutations.hs:(108,1)-(110,23)                        28524          0    0.0    0.0     0.0    0.0
+   getRange                           MyRandom                              src/MyRandom.hs:41:1-26                                  28525          0    0.0    0.0     0.0    0.0
+ CAF:lvl_r1hN                         Parameters                            <no location info>                                       27939          0    0.0    0.0     0.0    0.0
+  worldCoods                          Parameters                            src/Parameters.hs:17:1-61                                28067          0    0.0    0.0     0.0    0.0
+ CAF:main1                            Main                                  <no location info>                                       28030          0    0.0    0.0     0.0    0.0
+  main                                Main                                  app/Main.hs:4:1-19                                       28032          1    0.0    0.0     0.0    0.0
+ CAF:main1                            Evolverbetert                         <no location info>                                       28028          0    0.0    0.0     0.0    0.0
+  main                                Evolverbetert                         src/Evolverbetert.hs:(29,1)-(61,26)                      28033          1    0.0    0.0     0.0    0.0
+ CAF:main21                           Evolverbetert                         <no location info>                                       28026          0    0.0    0.0     0.0    0.0
+  main                                Evolverbetert                         src/Evolverbetert.hs:(29,1)-(61,26)                      28557          0    0.0    0.0     0.0    0.0
+ CAF:main22                           Evolverbetert                         <no location info>                                       28025          0    0.0    0.0     0.0    0.0
+  main                                Evolverbetert                         src/Evolverbetert.hs:(29,1)-(61,26)                      28558          0    0.0    0.0     0.0    0.0
+ CAF:main23                           Evolverbetert                         <no location info>                                       28005          0    0.0    0.0     0.0    0.0
+  main                                Evolverbetert                         src/Evolverbetert.hs:(29,1)-(61,26)                      28045          0    0.0    0.0     0.0    0.0
+   main.initialWorld                  Evolverbetert                         src/Evolverbetert.hs:(32,9)-(33,86)                      28046          1    0.0    0.0     0.0    0.0
+ CAF:main24                           Evolverbetert                         <no location info>                                       28004          0    0.0    0.0     0.0    0.0
+  main                                Evolverbetert                         src/Evolverbetert.hs:(29,1)-(61,26)                      28047          0    0.0    0.0     0.0    0.0
+   main.(...)                         Evolverbetert                         src/Evolverbetert.hs:(32,9)-(33,86)                      28048          1    0.0    0.0     0.0    0.0
+ CAF:main25                           Evolverbetert                         <no location info>                                       28002          0    0.0    0.0     0.0    0.0
+  main                                Evolverbetert                         src/Evolverbetert.hs:(29,1)-(61,26)                      28060          0    0.0    0.0     0.0    0.0
+   main.(...)                         Evolverbetert                         src/Evolverbetert.hs:(32,9)-(33,86)                      28061          0    0.0    0.0     0.0    0.0
+    main.(...).startAgents            Evolverbetert                         src/Evolverbetert.hs:33:19-86                            28062          0    0.0    0.0     0.0    0.0
+ CAF:main26                           Evolverbetert                         <no location info>                                       28001          0    0.0    0.0     0.0    0.0
+  main                                Evolverbetert                         src/Evolverbetert.hs:(29,1)-(61,26)                      28068          0    0.0    0.0     0.0    0.0
+   main.(...)                         Evolverbetert                         src/Evolverbetert.hs:(32,9)-(33,86)                      28069          0    0.0    0.0     0.0    0.0
+    main.(...).startAgents            Evolverbetert                         src/Evolverbetert.hs:33:19-86                            28070          0    0.0    0.0     0.0    0.0
+ CAF:main28                           Evolverbetert                         <no location info>                                       28000          0    0.0    0.0     0.0    0.0
+  main                                Evolverbetert                         src/Evolverbetert.hs:(29,1)-(61,26)                      28037          0    0.0    0.0     0.0    0.0
+ CAF:main29                           Evolverbetert                         <no location info>                                       27999          0    0.0    0.0     0.0    0.0
+  main                                Evolverbetert                         src/Evolverbetert.hs:(29,1)-(61,26)                      28242          0    0.0    0.0     0.0    0.0
+   pureMT                             MyRandom                              src/MyRandom.hs:79:1-44                                  28244          0    0.0    0.0     0.0    0.0
+    mkPureMT                          MyRandom                              src/MyRandom.hs:155:1-49                                 28254          1    0.0    0.0     0.0    0.0
+     nextBlock                        System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(65,1)-(70,14)  28280          1    0.0    0.0     0.0    0.0
+      blockAsPtr                      System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:51:1-51         28283          2    0.0    0.0     0.0    0.0
+      touch                           System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:1-60         28284          2    0.0    0.0     0.0    0.0
+       touch.\                        System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:23-60        28285          2    0.0    0.0     0.0    0.0
+      allocateBlock                   System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(43,1)-(48,32)  28281          0    0.0    0.0     0.0    0.0
+       allocateBlock.\                System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(44,17)-(46,48) 28282          1    0.0    0.0     0.0    0.0
+    seedBlock                         System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(55,1)-(60,12)  28245          1    0.0    0.0     0.0    0.0
+     blockAsPtr                       System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:51:1-51         28250          3    0.0    0.0     0.0    0.0
+     touch                            System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:1-60         28252          1    0.0    0.0     0.0    0.0
+      touch.\                         System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:23-60        28253          1    0.0    0.0     0.0    0.0
+     allocateBlock                    System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(43,1)-(48,32)  28248          0    0.0    0.0     0.0    0.0
+      allocateBlock.\                 System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(44,17)-(46,48) 28249          1    0.0    0.0     0.0    0.0
+ CAF:main30                           Evolverbetert                         <no location info>                                       28027          0    0.0    0.0     0.0    0.0
+  main                                Evolverbetert                         src/Evolverbetert.hs:(29,1)-(61,26)                      28035          0    0.0    0.0     0.0    0.0
+ CAF:main31                           Evolverbetert                         <no location info>                                       27998          0    0.0    0.0     0.0    0.0
+  main                                Evolverbetert                         src/Evolverbetert.hs:(29,1)-(61,26)                      28036          0    0.0    0.0     0.0    0.0
+ CAF:main_agents                      Evolverbetert                         src/Evolverbetert.hs:32:23-28                            28003          0    0.0    0.0     0.0    0.0
+  main                                Evolverbetert                         src/Evolverbetert.hs:(29,1)-(61,26)                      28052          0    0.0    0.0     0.0    0.0
+   main.(...)                         Evolverbetert                         src/Evolverbetert.hs:(32,9)-(33,86)                      28053          0    0.0    0.0     0.0    0.0
+    main.(...).startAgents            Evolverbetert                         src/Evolverbetert.hs:33:19-86                            28054          1    0.0    0.0     0.0    0.0
+ CAF:maxThres                         Parameters                            src/Parameters.hs:36:23-30                               27956          0    0.0    0.0     0.0    0.0
+  maxThres                            Parameters                            src/Parameters.hs:36:23-41                               28539          1    0.0    0.0     0.0    0.0
+ CAF:maxTime                          Parameters                            src/Parameters.hs:19:1-7                                 27945          0    0.0    0.0     0.0    0.0
+  maxTime                             Parameters                            src/Parameters.hs:19:1-20                                28044          1    0.0    0.0     0.0    0.0
+ CAF:minThres                         Parameters                            src/Parameters.hs:36:1-8                                 27955          0    0.0    0.0     0.0    0.0
+  minThres                            Parameters                            src/Parameters.hs:36:1-20                                28531          1    0.0    0.0     0.0    0.0
+ CAF:mixWord64                        System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:85:1-9          27727          0    0.0    0.0     0.0    0.0
+  mixWord64                           System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:85:1-24         28256          1    0.0    0.0     0.0    0.0
+ CAF:nrEnv                            Parameters                            src/Parameters.hs:26:1-5                                 27949          0    0.0    0.0     0.0    0.0
+  nrEnv                               Parameters                            src/Parameters.hs:26:1-16                                28226          1    0.0    0.0     0.0    0.0
+ CAF:nrGeneTypes                      Parameters                            src/Parameters.hs:33:1-11                                27954          0    0.0    0.0     0.0    0.0
+  nrGeneTypes                         Parameters                            src/Parameters.hs:33:1-57                                28185          1    0.0    0.0     0.0    0.0
+ CAF:nrGeneTypes1                     Parameters                            <no location info>                                       27953          0    0.0    0.0     0.0    0.0
+  nrGeneTypes                         Parameters                            src/Parameters.hs:33:1-57                                28186          0    0.0    0.0     0.0    0.0
+ CAF:nrHouseHold                      Parameters                            src/Parameters.hs:34:1-11                                27950          0    0.0    0.0     0.0    0.0
+  nrHouseHold                         Parameters                            src/Parameters.hs:34:1-22                                28187          1    0.0    0.0     0.0    0.0
+ CAF:nrOverlap                        Parameters                            src/Parameters.hs:34:25-33                               27951          0    0.0    0.0     0.0    0.0
+  nrOverlap                           Parameters                            src/Parameters.hs:34:25-44                               28188          1    0.0    0.0     0.0    0.0
+ CAF:nrSpecific                       Parameters                            src/Parameters.hs:34:47-56                               27952          0    0.0    0.0     0.0    0.0
+  nrSpecific                          Parameters                            src/Parameters.hs:34:47-68                               28189          1    0.0    0.0     0.0    0.0
+ CAF:pGenDel                          Parameters                            src/Parameters.hs:39:1-7                                 27957          0    0.0    0.0     0.0    0.0
+  pGenDel                             Parameters                            src/Parameters.hs:39:1-26                                28329          1    0.0    0.0     0.0    0.0
+ CAF:pGenDup                          Parameters                            src/Parameters.hs:40:1-7                                 27958          0    0.0    0.0     0.0    0.0
+  pGenDup                             Parameters                            src/Parameters.hs:40:1-26                                28342          1    0.0    0.0     0.0    0.0
+ CAF:pGenThresCh                      Parameters                            src/Parameters.hs:41:1-11                                27959          0    0.0    0.0     0.0    0.0
+  pGenThresCh                         Parameters                            src/Parameters.hs:41:1-26                                28352          1    0.0    0.0     0.0    0.0
+ CAF:pTfbsDel                         Parameters                            src/Parameters.hs:45:1-8                                 27962          0    0.0    0.0     0.0    0.0
+  pTfbsDel                            Parameters                            src/Parameters.hs:45:1-26                                28358          1    0.0    0.0     0.0    0.0
+ CAF:pTfbsInnov                       Parameters                            src/Parameters.hs:46:1-10                                27963          0    0.0    0.0     0.0    0.0
+  pTfbsInnov                          Parameters                            src/Parameters.hs:46:1-26                                28355          1    0.0    0.0     0.0    0.0
+ CAF:pTfbsPrefCh                      Parameters                            src/Parameters.hs:44:1-11                                27961          0    0.0    0.0     0.0    0.0
+  pTfbsPrefCh                         Parameters                            src/Parameters.hs:44:1-26                                28357          1    0.0    0.0     0.0    0.0
+ CAF:pTfbsWtCh                        Parameters                            src/Parameters.hs:43:1-9                                 27960          0    0.0    0.0     0.0    0.0
+  pTfbsWtCh                           Parameters                            src/Parameters.hs:43:1-26                                28356          1    0.0    0.0     0.0    0.0
+ CAF:parseLoc3                        World                                 <no location info>                                       27839          0    0.0    0.0     0.0    0.0
+  parseLoc                            World                                 src/World.hs:(111,1)-(115,47)                            28140          0    0.0    0.0     0.0    0.0
+ CAF:parseLoc4                        World                                 <no location info>                                       27833          0    0.0    0.0     0.0    0.0
+  parseLoc                            World                                 src/World.hs:(111,1)-(115,47)                            28139          0    0.0    0.0     0.0    0.0
+ CAF:parseLoc5                        World                                 <no location info>                                       27836          0    0.0    0.0     0.0    0.0
+  parseLoc                            World                                 src/World.hs:(111,1)-(115,47)                            28148          0    0.0    0.0     0.0    0.0
+   parseLoc.s                         World                                 src/World.hs:115:29-47                                   28149          0    0.0    0.0     0.0    0.0
+    splitOn                           Data.List.Split.Internals             src/Data/List/Split/Internals.hs:421:1-42                28150          0    0.0    0.0     0.0    0.0
+     dropDelims                       Data.List.Split.Internals             src/Data/List/Split/Internals.hs:295:1-39                28151          1    0.0    0.0     0.0    0.0
+ CAF:parseLoc6                        World                                 <no location info>                                       27835          0    0.0    0.0     0.0    0.0
+  parseLoc                            World                                 src/World.hs:(111,1)-(115,47)                            28159          0    0.0    0.0     0.0    0.0
+   parseLoc.s                         World                                 src/World.hs:115:29-47                                   28160          0    0.0    0.0     0.0    0.0
+    splitOn                           Data.List.Split.Internals             src/Data/List/Split/Internals.hs:421:1-42                28161          0    0.0    0.0     0.0    0.0
+     onSublist                        Data.List.Split.Internals             src/Data/List/Split/Internals.hs:278:1-72                28162          0    0.0    0.0     0.0    0.0
+ CAF:parseLoc7                        World                                 <no location info>                                       27834          0    0.0    0.0     0.0    0.0
+  parseLoc                            World                                 src/World.hs:(111,1)-(115,47)                            28163          0    0.0    0.0     0.0    0.0
+   parseLoc.s                         World                                 src/World.hs:115:29-47                                   28164          0    0.0    0.0     0.0    0.0
+ CAF:pureMT                           MyRandom                              src/MyRandom.hs:79:1-6                                   27780          0    0.0    0.0     0.0    0.0
+  pureMT                              MyRandom                              src/MyRandom.hs:79:1-44                                  28243          1    0.0    0.0     0.0    0.0
+ CAF:randGeneType_r8vV                Mutations                             src/Mutations.hs:177:1-12                                27795          0    0.0    0.0     0.0    0.0
+  randGeneType                        Mutations                             src/Mutations.hs:177:1-42                                28452          1    0.0    0.0     0.0    0.0
+   getRange                           MyRandom                              src/MyRandom.hs:41:1-26                                  28453          0    0.0    0.0     0.0    0.0
+ CAF:reduceToGenes                    World                                 src/World.hs:213:1-13                                    27830          0    0.0    0.0     0.0    0.0
+  reduceToGenes                       World                                 src/World.hs:(213,1)-(217,53)                            28082          1    0.0    0.0     0.0    0.0
+ CAF:runRand                          MyRandom                              src/MyRandom.hs:32:1-7                                   27782          0    0.0    0.0     0.0    0.0
+  runRand                             MyRandom                              src/MyRandom.hs:32:1-18                                  28232          1    0.0    0.0     0.0    0.0
+ CAF:seed                             Parameters                            src/Parameters.hs:10:1-4                                 27933          0    0.0    0.0     0.0    0.0
+  seed                                Parameters                            src/Parameters.hs:10:1-20                                28251          1    0.0    0.0     0.0    0.0
+ CAF:selectionPressure                Parameters                            src/Parameters.hs:22:1-17                                27946          0    0.0    0.0     0.0    0.0
+  selectionPressure                   Parameters                            src/Parameters.hs:22:1-29                                28303          1    0.0    0.0     0.0    0.0
+ CAF:setMyStdGen1                     MyRandom                              <no location info>                                       27785          0    0.0    0.0     0.0    0.0
+  setMyStdGen                         MyRandom                              src/MyRandom.hs:170:1-36                                 28038          1    0.0    0.0     0.0    0.0
+ CAF:targetGST3                       World                                 <no location info>                                       27810          0    0.0    0.0     0.0    0.0
+  targetGST                           World                                 src/World.hs:(246,1)-(249,70)                            28215          0    0.0    0.0     0.0    0.0
+ CAF:targetGST4                       World                                 <no location info>                                       27809          0    0.0    0.0     0.0    0.0
+  targetGST                           World                                 src/World.hs:(246,1)-(249,70)                            28216          0    0.0    0.0     0.0    0.0
+ CAF:targetGST7                       World                                 <no location info>                                       27814          0    0.0    0.0     0.0    0.0
+  targetExpression                    World                                 src/World.hs:(258,1)-(268,65)                            28223          0    0.0    0.0     0.0    0.0
+ CAF:targetGST8                       World                                 <no location info>                                       27916          0    0.0    0.0     0.0    0.0
+  targetGST                           World                                 src/World.hs:(246,1)-(249,70)                            28212          0    0.0    0.0     0.0    0.0
+ CAF:targetGST9                       World                                 <no location info>                                       27815          0    0.0    0.0     0.0    0.0
+  targetGST                           World                                 src/World.hs:(246,1)-(249,70)                            28213          0    0.0    0.0     0.0    0.0
+   valueResultPairs                   Misc                                  src/Misc.hs:24:1-41                                      28214          1    0.0    0.0     0.0    0.0
+    valueResultPairs.\                Misc                                  src/Misc.hs:24:33-40                                     28217         20    0.0    0.0     0.0    0.0
+     targetExpression                 World                                 src/World.hs:(258,1)-(268,65)                            28220         20    0.0    0.0     0.0    0.0
+ CAF:targetGST_hh                     World                                 src/World.hs:268:11-12                                   27812          0    0.0    0.0     0.0    0.0
+  targetExpression                    World                                 src/World.hs:(258,1)-(268,65)                            28221          0    0.0    0.0     0.0    0.0
+   targetExpression.hh                World                                 src/World.hs:268:11-28                                   28222          1    0.0    0.0     0.0    0.0
+ CAF:targetGST_ov                     World                                 src/World.hs:268:31-32                                   27813          0    0.0    0.0     0.0    0.0
+  targetExpression                    World                                 src/World.hs:(258,1)-(268,65)                            28224          0    0.0    0.0     0.0    0.0
+   targetExpression.ov                World                                 src/World.hs:268:31-46                                   28225          1    0.0    0.0     0.0    0.0
+ CAF:theMyStdGen                      MyRandom                              src/MyRandom.hs:179:1-11                                 27784          0    0.0    0.0     0.0    0.0
+  theMyStdGen                         MyRandom                              src/MyRandom.hs:(179,1)-(180,23)                         28041          1    0.0    0.0     0.0    0.0
+ CAF:updateGenome                     World                                 src/World.hs:156:1-12                                    27911          0    0.0    0.0     0.0    0.0
+  updateGenome                        World                                 src/World.hs:156:1-34                                    28085          1    0.0    0.0     0.0    0.0
+ CAF:width                            Parameters                            src/Parameters.hs:12:1-5                                 27934          0    0.0    0.0     0.0    0.0
+  width                               Parameters                            src/Parameters.hs:12:1-18                                28057          1    0.0    0.0     0.0    0.0
+ CAF:worldBounds                      Parameters                            src/Parameters.hs:16:1-11                                27938          0    0.0    0.0     0.0    0.0
+  worldBounds                         Parameters                            src/Parameters.hs:16:1-53                                28055          1    0.0    0.0     0.0    0.0
+ CAF:worldBounds2                     Parameters                            <no location info>                                       27937          0    0.0    0.0     0.0    0.0
+  worldBounds                         Parameters                            src/Parameters.hs:16:1-53                                28058          0    0.0    0.0     0.0    0.0
+ CAF:worldBounds3                     Parameters                            <no location info>                                       27936          0    0.0    0.0     0.0    0.0
+  worldBounds                         Parameters                            src/Parameters.hs:16:1-53                                28056          0    0.0    0.0     0.0    0.0
+ CAF:worldCoods                       Parameters                            src/Parameters.hs:17:1-10                                27943          0    0.0    0.0     0.0    0.0
+  worldCoods                          Parameters                            src/Parameters.hs:17:1-61                                28063          1    0.0    0.0     0.0    0.0
+ CAF:worldCoods1                      Parameters                            <no location info>                                       27942          0    0.0    0.0     0.0    0.0
+  worldCoods                          Parameters                            src/Parameters.hs:17:1-61                                28064          0    0.0    0.0     0.0    0.0
+ CAF:worldCoods2                      Parameters                            <no location info>                                       27941          0    0.0    0.0     0.0    0.0
+  worldCoods                          Parameters                            src/Parameters.hs:17:1-61                                28065          0    0.0    0.0     0.0    0.0
+ main                                 Evolverbetert                         src/Evolverbetert.hs:(29,1)-(61,26)                      28034          0    0.0    0.0   100.0  100.0
+  mainLoop                            Evolverbetert                         src/Evolverbetert.hs:(66,1)-(82,27)                      28043        201    0.0    0.0   100.0  100.0
+   consoleOutput                      Evolverbetert                         src/Evolverbetert.hs:122:1-47                            28049        200    0.0    0.0     8.1    8.5
+    outputString                      Evolverbetert                         src/Evolverbetert.hs:(103,1)-(116,76)                    28050        200    0.0    0.0     8.0    8.5
+     outputString.minHammDist         Evolverbetert                         src/Evolverbetert.hs:116:9-76                            28051        200    0.4    0.3     8.0    8.5
+      hammDistAg                      World                                 src/World.hs:(241,1)-(242,90)                            28071     500000    4.7    7.4     7.7    8.2
+       hammDist                       World                                 src/World.hs:(235,1)-(237,78)                            28218    7345464    2.9    0.7     2.9    0.7
+       geneStateTable                 World                                 src/World.hs:97:25-38                                    28219     349784    0.0    0.0     0.0    0.0
+       targetGST                      World                                 src/World.hs:(246,1)-(249,70)                            28211     349784    0.0    0.0     0.0    0.0
+   mainLoop.(...)                     Evolverbetert                         src/Evolverbetert.hs:73:9-44                             28231        199    0.0    0.0    91.9   91.5
+    newWorld                          Evolverbetert                         src/Evolverbetert.hs:(90,1)-(100,36)                     28233        199    0.4    1.0    91.9   91.5
+     newAssoc                         Evolverbetert                         src/Evolverbetert.hs:(131,1)-(133,20)                    28261     497500    0.8    0.6    91.1   89.7
+      reproduceAgent                  Evolverbetert                         src/Evolverbetert.hs:(143,1)-(162,24)                    28262     497500    1.9    0.9    90.3   89.1
+       ==                             World                                 src/World.hs:98:44-45                                    28276     347932    0.1    0.0     0.1    0.0
+       /=                             World                                 src/World.hs:98:44-45                                    28317     104608    0.0    0.0     5.4    2.2
+        ==                            World                                 src/World.hs:98:44-45                                    28318     104608    3.7    2.2     5.4    2.2
+         ==                           World                                 src/World.hs:106:36-37                                   28360    5439124    1.2    0.0     1.7    0.0
+          ==                          World                                 src/World.hs:131:50-51                                   28361    2824229    0.2    0.0     0.2    0.0
+          ==                          World                                 src/World.hs:121:68-69                                   28362    2089683    0.3    0.0     0.3    0.0
+       mutAg                          Mutations                             src/Mutations.hs:(170,1)-(174,31)                        28316     104608    0.8    0.3    63.0   68.5
+        dupChr                        Mutations                             src/Mutations.hs:19:1-35                                 28319     104525    0.1    0.0    57.3   63.4
+         mutateLoci                   Mutations                             src/Mutations.hs:(130,1)-(147,32)                        28321    5574750   24.0   18.8    48.1   54.0
+          mutateLoci.list'            Mutations                             src/Mutations.hs:141:21-32                               28359    2841352    0.0    0.0     0.0    0.0
+          delAnElem                   Mutations                             src/Mutations.hs:(122,1)-(127,24)                        28504         88    0.0    0.0     0.0    0.0
+           delAnElem.(...)            Mutations                             src/Mutations.hs:126:18-40                               28520         88    0.0    0.0     0.0    0.0
+           delAnElem.h                Mutations                             src/Mutations.hs:126:18-40                               28521         88    0.0    0.0     0.0    0.0
+           delAnElem.len              Mutations                             src/Mutations.hs:124:9-23                                28516         88    0.0    0.0     0.0    0.0
+           delAnElem.t                Mutations                             src/Mutations.hs:126:18-40                               28522         88    0.0    0.0     0.0    0.0
+           getRange                   MyRandom                              src/MyRandom.hs:41:1-26                                  28505          0    0.0    0.0     0.0    0.0
+            state                     Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28506          0    0.0    0.0     0.0    0.0
+             randomR                  MyRandom                              src/MyRandom.hs:(162,1)-(167,23)                         28507         88    0.0    0.0     0.0    0.0
+              randomR.(...)           MyRandom                              src/MyRandom.hs:163:9-32                                 28510         88    0.0    0.0     0.0    0.0
+               randomDouble           MyRandom                              src/MyRandom.hs:(136,1)-(137,38)                         28511         88    0.0    0.0     0.0    0.0
+                randomDouble.(...)    MyRandom                              src/MyRandom.hs:137:15-38                                28513         88    0.0    0.0     0.0    0.0
+                 randomWord64         MyRandom                              src/MyRandom.hs:(143,1)-(146,38)                         28514         88    0.0    0.0     0.0    0.0
+                  lookupBlock         System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:79:1-61         28515         88    0.0    0.0     0.0    0.0
+                  randomWord64.mt     MyRandom                              src/MyRandom.hs:(145,5)-(146,38)                         28519         88    0.0    0.0     0.0    0.0
+                randomDouble.g'       MyRandom                              src/MyRandom.hs:137:15-38                                28518         88    0.0    0.0     0.0    0.0
+                randomDouble.i        MyRandom                              src/MyRandom.hs:137:15-38                                28512         88    0.0    0.0     0.0    0.0
+              randomR.d               MyRandom                              src/MyRandom.hs:163:9-32                                 28509         88    0.0    0.0     0.0    0.0
+              randomR.g'              MyRandom                              src/MyRandom.hs:163:9-32                                 28517         88    0.0    0.0     0.0    0.0
+              randomR.r               MyRandom                              src/MyRandom.hs:164:9-51                                 28508         88    0.0    0.0     0.0    0.0
+          chTfbsWt                    Mutations                             src/Mutations.hs:161:1-46                                28450         61    0.0    0.0     0.0    0.0
+          chTfbsPref                  Mutations                             src/Mutations.hs:(165,1)-(167,21)                        28488         48    0.0    0.0     0.0    0.0
+           randGeneType               Mutations                             src/Mutations.hs:177:1-42                                28489          0    0.0    0.0     0.0    0.0
+            getRange                  MyRandom                              src/MyRandom.hs:41:1-26                                  28490          0    0.0    0.0     0.0    0.0
+             randomR                  MyRandom                              src/MyRandom.hs:(162,1)-(167,23)                         28492         48    0.0    0.0     0.0    0.0
+              randomR.(...)           MyRandom                              src/MyRandom.hs:163:9-32                                 28495         48    0.0    0.0     0.0    0.0
+               randomDouble           MyRandom                              src/MyRandom.hs:(136,1)-(137,38)                         28496         48    0.0    0.0     0.0    0.0
+                randomDouble.(...)    MyRandom                              src/MyRandom.hs:137:15-38                                28498         48    0.0    0.0     0.0    0.0
+                 randomWord64         MyRandom                              src/MyRandom.hs:(143,1)-(146,38)                         28499         48    0.0    0.0     0.0    0.0
+                  lookupBlock         System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:79:1-61         28500         48    0.0    0.0     0.0    0.0
+                  randomWord64.mt     MyRandom                              src/MyRandom.hs:(145,5)-(146,38)                         28503         48    0.0    0.0     0.0    0.0
+                randomDouble.g'       MyRandom                              src/MyRandom.hs:137:15-38                                28502         48    0.0    0.0     0.0    0.0
+                randomDouble.i        MyRandom                              src/MyRandom.hs:137:15-38                                28497         48    0.0    0.0     0.0    0.0
+              randomR.d               MyRandom                              src/MyRandom.hs:163:9-32                                 28494         48    0.0    0.0     0.0    0.0
+              randomR.g'              MyRandom                              src/MyRandom.hs:163:9-32                                 28501         48    0.0    0.0     0.0    0.0
+              randomR.r               MyRandom                              src/MyRandom.hs:164:9-51                                 28493         48    0.0    0.0     0.0    0.0
+             state                    Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28491          0    0.0    0.0     0.0    0.0
+          innovateTfbs                Mutations                             src/Mutations.hs:(153,1)-(158,22)                        28451         45    0.0    0.0     0.0    0.0
+           innovateTfbs.tfbs          Mutations                             src/Mutations.hs:157:9-31                                28483         45    0.0    0.0     0.0    0.0
+           innovateTfbs.weight        Mutations                             src/Mutations.hs:155:9-38                                28484         41    0.0    0.0     0.0    0.0
+           getBool                    MyRandom                              src/MyRandom.hs:35:1-26                                  28467          0    0.0    0.0     0.0    0.0
+            state                     Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28468          0    0.0    0.0     0.0    0.0
+             randomBool               MyRandom                              src/MyRandom.hs:(150,1)-(151,34)                         28469         45    0.0    0.0     0.0    0.0
+              randomBool.(...)        MyRandom                              src/MyRandom.hs:151:11-34                                28471         45    0.0    0.0     0.0    0.0
+               randomDouble           MyRandom                              src/MyRandom.hs:(136,1)-(137,38)                         28472         45    0.0    0.0     0.0    0.0
+                randomDouble.(...)    MyRandom                              src/MyRandom.hs:137:15-38                                28474         45    0.0    0.0     0.0    0.0
+                 randomWord64         MyRandom                              src/MyRandom.hs:(143,1)-(146,38)                         28475         45    0.0    0.0     0.0    0.0
+                  randomWord64.mt     MyRandom                              src/MyRandom.hs:(145,5)-(146,38)                         28476         45    0.0    0.0     0.0    0.0
+                  lookupBlock         System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:79:1-61         28487         41    0.0    0.0     0.0    0.0
+                randomDouble.g'       MyRandom                              src/MyRandom.hs:137:15-38                                28473         45    0.0    0.0     0.0    0.0
+                randomDouble.i        MyRandom                              src/MyRandom.hs:137:15-38                                28486         41    0.0    0.0     0.0    0.0
+              randomBool.g'           MyRandom                              src/MyRandom.hs:151:11-34                                28470         45    0.0    0.0     0.0    0.0
+              randomBool.d            MyRandom                              src/MyRandom.hs:151:11-34                                28485         41    0.0    0.0     0.0    0.0
+           randGeneType               Mutations                             src/Mutations.hs:177:1-42                                28455          0    0.0    0.0     0.0    0.0
+            getRange                  MyRandom                              src/MyRandom.hs:41:1-26                                  28456          0    0.0    0.0     0.0    0.0
+             randomR                  MyRandom                              src/MyRandom.hs:(162,1)-(167,23)                         28458         45    0.0    0.0     0.0    0.0
+              randomR.(...)           MyRandom                              src/MyRandom.hs:163:9-32                                 28461         45    0.0    0.0     0.0    0.0
+               randomDouble           MyRandom                              src/MyRandom.hs:(136,1)-(137,38)                         28462         45    0.0    0.0     0.0    0.0
+                randomDouble.(...)    MyRandom                              src/MyRandom.hs:137:15-38                                28464         45    0.0    0.0     0.0    0.0
+                 randomWord64         MyRandom                              src/MyRandom.hs:(143,1)-(146,38)                         28477         45    0.0    0.0     0.0    0.0
+                  lookupBlock         System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:79:1-61         28478         45    0.0    0.0     0.0    0.0
+                  randomWord64.mt     MyRandom                              src/MyRandom.hs:(145,5)-(146,38)                         28482         45    0.0    0.0     0.0    0.0
+                randomDouble.g'       MyRandom                              src/MyRandom.hs:137:15-38                                28481         45    0.0    0.0     0.0    0.0
+                randomDouble.i        MyRandom                              src/MyRandom.hs:137:15-38                                28463         45    0.0    0.0     0.0    0.0
+              randomR.d               MyRandom                              src/MyRandom.hs:163:9-32                                 28460         45    0.0    0.0     0.0    0.0
+              randomR.g'              MyRandom                              src/MyRandom.hs:163:9-32                                 28480         45    0.0    0.0     0.0    0.0
+              randomR.r               MyRandom                              src/MyRandom.hs:164:9-51                                 28459         45    0.0    0.0     0.0    0.0
+             state                    Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28457          0    0.0    0.0     0.0    0.0
+          chGenThres                  Mutations                             src/Mutations.hs:(108,1)-(110,23)                        28523         12    0.0    0.0     0.0    0.0
+           getRange                   MyRandom                              src/MyRandom.hs:41:1-26                                  28527          0    0.0    0.0     0.0    0.0
+            randomR                   MyRandom                              src/MyRandom.hs:(162,1)-(167,23)                         28529         12    0.0    0.0     0.0    0.0
+             randomR.(...)            MyRandom                              src/MyRandom.hs:163:9-32                                 28533         12    0.0    0.0     0.0    0.0
+              randomDouble            MyRandom                              src/MyRandom.hs:(136,1)-(137,38)                         28534         12    0.0    0.0     0.0    0.0
+               randomDouble.(...)     MyRandom                              src/MyRandom.hs:137:15-38                                28536         12    0.0    0.0     0.0    0.0
+                randomWord64          MyRandom                              src/MyRandom.hs:(143,1)-(146,38)                         28537         12    0.0    0.0     0.0    0.0
+                 lookupBlock          System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:79:1-61         28538         12    0.0    0.0     0.0    0.0
+                 randomWord64.mt      MyRandom                              src/MyRandom.hs:(145,5)-(146,38)                         28542         12    0.0    0.0     0.0    0.0
+               randomDouble.g'        MyRandom                              src/MyRandom.hs:137:15-38                                28541         12    0.0    0.0     0.0    0.0
+               randomDouble.i         MyRandom                              src/MyRandom.hs:137:15-38                                28535         12    0.0    0.0     0.0    0.0
+             randomR.d                MyRandom                              src/MyRandom.hs:163:9-32                                 28532         12    0.0    0.0     0.0    0.0
+             randomR.g'               MyRandom                              src/MyRandom.hs:163:9-32                                 28540         12    0.0    0.0     0.0    0.0
+             randomR.r                MyRandom                              src/MyRandom.hs:164:9-51                                 28530         12    0.0    0.0     0.0    0.0
+            state                     Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28528          0    0.0    0.0     0.0    0.0
+          getDouble                   MyRandom                              src/MyRandom.hs:38:1-30                                  28345          0    0.0    0.0    24.0   35.1
+           state                      Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28346          0    3.6    3.3    24.0   35.1
+            randomDouble              MyRandom                              src/MyRandom.hs:(136,1)-(137,38)                         28347   15569282    7.3   11.4    20.5   31.8
+             randomDouble.(...)       MyRandom                              src/MyRandom.hs:137:15-38                                28349   15569282    4.1    9.8    12.6   20.4
+              randomWord64            MyRandom                              src/MyRandom.hs:(143,1)-(146,38)                         28350   15569282    4.5    4.9     8.5   10.6
+               lookupBlock            System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:79:1-61         28351   15569282    0.7    1.6     0.7    1.6
+               randomWord64.mt        MyRandom                              src/MyRandom.hs:(145,5)-(146,38)                         28354   15569282    2.7    3.3     3.2    4.1
+                mkPureMT              MyRandom                              src/MyRandom.hs:155:1-49                                 28373      49948    0.1    0.0     0.5    0.9
+                 nextBlock            System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(65,1)-(70,14)  28374      49947    0.4    0.0     0.4    0.8
+                  blockAsPtr          System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:51:1-51         28377      99894    0.0    0.0     0.0    0.0
+                  touch               System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:1-60         28378      99894    0.0    0.0     0.0    0.0
+                   touch.\            System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:23-60        28379      99894    0.0    0.0     0.0    0.0
+                  allocateBlock       System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(43,1)-(48,32)  28375          0    0.0    0.0     0.1    0.8
+                   allocateBlock.\    System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(44,17)-(46,48) 28376      49947    0.1    0.8     0.1    0.8
+             randomDouble.g'          MyRandom                              src/MyRandom.hs:137:15-38                                28353   15569282    0.6    0.0     0.6    0.0
+             randomDouble.i           MyRandom                              src/MyRandom.hs:137:15-38                                28348   15569282    0.0    0.0     0.0    0.0
+         mutNet                       Mutations                             src/Mutations.hs:(96,1)-(104,26)                         28320     104525    1.7    2.6     9.0    9.4
+          mutNet.genes'               Mutations                             src/Mutations.hs:97:9-34                                 28331     104525    0.0    0.0     6.6    6.2
+           groupGeneTfbs              World                                 src/World.hs:(179,1)-(182,27)                            28332    2206618    1.4    1.3     6.5    6.2
+            groupGeneTfbs.(...)       World                                 src/World.hs:182:11-27                                   28334    2102093    0.2    0.3     0.2    0.3
+            groupGeneTfbs.t           World                                 src/World.hs:182:11-27                                   28333    2102093    0.1    0.0     0.1    0.0
+            groupGeneTfbs.h           World                                 src/World.hs:182:11-27                                   28343    2101531    0.2    0.0     0.2    0.0
+            groupGeneTfbs.f           World                                 src/World.hs:181:11-39                                   28337          0    0.9    0.5     4.7    4.6
+             takeWhileInclusive       World                                 src/World.hs:(185,1)-(190,37)                            28338    5470590    2.0    1.0     3.8    4.1
+              isGene                  World                                 src/World.hs:175:1-50                                    28339    5470590    0.1    0.0     0.1    0.0
+              takeWhileInclusive.henk World                                 src/World.hs:190:19-37                                   28344    5469151    1.7    3.1     1.7    3.1
+          mutNet.len                  Mutations                             src/Mutations.hs:98:9-27                                 28330     104525    0.1    0.0     0.1    0.0
+          delAnElem                   Mutations                             src/Mutations.hs:(122,1)-(127,24)                        28380        562    0.0    0.0     0.0    0.0
+           delAnElem.(...)            Mutations                             src/Mutations.hs:126:18-40                               28399        562    0.0    0.0     0.0    0.0
+           delAnElem.h                Mutations                             src/Mutations.hs:126:18-40                               28400        562    0.0    0.0     0.0    0.0
+           delAnElem.len              Mutations                             src/Mutations.hs:124:9-23                                28395        562    0.0    0.0     0.0    0.0
+           delAnElem.t                Mutations                             src/Mutations.hs:126:18-40                               28401        562    0.0    0.0     0.0    0.0
+           getRange                   MyRandom                              src/MyRandom.hs:41:1-26                                  28382          0    0.0    0.0     0.0    0.0
+            state                     Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28385          0    0.0    0.0     0.0    0.0
+             randomR                  MyRandom                              src/MyRandom.hs:(162,1)-(167,23)                         28386        562    0.0    0.0     0.0    0.0
+              randomR.(...)           MyRandom                              src/MyRandom.hs:163:9-32                                 28389        562    0.0    0.0     0.0    0.0
+               randomDouble           MyRandom                              src/MyRandom.hs:(136,1)-(137,38)                         28390        562    0.0    0.0     0.0    0.0
+                randomDouble.(...)    MyRandom                              src/MyRandom.hs:137:15-38                                28392        562    0.0    0.0     0.0    0.0
+                 randomWord64         MyRandom                              src/MyRandom.hs:(143,1)-(146,38)                         28393        562    0.0    0.0     0.0    0.0
+                  lookupBlock         System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:79:1-61         28394        562    0.0    0.0     0.0    0.0
+                  randomWord64.mt     MyRandom                              src/MyRandom.hs:(145,5)-(146,38)                         28398        562    0.0    0.0     0.0    0.0
+                   mkPureMT           MyRandom                              src/MyRandom.hs:155:1-49                                 28543          3    0.0    0.0     0.0    0.0
+                    nextBlock         System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(65,1)-(70,14)  28544          3    0.0    0.0     0.0    0.0
+                     blockAsPtr       System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:51:1-51         28547          6    0.0    0.0     0.0    0.0
+                     touch            System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:1-60         28548          6    0.0    0.0     0.0    0.0
+                      touch.\         System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:23-60        28549          6    0.0    0.0     0.0    0.0
+                     allocateBlock    System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(43,1)-(48,32)  28545          0    0.0    0.0     0.0    0.0
+                      allocateBlock.\ System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(44,17)-(46,48) 28546          3    0.0    0.0     0.0    0.0
+                randomDouble.g'       MyRandom                              src/MyRandom.hs:137:15-38                                28397        562    0.0    0.0     0.0    0.0
+                randomDouble.i        MyRandom                              src/MyRandom.hs:137:15-38                                28391        562    0.0    0.0     0.0    0.0
+              randomR.d               MyRandom                              src/MyRandom.hs:163:9-32                                 28388        562    0.0    0.0     0.0    0.0
+              randomR.g'              MyRandom                              src/MyRandom.hs:163:9-32                                 28396        562    0.0    0.0     0.0    0.0
+              randomR.r               MyRandom                              src/MyRandom.hs:164:9-51                                 28387        562    0.0    0.0     0.0    0.0
+          dupAGen                     Mutations                             src/Mutations.hs:(113,1)-(119,36)                        28419        406    0.0    0.0     0.0    0.0
+           dupAGen.(...)              Mutations                             src/Mutations.hs:118:18-39                               28420        406    0.0    0.0     0.0    0.0
+           dupAGen.h                  Mutations                             src/Mutations.hs:118:18-39                               28433        406    0.0    0.0     0.0    0.0
+           dupAGen.len                Mutations                             src/Mutations.hs:115:9-23                                28432        406    0.0    0.0     0.0    0.0
+           dupAGen.t                  Mutations                             src/Mutations.hs:118:18-39                               28437        406    0.0    0.0     0.0    0.0
+           getRange                   MyRandom                              src/MyRandom.hs:41:1-26                                  28421          0    0.0    0.0     0.0    0.0
+            state                     Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28422          0    0.0    0.0     0.0    0.0
+             randomR                  MyRandom                              src/MyRandom.hs:(162,1)-(167,23)                         28423        812    0.0    0.0     0.0    0.0
+              randomR.(...)           MyRandom                              src/MyRandom.hs:163:9-32                                 28426        812    0.0    0.0     0.0    0.0
+               randomDouble           MyRandom                              src/MyRandom.hs:(136,1)-(137,38)                         28427        812    0.0    0.0     0.0    0.0
+                randomDouble.(...)    MyRandom                              src/MyRandom.hs:137:15-38                                28429        812    0.0    0.0     0.0    0.0
+                 randomWord64         MyRandom                              src/MyRandom.hs:(143,1)-(146,38)                         28430        812    0.0    0.0     0.0    0.0
+                  lookupBlock         System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:79:1-61         28431        812    0.0    0.0     0.0    0.0
+                  randomWord64.mt     MyRandom                              src/MyRandom.hs:(145,5)-(146,38)                         28436        812    0.0    0.0     0.0    0.0
+                   mkPureMT           MyRandom                              src/MyRandom.hs:155:1-49                                 28550          2    0.0    0.0     0.0    0.0
+                    nextBlock         System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(65,1)-(70,14)  28551          2    0.0    0.0     0.0    0.0
+                     blockAsPtr       System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:51:1-51         28554          4    0.0    0.0     0.0    0.0
+                     touch            System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:1-60         28555          4    0.0    0.0     0.0    0.0
+                      touch.\         System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:23-60        28556          4    0.0    0.0     0.0    0.0
+                     allocateBlock    System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(43,1)-(48,32)  28552          0    0.0    0.0     0.0    0.0
+                      allocateBlock.\ System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(44,17)-(46,48) 28553          2    0.0    0.0     0.0    0.0
+                randomDouble.g'       MyRandom                              src/MyRandom.hs:137:15-38                                28435        812    0.0    0.0     0.0    0.0
+                randomDouble.i        MyRandom                              src/MyRandom.hs:137:15-38                                28428        812    0.0    0.0     0.0    0.0
+              randomR.d               MyRandom                              src/MyRandom.hs:163:9-32                                 28425        812    0.0    0.0     0.0    0.0
+              randomR.g'              MyRandom                              src/MyRandom.hs:163:9-32                                 28434        812    0.0    0.0     0.0    0.0
+              randomR.r               MyRandom                              src/MyRandom.hs:164:9-51                                 28424        812    0.0    0.0     0.0    0.0
+          getDouble                   MyRandom                              src/MyRandom.hs:38:1-30                                  28322          0    0.0    0.0     0.6    0.5
+           state                      Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28323          0    0.1    0.0     0.6    0.5
+            randomDouble              MyRandom                              src/MyRandom.hs:(136,1)-(137,38)                         28324     209050    0.2    0.2     0.5    0.4
+             randomDouble.(...)       MyRandom                              src/MyRandom.hs:137:15-38                                28326     209050    0.1    0.1     0.3    0.3
+              randomWord64            MyRandom                              src/MyRandom.hs:(143,1)-(146,38)                         28327     209050    0.1    0.1     0.2    0.1
+               lookupBlock            System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:79:1-61         28328     209050    0.0    0.0     0.0    0.0
+               randomWord64.mt        MyRandom                              src/MyRandom.hs:(145,5)-(146,38)                         28341     209050    0.0    0.0     0.0    0.1
+                mkPureMT              MyRandom                              src/MyRandom.hs:155:1-49                                 28443        650    0.0    0.0     0.0    0.0
+                 nextBlock            System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(65,1)-(70,14)  28444        650    0.0    0.0     0.0    0.0
+                  blockAsPtr          System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:51:1-51         28447       1300    0.0    0.0     0.0    0.0
+                  touch               System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:1-60         28448       1300    0.0    0.0     0.0    0.0
+                   touch.\            System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:23-60        28449       1300    0.0    0.0     0.0    0.0
+                  allocateBlock       System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(43,1)-(48,32)  28445          0    0.0    0.0     0.0    0.0
+                   allocateBlock.\    System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(44,17)-(46,48) 28446        650    0.0    0.0     0.0    0.0
+             randomDouble.g'          MyRandom                              src/MyRandom.hs:137:15-38                                28340     209050    0.0    0.0     0.0    0.0
+             randomDouble.i           MyRandom                              src/MyRandom.hs:137:15-38                                28325     209050    0.0    0.0     0.0    0.0
+        mutAg.gst'                    Mutations                             src/Mutations.hs:173:9-36                                28364     104525    0.1    0.0     4.9    4.9
+         gSTFromGenome                World                                 src/World.hs:194:1-61                                    28365     104525    0.1    0.0     4.9    4.9
+          makeGst                     World                                 src/World.hs:(198,1)-(201,23)                            28368    2206462    3.5    4.2     3.8    4.2
+           makeGst.k                  World                                 src/World.hs:200:11-18                                   28369    2101937    0.1    0.0     0.1    0.0
+            iD                        World                                 src/World.hs:119:25-26                                   28370    2101937    0.0    0.0     0.0    0.0
+           makeGst.val                World                                 src/World.hs:201:11-23                                   28371    2098892    0.2    0.0     0.2    0.0
+            genSt                     World                                 src/World.hs:121:25-29                                   28372    2098892    0.0    0.0     0.0    0.0
+          reduceToGenes               World                                 src/World.hs:(213,1)-(217,53)                            28366          0    0.1    0.0     1.0    0.7
+           reduceToGenes.filterGenes  World                                 src/World.hs:(215,9)-(217,53)                            28367    5574707    0.8    0.7     0.8    0.7
+       reproduceAgent.(...)           Evolverbetert                         src/Evolverbetert.hs:149:21-70                           28293     104608    0.2    0.0     0.2    0.0
+       reproduceAgent.cumFitAg        Evolverbetert                         src/Evolverbetert.hs:154:21-58                           28299     104608    0.2    0.2     0.2    0.2
+       reproduceAgent.cumFitnesses    Evolverbetert                         src/Evolverbetert.hs:153:21-55                           28294     104608    0.3    0.3     0.3    0.3
+       reproduceAgent.fitnesses       Evolverbetert                         src/Evolverbetert.hs:(151,21)-(152,60)                   28295     104608    0.6    0.8    14.1   14.0
+        fitnessAgent                  World                                 src/World.hs:(220,1)-(221,31)                            28300     811910    0.5    0.1    13.5   13.2
+         fitnessGST                   World                                 src/World.hs:(225,1)-(231,39)                            28301     567087    0.6    0.0    13.0   13.2
+          fitnessGST.d                World                                 src/World.hs:(229,9)-(231,39)                            28304     567087    0.6    0.1    12.4   13.2
+           hammDist                   World                                 src/World.hs:(235,1)-(237,78)                            28307   11908827    4.6    1.2     4.6    1.2
+           fitnessGST.d.target        World                                 src/World.hs:230:19-53                                   28305     567087    2.9    5.9     3.0    5.9
+            targetGST                 World                                 src/World.hs:(246,1)-(249,70)                            28306     567087    0.1    0.0     0.1    0.0
+           fitnessGST.d.this          World                                 src/World.hs:231:19-39                                   28308     567087    4.3    5.9     4.3    5.9
+          fitnessGST.dmax             World                                 src/World.hs:228:9-41                                    28309     567087    0.0    0.0     0.0    0.0
+          fitnessGST.p                World                                 src/World.hs:227:9-31                                    28302     567087    0.0    0.0     0.0    0.0
+       reproduceAgent.iChooseYou      Evolverbetert                         src/Evolverbetert.hs:149:21-70                           28315     104608    0.0    0.0     0.0    0.0
+       reproduceAgent.neighbours      Evolverbetert                         src/Evolverbetert.hs:150:21-72                           28296     104608    1.1    0.5     3.0    1.4
+        moore8                        Misc                                  src/Misc.hs:(15,1)-(18,38)                               28297     104608    1.7    0.9     1.9    0.9
+         outOfBounds                  Misc                                  src/Misc.hs:21:1-68                                      28298     836864    0.2    0.0     0.2    0.0
+       reproduceAgent.r               Evolverbetert                         src/Evolverbetert.hs:155:21-45                           28312     104608    0.3    0.0     0.3    0.0
+       devAg                          World                                 src/World.hs:(27,1)-(33,38)                              28402          0    0.0    0.0     0.2    0.2
+        devAg.takeUntilSame           World                                 src/World.hs:(29,5)-(33,38)                              28403       2005    0.0    0.0     0.0    0.0
+         sameGST                      World                                 src/World.hs:(36,1)-(38,58)                              28404       1995    0.0    0.0     0.0    0.0
+          geneStateTable              World                                 src/World.hs:97:25-38                                    28438       1770    0.0    0.0     0.0    0.0
+        updateAgent                   World                                 src/World.hs:(147,1)-(153,42)                            28405       1440    0.0    0.0     0.1    0.2
+         updateAgent.newGST           World                                 src/World.hs:153:11-42                                   28406       1440    0.0    0.0     0.1    0.1
+          gSTFromGenome               World                                 src/World.hs:194:1-61                                    28407       1440    0.0    0.0     0.1    0.1
+           makeGst                    World                                 src/World.hs:(198,1)-(201,23)                            28416      30235    0.0    0.1     0.0    0.1
+            makeGst.k                 World                                 src/World.hs:200:11-18                                   28417      28795    0.0    0.0     0.0    0.0
+             iD                       World                                 src/World.hs:119:25-26                                   28418      28795    0.0    0.0     0.0    0.0
+            makeGst.val               World                                 src/World.hs:201:11-23                                   28439      17833    0.0    0.0     0.0    0.0
+             genSt                    World                                 src/World.hs:121:25-29                                   28440      17833    0.0    0.0     0.0    0.0
+           reduceToGenes              World                                 src/World.hs:(213,1)-(217,53)                            28408          0    0.0    0.0     0.0    0.0
+            reduceToGenes.filterGenes World                                 src/World.hs:(215,9)-(217,53)                            28412      76303    0.0    0.0     0.0    0.0
+         updateAgent.newGenome        World                                 src/World.hs:152:11-45                                   28409       1440    0.0    0.0     0.1    0.1
+          updateGenome                World                                 src/World.hs:156:1-34                                    28410          0    0.0    0.0     0.1    0.1
+           updateChrom                World                                 src/World.hs:(159,1)-(161,22)                            28411      76303    0.0    0.1     0.1    0.1
+            updateChrom.(...)         World                                 src/World.hs:160:11-46                                   28414      74863    0.0    0.0     0.0    0.0
+             updateLoc                World                                 src/World.hs:(164,1)-(172,32)                            28415      74863    0.0    0.0     0.0    0.0
+              updateLoc.newState      World                                 src/World.hs:(169,9)-(171,35)                            28441      17841    0.0    0.0     0.0    0.0
+            updateChrom.l'            World                                 src/World.hs:160:11-46                                   28413      74863    0.0    0.0     0.0    0.0
+            updateChrom.accum'        World                                 src/World.hs:160:11-46                                   28442      43112    0.0    0.0     0.0    0.0
+       getDouble                      MyRandom                              src/MyRandom.hs:38:1-30                                  28263          0    0.0    0.0     1.5    1.4
+        state                         Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28264          0    0.3    0.1     1.5    1.4
+         randomDouble                 MyRandom                              src/MyRandom.hs:(136,1)-(137,38)                         28265     602108    0.5    0.4     1.2    1.2
+          randomDouble.(...)          MyRandom                              src/MyRandom.hs:137:15-38                                28267     602108    0.3    0.4     0.7    0.8
+           randomWord64               MyRandom                              src/MyRandom.hs:(143,1)-(146,38)                         28273     602108    0.2    0.2     0.4    0.4
+            lookupBlock               System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:79:1-61         28274     602108    0.0    0.1     0.0    0.1
+            randomWord64.mt           MyRandom                              src/MyRandom.hs:(145,5)-(146,38)                         28278     602107    0.1    0.1     0.1    0.2
+             mkPureMT                 MyRandom                              src/MyRandom.hs:155:1-49                                 28279       1904    0.0    0.0     0.0    0.0
+              nextBlock               System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(65,1)-(70,14)  28286       1904    0.0    0.0     0.0    0.0
+               blockAsPtr             System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:51:1-51         28289       3808    0.0    0.0     0.0    0.0
+               touch                  System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:1-60         28290       3808    0.0    0.0     0.0    0.0
+                touch.\               System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:75:23-60        28291       3808    0.0    0.0     0.0    0.0
+               allocateBlock          System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(43,1)-(48,32)  28287          0    0.0    0.0     0.0    0.0
+                allocateBlock.\       System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:(44,17)-(46,48) 28288       1904    0.0    0.0     0.0    0.0
+          randomDouble.i              MyRandom                              src/MyRandom.hs:137:15-38                                28266     602108    0.0    0.0     0.0    0.0
+          randomDouble.g'             MyRandom                              src/MyRandom.hs:137:15-38                                28277     602107    0.0    0.0     0.0    0.0
+     newWorld.ags'                    Evolverbetert                         src/Evolverbetert.hs:97:9-44                             28260        199    0.2    0.0     0.2    0.0
+     newWorld.oldAssocs               Evolverbetert                         src/Evolverbetert.hs:100:15-36                           28259        199    0.1    0.7     0.1    0.7
+     newWorld.w'                      Evolverbetert                         src/Evolverbetert.hs:98:9-34                             28234        199    0.0    0.0     0.0    0.0
+     getDouble                        MyRandom                              src/MyRandom.hs:38:1-30                                  28237          0    0.0    0.0     0.0    0.0
+      state                           Control.Monad.State.Class             Control/Monad/State/Class.hs:102:5-22                    28238          0    0.0    0.0     0.0    0.0
+       randomDouble                   MyRandom                              src/MyRandom.hs:(136,1)-(137,38)                         28239        199    0.0    0.0     0.0    0.0
+        randomDouble.(...)            MyRandom                              src/MyRandom.hs:137:15-38                                28241        199    0.0    0.0     0.0    0.0
+         randomWord64                 MyRandom                              src/MyRandom.hs:(143,1)-(146,38)                         28255        199    0.0    0.0     0.0    0.0
+          lookupBlock                 System.Random.Mersenne.Pure64.MTBlock System/Random/Mersenne/Pure64/MTBlock.hs:79:1-61         28257        199    0.0    0.0     0.0    0.0
+          randomWord64.mt             MyRandom                              src/MyRandom.hs:(145,5)-(146,38)                         28269        199    0.0    0.0     0.0    0.0
+        randomDouble.g'               MyRandom                              src/MyRandom.hs:137:15-38                                28268        199    0.0    0.0     0.0    0.0
+        randomDouble.i                MyRandom                              src/MyRandom.hs:137:15-38                                28240        199    0.0    0.0     0.0    0.0
+   mainLoop.w'                        Evolverbetert                         src/Evolverbetert.hs:73:9-44                             28230        199    0.0    0.0     0.0    0.0
+   mainLoop.std'                      Evolverbetert                         src/Evolverbetert.hs:73:9-44                             28292        198    0.0    0.0     0.0    0.0
+  setMyStdGen                         MyRandom                              src/MyRandom.hs:170:1-36                                 28040          0    0.0    0.0     0.0    0.0
