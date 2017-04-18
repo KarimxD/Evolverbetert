@@ -1,5 +1,6 @@
 module Evolverbetert where
-
+import System.Environment
+import System.Console.GetOpt
 import           Control.Concurrent
 import Control.Monad
 import           Data.Array.IArray
@@ -15,26 +16,70 @@ import           World
 import           Data.Function
 import           System.IO
 import Data.IORef
-import Graphics.UI.GLUT hiding (mainLoop)
+import Graphics.UI.GLUT hiding (mainLoop, Help, initialize)
 import Data.Fixed (mod')
 import MyGraphics
-
+import Data.Maybe (fromMaybe)
 import MyRandom
 
 import qualified Control.Monad.Parallel as Par (mapM)
 
+data Flag
+    = Help
+    | OutputFile String
+    | WorldSeed String
+    | AgentSeed String
+    | Graphics
+    deriving (Eq, Ord, Show)
+isHelp        Help          = True; isHelp _       = False
+isOutputFile (OutputFile _) = True; isOutputFile _ = False
+isWorldSeed  (WorldSeed  _) = True; isWorldSeed _  = False
+isAgentSeed  (AgentSeed  _) = True; isAgentSeed _  = False
+isGraphics    Graphics      = True; isGraphics _    = False
 
-main :: IO ()
-main = do
 
-    let initialAgent = evalRand randomAgent (pureMT P.agent0Seed)
+options :: [OptDescr Flag]
+options =
+    [ Option ['h']     ["help"] (NoArg Help)       "display this help info"
+    , Option ['w'] ["world-seed"] (ReqArg WorldSeed "INT") "give the seed for the world RNG (default: 420)"
+    , Option ['a'] ["agent-seed"] (ReqArg AgentSeed "INT") "give the seed for the first agent RNG (default: 420)"
+    , Option ['o'] ["output-file"] (ReqArg OutputFile "FILEPATH") "output file"
+    , Option ['g'] ["graphics"] (NoArg Graphics) "display CA in a window"
+    ]
+
+compilerOpts :: [String] -> IO ([Flag], [String])
+compilerOpts argv = case getOpt Permute options argv of
+        (o,n,[]  ) -> return (o,n)
+        (_,_,errs) -> ioError (userError (concat errs ++ usageInfo header options))
+            where header = "Usage: ic [OPTION...] files..."
+
+initialize :: [Flag] -> IO (IORef World)
+initialize flags = do
+    let needHelp  = Help `elem` flags
+        WorldSeed sWorldSeed = fromMaybe (WorldSeed "420") (find isWorldSeed flags)
+        AgentSeed sAgentSeed = fromMaybe (AgentSeed "420") (find isAgentSeed flags)
+        worldSeed = read sWorldSeed
+        agentSeed = read sAgentSeed
+
+    when (needHelp) $ ioError $ userError ('\n': usageInfo header options)
+
+    let initialAgent = evalRand randomAgent (pureMT agentSeed)
         initialWorld = (startAgents, 0)
             where startAgents = array P.worldBounds $ zip P.worldCoods $ repeat initialAgent
 
-    print "The initial Agent is"
-    setMyStdGen $ pureMT P.worldSeed
+    print $ "The initial Agent is: " ++ show initialAgent
+    setMyStdGen $ pureMT worldSeed
 
-    worldRef <- newIORef initialWorld
+    newIORef initialWorld
+        where header = "Usage: ic [OPTION...] files..."
+
+main :: IO ()
+main = do
+    args <- getArgs
+    (flags, strings) <- compilerOpts args
+
+    worldRef <- initialize flags
+
 
     -- All GLUT related stuff
     when P.display $ do
@@ -123,7 +168,7 @@ outputString w@(ags,env) t =
         minHammDist (ags,env) = minimum $ map (`hammDistAg` env) (elems ags)
 
 fileOutput :: World -> P.Time -> IO ()
-fileOutput w t = appendFile P.outputFile (outputString w t ++ "\n")
+fileOutput w t = appendFile P.defaultOutputFile (outputString w t ++ "\n")
 
 consoleOutput :: World -> P.Time -> IO ()
 consoleOutput w t = putStrLn $ outputString w t
@@ -138,7 +183,7 @@ displayWorld w@(ags, _) = do
     let lijntjes = map concat $ splitEvery P.width $
             map agToChar $ elems ags where
                 agToChar a = if a == NoAgent then " " else  "o"
-    putStrLn $ unlines $ lijntjes
+    putStrLn $ unlines lijntjes
 
 reproduceAgent :: World -> (Int, Int) -> Rand Agent
 reproduceAgent (agents, env) ix = do

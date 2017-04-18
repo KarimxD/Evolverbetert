@@ -1,13 +1,13 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-13 14:14:14.676865 UTC
+2017-04-18 14:25:50.562226 UTC
 
-interface Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:MyGraphics [hpc] 8002
-  interface hash: c15c32752c719a1f9e81e3216a02619e
-  ABI hash: b8199c69a89b1fabc4bcafe098e0a43e
-  export-list hash: 3b2b433a703ee1dc2ae946ad0cc0b512
+interface Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:MyGraphics 8002
+  interface hash: 54ca747a14d01ab5c573096e18dca3ce
+  ABI hash: df497fcfa9297e453a419c1b05e0b687
+  export-list hash: a4e4c6a7c15bfc500a76c9b21c37e6b6
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
-  flag hash: 566c261facb1547c57528108f6948d9c
+  flag hash: ab396f11155bd696ab63895436e6f1df
   sig of: Nothing
   used TH splices: False
   where
@@ -67,28 +67,28 @@ family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
                          primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
                          text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text
-import  -/  Parameters 69dcde7e9d88c25d98b856d4dd375587
-  exports: 4159b325186b7da2fcc6156121bed0a9
-  nrGeneTypes f4f79e2068296797ede8998bdf9decec
-  worldCoods f2c2286850d647ba6ce7df48a2e48385
-import  -/  World 5678ff00b0d333b14061f907f575da96
-  exports: 997572527eba1a86fa46cb66d013098c
-  Agent 3a9d7d10677a2285892b38b4c47dd9c8
+import  -/  Parameters 1a3da9d8014952d879e0f8fd570479a4
+  exports: b8632a87381c85ddbef206a68a999a0a
+  nrGeneTypes 5532b47fa1a1cb4653609ad9c56355ad
+  worldCoods 1466637ba759d0c506559bee787190f9
+import  -/  World c611f0fc10937d859e65676507443411
+  exports: 9c4287b179a09b09a2ce1373edf801fa
+  Agent 33d3cbd47b3db0634720d677b02c84f9
   Env 7242615a5a1d9433ad0c730140466ebf
-  NoAgent 3b8898ef20aa525242449e8860123873
-  World 0ad03c91bb251a64153734cfc7360bc0
-  fitnessAgent 3a4d49d35087405fa632f6c9b7589838
-  hammDistAg e254e38a2b188a0a5b58657c88628ea6
+  NoAgent 53483b611713e7ba33c89f607503b2d9
+  World c0b172672dfb817afb7b3d5995003f8a
+  fitnessAgent ae68dabf0f6c024e37fb146b713e47de
+  hammDistAg e2958ec41796fbd1e34489ba6693c0c1
 import  -/  GLUT-2.7.0.11@GLUT-2.7.0.11-IP0PzJz4wI8KYXyKTnttpl:Graphics.UI.GLUT 850ab735296960c40e0ec36d1d65a5d9
-import  -/  GLUT-2.7.0.11@GLUT-2.7.0.11-IP0PzJz4wI8KYXyKTnttpl:Graphics.UI.GLUT.Window c0c33dab0c4292a9b574db790dffba70
-import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.BeginEnd a55a564c4b1e6923208c0477d7c0c190
-import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.Framebuffer 7d76cc15d708121de69a76fced6b3693
-import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.PrimitiveMode 70eee27476caef4e0a50262e44521cee
-import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.Tensor 8a1f7df4befabbe17d06ee258d8a62a0
-import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.VertexAttributes c98e95ba84f9f5e4c56fff30f6c77ae6
-import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.VertexSpec f914e945d23cb1136e80a330883be03c
-import  -/  OpenGLRaw-3.2.4.0@OpenGLRaw-3.2.4.0-JDyGgOXR61GG549SwmWm2Q:Graphics.GL.Types 9badb1f93492d318a7d2a5393a6dffd8
-import  -/  StateVar-1.1.0.4@StateVar-1.1.0.4-5dJbnTVECtEAhfJXPZKdbO:Data.StateVar 3de57f021c56fd7e96dd85041f9d518e
+import  -/  GLUT-2.7.0.11@GLUT-2.7.0.11-IP0PzJz4wI8KYXyKTnttpl:Graphics.UI.GLUT.Window 050ef4cbfa70b612c77f709bb8027899
+import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.BeginEnd 0192170a7b0a7c989acfee77b53496c1
+import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.Framebuffer 188ba9d61a876d379c9e8d0ff76111bf
+import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.PrimitiveMode 4e67555912e82f201cec5a43e188ecad
+import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.Tensor 43987027c9156ed652ca7fa25ee57e98
+import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.VertexAttributes c1447f9ddb53ad9c3878281b25c882e3
+import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.VertexSpec a58c3e40465e103e344990f3bed7948c
+import  -/  OpenGLRaw-3.2.4.0@OpenGLRaw-3.2.4.0-JDyGgOXR61GG549SwmWm2Q:Graphics.GL.Types 07cc03061d47db02e08c0654cff2904d
+import  -/  StateVar-1.1.0.4@StateVar-1.1.0.4-5dJbnTVECtEAhfJXPZKdbO:Data.StateVar 54a09cc28cf7d6ddcbd881e9786d7bbd
 import  -/  array-0.5.1.1@array-0.5.1.1:Data.Array.Base a1a813de21dd195f39f7a053a2142a3f
 import  -/  array-0.5.1.1@array-0.5.1.1:Data.Array.IArray 606f8bb830eb2a88c29c91f27c77f304
 import  -/  base-4.9.1.0:Data.Fixed b80105ba94244c515fc7e741d2a7c501
@@ -117,20 +117,32 @@ import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
                    "Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj"#) -}
-596f5d13a49920b7062fb8995d015208
+26b682cc6833a7f03fb819d5ce8f040d
+  $wshowWorld ::
+    GHC.Prim.MutVar# GHC.Prim.RealWorld World.World
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 2, Strictness: <S,U><S,U>, Inline: [0] -}
+c2e703601b33e2eaf4043b94febc12ea
   showWorld :: GHC.IORef.IORef World.World -> GHC.Types.IO ()
-  {- Arity: 1, Strictness: <L,U(U)>,
+  {- Arity: 2, Strictness: <S(S),1*U(U)><S,U>,
      Unfolding: InlineRule (0, True, True)
                 MyGraphics.showWorld1
                   `cast`
                 (<GHC.IORef.IORef World.World>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-9db3802167b74f1b91c024ec6532bde5
+bc29bdf27a21b755ad6ef5a736014896
   showWorld1 ::
     GHC.IORef.IORef World.World
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
-  {- Arity: 1, Strictness: <L,U(U)> -}
+  {- Arity: 2, Strictness: <S(S),1*U(U)><S,U>, Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: GHC.IORef.IORef World.World)
+                   (w1 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case w `cast`
+                      (GHC.IORef.N:IORef[0] <World.World>_N) of ww { GHC.STRef.STRef ww1 ->
+                 MyGraphics.$wshowWorld ww1 w1 }) -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

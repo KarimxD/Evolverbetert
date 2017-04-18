@@ -1,13 +1,13 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-13 14:45:48.703827 UTC
+2017-04-18 14:25:50.10693 UTC
 
-interface Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Mutations [hpc] 8002
-  interface hash: b8dfde3eeced24e3a910728965d518ee
-  ABI hash: 8338adebec328e1874d50da61133d3e0
-  export-list hash: 473299e14377b9a4cd02e42c7121bfa9
+interface Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Mutations 8002
+  interface hash: 3b0bacc603ede1fdd11e52d7c13f8f58
+  ABI hash: 2065fd8b8b021558cd269bef7149a8e7
+  export-list hash: 0e01345b963a1c47fb6ec73e5129dfe0
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
-  flag hash: d25d19a7b2a6306b9602a256a49f18a2
+  flag hash: ab396f11155bd696ab63895436e6f1df
   sig of: Nothing
   used TH splices: False
   where
@@ -46,46 +46,46 @@ family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3
                          containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
                          primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
-import  -/  Misc 917776fc7337f3d3b46309ef687ed1b1
-  exports: 9eee2b010c17779a8330f6e0be04700c
-  maybeCh 164fdaff4bceb853b455fe6f7bab32b2
-  repeatCollect a27276a48a3d42bcc5e0661c82146d2d
-import  -/  MyRandom f0b77fe7bb0379b7bfda84a09ae9ea43
-  exports: 7ab06941cdc3d537294660f8ba4ff53c
-  Rand 87f7dfa2aec8d902a94e2fcf6f4b5ce3
-  getBool 65e1dc76668b029190f5a730673a0541
-  getDouble 45bbf02b6140ed0576e4d7499540cfd6
-  getRange 0761e31adf18355c20da0791f40ba3bb
-import  -/  Parameters 69dcde7e9d88c25d98b856d4dd375587
-  exports: 4159b325186b7da2fcc6156121bed0a9
+import  -/  Misc 29c0d45b091ca7f5a721f96290bb9455
+  exports: df091b8235b328934b9b8728c1f465fb
+  maybeCh 1a9630d947adb4a07b7c632ebd0882d1
+  repeatCollect 771ca30278b068601cfb6f470010dfe2
+import  -/  MyRandom 33611e374b56347aadc8c80984a9fa4c
+  exports: 3a660b6271794f39dcef688ebf3015a0
+  Rand 5bdb0e7c20a2aaac077ba74e108f1933
+  getBool 1a83f5d5e1545201d5db565b4bddf60c
+  getDouble aa706b48619f6a2c2edf5a4d910d02d9
+  getRange b70440ca412e06c26db87dcbaf933855
+import  -/  Parameters 1a3da9d8014952d879e0f8fd570479a4
+  exports: b8632a87381c85ddbef206a68a999a0a
   Prob 9223fe8b8651c753f012e2f853a2bfaa
-  maxThres 0fb3b011c146bcb26ad93951578a57c2
-  minThres c6896840417ac213423863e4372cc658
-  nrGeneTypes f4f79e2068296797ede8998bdf9decec
-  pGenDel c4ac61d1aa523c6b144b309ee35fcb52
-  pGenDup 7701cc7c8a3bc8a1a27d49340376fbd7
-  pGenThresCh 4912d2cf421a1b3c8c4a91488905838f
-  pTfbsDel 5acdb7d9821fccc70d9e5134ff6f0f38
-  pTfbsDup 6ac2d3d30640092855a4b3410b174870
-  pTfbsInnov b4ab1c441f447f5541ca76ba917f98e7
-  pTfbsPrefCh ee31549486de7e3b6f0b4559ad6d7590
-  pTfbsWtCh f9e6a590096d021c1c9c24e8e93254c0
-import  -/  World 5678ff00b0d333b14061f907f575da96
-  exports: 997572527eba1a86fa46cb66d013098c
-  Agent 9ad0e682fcf29422c563ac5f0e64aba9
-  Agent 3a9d7d10677a2285892b38b4c47dd9c8
-  CGene 1a94e7d630c8305fb1f00e9da91efdc9
-  CTfbs 63e28b9320fe898f1dcd4da2049cde9e
-  Chromosome e119b0ec533a075ee96ddf3cc074591e
-  Gene 5aa5c3e440bce89d9b49cca41f32118e
-  Gene 9564c588c9c86220f9814d56c8bd0cee
-  Locus 4096173e18a7ad0243a97ff83347a454
-  NoAgent 3b8898ef20aa525242449e8860123873
-  Tfbs 84c9e6a728d4440fc370556cad74fdf6
-  Tfbs 365612e613fecdcdb0dc250ee48b9811
-  gSTFromGenome 4ec64304f74eb2978c358fea4c397ad1
-  groupGeneTfbs a7db0b543896daab958c890281f538fe
-  reduceToTfbss 6307052f7277867e9906d3c5cf5692af
+  maxThres d6e65a3b82850e075a96c9f03c309c7f
+  minThres 896f137eb104cf8d6ff406cf45982e8e
+  nrGeneTypes 5532b47fa1a1cb4653609ad9c56355ad
+  pGenDel 10b9596d92b34a36c6d411c1cd02b37c
+  pGenDup d7a38993259018bb2c6e564ef210a0f6
+  pGenThresCh 37d107b240e88e5cf8baafc16c986ebd
+  pTfbsDel 6216fa74f40a302dd2cd370d89262d89
+  pTfbsDup ec3e921d4f25e8f0f7150121907d62bf
+  pTfbsInnov 7ff96da898798d67abf17dfa12090828
+  pTfbsPrefCh 5b17f37623e430aee01fb709d70a684b
+  pTfbsWtCh 32228a1ab0b8f911ec51a6a7e9fa69ba
+import  -/  World c611f0fc10937d859e65676507443411
+  exports: 9c4287b179a09b09a2ce1373edf801fa
+  Agent 5994789b830820564bcee073dc768633
+  Agent 33d3cbd47b3db0634720d677b02c84f9
+  CGene 243baedbd7a22491b954c266af50bf2f
+  CTfbs 2947872cba0ed78363862314f242bee6
+  Chromosome f841700e987b622ecb2447998248585c
+  Gene eb31f59cc1ffea0bc75413a333526ce9
+  Gene 783f3bf10f0f04c4222b4d21fa876eef
+  Locus faad59d0fa532dbcb9013f9ea0e16640
+  NoAgent 53483b611713e7ba33c89f607503b2d9
+  Tfbs 483588f32fa73db0cd27fe2934b69a98
+  Tfbs b7c3f8c71cda577cf70f789d911ff10c
+  gSTFromGenome 7483aea19a674caf52e2e872fc01b9e4
+  groupGeneTfbs db4f87038cb49c0b943b2d48ab4a80e8
+  reduceToTfbss f6e39df8f13f5117fcd663ddd5b1b9d0
 import  -/  base-4.9.1.0:Control.Monad a6784c5dab0d75c63dabec5a37843f98
 import  -/  base-4.9.1.0:Data.Foldable 3e0b6967a1da89945d0e2d47266337a2
 import  -/  base-4.9.1.0:Data.Functor 5ab1dc703df5b482e77efb697833ca3c
@@ -113,74 +113,73 @@ import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
                    "Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj"#) -}
-86cd7247fd1c28e78ed817df5f3a7848
+edb744153b0ceaf46b3a04dcbbb3abad
   mutAg :: World.Agent -> MyRandom.Rand World.Agent
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ (ds :: World.Agent) ->
-                 {__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Mutations.mutAg} True True} case ds of wild {
-                                                                                                   World.Agent genome gst
-                                                                                                   -> let {
-                                                                                                        m1 :: Control.Monad.Trans.State.Lazy.StateT
-                                                                                                                System.Random.Mersenne.Pure64.Internal.PureMT
-                                                                                                                Data.Functor.Identity.Identity
-                                                                                                                [World.Chromosome]
-                                                                                                        = Mutations.mutAg_go
-                                                                                                            genome
-                                                                                                      } in
-                                                                                                      (\ (s1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
-                                                                                                       let {
-                                                                                                         ds1 :: Data.Functor.Identity.Identity
-                                                                                                                  ([World.Chromosome],
-                                                                                                                   System.Random.Mersenne.Pure64.Internal.PureMT)
-                                                                                                         = m1
-                                                                                                             `cast`
-                                                                                                           (Control.Monad.Trans.State.Lazy.N:StateT[0]
-                                                                                                                <System.Random.Mersenne.Pure64.Internal.PureMT>_N
-                                                                                                                <Data.Functor.Identity.Identity>_R
-                                                                                                                <[World.Chromosome]>_N)
-                                                                                                             s1
-                                                                                                       } in
-                                                                                                       (let {
-                                                                                                          genome' :: [World.Chromosome]
-                                                                                                          = case ds1
-                                                                                                                   `cast`
-                                                                                                                 (Data.Functor.Identity.N:Identity[0]
-                                                                                                                      <([World.Chromosome],
-                                                                                                                        System.Random.Mersenne.Pure64.Internal.PureMT)>_R) of wild1 { (,) a1 s' ->
-                                                                                                            a1 }
-                                                                                                        } in
-                                                                                                        World.Agent
-                                                                                                          genome'
-                                                                                                          ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Mutations.mutAg.gst'} True True} World.gSTFromGenome
-                                                                                                                                                                                                  genome'),
-                                                                                                        case ds1
-                                                                                                               `cast`
-                                                                                                             (Data.Functor.Identity.N:Identity[0]
-                                                                                                                  <([World.Chromosome],
-                                                                                                                    System.Random.Mersenne.Pure64.Internal.PureMT)>_R) of wild1 { (,) a1 s' ->
-                                                                                                        s' })
-                                                                                                         `cast`
-                                                                                                       (Sym (Data.Functor.Identity.N:Identity[0]
-                                                                                                                 <(World.Agent,
-                                                                                                                   System.Random.Mersenne.Pure64.Internal.PureMT)>_R)))
-                                                                                                        `cast`
-                                                                                                      (Sym (Control.Monad.Trans.State.Lazy.N:StateT[0]
-                                                                                                                <System.Random.Mersenne.Pure64.Internal.PureMT>_N
-                                                                                                                <Data.Functor.Identity.Identity>_R
-                                                                                                                <World.Agent>_N))
-                                                                                                   World.NoAgent
-                                                                                                   -> Mutations.mutAg1
-                                                                                                        `cast`
-                                                                                                      (Trans
-                                                                                                           (<System.Random.Mersenne.Pure64.Internal.PureMT>_R
-                                                                                                            ->_R Sym (Data.Functor.Identity.N:Identity[0]
-                                                                                                                          <(World.Agent,
-                                                                                                                            System.Random.Mersenne.Pure64.Internal.PureMT)>_R))
-                                                                                                           (Sym (Control.Monad.Trans.State.Lazy.N:StateT[0]
-                                                                                                                     <System.Random.Mersenne.Pure64.Internal.PureMT>_N
-                                                                                                                     <Data.Functor.Identity.Identity>_R
-                                                                                                                     <World.Agent>_N))) }) -}
-6fc386a143e2986bcddcf0f5291cba0c
+                 case ds of wild {
+                   World.Agent genome gst
+                   -> let {
+                        m1 :: Control.Monad.Trans.State.Lazy.StateT
+                                System.Random.Mersenne.Pure64.Internal.PureMT
+                                Data.Functor.Identity.Identity
+                                [World.Chromosome]
+                        = Mutations.mutAg_go genome
+                      } in
+                      (\ (s1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
+                       let {
+                         ds1 :: Data.Functor.Identity.Identity
+                                  ([World.Chromosome],
+                                   System.Random.Mersenne.Pure64.Internal.PureMT)
+                         = m1
+                             `cast`
+                           (Control.Monad.Trans.State.Lazy.N:StateT[0]
+                                <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                                <Data.Functor.Identity.Identity>_R
+                                <[World.Chromosome]>_N)
+                             s1
+                       } in
+                       (let {
+                          genome' :: [World.Chromosome]
+                          = case ds1
+                                   `cast`
+                                 (Data.Functor.Identity.N:Identity[0]
+                                      <([World.Chromosome],
+                                        System.Random.Mersenne.Pure64.Internal.PureMT)>_R) of wild1 { (,) a1 s' ->
+                            a1 }
+                        } in
+                        World.Agent
+                          genome'
+                          (World.makeGst
+                             (Data.Map.Base.Tip @ World.ID @ World.GeneState)
+                             (World.reduceToGenes genome')),
+                        case ds1
+                               `cast`
+                             (Data.Functor.Identity.N:Identity[0]
+                                  <([World.Chromosome],
+                                    System.Random.Mersenne.Pure64.Internal.PureMT)>_R) of wild1 { (,) a1 s' ->
+                        s' })
+                         `cast`
+                       (Sym (Data.Functor.Identity.N:Identity[0]
+                                 <(World.Agent, System.Random.Mersenne.Pure64.Internal.PureMT)>_R)))
+                        `cast`
+                      (Sym (Control.Monad.Trans.State.Lazy.N:StateT[0]
+                                <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                                <Data.Functor.Identity.Identity>_R
+                                <World.Agent>_N))
+                   World.NoAgent
+                   -> Mutations.mutAg1
+                        `cast`
+                      (Trans
+                           (<System.Random.Mersenne.Pure64.Internal.PureMT>_R
+                            ->_R Sym (Data.Functor.Identity.N:Identity[0]
+                                          <(World.Agent,
+                                            System.Random.Mersenne.Pure64.Internal.PureMT)>_R))
+                           (Sym (Control.Monad.Trans.State.Lazy.N:StateT[0]
+                                     <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                                     <Data.Functor.Identity.Identity>_R
+                                     <World.Agent>_N))) }) -}
+818390aa3411412c8694d528a7c05572
   mutAg1 ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (World.Agent, System.Random.Mersenne.Pure64.Internal.PureMT)
@@ -188,7 +187,7 @@ import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
      Unfolding: InlineRule (1, True, False)
                 (\ (eta1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
                  (World.NoAgent, eta1)) -}
-bf55592ba75862b3c8c5284c946bd5e6
+9be3dfadb6186c12b5920f633e838884
   mutAg_go ::
     [World.Chromosome]
     -> Control.Monad.Trans.State.Lazy.StateT

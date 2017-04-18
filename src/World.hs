@@ -94,7 +94,7 @@ randomGene :: Rand [Locus]
 randomGene = do
     randomThresholds <- replicateM n $ getRange (P.minThres, P.maxThres)
     r <- getModifyRand
-    let shuffled = undefined --shuffle' randomThresholds n std
+    let shuffled = shuffle' randomThresholds n r
     return $ map CGene $ shuffle' (zipWith makeGene [0..n-1] shuffled) n r
         where n = P.nrGeneTypes
               makeGene i t = Gene i t 0

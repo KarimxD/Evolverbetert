@@ -3,12 +3,12 @@ import GHC.Word
 type Time = Int
 type Prob = Double
 
-outputFile = "/home/karim/Data/output.txt"
 
-devTime = 20 :: Int
 
-worldSeed = 420 :: Word64
-agent0Seed = 420 :: Word64
+
+defaultWorldSeed = 420 :: Int
+defaultInitialAgentSeed = 420 :: Int
+defaultOutputFile = "/home/karim/Data/output.txt"
 
 width  = 50 :: Int
 height = 50 :: Int
@@ -22,6 +22,7 @@ worldCoods = [(x, y) | x <- [0..width-1], y <- [0..height-1]]
 maxTime = 200 :: Int --floor 6e5 :: Int -- 500000 :: Int
 -- maxTime = floor 6e5 :: Int -- 500000 :: Int
 
+devTime = 20 :: Int -- # of steps agent gets to find attractor of network
 selectionPressure = 10 :: Int
 deathRate = 0.3 :: Prob
 envSwitchProb = 3e-3 :: Prob

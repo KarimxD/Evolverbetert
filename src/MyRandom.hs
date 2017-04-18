@@ -87,8 +87,8 @@ getRange = state . randomR
 
 
 
--- | Create a PureMT generator from a 'Word64' seed.
-pureMT :: Word64 -> PureMT
+-- | Create a PureMT generator from an Integral seed.
+pureMT :: Integral a => a -> PureMT
 pureMT = mkPureMT . seedBlock . fromIntegral
 
 -- #if !MIN_VERSION_time(1, 6, 0)

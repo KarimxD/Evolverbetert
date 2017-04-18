@@ -1,18 +1,21 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-13 12:12:09.5669 UTC
+2017-04-18 14:25:47.137438 UTC
 
-interface Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters [hpc] 8002
-  interface hash: 427d25711447e665e310be13982a21f8
-  ABI hash: 69dcde7e9d88c25d98b856d4dd375587
-  export-list hash: 4159b325186b7da2fcc6156121bed0a9
+interface Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters 8002
+  interface hash: 787d3e26130ae416699334f58fd9fd94
+  ABI hash: 1a3da9d8014952d879e0f8fd570479a4
+  export-list hash: b8632a87381c85ddbef206a68a999a0a
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
-  flag hash: 566c261facb1547c57528108f6948d9c
+  flag hash: ab396f11155bd696ab63895436e6f1df
   sig of: Nothing
   used TH splices: False
   where
 exports:
   Parameters.deathRate
+  Parameters.defaultInitialAgentSeed
+  Parameters.defaultOutputFile
+  Parameters.defaultWorldSeed
   Parameters.devTime
   Parameters.display
   Parameters.envSwitchProb
@@ -25,7 +28,8 @@ exports:
   Parameters.nrHouseHold
   Parameters.nrOverlap
   Parameters.nrSpecific
-  Parameters.outputFile
+  Parameters.outputMode
+  Parameters.outputStep
   Parameters.pGenDel
   Parameters.pGenDup
   Parameters.pGenThresCh
@@ -34,11 +38,11 @@ exports:
   Parameters.pTfbsInnov
   Parameters.pTfbsPrefCh
   Parameters.pTfbsWtCh
-  Parameters.seed
   Parameters.selectionPressure
   Parameters.width
   Parameters.worldBounds
   Parameters.worldCoods
+  Parameters.OutputMode{Parameters.Console Parameters.File Parameters.FileAndConsole}
   Parameters.Prob
   Parameters.Time
 module dependencies:
@@ -53,6 +57,54 @@ family instance modules: base-4.9.1.0:Control.Applicative
 import  -/  base-4.9.1.0:GHC.Num 00bfaa7b2f9d6084913c0697a8a49ec8
 import  -/  base-4.9.1.0:GHC.Word 2f8cb4e909eeef2f95e1563807dd9268
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
+9c742c367dee8e7f0be9e307ea40e09e
+  $tc'Console :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   9724024076945199987##
+                   12377537462636501197##
+                   Parameters.$trModule
+                   Parameters.$tc'Console1) -}
+62c587a8a3ecc94d5bd82ac18595f69b
+  $tc'Console1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "'Console"#) -}
+278469b8c8cf489fada7b9e8f8bebacf
+  $tc'File :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   2534225731703432284##
+                   3072545264789544922##
+                   Parameters.$trModule
+                   Parameters.$tc'File1) -}
+1d7aed70121815ce87f2edfbbcee12d2
+  $tc'File1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "'File"#) -}
+74ef73a1169e7a2552a16f56514eff1e
+  $tc'FileAndConsole :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   16760141066756128162##
+                   10126772939747429957##
+                   Parameters.$trModule
+                   Parameters.$tc'FileAndConsole1) -}
+e38090369138487a894a0fb1c2aa4e08
+  $tc'FileAndConsole1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "'FileAndConsole"#) -}
+686a83ec615d6559c65f0edd38c2210b
+  $tcOutputMode :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   11667698397650471716##
+                   5250827361937645416##
+                   Parameters.$trModule
+                   Parameters.$tcOutputMode1) -}
+95ccce9c60d9c01605cee820a2187cdc
+  $tcOutputMode1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "OutputMode"#) -}
 26cf911c50b6dcfbd9dbdb52003bd22c
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
@@ -68,166 +120,128 @@ e41f6e24fcc2c59db549e98184cffcca
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
                    "Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj"#) -}
+f576ee2634535143416bcb80373bc769
+  data OutputMode = File | Console | FileAndConsole
 9223fe8b8651c753f012e2f853a2bfaa
   type Prob = GHC.Types.Double
 342f1c1599a9f1e047ba90ca247b566d
   type Time = GHC.Types.Int
-0495cdb28372a978da322f34a3a4c7dc
+73b338fac641955f848d64f6a4c2aaf5
   deathRate :: Parameters.Prob
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.deathRate} True False} GHC.Types.D#
-                                                                                                         0.3##) -}
-4be6a26c5262390621493d7148803665
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.D# 0.3##) -}
+c73a78b3935d50650c949f89c10b9123
+  defaultInitialAgentSeed :: GHC.Types.Int
+  {- Strictness: m, Unfolding: (Parameters.defaultWorldSeed) -}
+2d20ca737cb4fe80f14dd2fc388b0f3d
+  defaultOutputFile :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "/home/karim/Data/output.txt"#) -}
+0e342d36aa50a777b7827b6af224a1ef
+  defaultWorldSeed :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 420#) -}
+7754f95fe89550b77d7e797dab610360
   devTime :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.devTime} True False} GHC.Types.I#
-                                                                                                       20#) -}
-a1d7ef8cc2ce2a43622cf5d5a1297dfc
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 20#) -}
+a91f85226445c9b349b8642019d2e2ab
   display :: GHC.Types.Bool
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.display} True False} GHC.Types.False) -}
-35136d83da1b315edf5953039281b651
+  {- HasNoCafRefs,
+     Unfolding: InlineRule (0, True, True) GHC.Types.False -}
+4273328b8a8efc97371487a956a7506a
   envSwitchProb :: Parameters.Prob
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.envSwitchProb} True False} GHC.Types.D#
-                                                                                                             3.0e-3##) -}
-350c6578312c489c42a378b24600adc3
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.D# 3.0e-3##) -}
+b77b274a02d8a42e399cb6c8c27b26b7
   height :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.height} True False} GHC.Types.I#
-                                                                                                      50#) -}
-0fb3b011c146bcb26ad93951578a57c2
+  {- Strictness: m, Unfolding: (Parameters.width) -}
+d6e65a3b82850e075a96c9f03c309c7f
   maxThres :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.maxThres} True False} GHC.Types.I#
-                                                                                                        2#) -}
-04611e26c409515ea01fcc5c4c511407
+  {- Strictness: m, Unfolding: (Parameters.nrEnv) -}
+6cfd971a5c8a33e0f408ee76c8b59d4a
   maxTime :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.maxTime} True False} GHC.Types.I#
-                                                                                                       200#) -}
-c6896840417ac213423863e4372cc658
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 200#) -}
+896f137eb104cf8d6ff406cf45982e8e
   minThres :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.minThres} True False} GHC.Types.I#
-                                                                                                        -2#) -}
-f9d3652b80618172cb294c344f9fbc53
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# -2#) -}
+f222d0efc2d376a68fe706e3fa87f0bc
   nrEnv :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.nrEnv} True False} GHC.Types.I#
-                                                                                                     2#) -}
-f4f79e2068296797ede8998bdf9decec
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 2#) -}
+5532b47fa1a1cb4653609ad9c56355ad
   nrGeneTypes :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.nrGeneTypes} True True} GHC.Num.$fNumInt_$c+
-                                                                                                          Parameters.nrGeneTypes1
-                                                                                                          Parameters.nrSpecific) -}
-a44bda4dcc55eeb118f710d83123ac6b
-  nrGeneTypes1 :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.nrGeneTypes} False True} GHC.Num.$fNumInt_$c+
-                                                                                                           Parameters.nrHouseHold
-                                                                                                           Parameters.nrOverlap) -}
-1919ef795afedb399c79a2316e5bc33e
+  {- Strictness: m, Unfolding: (Parameters.devTime) -}
+814be9665525757deaf764b757914558
   nrHouseHold :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.nrHouseHold} True False} GHC.Types.I#
-                                                                                                           8#) -}
-a638cb82aa7a1a1113d131f9f107578a
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 8#) -}
+bcbded4ab0a83dcababec9971d3c2cad
   nrOverlap :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.nrOverlap} True False} GHC.Types.I#
-                                                                                                         0#) -}
-e75b744fadd7993ad1be438e7a32f9cd
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0#) -}
+bba3c1eafd38d262c8c41612b0d0acb2
   nrSpecific :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.nrSpecific} True False} GHC.Types.I#
-                                                                                                          12#) -}
-b4f586372d9ab953e55aa5934a11dd8c
-  outputFile :: [GHC.Types.Char]
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.outputFile} True True} GHC.CString.unpackCString#
-                                                                                                         "/home/karim/Data/output.txt"#) -}
-c4ac61d1aa523c6b144b309ee35fcb52
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 12#) -}
+e44af2f155ed09359ed0da7f3e11625d
+  outputMode :: Parameters.OutputMode
+  {- HasNoCafRefs,
+     Unfolding: InlineRule (0, True, True) Parameters.Console -}
+539b52004ce3d41acb7b36ba8c925089
+  outputStep :: Parameters.Time
+  {- Strictness: m, Unfolding: (Parameters.width) -}
+10b9596d92b34a36c6d411c1cd02b37c
   pGenDel :: Parameters.Prob
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.pGenDel} True False} GHC.Types.D#
-                                                                                                       3.0e-4##) -}
-7701cc7c8a3bc8a1a27d49340376fbd7
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.D# 3.0e-4##) -}
+d7a38993259018bb2c6e564ef210a0f6
   pGenDup :: Parameters.Prob
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.pGenDup} True False} GHC.Types.D#
-                                                                                                       2.0e-4##) -}
-4912d2cf421a1b3c8c4a91488905838f
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.D# 2.0e-4##) -}
+37d107b240e88e5cf8baafc16c986ebd
   pGenThresCh :: Parameters.Prob
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.pGenThresCh} True False} GHC.Types.D#
-                                                                                                           5.0e-6##) -}
-5acdb7d9821fccc70d9e5134ff6f0f38
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.D# 5.0e-6##) -}
+6216fa74f40a302dd2cd370d89262d89
   pTfbsDel :: Parameters.Prob
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.pTfbsDel} True False} GHC.Types.D#
-                                                                                                        3.0e-5##) -}
-6ac2d3d30640092855a4b3410b174870
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.D# 3.0e-5##) -}
+ec3e921d4f25e8f0f7150121907d62bf
   pTfbsDup :: Parameters.Prob
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.pTfbsDup} True False} GHC.Types.D#
-                                                                                                        2.0e-5##) -}
-b4ab1c441f447f5541ca76ba917f98e7
+  {- Strictness: m, Unfolding: (Parameters.pTfbsWtCh) -}
+7ff96da898798d67abf17dfa12090828
   pTfbsInnov :: Parameters.Prob
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.pTfbsInnov} True False} GHC.Types.D#
-                                                                                                          1.0e-5##) -}
-ee31549486de7e3b6f0b4559ad6d7590
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.D# 1.0e-5##) -}
+5b17f37623e430aee01fb709d70a684b
   pTfbsPrefCh :: Parameters.Prob
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.pTfbsPrefCh} True False} GHC.Types.D#
-                                                                                                           2.0e-5##) -}
-f9e6a590096d021c1c9c24e8e93254c0
+  {- Strictness: m, Unfolding: (Parameters.pTfbsWtCh) -}
+32228a1ab0b8f911ec51a6a7e9fa69ba
   pTfbsWtCh :: Parameters.Prob
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.pTfbsWtCh} True False} GHC.Types.D#
-                                                                                                         2.0e-5##) -}
-53fa9628ce5c0d490fc98d8a01d88682
-  seed :: GHC.Word.Word64
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.seed} True False} GHC.Word.W64#
-                                                                                                    420##) -}
-913313ef8754ce94791c92e4b59bc214
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.D# 2.0e-5##) -}
+97c770948c9930d6a2e87cd8ea545285
   selectionPressure :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.selectionPressure} True False} GHC.Types.I#
-                                                                                                                 10#) -}
-19f64dc2a8fdfef6148abbfea87b1a6c
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 10#) -}
+9799286556681e36bcff44e7cba10f96
   width :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.width} True False} GHC.Types.I#
-                                                                                                     50#) -}
-a4428f6d12211f6d9623232adc1245fc
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 50#) -}
+bba4f0fa54b9be7d0c6f888ffc03b47f
   worldBounds ::
     ((GHC.Types.Int, GHC.Types.Int), (GHC.Types.Int, GHC.Types.Int))
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.worldBounds} True False} (Parameters.worldBounds4,
-                                                                                                          Parameters.worldBounds1)) -}
-db7ff0515148ce9140c4f771f3011df1
-  worldBounds1 :: (GHC.Types.Int, GHC.Types.Int)
-  {- Strictness: m,
-     Unfolding: ((Parameters.worldBounds3, Parameters.worldBounds2)) -}
-9786fc714ae6773630efa1a7c0dd5d6e
-  worldBounds2 :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.worldBounds} False True} case Parameters.height of wild { GHC.Types.I# x ->
-                                                                                                         GHC.Types.I#
-                                                                                                           (GHC.Prim.-#
-                                                                                                              x
-                                                                                                              1#) }) -}
-6ef55f5995bc90997e3785f952bca019
-  worldBounds3 :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.worldBounds} False True} case Parameters.width of wild { GHC.Types.I# x ->
-                                                                                                         GHC.Types.I#
-                                                                                                           (GHC.Prim.-#
-                                                                                                              x
-                                                                                                              1#) }) -}
-2029e0c5f539b2a835a1abcdda3d624f
-  worldBounds4 :: (GHC.Types.Int, GHC.Types.Int)
   {- HasNoCafRefs, Strictness: m,
-     Unfolding: ((Parameters.worldBounds5, Parameters.worldBounds5)) -}
-3f246308c2592aa296e7ff6f68f094a0
-  worldBounds5 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0#) -}
-f2c2286850d647ba6ce7df48a2e48385
+     Unfolding: ((Parameters.worldBounds3, Parameters.worldBounds1)) -}
+c2a36379898e5bcfc33cd6e4c65d6cbb
+  worldBounds1 :: (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: ((Parameters.worldBounds2, Parameters.worldBounds2)) -}
+5331552eb1cb887b3d43c3844bffaccd
+  worldBounds2 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 49#) -}
+a967858f4076eedcdb653254eb48a069
+  worldBounds3 :: (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: ((Parameters.nrOverlap, Parameters.nrOverlap)) -}
+1466637ba759d0c506559bee787190f9
   worldCoods :: [(GHC.Types.Int, GHC.Types.Int)]
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.worldCoods} True True} Parameters.worldCoods_go
-                                                                                                         Parameters.worldCoods1) -}
-b5d1db37567a4fb709bbce3d53f3b340
-  worldCoods1 :: [GHC.Types.Int]
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.worldCoods} False True} {__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.worldCoods} False True} case Parameters.worldCoods2 of wild1 { GHC.Types.I# y ->
-                                                                                                                                                                                               GHC.Enum.eftInt
-                                                                                                                                                                                                 0#
-                                                                                                                                                                                                 y }) -}
-8cc812534de015cabe985a2cdc3326b9
-  worldCoods2 :: GHC.Types.Int
-  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj:Parameters.worldCoods} False True} case Parameters.width of wild { GHC.Types.I# x ->
-                                                                                                        GHC.Types.I#
-                                                                                                          (GHC.Prim.-#
-                                                                                                             x
-                                                                                                             1#) }) -}
-fa2bc46e1f8eb0225411b8f55cef0b86
-  worldCoods_go ::
-    [GHC.Types.Int] -> [(GHC.Types.Int, GHC.Types.Int)]
-  {- Arity: 1, Strictness: <S,1*U> -}
+  {- Unfolding: (Parameters.worldCoods_go 0#) -}
+ada3ca4d0f3c6051aac314c24e210e7a
+  worldCoods_go :: GHC.Prim.Int# -> [(GHC.Types.Int, GHC.Types.Int)]
+  {- Arity: 1, Strictness: <L,U> -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:
