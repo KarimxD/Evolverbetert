@@ -61,7 +61,7 @@ initialize flags = do
         worldSeed = read sWorldSeed
         agentSeed = read sAgentSeed
 
-    when (needHelp) $ ioError $ userError ('\n': usageInfo header options)
+    when needHelp $ ioError $ userError ('\n': usageInfo header options)
 
     let initialAgent = evalRand randomAgent (pureMT agentSeed)
         initialWorld = (startAgents, 0)
