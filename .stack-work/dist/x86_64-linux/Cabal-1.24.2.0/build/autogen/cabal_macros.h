@@ -77,6 +77,20 @@
   (major1) == 2 && (major2) <  2 || \
   (major1) == 2 && (major2) == 2 && (minor) <= 1)
 
+/* package mwc-random-0.13.5.0 */
+#define VERSION_mwc_random "0.13.5.0"
+#define MIN_VERSION_mwc_random(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  13 || \
+  (major1) == 0 && (major2) == 13 && (minor) <= 5)
+
+/* package primitive-0.6.1.0 */
+#define VERSION_primitive "0.6.1.0"
+#define MIN_VERSION_primitive(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  6 || \
+  (major1) == 0 && (major2) == 6 && (minor) <= 1)
+
 /* package random-1.1 */
 #define VERSION_random "1.1"
 #define MIN_VERSION_random(major1,major2,minor) (\
@@ -189,7 +203,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj"
+#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-LjkPE0Wdux1AmRTdZ477DX"
 
-#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-V8JIjv9qj8K8hV6s9LpTj"
+#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-LjkPE0Wdux1AmRTdZ477DX"
 

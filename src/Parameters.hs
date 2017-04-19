@@ -1,5 +1,5 @@
 module Parameters where
-import GHC.Word
+import           GHC.Word
 type Time = Int
 type Prob = Double
 

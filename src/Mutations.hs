@@ -1,22 +1,22 @@
--- {-# LANGUAGE BangPatterns #-}
+{-# LANGUAGE BangPatterns #-}
 
 module Mutations (
 mutAg) where
 
-import           Parameters
 import           Misc
+import           Parameters
 -- import Control.Monad.Random (getRandom, getRange, MonadRandom)
-import MyRandom
+import           MyRandom
 
-import qualified Parameters          as P
+import           Control.Monad
+import           Data.List
+import qualified Parameters    as P
 import           World
-import Control.Monad
-import Data.List
 
 
 
 dupChr :: Chromosome -> Rand Chromosome
-dupChr = mutNet >=> mutateLoci
+dupChr = mutNet >=> mutateLoci >=> dupTfbss
 
 dupChr' :: Chromosome -> Rand Chromosome
 dupChr' = dupGenes >=>
@@ -75,7 +75,7 @@ binomial :: Int -> Prob -> Rand Int
 binomial n''' p = do
     rand <- getDouble
     case findIndex (>rand) cumDist of
-        Just a -> return a
+        Just a  -> return a
         Nothing -> return 0
     where
         n = fromIntegral n'''

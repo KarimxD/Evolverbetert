@@ -1,26 +1,26 @@
+
 module Evolverbetert where
-import System.Environment
-import System.Console.GetOpt
-import           Control.Concurrent
-import Control.Monad
-import           Data.Array.IArray
-import           Data.List
-import           Data.List.Split      (splitEvery)
-import qualified Data.Map             as Map
-import           Misc
-import           Mutations
-import qualified Parameters           as P
-import           System.Console.ANSI
--- import           MyRandom
+import           Misc                   (maybeCh, moore8)
+import           Mutations              (mutAg)
+import           MyGraphics             (showWorld)
+import           MyRandom
+import qualified Parameters             as P
 import           World
-import           Data.Function
-import           System.IO
-import Data.IORef
-import Graphics.UI.GLUT hiding (mainLoop, Help, initialize)
-import Data.Fixed (mod')
-import MyGraphics
-import Data.Maybe (fromMaybe)
-import MyRandom
+
+import           Data.IORef             (IORef, newIORef, readIORef, writeIORef)
+import           Graphics.UI.GLUT       hiding (Help, initialize, mainLoop)
+import           System.Console.GetOpt
+import           System.Environment     (getArgs)
+
+import           Control.Monad          (when)
+import           Data.Fixed             (mod')
+import           Data.Function          (on)
+import           Data.Maybe             (fromMaybe)
+
+import           Data.Array.IArray      (array, assocs, elems, (!))
+import           Data.List              (find, maximumBy)
+import           Data.List.Split        (splitEvery)
+import qualified Data.Map               as Map
 
 import qualified Control.Monad.Parallel as Par (mapM)
 
@@ -40,11 +40,11 @@ isGraphics    Graphics      = True; isGraphics _    = False
 
 options :: [OptDescr Flag]
 options =
-    [ Option ['h']     ["help"] (NoArg Help)       "display this help info"
-    , Option ['w'] ["world-seed"] (ReqArg WorldSeed "INT") "give the seed for the world RNG (default: 420)"
-    , Option ['a'] ["agent-seed"] (ReqArg AgentSeed "INT") "give the seed for the first agent RNG (default: 420)"
+    [ Option ['h'] ["help"]        (NoArg Help)                   "display this help info"
+    , Option ['w'] ["world-seed"]  (ReqArg WorldSeed "INT")       "give the seed for the world RNG (default: 420)"
+    , Option ['a'] ["agent-seed"]  (ReqArg AgentSeed "INT")       "give the seed for the first agent RNG (default: 420)"
     , Option ['o'] ["output-file"] (ReqArg OutputFile "FILEPATH") "output file"
-    , Option ['g'] ["graphics"] (NoArg Graphics) "display CA in a window"
+    , Option ['g'] ["graphics"]    (NoArg Graphics)               "display CA in a window"
     ]
 
 compilerOpts :: [String] -> IO ([Flag], [String])
@@ -64,14 +64,14 @@ initialize flags = do
     when needHelp $ ioError $ userError ('\n': usageInfo header options)
 
     let initialAgent = evalRand randomAgent (pureMT agentSeed)
-        initialWorld = (startAgents, 0)
+        initialWorld = World startAgents 0
             where startAgents = array P.worldBounds $ zip P.worldCoods $ repeat initialAgent
 
     print $ "The initial Agent is: " ++ show initialAgent
     setMyStdGen $ pureMT worldSeed
 
     newIORef initialWorld
-        where header = "Usage: ic [OPTION...] files..."
+        where header = "Usage: Evolverbetert [OPTION...]"
 
 main :: IO ()
 main = do
@@ -107,18 +107,24 @@ main = do
     mainLoop worldRef 0
     print "Goodbye World!"
 
+type StatsRef = IORef World
 
+newWorld' :: StatsRef -> World -> World
+newWorld' = undefined
 
 mainLoop :: IORef World -> P.Time -> IO ()
 mainLoop worldRef t | t == P.maxTime = return ()
 mainLoop worldRef t = do
-    w@(ags, env) <- readIORef worldRef
+    w <- readIORef worldRef
 
-    when (t `mod` P.outputStep == 0)
+    when (t `mod'` P.outputStep == 0)
         $ case P.outputMode of
             P.Console        -> consoleOutput w t
             P.File           -> fileOutput w t
             P.FileAndConsole -> consoleOutput w t >> fileOutput w t
+
+    -- henk w
+
 
     std <- getMyStdGen
     let (w',std') = runRand (newWorld w) std
@@ -136,23 +142,30 @@ mainLoop worldRef t = do
 chEnv :: Env -> Rand Env
 chEnv e = do
     r <- getRange (1, max 1 P.nrEnv-1)
-    return $ (e + r) `mod` P.nrEnv
+    return $ (e + r) `mod'` P.nrEnv
+
+-- | Very ugly deepseq
+henk :: World -> IO ()
+henk w = do
+    h <- newIORef $ Agent [[]] Map.empty
+    writeIORef h $ maximumBy (compare `on` (`fitnessAgent` env w)) $ elems (agents w)
+    readIORef h
+    return ()
+{-# NOINLINE henk #-}
 
 newWorld :: World -> Rand World
-newWorld w@(ags,env) = do
-
-    env' <- maybeCh env chEnv P.envSwitchProb
-    -- Rand <- getMyStdRandom randomDouble :: IO Double
-    -- env' <- maybeCh env chEnv P.envSwitchProb
+newWorld w = do
+    e' <- maybeCh e chEnv P.envSwitchProb
 
     newAssocs <- mapM (newAssoc w) oldAssocs -- makes new association list
     let ags' = array P.worldBounds newAssocs
-        w' = (ags', env') :: World
+        w' = World {agents = ags', env = e'}
     return w'
-        where oldAssocs = assocs ags
+        where oldAssocs = assocs $ agents w
+              e = env w
 
 outputString :: World -> P.Time -> String
-outputString w@(ags,env) t =
+outputString w@(World ags env) t =
     show t
     ++ " " ++ show env
     ++ " " ++ show (minHammDist w)
@@ -161,11 +174,11 @@ outputString w@(ags,env) t =
     -- ++ " " ++ show (head $ genome best)
     where
         bestAgent :: World -> Agent
-        bestAgent (ags, env) = maximumBy (compare `on` (`fitnessAgent` env)) $ elems ags
+        bestAgent (World ags env) = maximumBy (compare `on` (`fitnessAgent` env)) $ elems ags
         maxFitness :: World -> Double
-        maxFitness (ags, env) = maximum $ map (`fitnessAgent` env) (elems ags)
+        maxFitness (World ags env) = maximum $ map (`fitnessAgent` env) (elems ags)
         minHammDist :: World -> Int
-        minHammDist (ags,env) = minimum $ map (`hammDistAg` env) (elems ags)
+        minHammDist (World ags env) = minimum $ map (`hammDistAg` env) (elems ags)
 
 fileOutput :: World -> P.Time -> IO ()
 fileOutput w t = appendFile P.defaultOutputFile (outputString w t ++ "\n")
@@ -178,31 +191,25 @@ newAssoc w (ix, ag) = do
     ag' <- reproduceAgent w ix
     return (ix, ag')
 
-displayWorld :: World -> IO ()
-displayWorld w@(ags, _) = do
-    let lijntjes = map concat $ splitEvery P.width $
-            map agToChar $ elems ags where
-                agToChar a = if a == NoAgent then " " else  "o"
-    putStrLn $ unlines lijntjes
-
 reproduceAgent :: World -> (Int, Int) -> Rand Agent
-reproduceAgent (agents, env) ix = do
+reproduceAgent (World ags env) ix = do
     temp1 <- getDouble
-    if temp1 > P.deathRate then --if you survive
-        if agents ! ix == NoAgent --if cell is empty, give every neighbour a weighted probability for getting chosen to reproduce
-            then do
-                temp2 <- getDouble
-                let Just (_, iChooseYou) = find ((>=r) . fst) cumFitAg
-                    neighbours = map (agents !) (moore8 ix) ++ [NoAgent] --list of the neighbours
-                    fitnesses = map (`fitnessAgent` env) (init neighbours)
-                                ++ [0.4^P.selectionPressure]  --list of fitnesses
-                    cumFitnesses = scanl1 (+) fitnesses --cumulative list of fitnesses
-                    cumFitAg = zip cumFitnesses neighbours --list of (cumfit, agent) pairs
-                    r = temp2 * sum fitnesses
+    if temp1 > P.deathRate --if you survive
+    then
+        if ags ! ix == NoAgent --if cell is empty, give every neighbour a weighted probability for getting chosen to reproduce
+        then do
+            temp2 <- getDouble
+            let Just (_, iChooseYou) = find ((>=r) . fst) cumFitAg
+                neighbours = map (ags !) (moore8 ix) ++ [NoAgent] --list of the neighbours
+                fitnesses = map (`fitnessAgent` env) (init neighbours)
+                            ++ [0.4^P.selectionPressure]  --list of fitnesses
+                cumFitnesses = scanl1 (+) fitnesses --cumulative list of fitnesses
+                cumFitAg = zip cumFitnesses neighbours --list of (cumfit, agent) pairs
+                r = temp2 * sum fitnesses
 
-                iMutU <- mutAg iChooseYou
-                if    iMutU /= iChooseYou
-                 then return $ devAg iMutU
-                 else return iMutU
-        else return $ agents!ix
-     else return NoAgent -- if you die
+            iMutU <- mutAg iChooseYou
+            if    iMutU /= iChooseYou
+            then return $ devAg iMutU
+            else return iMutU
+        else return $ ags!ix
+    else return NoAgent -- if you die

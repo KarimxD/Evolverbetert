@@ -5,10 +5,10 @@ module Misc (
     , repeatCollect)
     where
 
+import           Control.Monad
 import           Data.Array.IO
+import           MyRandom
 import           Parameters    as P
-import MyRandom
-import Control.Monad
 
 
 moore8 :: (Int, Int) -> [(Int, Int)]

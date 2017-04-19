@@ -1,10 +1,10 @@
 module MyGraphics (showWorld) where
-import Data.IORef
-import World
-import Graphics.UI.GLUT
-import qualified Parameters as P
 import           Data.Array.IArray
-import Data.Fixed (mod')
+import           Data.Fixed        (mod')
+import           Data.IORef
+import           Graphics.UI.GLUT
+import qualified Parameters        as P
+import           World
 
 
 
@@ -18,7 +18,7 @@ showWorld worldRef = do
 drawSquares :: World -> IO ()
 drawSquares world = renderPrimitive Quads $ mapM_ drawQuad P.worldCoods
     where
-        ags = fst world
+        ags = agents world
         drawQuad :: (Int,Int) -> IO ()
         drawQuad (x, y) = do
             currentColor $= c
@@ -32,7 +32,7 @@ drawSquares world = renderPrimitive Quads $ mapM_ drawQuad P.worldCoods
                 x1 = fromIntegral x + 1
                 y0 = fromIntegral y
                 y1 = fromIntegral y + 1
-                c = colorHammDist (ags!(x,y)) (snd world)
+                c = colorHammDist (ags!(x,y)) (env world)
 
 
 

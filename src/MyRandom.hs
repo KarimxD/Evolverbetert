@@ -1,6 +1,7 @@
 module MyRandom
 (
     Rand
+    , PureMT
     , runRand
     , getModifyRand
     , evalRand
@@ -14,28 +15,33 @@ module MyRandom
     , pureMT
 )   where
 
-import Control.Monad.State
+import           Control.Monad.State.Strict
 
-import System.Random.Mersenne.Pure64.MTBlock
-import System.Random.Mersenne.Pure64.Internal
-import System.Random (RandomGen, next, split)
-import Data.Word
-import Data.Int
+import           Data.Int
+import           Data.Word
+import           System.Random                          (RandomGen, next, split)
+import           System.Random.Mersenne.Pure64.Internal
+import           System.Random.Mersenne.Pure64.MTBlock
 -- import Data.Time.Clock
 -- import Data.Time.Calendar
 -- import System.CPUTime
 
-import Data.IORef       ( IORef, newIORef, readIORef, writeIORef, atomicModifyIORef' )
-import System.IO.Unsafe ( unsafePerformIO )
+import           Data.IORef                             (IORef,
+                                                         atomicModifyIORef',
+                                                         newIORef, readIORef,
+                                                         writeIORef)
+import           System.IO.Unsafe                       (unsafePerformIO)
 
 
 type Rand = State PureMT
 
 runRand :: State PureMT a -> PureMT -> (a, PureMT)
 runRand = runState
+{-# INLINE runRand #-}
 
 evalRand :: State PureMT a -> PureMT -> a
 evalRand = evalState
+{-# INLINE evalRand #-}
 
 getModifyRand :: Rand PureMT
 getModifyRand = do
@@ -43,15 +49,19 @@ getModifyRand = do
     let (_,new) = next it
     put new
     return it
+{-# INLINE getModifyRand #-}
 
 getBool :: Rand Bool
 getBool = state randomBool
+{-# INLINE getBool #-}
 
 getDouble :: Rand Double
 getDouble = state randomDouble
+{-# INLINE getDouble #-}
 
 getRange :: (Int,Int) -> Rand Int
 getRange = state . randomR
+{-# INLINE getRange #-}
 
 
 -- Rand2
@@ -131,24 +141,29 @@ splitPureMT g = (pureMT s, pureMT s') where
 randomInt :: PureMT -> (Int, PureMT)
 randomInt g = (fromIntegral i, g')
         where (i, g') = randomWord64 g
+{-# INLINE randomInt #-}
+
 
 -- | Yield a new 'Word' value from the generator, returning a new
 -- generator and that 'Word'.
 randomWord :: PureMT -> (Word, PureMT)
 randomWord g = (fromIntegral i, g')
         where (i, g') = randomWord64 g
+{-# INLINE randomWord #-}
+
 
 -- | Yield a new 'Int64' value from the generator, returning a new
 -- generator and that 'Int64'.
 randomInt64 :: PureMT -> (Int64, PureMT)
 randomInt64 g = (fromIntegral i, g')
         where (i, g') = randomWord64 g
+{-# INLINE randomInt64 #-}
 
 -- | Efficiently yield a new 53-bit precise 'Double' value, and a new generator.
 randomDouble :: PureMT -> (Double, PureMT)
-randomDouble g = (fromIntegral (i `quot` 2048) / 9007199254740992, g')
+randomDouble g = (fromIntegral (i `div` 2048) / 9007199254740992, g')
         where (i, g') = randomWord64 g
--- {-# INLINE randomDouble #-}
+{-# INLINE randomDouble #-}
 
 -- | Yield a new 'Word64' value from the generator, returning a new
 -- generator and that 'Word64'.
@@ -157,11 +172,13 @@ randomWord64 (PureMT block i nxt) = (mixWord64 (block `lookupBlock` i), mt)
   where
     mt | i < blockLen-1 = PureMT block (i+1) nxt
        | otherwise      = mkPureMT nxt
--- {-# INLINE randomWord64 #-}
+{-# INLINE randomWord64 #-}
 
 randomBool :: PureMT -> (Bool, PureMT)
 randomBool g = (0.5 < d, g')
     where (d, g') = randomDouble g
+{-# INLINE randomBool #-}
+
 
 -- create a new PureMT from an MTBlock
 mkPureMT :: MTBlock -> PureMT
