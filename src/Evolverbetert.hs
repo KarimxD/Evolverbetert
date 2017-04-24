@@ -130,7 +130,7 @@ mainLoop worldRef h t = do
     let (w',std') = runRand (newWorld w) std
     setMyStdGen std'
 
-
+--henk
     writeIORef worldRef w'
 
     when P.display $    mainLoopEvent >> postRedisplay Nothing
