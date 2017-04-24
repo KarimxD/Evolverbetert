@@ -6,20 +6,24 @@ type Prob = Double
 
 
 
-defaultWorldSeed = 420 :: Int
-defaultInitialAgentSeed = 420 :: Int
+-- defaultWorldSeed = 420 :: Int
+-- defaultInitialAgentSeed = 420 :: Int
 defaultOutputFile = "/home/karim/Data/output.txt"
 
 width  = 50 :: Int
 height = 50 :: Int
 display = False :: Bool
-outputMode = Console
-outputStep = 50 :: Time
+
+
+outputStep = 50 :: Time;
+outputTime t = t `mod` outputStep == 0
+-- data OutputMode = File | Console deriving (Eq, Show, Read)
+-- outputMode = Console
 
 worldBounds = ((0::Int, 0::Int), (width-1, height-1))
 worldCoods = [(x, y) | x <- [0..width-1], y <- [0..height-1]]
 
-maxTime = 200 :: Int --floor 6e5 :: Int -- 500000 :: Int
+maxTime = 200000 :: Int--floor 6e5 :: Int -- 500000 :: Int
 -- maxTime = floor 6e5 :: Int -- 500000 :: Int
 
 devTime = 20 :: Int -- # of steps agent gets to find attractor of network
@@ -49,5 +53,3 @@ pTfbsPrefCh = 2e-5 :: Prob
 pTfbsDel    = 3e-5 :: Prob
 pTfbsInnov  = 1e-5 :: Prob -- scales with number of loci in genome
 pTfbsDup    = 2e-5 :: Prob
-
-data OutputMode = File | Console | FileAndConsole

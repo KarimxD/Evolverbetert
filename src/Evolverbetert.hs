@@ -7,10 +7,13 @@ import           MyRandom
 import qualified Parameters             as P
 import           World
 
+import Data.String (fromString)
 import           Data.IORef             (IORef, newIORef, readIORef, writeIORef)
 import           Graphics.UI.GLUT       hiding (Help, initialize, mainLoop)
 import           System.Console.GetOpt
 import           System.Environment     (getArgs)
+import           System.IO              (IOMode (..), openFile, stdout, Handle, hClose, hFlush)
+import qualified Data.ByteString.Char8 as B   (hPutStrLn)
 
 import           Control.Monad          (when)
 import           Data.Fixed             (mod')
@@ -24,6 +27,7 @@ import qualified Data.Map               as Map
 
 import qualified Control.Monad.Parallel as Par (mapM)
 
+
 data Flag
     = Help
     | OutputFile String
@@ -35,7 +39,7 @@ isHelp        Help          = True; isHelp _       = False
 isOutputFile (OutputFile _) = True; isOutputFile _ = False
 isWorldSeed  (WorldSeed  _) = True; isWorldSeed _  = False
 isAgentSeed  (AgentSeed  _) = True; isAgentSeed _  = False
-isGraphics    Graphics      = True; isGraphics _    = False
+isGraphics    Graphics      = True; isGraphics _   = False
 
 
 options :: [OptDescr Flag]
@@ -44,41 +48,47 @@ options =
     , Option ['w'] ["world-seed"]  (ReqArg WorldSeed "INT")       "give the seed for the world RNG (default: 420)"
     , Option ['a'] ["agent-seed"]  (ReqArg AgentSeed "INT")       "give the seed for the first agent RNG (default: 420)"
     , Option ['o'] ["output-file"] (ReqArg OutputFile "FILEPATH") "output file"
-    , Option ['g'] ["graphics"]    (NoArg Graphics)               "display CA in a window"
+    , Option ['g'] ["graphics"]    (NoArg Graphics)               "display CA in a window (Not yet working! Change the parameter file)"
     ]
 
 compilerOpts :: [String] -> IO ([Flag], [String])
 compilerOpts argv = case getOpt Permute options argv of
-        (o,n,[]  ) -> return (o,n)
-        (_,_,errs) -> ioError (userError (concat errs ++ usageInfo header options))
-            where header = "Usage: ic [OPTION...] files..."
+    (o,n,[]  ) -> return (o,n)
+    (_,_,errs) -> ioError (userError (concat errs ++ usageInfo header options))
+    where header = "Usage: Evolverbetert [OPTION...] files..."
 
-initialize :: [Flag] -> IO (IORef World)
+initialize :: [Flag] -> IO (IORef World, Handle)
 initialize flags = do
-    let needHelp  = Help `elem` flags
-        WorldSeed sWorldSeed = fromMaybe (WorldSeed "420") (find isWorldSeed flags)
+    let WorldSeed sWorldSeed = fromMaybe (WorldSeed "420") (find isWorldSeed flags)
         AgentSeed sAgentSeed = fromMaybe (AgentSeed "420") (find isAgentSeed flags)
+        OutputFile outputFile = fromMaybe (OutputFile "") (find isOutputFile flags)
         worldSeed = read sWorldSeed
         agentSeed = read sAgentSeed
 
-    when needHelp $ ioError $ userError ('\n': usageInfo header options)
+    when (Help `elem` flags) $ ioError $ userError ('\n': usageInfo header options)
 
     let initialAgent = evalRand randomAgent (pureMT agentSeed)
         initialWorld = World startAgents 0
             where startAgents = array P.worldBounds $ zip P.worldCoods $ repeat initialAgent
 
-    print $ "The initial Agent is: " ++ show initialAgent
+    w <- newIORef initialWorld
     setMyStdGen $ pureMT worldSeed
 
-    newIORef initialWorld
+
+
+    let getHandle = case find isOutputFile flags of
+            Nothing -> return stdout
+            Just (OutputFile o) -> openFile o ReadWriteMode
+    h <- getHandle
+    B.hPutStrLn h $ fromString $ "Initial Agent is: " ++ show initialAgent
+    return (w, h)
         where header = "Usage: Evolverbetert [OPTION...]"
 
 main :: IO ()
 main = do
     args <- getArgs
     (flags, strings) <- compilerOpts args
-
-    worldRef <- initialize flags
+    (worldRef, h) <- initialize flags
 
 
     -- All GLUT related stuff
@@ -103,28 +113,18 @@ main = do
         displayCallback $= showWorld worldRef
 
     -- Where the magic happens... Recursive function that ends on P.maxTime
-    print "Hello, World!"
-    mainLoop worldRef 0
-    print "Goodbye World!"
+    B.hPutStrLn h $ fromString "Hello, World!"
+    mainLoop worldRef h 0
+    B.hPutStrLn h $ fromString "Goodbye World!"
+    hClose h
 
-type StatsRef = IORef World
-
-newWorld' :: StatsRef -> World -> World
-newWorld' = undefined
-
-mainLoop :: IORef World -> P.Time -> IO ()
-mainLoop worldRef t | t == P.maxTime = return ()
-mainLoop worldRef t = do
+mainLoop :: IORef World -> Handle -> P.Time -> IO ()
+mainLoop worldRef h t | t == P.maxTime = return ()
+mainLoop worldRef h t = do
     w <- readIORef worldRef
 
-    when (t `mod'` P.outputStep == 0)
-        $ case P.outputMode of
-            P.Console        -> consoleOutput w t
-            P.File           -> fileOutput w t
-            P.FileAndConsole -> consoleOutput w t >> fileOutput w t
-
-    -- henk w
-
+    when (P.outputTime t) $
+            B.hPutStrLn h (fromString $ outputString w t) >> hFlush h
 
     std <- getMyStdGen
     let (w',std') = runRand (newWorld w) std
@@ -133,10 +133,9 @@ mainLoop worldRef t = do
 
     writeIORef worldRef w'
 
-    when P.display $
-        mainLoopEvent >> postRedisplay Nothing
+    when P.display $    mainLoopEvent >> postRedisplay Nothing
 
-    mainLoop worldRef (t+1)
+    mainLoop worldRef h (t+1)
 
 -- | It works like a clock
 chEnv :: Env -> Rand Env
@@ -145,13 +144,13 @@ chEnv e = do
     return $ (e + r) `mod'` P.nrEnv
 
 -- | Very ugly deepseq
-henk :: World -> IO ()
-henk w = do
-    h <- newIORef $ Agent [[]] Map.empty
-    writeIORef h $ maximumBy (compare `on` (`fitnessAgent` env w)) $ elems (agents w)
-    readIORef h
-    return ()
-{-# NOINLINE henk #-}
+-- henk :: World -> IO ()
+-- henk w = do
+--     h <- newIORef $ Agent [[]] Map.empty
+--     writeIORef h $ maximumBy (compare `on` (`fitnessAgent` env w)) $ elems (agents w)
+--     readIORef h
+--     return ()
+-- {-# NOINLINE henk #-}
 
 newWorld :: World -> Rand World
 newWorld w = do
@@ -167,22 +166,19 @@ newWorld w = do
 outputString :: World -> P.Time -> String
 outputString w@(World ags env) t =
     show t
-    ++ " " ++ show env
-    ++ " " ++ show (minHammDist w)
-    -- ++ " " ++ show (hammDist (Map.toList $ geneStateTable best) (Map.toList $ targetGST env) )
-    -- ++ " " ++ show (showGST $ geneStateTable best)
-    -- ++ " " ++ show (head $ genome best)
+    ++ " " ++ show env -- current environment
+    ++ " " ++ show (hammDistAg bestAgent env) -- Hamming distance of best agent
+    ++ " " ++ show (length bestChrom) -- The length of the genome of best
+    ++ " " ++ show bestChrom
     where
-        bestAgent :: World -> Agent
-        bestAgent (World ags env) = maximumBy (compare `on` (`fitnessAgent` env)) $ elems ags
-        maxFitness :: World -> Double
+        bestAgent = maximumBy (compare `on` (`fitnessAgent` env)) $ elems ags
+        bestChrom = head . genome $ bestAgent
         maxFitness (World ags env) = maximum $ map (`fitnessAgent` env) (elems ags)
-        minHammDist :: World -> Int
         minHammDist (World ags env) = minimum $ map (`hammDistAg` env) (elems ags)
 
-fileOutput :: World -> P.Time -> IO ()
-fileOutput w t = appendFile P.defaultOutputFile (outputString w t ++ "\n")
 
+fileOutput :: World -> FilePath -> P.Time -> IO ()
+fileOutput    w file t = appendFile file (outputString w t ++ "\n")
 consoleOutput :: World -> P.Time -> IO ()
 consoleOutput w t = putStrLn $ outputString w t
 
