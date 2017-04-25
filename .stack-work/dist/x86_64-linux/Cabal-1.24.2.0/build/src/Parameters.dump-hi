@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-24 12:15:24.507094 UTC
+2017-04-24 13:51:11.610688 UTC
 
 interface Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Parameters 8002
-  interface hash: ac2515fff8d9c8ae526b56c30a2b9574
-  ABI hash: 1df748b7bb6d484273cd028127e978cf
-  export-list hash: 3968572c0e37ee5e114e306baa4fc981
+  interface hash: 549ab2150feeb2d0dd01c48934a1422a
+  ABI hash: 48e1b2fc115bb72998e1d4d477fa1e93
+  export-list hash: 5f973e3a01f953e950df5c127a831d15
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: ab396f11155bd696ab63895436e6f1df
   sig of: Nothing
@@ -27,6 +27,7 @@ exports:
   Parameters.nrOverlap
   Parameters.nrSpecific
   Parameters.outputStep
+  Parameters.outputTime
   Parameters.pGenDel
   Parameters.pGenDup
   Parameters.pGenThresCh
@@ -51,8 +52,10 @@ family instance modules: base-4.9.1.0:Control.Applicative
                          base-4.9.1.0:GHC.Generics base-4.9.1.0:GHC.IO.Exception
                          base-4.9.1.0:GHC.TypeLits
 import  -/  base-4.9.1.0:GHC.Num 00bfaa7b2f9d6084913c0697a8a49ec8
+import  -/  base-4.9.1.0:GHC.Real 82e4e59051a13dba1da63e1e970a69e6
 import  -/  base-4.9.1.0:GHC.Word 2f8cb4e909eeef2f95e1563807dd9268
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
+import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
 9fbaefb0518586ffae3ed03cdc635fcf
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
@@ -86,10 +89,10 @@ e8f5ce0aab4412f00d898f29cf29c9e6
   display :: GHC.Types.Bool
   {- HasNoCafRefs,
      Unfolding: InlineRule (0, True, True) GHC.Types.False -}
-cbb8c845535e896a8e734667c742467f
+3b796b939ca858dba44d32d2598e0f4c
   envSwitchProb :: Parameters.Prob
   {- HasNoCafRefs, Strictness: m,
-     Unfolding: (GHC.Types.D# 3.0e-3##) -}
+     Unfolding: (GHC.Types.D# 3.0e-4##) -}
 11a41b235c8c74d554ad15017020aa10
   height :: GHC.Types.Int
   {- Strictness: m, Unfolding: (Parameters.width) -}
@@ -121,10 +124,17 @@ cf6f0fc7343b7d217e1f8024a505f326
 4b35dae3c282555be3b2b1591e3c3083
   outputStep :: Parameters.Time
   {- Strictness: m, Unfolding: (Parameters.width) -}
-218a052067d45d59aeadbc96c74f0c27
+220cbf22aed063a812d0c13d564d9048
+  outputTime :: Parameters.Time -> GHC.Types.Bool
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (t :: Parameters.Time) ->
+                 case t of wild1 { GHC.Types.I# x ->
+                 case GHC.Classes.modInt# x 50# of ww2 {
+                   DEFAULT -> GHC.Types.False 0# -> GHC.Types.True } }) -}
+2b01b1a1d4180beb3c191609c3764d8c
   pGenDel :: Parameters.Prob
-  {- HasNoCafRefs, Strictness: m,
-     Unfolding: (GHC.Types.D# 3.0e-4##) -}
+  {- Strictness: m, Unfolding: (Parameters.envSwitchProb) -}
 5835dbe290d7b9c3dbc29ad1e62acb21
   pGenDup :: Parameters.Prob
   {- HasNoCafRefs, Strictness: m,

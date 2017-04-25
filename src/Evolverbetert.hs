@@ -1,5 +1,4 @@
-
-module Evolverbetert where
+module Evolverbetert (main) where
 import           Misc                   (maybeCh, moore8)
 import           Mutations              (mutAg)
 import           MyGraphics             (showWorld)
@@ -7,13 +6,14 @@ import           MyRandom
 import qualified Parameters             as P
 import           World
 
-import Data.String (fromString)
+import qualified Data.ByteString.Char8  as B (hPutStrLn)
 import           Data.IORef             (IORef, newIORef, readIORef, writeIORef)
+import           Data.String            (fromString)
 import           Graphics.UI.GLUT       hiding (Help, initialize, mainLoop)
 import           System.Console.GetOpt
 import           System.Environment     (getArgs)
-import           System.IO              (IOMode (..), openFile, stdout, Handle, hClose, hFlush)
-import qualified Data.ByteString.Char8 as B   (hPutStrLn)
+import           System.IO              (Handle, IOMode (..), hClose, hFlush,
+                                         openFile, stdout)
 
 import           Control.Monad          (when)
 import           Data.Fixed             (mod')
@@ -26,36 +26,6 @@ import           Data.List.Split        (splitEvery)
 import qualified Data.Map               as Map
 
 import qualified Control.Monad.Parallel as Par (mapM)
-
-
-data Flag
-    = Help
-    | OutputFile String
-    | WorldSeed String
-    | AgentSeed String
-    | Graphics
-    deriving (Eq, Ord, Show)
-isHelp        Help          = True; isHelp _       = False
-isOutputFile (OutputFile _) = True; isOutputFile _ = False
-isWorldSeed  (WorldSeed  _) = True; isWorldSeed _  = False
-isAgentSeed  (AgentSeed  _) = True; isAgentSeed _  = False
-isGraphics    Graphics      = True; isGraphics _   = False
-
-
-options :: [OptDescr Flag]
-options =
-    [ Option ['h'] ["help"]        (NoArg Help)                   "display this help info"
-    , Option ['w'] ["world-seed"]  (ReqArg WorldSeed "INT")       "give the seed for the world RNG (default: 420)"
-    , Option ['a'] ["agent-seed"]  (ReqArg AgentSeed "INT")       "give the seed for the first agent RNG (default: 420)"
-    , Option ['o'] ["output-file"] (ReqArg OutputFile "FILEPATH") "output file"
-    , Option ['g'] ["graphics"]    (NoArg Graphics)               "display CA in a window (Not yet working! Change the parameter file)"
-    ]
-
-compilerOpts :: [String] -> IO ([Flag], [String])
-compilerOpts argv = case getOpt Permute options argv of
-    (o,n,[]  ) -> return (o,n)
-    (_,_,errs) -> ioError (userError (concat errs ++ usageInfo header options))
-    where header = "Usage: Evolverbetert [OPTION...] files..."
 
 initialize :: [Flag] -> IO (IORef World, Handle)
 initialize flags = do
@@ -77,7 +47,7 @@ initialize flags = do
 
 
     let getHandle = case find isOutputFile flags of
-            Nothing -> return stdout
+            Nothing             -> return stdout
             Just (OutputFile o) -> openFile o ReadWriteMode
     h <- getHandle
     B.hPutStrLn h $ fromString $ "Initial Agent is: " ++ show initialAgent
@@ -130,7 +100,6 @@ mainLoop worldRef h t = do
     let (w',std') = runRand (newWorld w) std
     setMyStdGen std'
 
---henk
     writeIORef worldRef w'
 
     when P.display $    mainLoopEvent >> postRedisplay Nothing
@@ -176,7 +145,6 @@ outputString w@(World ags env) t =
         maxFitness (World ags env) = maximum $ map (`fitnessAgent` env) (elems ags)
         minHammDist (World ags env) = minimum $ map (`hammDistAg` env) (elems ags)
 
-
 fileOutput :: World -> FilePath -> P.Time -> IO ()
 fileOutput    w file t = appendFile file (outputString w t ++ "\n")
 consoleOutput :: World -> P.Time -> IO ()
@@ -209,3 +177,31 @@ reproduceAgent (World ags env) ix = do
             else return iMutU
         else return $ ags!ix
     else return NoAgent -- if you die
+
+options :: [OptDescr Flag]
+options =
+    [ Option ['h'] ["help"]        (NoArg Help)                   "display this help info"
+    , Option ['w'] ["world-seed"]  (ReqArg WorldSeed "INT")       "give the seed for the world RNG (default: 420)"
+    , Option ['a'] ["agent-seed"]  (ReqArg AgentSeed "INT")       "give the seed for the first agent RNG (default: 420)"
+    , Option ['o'] ["output-file"] (ReqArg OutputFile "FILEPATH") "output file"
+    , Option ['g'] ["graphics"]    (NoArg Graphics)               "display CA in a window (Not yet working! Change the parameter file)"
+    ]
+
+compilerOpts :: [String] -> IO ([Flag], [String])
+compilerOpts argv = case getOpt Permute options argv of
+    (o,n,[]  ) -> return (o,n)
+    (_,_,errs) -> ioError (userError (concat errs ++ usageInfo header options))
+    where header = "Usage: Evolverbetert [OPTION...] files..."
+
+data Flag
+    = Help
+    | OutputFile String
+    | WorldSeed String
+    | AgentSeed String
+    | Graphics
+    deriving (Eq, Ord, Show)
+isHelp        Help          = True; isHelp _       = False
+isOutputFile (OutputFile _) = True; isOutputFile _ = False
+isWorldSeed  (WorldSeed  _) = True; isWorldSeed _  = False
+isAgentSeed  (AgentSeed  _) = True; isAgentSeed _  = False
+isGraphics    Graphics      = True; isGraphics _   = False

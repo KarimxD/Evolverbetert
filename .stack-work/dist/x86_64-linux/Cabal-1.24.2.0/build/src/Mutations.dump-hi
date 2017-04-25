@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-24 11:52:02.066 UTC
+2017-04-24 13:51:12.10104 UTC
 
 interface Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Mutations 8002
-  interface hash: 196ce79a8bd0eba32418f87f87c8c1f3
+  interface hash: f0e2ccd786036c42343de1d3255456f5
   ABI hash: cf4c3d0c630c90a2e981bc2a4795d3a5
   export-list hash: 07e4787ff96df80395353237fc2f2662
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -54,13 +54,13 @@ import  -/  MyRandom 6550107e9ca18f776f56264c334ccfaa
   getBool 5121cacdae024eab642b6afa60a7251c
   getDouble 77c5acbc26eb9fac333f57a3beffe418
   getRange ed956ee86810b2d1cf682ced1c25f87c
-import  -/  Parameters 4eb4655aa7448107aa78a01928fce002
-  exports: 3968572c0e37ee5e114e306baa4fc981
+import  -/  Parameters 48e1b2fc115bb72998e1d4d477fa1e93
+  exports: 5f973e3a01f953e950df5c127a831d15
   Prob b9237f89dcca355d6e31740b337ba81c
   maxThres 9afe6a92e63b333e74e871dd72c8c317
   minThres cf6f0fc7343b7d217e1f8024a505f326
   nrGeneTypes 0c6a0c7d55e8e1350e9e495861070a78
-  pGenDel 218a052067d45d59aeadbc96c74f0c27
+  pGenDel 2b01b1a1d4180beb3c191609c3764d8c
   pGenDup 5835dbe290d7b9c3dbc29ad1e62acb21
   pGenThresCh 3aa7e3013562cfde731d8d7054458483
   pTfbsDel f6af20bbc20acc91eb3cf05094e578d1

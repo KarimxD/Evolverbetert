@@ -17,8 +17,6 @@ display = False :: Bool
 
 outputStep = 50 :: Time;
 outputTime t = t `mod` outputStep == 0
--- data OutputMode = File | Console deriving (Eq, Show, Read)
--- outputMode = Console
 
 worldBounds = ((0::Int, 0::Int), (width-1, height-1))
 worldCoods = [(x, y) | x <- [0..width-1], y <- [0..height-1]]
@@ -29,7 +27,7 @@ maxTime = 200000 :: Int--floor 6e5 :: Int -- 500000 :: Int
 devTime = 20 :: Int -- # of steps agent gets to find attractor of network
 selectionPressure = 10 :: Int
 deathRate = 0.3 :: Prob
-envSwitchProb = 3e-3 :: Prob
+envSwitchProb = 3e-4 :: Prob
 
 nrEnv = 2 :: Int
 

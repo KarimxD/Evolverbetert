@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-24 11:52:02.672072 UTC
+2017-04-24 13:31:45.589285 UTC
 
 interface Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:MyGraphics 8002
-  interface hash: 3cdb925f891fa4ffc37cea62c1772576
+  interface hash: cc06e50ef8d6db4fe4a363b91dd47d53
   ABI hash: 7c0ffe47b4230756b57901c5223b5246
   export-list hash: 1daec637f0a2ccdff52e1e0a4be5cdfe
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -65,8 +65,8 @@ family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
                          primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
                          text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text
-import  -/  Parameters 4eb4655aa7448107aa78a01928fce002
-  exports: 3968572c0e37ee5e114e306baa4fc981
+import  -/  Parameters ce21db94862d19f69aed735a8395793f
+  exports: 5f973e3a01f953e950df5c127a831d15
   nrGeneTypes 0c6a0c7d55e8e1350e9e495861070a78
   worldCoods 8f3de24b4ce4ba0142ea3923677c8b2f
 import  -/  World 0d26c8647f8e525318dd9fb9138de0b7
