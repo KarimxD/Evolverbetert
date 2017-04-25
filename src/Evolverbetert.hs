@@ -1,4 +1,17 @@
-module Evolverbetert (main) where
+-----------------------------------------------------------------------------
+-- |
+-- Module      :  Evolverbetert
+-- Copyright   :  (c) Karim Hajji 2018
+-- License     :  see LICENSE
+--
+-- Maintainer  :  k.hajji@students.uu.nl
+-- Stability   :  internal
+-- Portability :  non-portable (GHC extensions)
+--
+-- Basic data types and classes.
+--
+-----------------------------------------------------------------------------
+module Evolverbetert where
 import           Misc                   (maybeCh, moore8)
 import           Mutations              (mutAg)
 import           MyGraphics             (showWorld)
@@ -27,6 +40,10 @@ import qualified Data.Map               as Map
 
 import qualified Control.Monad.Parallel as Par (mapM)
 
+-- | Uses a list of flags to initialize a IORef to a world and a handle for
+-- output.
+-- Generates an initial agent, populates the world wit it
+-- Sets the PRNG
 initialize :: [Flag] -> IO (IORef World, Handle)
 initialize flags = do
     let WorldSeed sWorldSeed = fromMaybe (WorldSeed "420") (find isWorldSeed flags)
@@ -54,6 +71,9 @@ initialize flags = do
     return (w, h)
         where header = "Usage: Evolverbetert [OPTION...]"
 
+-- | Maybe initializes graphical display dependent on 'P.display' in "Parameters"
+-- calls 'initialize'
+-- starts 'mainLoop'
 main :: IO ()
 main = do
     args <- getArgs
@@ -88,6 +108,10 @@ main = do
     B.hPutStrLn h $ fromString "Goodbye World!"
     hClose h
 
+-- | Recursive function that reads the IORef of the world, changes it with
+-- 'newWorld' and writes to world back.
+-- Also writes output if 'P.outputTime'
+-- Might display graphical output using mainLoopEvent from "MyGraphics"
 mainLoop :: IORef World -> Handle -> P.Time -> IO ()
 mainLoop worldRef h t | t == P.maxTime = return ()
 mainLoop worldRef h t = do
@@ -106,13 +130,13 @@ mainLoop worldRef h t = do
 
     mainLoop worldRef h (t+1)
 
--- | It works like a clock
+-- | Changes the Environment dependent on 'P.nrEnv' It works like a clock
 chEnv :: Env -> Rand Env
 chEnv e = do
     r <- getRange (1, max 1 P.nrEnv-1)
     return $ (e + r) `mod'` P.nrEnv
 
--- | Very ugly deepseq
+-- Very ugly deepseq
 -- henk :: World -> IO ()
 -- henk w = do
 --     h <- newIORef $ Agent [[]] Map.empty
@@ -121,6 +145,8 @@ chEnv e = do
 --     return ()
 -- {-# NOINLINE henk #-}
 
+-- | Changes the environment dependent on 'P.envSwitchProb' with 'chEnv'
+-- Makes new agents with 'newAssoc'
 newWorld :: World -> Rand World
 newWorld w = do
     e' <- maybeCh e chEnv P.envSwitchProb
@@ -132,29 +158,28 @@ newWorld w = do
         where oldAssocs = assocs $ agents w
               e = env w
 
+-- | The string of data that outputs every 'P.outputStep'
 outputString :: World -> P.Time -> String
 outputString w@(World ags env) t =
     show t
     ++ " " ++ show env -- current environment
-    ++ " " ++ show (hammDistAg bestAgent env) -- Hamming distance of best agent
+    ++ " " ++ show (hammDistAg env bestAgent) -- Hamming distance of best agent
     ++ " " ++ show (length bestChrom) -- The length of the genome of best
     ++ " " ++ show bestChrom
     where
-        bestAgent = maximumBy (compare `on` (`fitnessAgent` env)) $ elems ags
+        bestAgent = maximumBy (compare `on` fitnessAgent env) $ elems ags
         bestChrom = head . genome $ bestAgent
-        maxFitness (World ags env) = maximum $ map (`fitnessAgent` env) (elems ags)
-        minHammDist (World ags env) = minimum $ map (`hammDistAg` env) (elems ags)
+        maxFitness (World ags env) = maximum $ map (fitnessAgent env) (elems ags)
+        minHammDist (World ags env) = minimum $ map (hammDistAg env) (elems ags)
 
-fileOutput :: World -> FilePath -> P.Time -> IO ()
-fileOutput    w file t = appendFile file (outputString w t ++ "\n")
-consoleOutput :: World -> P.Time -> IO ()
-consoleOutput w t = putStrLn $ outputString w t
 
+-- | uses 'reproduceAgent' to make a new coordinate-Agent association
 newAssoc :: World -> ((Int, Int), Agent) -> Rand ((Int, Int), Agent)
 newAssoc w (ix, ag) = do
     ag' <- reproduceAgent w ix
     return (ix, ag')
 
+-- | The NSF
 reproduceAgent :: World -> (Int, Int) -> Rand Agent
 reproduceAgent (World ags env) ix = do
     temp1 <- getDouble
@@ -165,7 +190,7 @@ reproduceAgent (World ags env) ix = do
             temp2 <- getDouble
             let Just (_, iChooseYou) = find ((>=r) . fst) cumFitAg
                 neighbours = map (ags !) (moore8 ix) ++ [NoAgent] --list of the neighbours
-                fitnesses = map (`fitnessAgent` env) (init neighbours)
+                fitnesses = map (fitnessAgent env) (init neighbours)
                             ++ [0.4^P.selectionPressure]  --list of fitnesses
                 cumFitnesses = scanl1 (+) fitnesses --cumulative list of fitnesses
                 cumFitAg = zip cumFitnesses neighbours --list of (cumfit, agent) pairs

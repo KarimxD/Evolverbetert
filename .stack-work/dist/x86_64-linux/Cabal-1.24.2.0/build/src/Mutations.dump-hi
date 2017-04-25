@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-24 13:51:12.10104 UTC
+2017-04-25 14:00:28.052236 UTC
 
 interface Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Mutations 8002
-  interface hash: f0e2ccd786036c42343de1d3255456f5
-  ABI hash: cf4c3d0c630c90a2e981bc2a4795d3a5
+  interface hash: d8dce52ef88399b98f73fa6988717492
+  ABI hash: 5ed5c850a758769905ffdb3a91ea706c
   export-list hash: 07e4787ff96df80395353237fc2f2662
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 60ede7202df718eda107a0d677bc46fc
@@ -54,8 +54,8 @@ import  -/  MyRandom 6550107e9ca18f776f56264c334ccfaa
   getBool 5121cacdae024eab642b6afa60a7251c
   getDouble 77c5acbc26eb9fac333f57a3beffe418
   getRange ed956ee86810b2d1cf682ced1c25f87c
-import  -/  Parameters 48e1b2fc115bb72998e1d4d477fa1e93
-  exports: 5f973e3a01f953e950df5c127a831d15
+import  -/  Parameters 337422a086d5a822ba572b6f8b76250c
+  exports: 02fc8dfd4b9d11300c8741c41c500ae9
   Prob b9237f89dcca355d6e31740b337ba81c
   maxThres 9afe6a92e63b333e74e871dd72c8c317
   minThres cf6f0fc7343b7d217e1f8024a505f326
@@ -68,22 +68,22 @@ import  -/  Parameters 48e1b2fc115bb72998e1d4d477fa1e93
   pTfbsInnov aebb3df07dbe4d968721fa0a26f5305c
   pTfbsPrefCh be1b6960c551bf3bacab9ed57d329f75
   pTfbsWtCh be095b98af981745619d2fc90f5a33c1
-import  -/  World 0d26c8647f8e525318dd9fb9138de0b7
-  exports: e77751d24e4beac4ad5913cc5adf0fb0
-  Agent 0a3f3561d0399c57cbcc53a83da48304
-  Agent 4b2cc13ce18d28c6c31329fb43199d06
-  CGene d40a48aa768ab0fdb240cc8264502dbc
-  CTfbs be603988bead26adc61a508dd1dd4a70
-  Chromosome 21f2e986c4e364fedf06dd30ceaaa809
-  Gene 7d2b2fe2ba23dc30fa4b979c5d841ec4
-  Gene 0168b3fa2cd8fa618654da75e14e3f9c
-  Locus 5b6d6c8746721a23c14daf03251ad94b
-  NoAgent 1312a2fb7ba35216219a99207ca57f7b
-  Tfbs a1d70e741d62858b49aa3bc97ecd9b1e
-  Tfbs 1dae11a86c9d4aaf67e2f48cd643cf30
-  gSTFromGenome 41e399a71c4da0f736314db548b71498
-  groupGeneTfbs 86f7f1b99af8a53548a727052e128aee
-  reduceToTfbss da3cda1b3e05664113bc50b51fcbae2d
+import  -/  World f23f724c0dbea3d48de3ce7fb9acaf22
+  exports: b5353a7252234090fb0add4469a37632
+  Agent e84cdd9e4474ea33ac5c2e568279d57b
+  Agent d641db4bd5305bff203a2dc7166097e8
+  CGene d1ec39c87315fc48b65e71dcf3fcbb15
+  CTfbs 46757694a38183f27fde3044a90715a3
+  Chromosome 3219e59cd4ae586762100cf3b0e40513
+  Gene 0c44992dfb4053e41f47ccc8ae256319
+  Gene f5d597b11fcee9f42df2f7ed8e2b8abf
+  Locus 7739459fc49918f9a2d96538d7198124
+  NoAgent d4dad98addf0b524e539609d255e702b
+  Tfbs d513f14d75651a220ff24ba108286655
+  Tfbs 180de1587c1dd35669eeafcf2fd123f7
+  gSTFromGenome 39766ac18942c5d17005d69d5e9c5eb4
+  groupGeneTfbs 05434b50f1da22a7f9fac0f31734fa0d
+  reduceToTfbss b7bea843dd2a07d9c660430ae9b1cf94
 import  -/  base-4.9.1.0:Control.Monad a6784c5dab0d75c63dabec5a37843f98
 import  -/  base-4.9.1.0:Data.Foldable 3e0b6967a1da89945d0e2d47266337a2
 import  -/  base-4.9.1.0:Data.Functor 5ab1dc703df5b482e77efb697833ca3c
@@ -144,7 +144,7 @@ fda198ae3c348aab815744bd1e3f4f4d
   $wf ::
     GHC.Prim.Double# -> GHC.Integer.Type.Integer -> GHC.Prim.Double#
   {- Arity: 2, Strictness: <L,U><S,U>, Inline: [0] -}
-40047d4b7c4aadfcf57c2f4bef6349e7
+de2aecef08eb6b58d58c4972c0aa00de
   mutAg :: World.Agent -> MyRandom.Rand World.Agent
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ (ds :: World.Agent) ->
@@ -171,9 +171,9 @@ fda198ae3c348aab815744bd1e3f4f4d
                                    System.Random.Mersenne.Pure64.Internal.PureMT)>_R) of wild1 { (,) a1 s' ->
                        (World.Agent
                           a1
-                          (World.makeGst
+                          (World.gSTFromGenome_makeGst
                              (Data.Map.Base.Tip @ World.ID @ World.GeneState)
-                             (World.reduceToGenes a1)),
+                             (World.reduceToGenes_go a1)),
                         s')
                          `cast`
                        (Sym (Data.Functor.Identity.N:Identity[0]
@@ -196,7 +196,7 @@ fda198ae3c348aab815744bd1e3f4f4d
                                      <System.Random.Mersenne.Pure64.Internal.PureMT>_N
                                      <Data.Functor.Identity.Identity>_R
                                      <World.Agent>_N))) }) -}
-8f346d8db0f959955d69d4c0d9aa850a
+65601b45f48fc3bb36e61cabc5045a0c
   mutAg1 ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (World.Agent, System.Random.Mersenne.Pure64.Internal.PureMT)
@@ -204,7 +204,7 @@ fda198ae3c348aab815744bd1e3f4f4d
      Unfolding: InlineRule (1, True, False)
                 (\ (eta1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
                  (World.NoAgent, eta1)) -}
-bbdbea9f9461bd783ca68ee5dda6bb46
+2fefb6ca8986c526c1c88718ab30c586
   mutAg_go ::
     [World.Chromosome]
     -> Control.Monad.Trans.State.Strict.StateT

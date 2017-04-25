@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-24 13:51:11.610688 UTC
+2017-04-25 14:00:25.080012 UTC
 
 interface Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Parameters 8002
-  interface hash: 549ab2150feeb2d0dd01c48934a1422a
-  ABI hash: 48e1b2fc115bb72998e1d4d477fa1e93
-  export-list hash: 5f973e3a01f953e950df5c127a831d15
+  interface hash: d436ca9a19f6521c5d5ae506710dcec6
+  ABI hash: 337422a086d5a822ba572b6f8b76250c
+  export-list hash: 02fc8dfd4b9d11300c8741c41c500ae9
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: ab396f11155bd696ab63895436e6f1df
   sig of: Nothing
@@ -26,6 +26,8 @@ exports:
   Parameters.nrHouseHold
   Parameters.nrOverlap
   Parameters.nrSpecific
+  Parameters.outputAllStep
+  Parameters.outputAllTime
   Parameters.outputStep
   Parameters.outputTime
   Parameters.pGenDel
@@ -85,10 +87,10 @@ e8f5ce0aab4412f00d898f29cf29c9e6
 3138758efe15eb148b79f0a965e6e100
   devTime :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 20#) -}
-072523fa7d913d43a379ea317d7f8603
+fae8dce05c7b9cd4a9a3fd032089410c
   display :: GHC.Types.Bool
   {- HasNoCafRefs,
-     Unfolding: InlineRule (0, True, True) GHC.Types.False -}
+     Unfolding: InlineRule (0, True, True) GHC.Types.True -}
 3b796b939ca858dba44d32d2598e0f4c
   envSwitchProb :: Parameters.Prob
   {- HasNoCafRefs, Strictness: m,
@@ -99,10 +101,10 @@ e8f5ce0aab4412f00d898f29cf29c9e6
 9afe6a92e63b333e74e871dd72c8c317
   maxThres :: GHC.Types.Int
   {- Strictness: m, Unfolding: (Parameters.nrEnv) -}
-28409dc3eda35b8a092dada345993b15
+3c4a2ade951398f0fe114e5381f9523a
   maxTime :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m,
-     Unfolding: (GHC.Types.I# 200000#) -}
+     Unfolding: (GHC.Types.I# 600000#) -}
 cf6f0fc7343b7d217e1f8024a505f326
   minThres :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# -2#) -}
@@ -121,6 +123,21 @@ cf6f0fc7343b7d217e1f8024a505f326
 3491fe8778e3293ee78ca63c14657239
   nrSpecific :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 12#) -}
+695b2511fa1ad06713bc7fd1928fd450
+  outputAllStep :: GHC.Integer.Type.Integer
+  {- HasNoCafRefs, Unfolding: (1000) -}
+637c58ea1f1f93d159a3a9d8fe0c5913
+  outputAllTime :: GHC.Integer.Type.Integer -> GHC.Types.Bool
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (t :: GHC.Integer.Type.Integer) ->
+                 case GHC.Integer.Type.eqInteger#
+                        (GHC.Integer.Type.modInteger t Parameters.outputAllStep)
+                        Parameters.outputAllTime1 of wild { DEFAULT ->
+                 GHC.Prim.tagToEnum# @ GHC.Types.Bool wild }) -}
+2d8c126d6036d638adcbaaed5f9d2e1c
+  outputAllTime1 :: GHC.Integer.Type.Integer
+  {- HasNoCafRefs, Unfolding: (0) -}
 4b35dae3c282555be3b2b1591e3c3083
   outputStep :: Parameters.Time
   {- Strictness: m, Unfolding: (Parameters.width) -}

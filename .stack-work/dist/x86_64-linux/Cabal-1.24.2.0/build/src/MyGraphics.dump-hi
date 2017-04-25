@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-24 13:31:45.589285 UTC
+2017-04-25 14:05:20.713486 UTC
 
 interface Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:MyGraphics 8002
-  interface hash: cc06e50ef8d6db4fe4a363b91dd47d53
-  ABI hash: 7c0ffe47b4230756b57901c5223b5246
+  interface hash: fbdb0ac34f5676e13bd2519291af546b
+  ABI hash: b4b7d5eaa42ed6bae8c0aefaea04ae50
   export-list hash: 1daec637f0a2ccdff52e1e0a4be5cdfe
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: ab396f11155bd696ab63895436e6f1df
@@ -65,20 +65,20 @@ family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
                          primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
                          text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text
-import  -/  Parameters ce21db94862d19f69aed735a8395793f
-  exports: 5f973e3a01f953e950df5c127a831d15
+import  -/  Parameters 337422a086d5a822ba572b6f8b76250c
+  exports: 02fc8dfd4b9d11300c8741c41c500ae9
   nrGeneTypes 0c6a0c7d55e8e1350e9e495861070a78
   worldCoods 8f3de24b4ce4ba0142ea3923677c8b2f
-import  -/  World 0d26c8647f8e525318dd9fb9138de0b7
-  exports: e77751d24e4beac4ad5913cc5adf0fb0
-  Agent 4b2cc13ce18d28c6c31329fb43199d06
+import  -/  World f23f724c0dbea3d48de3ce7fb9acaf22
+  exports: b5353a7252234090fb0add4469a37632
+  Agent d641db4bd5305bff203a2dc7166097e8
   Env a1d0de52ada648163e32b03965fa7cc7
-  NoAgent 1312a2fb7ba35216219a99207ca57f7b
-  World 9af19fb01ca0eb7d59ceb0e35f564957
-  agents fb18882e5ecf2f932bf9bf289cd810e0
-  env 1e61971513ed1299f547f48f70f98a8f
-  fitnessAgent f4de6e89310d327417c17b60e8863395
-  hammDistAg ccf0a6969ac8d31e34f6d571639ba83a
+  NoAgent d4dad98addf0b524e539609d255e702b
+  World 0e9cd331fae2ec70ce9bcb0eff9b7a46
+  agents df90f6c446cbb9f5e3eb80dfc8e7fddd
+  env 65e572459687864e23b4c2866b7c8498
+  fitnessAgent fcf1d7e32b5b0f2e7800b01e809b2414
+  hammDistAg 949e27f9eec63911ec7d20198e0ce80d
 import  -/  GLUT-2.7.0.11@GLUT-2.7.0.11-IP0PzJz4wI8KYXyKTnttpl:Graphics.UI.GLUT 850ab735296960c40e0ec36d1d65a5d9
 import  -/  GLUT-2.7.0.11@GLUT-2.7.0.11-IP0PzJz4wI8KYXyKTnttpl:Graphics.UI.GLUT.Window 050ef4cbfa70b612c77f709bb8027899
 import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.BeginEnd 0192170a7b0a7c989acfee77b53496c1
@@ -116,13 +116,13 @@ d0441aaf1a6db1696f19f874e9858036
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
                    "Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT"#) -}
-7104d4d67396f18a7ce2afcd87d2ab58
+a0c2cca4f30a8c9453f5988a67ba671e
   $wshowWorld ::
     GHC.Prim.MutVar# GHC.Prim.RealWorld World.World
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 2, Strictness: <S,U><S,U>, Inline: [0] -}
-b27c2127d5dfe3d971c0b9ae360ddd04
+6ef03e4c47214c780a342aadd3933eb6
   showWorld :: GHC.IORef.IORef World.World -> GHC.Types.IO ()
   {- Arity: 2, Strictness: <S(S),1*U(U)><S,U>,
      Unfolding: InlineRule (0, True, True)
@@ -130,7 +130,7 @@ b27c2127d5dfe3d971c0b9ae360ddd04
                   `cast`
                 (<GHC.IORef.IORef World.World>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-e2a90dee4d656147d021ac5ab61c5870
+bc896e3d87e81e67536a18aa5cb36066
   showWorld1 ::
     GHC.IORef.IORef World.World
     -> GHC.Prim.State# GHC.Prim.RealWorld

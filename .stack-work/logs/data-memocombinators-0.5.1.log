@@ -3,8 +3,24 @@ Building data-memocombinators-0.5.1...
 Preprocessing library data-memocombinators-0.5.1...
 [1 of 2] Compiling Data.MemoCombinators ( Data/MemoCombinators.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/MemoCombinators.o )
 [2 of 2] Compiling Data.MemoCombinators.Class ( Data/MemoCombinators/Class.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/MemoCombinators/Class.o )
-[1 of 2] Compiling Data.MemoCombinators ( Data/MemoCombinators.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/MemoCombinators.p_o )
-[2 of 2] Compiling Data.MemoCombinators.Class ( Data/MemoCombinators/Class.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/MemoCombinators/Class.p_o )
+Running Haddock for data-memocombinators-0.5.1...
+Preprocessing library data-memocombinators-0.5.1...
+Haddock coverage:
+  70% ( 16 / 23) in 'Data.MemoCombinators'
+  Missing documentation for:
+    bool (Data/MemoCombinators.hs:72)
+    char (Data/MemoCombinators.hs:84)
+    list (Data/MemoCombinators.hs:78)
+    either (Data/MemoCombinators.hs:95)
+    maybe (Data/MemoCombinators.hs:101)
+    unit (Data/MemoCombinators.hs:107)
+    pair (Data/MemoCombinators.hs:110)
+  67% (  2 /  3) in 'Data.MemoCombinators.Class'
+  Missing documentation for:
+    Module header
+Documentation created:
+.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/doc/html/data-memocombinators/index.html,
+.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/doc/html/data-memocombinators/data-memocombinators.txt
 Installing library in
 /home/karim/.stack/snapshots/x86_64-linux/lts-8.5/8.0.2/lib/x86_64-linux-ghc-8.0.2/data-memocombinators-0.5.1-7Cm5blFlrBsIAp5LANmGFG
 Registering data-memocombinators-0.5.1...

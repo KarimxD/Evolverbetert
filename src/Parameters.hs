@@ -12,16 +12,18 @@ defaultOutputFile = "/home/karim/Data/output.txt"
 
 width  = 50 :: Int
 height = 50 :: Int
-display = False :: Bool
+display = True :: Bool
 
 
 outputStep = 50 :: Time;
 outputTime t = t `mod` outputStep == 0
+outputAllStep = 1000
+outputAllTime t = t `mod` outputAllStep == 0
 
 worldBounds = ((0::Int, 0::Int), (width-1, height-1))
 worldCoods = [(x, y) | x <- [0..width-1], y <- [0..height-1]]
 
-maxTime = 200000 :: Int--floor 6e5 :: Int -- 500000 :: Int
+maxTime = round 6e5 :: Int -- 500000 :: Int
 -- maxTime = floor 6e5 :: Int -- 500000 :: Int
 
 devTime = 20 :: Int -- # of steps agent gets to find attractor of network

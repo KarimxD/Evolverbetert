@@ -1,18 +1,33 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-24 13:51:13.862104 UTC
+2017-04-25 14:05:22.303424 UTC
 
 interface Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Evolverbetert 8002
-  interface hash: 6a7ab0459e5975a57157efdbd6077a1e
-  ABI hash: 471fa73a9d9df0122094b9c3f8f2e097
-  export-list hash: f89da81429e254240a5b99d42f4038d6
+  interface hash: 434343efb580d1502cbc65a9ad944bb9
+  ABI hash: de82d6673a25ab0c190a6c80f9d51a14
+  export-list hash: be2943a3556df343a1615effdc5f793c
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: ab396f11155bd696ab63895436e6f1df
   sig of: Nothing
   used TH splices: False
   where
 exports:
+  Evolverbetert.chEnv
+  Evolverbetert.compilerOpts
+  Evolverbetert.initialize
+  Evolverbetert.isAgentSeed
+  Evolverbetert.isGraphics
+  Evolverbetert.isHelp
+  Evolverbetert.isOutputFile
+  Evolverbetert.isWorldSeed
   Evolverbetert.main
+  Evolverbetert.mainLoop
+  Evolverbetert.newAssoc
+  Evolverbetert.newWorld
+  Evolverbetert.options
+  Evolverbetert.outputString
+  Evolverbetert.reproduceAgent
+  Evolverbetert.Flag{Evolverbetert.AgentSeed Evolverbetert.Graphics Evolverbetert.Help Evolverbetert.OutputFile Evolverbetert.WorldSeed}
 module dependencies: Misc Mutations MyGraphics MyRandom Parameters
                      World
 package dependencies: GLURaw-2.0.0.3@GLURaw-2.0.0.3-G12M6COyQIU5WfRlrIwPuj
@@ -72,12 +87,12 @@ import  -/  Misc e369c0044f3a6828d65da26cc67c036a
   exports: a3036bb0056918ea31bb3edb3bd0f2f1
   maybeCh ac094690c25bb9be58c2f3d1463a4a6d
   moore8 50291001c9a31f3c61b6249f3d3d58dd
-import  -/  Mutations cf4c3d0c630c90a2e981bc2a4795d3a5
+import  -/  Mutations 5ed5c850a758769905ffdb3a91ea706c
   exports: 07e4787ff96df80395353237fc2f2662
-  mutAg 40047d4b7c4aadfcf57c2f4bef6349e7
-import  -/  MyGraphics 7c0ffe47b4230756b57901c5223b5246
+  mutAg de2aecef08eb6b58d58c4972c0aa00de
+import  -/  MyGraphics b4b7d5eaa42ed6bae8c0aefaea04ae50
   exports: 1daec637f0a2ccdff52e1e0a4be5cdfe
-  showWorld b27c2127d5dfe3d971c0b9ae360ddd04
+  showWorld 6ef03e4c47214c780a342aadd3933eb6
 import  -/  MyRandom 6550107e9ca18f776f56264c334ccfaa
   exports: 9b2c6f35135fc9455c1a3dd162ebc359
   Rand 8ad6bc0a02980079a34b3d183be0e1cc
@@ -88,34 +103,34 @@ import  -/  MyRandom 6550107e9ca18f776f56264c334ccfaa
   pureMT 1c5a87f8ff28036c6ba5bd26da1d3c7f
   runRand a880fcba1e60ed35dc3e04e04ee71309
   setMyStdGen aef16105ad120265d0fdff6a85d23602
-import  -/  Parameters 48e1b2fc115bb72998e1d4d477fa1e93
-  exports: 5f973e3a01f953e950df5c127a831d15
+import  -/  Parameters 337422a086d5a822ba572b6f8b76250c
+  exports: 02fc8dfd4b9d11300c8741c41c500ae9
   Time 879d5e19ebb9bc15f9454477e91cb426
   deathRate e9e76292deec60b132755b09265774eb
-  display 072523fa7d913d43a379ea317d7f8603
+  display fae8dce05c7b9cd4a9a3fd032089410c
   envSwitchProb 3b796b939ca858dba44d32d2598e0f4c
   height 11a41b235c8c74d554ad15017020aa10
-  maxTime 28409dc3eda35b8a092dada345993b15
+  maxTime 3c4a2ade951398f0fe114e5381f9523a
   nrEnv 8345559e80d2531135319c3308fbfd0b
   outputTime 220cbf22aed063a812d0c13d564d9048
   selectionPressure c4d9629fd29388c791e69055784ce3a6
   width 9796718fd371819fe8c1f5ab4717d562
   worldBounds bbc48d4f2b3efd5c4253ddddfd736c4c
   worldCoods 8f3de24b4ce4ba0142ea3923677c8b2f
-import  -/  World 0d26c8647f8e525318dd9fb9138de0b7
-  exports: e77751d24e4beac4ad5913cc5adf0fb0
-  Agent 4b2cc13ce18d28c6c31329fb43199d06
+import  -/  World f23f724c0dbea3d48de3ce7fb9acaf22
+  exports: b5353a7252234090fb0add4469a37632
+  Agent d641db4bd5305bff203a2dc7166097e8
   Env a1d0de52ada648163e32b03965fa7cc7
-  NoAgent 1312a2fb7ba35216219a99207ca57f7b
-  World d16299f3b53f4ddfc48bebc9b8288ec5
-  World 9af19fb01ca0eb7d59ceb0e35f564957
-  agents fb18882e5ecf2f932bf9bf289cd810e0
-  devAg 57b4aafaafb403c7c20fc017e2cc3933
-  env 1e61971513ed1299f547f48f70f98a8f
-  fitnessAgent f4de6e89310d327417c17b60e8863395
-  genome c5a1c16dd5abac14aa5dfb0e5dfe1efd
-  hammDistAg ccf0a6969ac8d31e34f6d571639ba83a
-  randomAgent f9327173b40bfc0a0e94611c7529abd6
+  NoAgent d4dad98addf0b524e539609d255e702b
+  World 7d10bfc83d3bbbb5cc7ca29b0e806392
+  World 0e9cd331fae2ec70ce9bcb0eff9b7a46
+  agents df90f6c446cbb9f5e3eb80dfc8e7fddd
+  devAg 77afea6d1cbe1aa9bf04b3b69730b7af
+  env 65e572459687864e23b4c2866b7c8498
+  fitnessAgent fcf1d7e32b5b0f2e7800b01e809b2414
+  genome d338f13fb177370e4bb4947001edcfb0
+  hammDistAg 949e27f9eec63911ec7d20198e0ce80d
+  randomAgent 4cad2a82211c61778b469c3c96d03657
 import  -/  GLUT-2.7.0.11@GLUT-2.7.0.11-IP0PzJz4wI8KYXyKTnttpl:Graphics.UI.GLUT 850ab735296960c40e0ec36d1d65a5d9
 import  -/  GLUT-2.7.0.11@GLUT-2.7.0.11-IP0PzJz4wI8KYXyKTnttpl:Graphics.UI.GLUT.Begin 05dfd16366721fd6a3e5ed4e8d031496
 import  -/  GLUT-2.7.0.11@GLUT-2.7.0.11-IP0PzJz4wI8KYXyKTnttpl:Graphics.UI.GLUT.Callbacks.Window 055811271b55e7da82a607ecad66f70a
@@ -138,7 +153,6 @@ import  -/  base-4.9.1.0:Data.String b34df69c7b6358cd40a379c8a0a78dcf
 import  -/  base-4.9.1.0:Data.Traversable 556020d7cf3c4a34a774600512918a37
 import  -/  base-4.9.1.0:Data.Tuple 7dc4bbb45d2e69c991ffac438beeca11
 import  -/  base-4.9.1.0:GHC.Base c4231c43c07e46080a26bf94094c7aa1
-import  -/  base-4.9.1.0:GHC.IO eb504c57b397cf133849f8586f15dafb
 import  -/  base-4.9.1.0:GHC.IO.Exception 5064be4c355632a1d1c4f2322f56ac52
 import  -/  base-4.9.1.0:GHC.IO.Handle ba98a5b34d78cbf48b41fe58a3735c69
 import  -/  base-4.9.1.0:GHC.IO.Handle.FD dbf0d0d4f42ab1465129a88ccf7880ff
@@ -569,6 +583,31 @@ a9fdf79c7a27742bbc23bff52f3f8cd1
 24f7a508b30ca76f38fb02493c79839c
   $wf :: GHC.Prim.Double# -> GHC.Prim.Int# -> GHC.Prim.Double#
   {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,U>, Inline: [0] -}
+d1bcfdf815b144cfc9a352cc0d8e08da
+  $wmainLoop ::
+    GHC.IORef.IORef World.World
+    -> GHC.IO.Handle.Types.Handle
+    -> GHC.Prim.Int#
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 4, Strictness: <L,1*U(U)><L,U><S,U><S,U>, Inline: [0] -}
+5ea042fc7e8063b3a6131d23348c55af
+  $woutputString ::
+    World.Agents -> World.Env -> GHC.Prim.Int# -> GHC.Base.String
+  {- Arity: 3, Strictness: <L,1*U(A,A,U,U)><L,1*U(U)><S,U>,
+     Inline: [0] -}
+896dd24fa61aea4daf8d173d0ea8efd8
+  $wreproduceAgent ::
+    World.Agents
+    -> World.Env
+    -> (GHC.Types.Int, GHC.Types.Int)
+    -> GHC.Prim.ByteArray#
+    -> GHC.Prim.Int#
+    -> System.Random.Mersenne.Pure64.Internal.MTBlock
+    -> (# World.Agent, System.Random.Mersenne.Pure64.Internal.PureMT #)
+  {- Arity: 6,
+     Strictness: <L,1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U)><L,U(U)><L,1*U(1*U(U),1*U(U))><S,U><S,U><L,U(U)>,
+     Inline: [0] -}
 1c334b96fd925a319cb62471eca327c9
   data Flag
     = Help
@@ -576,6 +615,157 @@ a9fdf79c7a27742bbc23bff52f3f8cd1
     | WorldSeed GHC.Base.String
     | AgentSeed GHC.Base.String
     | Graphics
+807d9ac78aaab2d7fc74dd6d12a95da7
+  chEnv :: World.Env -> MyRandom.Rand World.Env
+  {- Arity: 2, Strictness: <L,1*U(U)><S(SSL),1*U(U,U,U(U))>m,
+     Unfolding: InlineRule (0, True, True)
+                Evolverbetert.chEnv1
+                  `cast`
+                (<World.Env>_R
+                 ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                               <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                               <Data.Functor.Identity.Identity>_R
+                               <World.Env>_N)) -}
+528f7cc7ccb8cb59969d11cc34601b71
+  chEnv1 ::
+    World.Env
+    -> System.Random.Mersenne.Pure64.Internal.PureMT
+    -> Data.Functor.Identity.Identity
+         (World.Env, System.Random.Mersenne.Pure64.Internal.PureMT)
+  {- Arity: 2, Strictness: <L,1*U(U)><S(SSL),1*U(U,U,U(U))>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: World.Env)
+                   (w1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
+                 case w1 of ww { System.Random.Mersenne.Pure64.Internal.PureMT ww1 ww2 ww3 ->
+                 case MyRandom.$wrandomR
+                        1#
+                        Evolverbetert.chEnv2
+                        ww1
+                        ww2
+                        ww3 of ww9 { (#,#) ww10 ww11 ->
+                 (Data.Fixed.mod'
+                    @ World.Env
+                    GHC.Real.$fRealInt
+                    (GHC.Num.$fNumInt_$c+ w ww10)
+                    Parameters.nrEnv,
+                  ww11)
+                   `cast`
+                 (Sym (Data.Functor.Identity.N:Identity[0]
+                           <(World.Env,
+                             System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) } }) -}
+be8c4fd0615c5a317a0c742eea0d49ec
+  chEnv2 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 1#) -}
+8df15e64c7c41f37fb1f9d6ce8b79ce6
+  compilerOpts ::
+    [GHC.Base.String]
+    -> GHC.Types.IO ([Evolverbetert.Flag], [GHC.Base.String])
+  {- Arity: 2, Strictness: <S,1*U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Evolverbetert.compilerOpts1
+                  `cast`
+                (<[GHC.Base.String]>_R
+                 ->_R Sym (GHC.Types.N:IO[0]
+                               <([Evolverbetert.Flag], [GHC.Base.String])>_R)) -}
+b2fca12fbc3bd44b2d9ee4f0746cec82
+  compilerOpts1 ::
+    [GHC.Base.String]
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          ([Evolverbetert.Flag], [GHC.Base.String]) #)
+  {- Arity: 2, Strictness: <S,1*U><S,U>,
+     Unfolding: (\ (argv :: [GHC.Base.String])
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case System.Console.GetOpt.$wgetOpt'
+                        @ Evolverbetert.Flag
+                        (System.Console.GetOpt.Permute @ Evolverbetert.Flag)
+                        Evolverbetert.options
+                        argv of ww { (#,,,#) ww1 ww2 ww3 ww4 ->
+                 case GHC.Base.++
+                        @ [GHC.Types.Char]
+                        ww4
+                        (GHC.Base.map
+                           @ [GHC.Types.Char]
+                           @ [GHC.Types.Char]
+                           System.Console.GetOpt.errUnrec
+                           ww3) of wild {
+                   [] -> (# eta, (ww1, ww2) #)
+                   : ipv ipv1
+                   -> GHC.Prim.raiseIO#
+                        @ GHC.Exception.SomeException
+                        @ ([Evolverbetert.Flag], [GHC.Base.String])
+                        (GHC.IO.Exception.$fExceptionIOException_$ctoException
+                           (GHC.IO.Exception.IOError
+                              (GHC.Base.Nothing @ GHC.IO.Handle.Types.Handle)
+                              GHC.IO.Exception.UserError
+                              (GHC.Types.[] @ GHC.Types.Char)
+                              (Evolverbetert.compilerOpts_go wild)
+                              (GHC.Base.Nothing @ Foreign.C.Types.CInt)
+                              (GHC.Base.Nothing @ GHC.IO.FilePath)))
+                        eta } }) -}
+bcf8703f9c2408106aad0dd628f82bc0
+  compilerOpts_go :: [[GHC.Types.Char]] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,1*U> -}
+ea4e67cc50aca40fc95da3dfad808c37
+  initialize ::
+    [Evolverbetert.Flag]
+    -> GHC.Types.IO
+         (GHC.IORef.IORef World.World, GHC.IO.Handle.Types.Handle)
+  {- Arity: 2, Strictness: <S,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Evolverbetert.initialize1
+                  `cast`
+                (<[Evolverbetert.Flag]>_R
+                 ->_R Sym (GHC.Types.N:IO[0]
+                               <(GHC.IORef.IORef World.World, GHC.IO.Handle.Types.Handle)>_R)) -}
+147f63bff7fead77e160f3d80fd56c02
+  initialize1 ::
+    [Evolverbetert.Flag]
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          (GHC.IORef.IORef World.World, GHC.IO.Handle.Types.Handle) #)
+  {- Arity: 2, Strictness: <S,U><S,U> -}
+3ddb6f627c84f28df3a6216847cf05d1
+  isAgentSeed :: Evolverbetert.Flag -> GHC.Types.Bool
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Evolverbetert.Flag) ->
+                 case ds of wild {
+                   DEFAULT -> GHC.Types.False
+                   Evolverbetert.AgentSeed ds1 -> GHC.Types.True }) -}
+4a4506ff8f25901c060d24a91345ae4b
+  isGraphics :: Evolverbetert.Flag -> GHC.Types.Bool
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Evolverbetert.Flag) ->
+                 case ds of wild {
+                   DEFAULT -> GHC.Types.False
+                   Evolverbetert.Graphics -> GHC.Types.True }) -}
+6191c13bf8faf67f7a36141095faec36
+  isHelp :: Evolverbetert.Flag -> GHC.Types.Bool
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Evolverbetert.Flag) ->
+                 case ds of wild {
+                   DEFAULT -> GHC.Types.False
+                   Evolverbetert.Help -> GHC.Types.True }) -}
+2ce1db762ea283d81d6b41ad071dec30
+  isOutputFile :: Evolverbetert.Flag -> GHC.Types.Bool
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Evolverbetert.Flag) ->
+                 case ds of wild {
+                   DEFAULT -> GHC.Types.False
+                   Evolverbetert.OutputFile ds1 -> GHC.Types.True }) -}
+c1b69c2a3bec87513ce9ee95a452e1b9
+  isWorldSeed :: Evolverbetert.Flag -> GHC.Types.Bool
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Evolverbetert.Flag) ->
+                 case ds of wild {
+                   DEFAULT -> GHC.Types.False
+                   Evolverbetert.WorldSeed ds1 -> GHC.Types.True }) -}
 74582c5f878e3a703612da8856127493
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
@@ -586,6 +776,385 @@ cd7059d7e8ed8dd38f98f3ba6e53f384
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 1, Strictness: <S,U> -}
+55a5a6eeea1b3b7148e0165d81d3d476
+  mainLoop ::
+    GHC.IORef.IORef World.World
+    -> GHC.IO.Handle.Types.Handle -> Parameters.Time -> GHC.Types.IO ()
+  {- Arity: 4, Strictness: <L,1*U(U)><L,U><S(S),1*U(U)><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Evolverbetert.mainLoop1
+                  `cast`
+                (<GHC.IORef.IORef World.World>_R
+                 ->_R <GHC.IO.Handle.Types.Handle>_R
+                 ->_R <Parameters.Time>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
+90de5d43ae4dd615b57eee58f527bb77
+  mainLoop1 ::
+    GHC.IORef.IORef World.World
+    -> GHC.IO.Handle.Types.Handle
+    -> Parameters.Time
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 4, Strictness: <L,1*U(U)><L,U><S(S),1*U(U)><S,U>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (4, True, False)
+                (\ (w :: GHC.IORef.IORef World.World)
+                   (w1 :: GHC.IO.Handle.Types.Handle)
+                   (w2 :: Parameters.Time)
+                   (w3 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case w2 of ww { GHC.Types.I# ww1 ->
+                 Evolverbetert.$wmainLoop w w1 ww1 w3 }) -}
+62f6618a51a3439861713a6274b8c180
+  newAssoc ::
+    World.World
+    -> ((GHC.Types.Int, GHC.Types.Int), World.Agent)
+    -> MyRandom.Rand ((GHC.Types.Int, GHC.Types.Int), World.Agent)
+  {- Arity: 3,
+     Strictness: <S,1*U(1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U),U(U))><S,1*U(U(U(U),U(U)),A)><S(SSL),1*U(U,U,U(U))>m,
+     Unfolding: InlineRule (0, True, True)
+                Evolverbetert.newAssoc1
+                  `cast`
+                (<World.World>_R
+                 ->_R <((GHC.Types.Int, GHC.Types.Int), World.Agent)>_R
+                 ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                               <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                               <Data.Functor.Identity.Identity>_R
+                               <((GHC.Types.Int, GHC.Types.Int), World.Agent)>_N)) -}
+5a9fb2bee1355ba8e2106b63a98e58ce
+  newAssoc1 ::
+    World.World
+    -> ((GHC.Types.Int, GHC.Types.Int), World.Agent)
+    -> System.Random.Mersenne.Pure64.Internal.PureMT
+    -> Data.Functor.Identity.Identity
+         (((GHC.Types.Int, GHC.Types.Int), World.Agent),
+          System.Random.Mersenne.Pure64.Internal.PureMT)
+  {- Arity: 3,
+     Strictness: <S,1*U(1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U),U(U))><S,1*U(U(U(U),U(U)),A)><S(SSL),1*U(U,U,U(U))>m,
+     Unfolding: InlineRule (3, True, False)
+                (\ (w :: World.World)
+                   (ds :: ((GHC.Types.Int, GHC.Types.Int), World.Agent))
+                   (eta :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
+                 case ds of wild { (,) ix ag ->
+                 case (Evolverbetert.newAssoc2 w ix eta)
+                        `cast`
+                      (Data.Functor.Identity.N:Identity[0]
+                           <(World.Agent,
+                             System.Random.Mersenne.Pure64.Internal.PureMT)>_R) of wild1 { (,) a1 s' ->
+                 ((ix, a1), s')
+                   `cast`
+                 (Sym (Data.Functor.Identity.N:Identity[0]
+                           <(((GHC.Types.Int, GHC.Types.Int), World.Agent),
+                             System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) } }) -}
+5d100e6ee2c62d09dc04db0f262e4349
+  newAssoc2 ::
+    World.World
+    -> (GHC.Types.Int, GHC.Types.Int)
+    -> System.Random.Mersenne.Pure64.Internal.PureMT
+    -> Data.Functor.Identity.Identity
+         (World.Agent, System.Random.Mersenne.Pure64.Internal.PureMT)
+  {- Arity: 3,
+     Strictness: <S,1*U(1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U),U(U))><L,1*U(1*U(U),1*U(U))><S(SSL),1*U(U,U,U(U))>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (3, True, False)
+                (\ (w :: World.World)
+                   (w1 :: (GHC.Types.Int, GHC.Types.Int))
+                   (w2 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
+                 case w of ww { World.World ww1 ww2 ->
+                 case w2 of ww3 { System.Random.Mersenne.Pure64.Internal.PureMT ww4 ww5 ww6 ->
+                 case Evolverbetert.$wreproduceAgent
+                        ww1
+                        ww2
+                        w1
+                        ww4
+                        ww5
+                        ww6 of ww7 { (#,#) ww8 ww9 ->
+                 (ww8, ww9)
+                   `cast`
+                 (Sym (Data.Functor.Identity.N:Identity[0]
+                           <(World.Agent,
+                             System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) } } }) -}
+95ec000ac41edae3c7d80f2878f32d1e
+  newWorld :: World.World -> MyRandom.Rand World.World
+  {- Arity: 2,
+     Strictness: <L,U(U(U(U(U),U(U)),U(U(U),U(U)),U,U),U(U))>,
+     Unfolding: (Evolverbetert.newWorld1
+                   `cast`
+                 (<World.World>_R
+                  ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                                <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                                <Data.Functor.Identity.Identity>_R
+                                <World.World>_N))) -}
+8440734aadff6e3272348efa5e729940
+  newWorld1 ::
+    World.World
+    -> System.Random.Mersenne.Pure64.Internal.PureMT
+    -> Data.Functor.Identity.Identity
+         (World.World, System.Random.Mersenne.Pure64.Internal.PureMT)
+  {- Arity: 2,
+     Strictness: <L,U(U(U(U(U),U(U)),U(U(U),U(U)),U,U),U(U))> -}
+667a734234025ad6b533f65c35638542
+  options :: [System.Console.GetOpt.OptDescr Evolverbetert.Flag]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (System.Console.GetOpt.OptDescr Evolverbetert.Flag)
+                   Evolverbetert.options35
+                   Evolverbetert.options1) -}
+049b0a7cfd87f558e7d5c8a608e905a9
+  options1 :: [System.Console.GetOpt.OptDescr Evolverbetert.Flag]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (System.Console.GetOpt.OptDescr Evolverbetert.Flag)
+                   Evolverbetert.options28
+                   Evolverbetert.options2) -}
+20e45378b91fbee4a19f644898a7dbed
+  options10 :: [GHC.Types.Char]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   Evolverbetert.options11
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+2dae3795172ce7aa3391246a712050c6
+  options11 :: GHC.Types.Char
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'g'#) -}
+8bc5019bf66ff4db50520195f4bad680
+  options12 :: System.Console.GetOpt.OptDescr Evolverbetert.Flag
+  {- Strictness: m,
+     Unfolding: (System.Console.GetOpt.Option
+                   @ Evolverbetert.Flag
+                   Evolverbetert.options18
+                   Evolverbetert.options16
+                   Evolverbetert.options14
+                   Evolverbetert.options13) -}
+c6549499244dfbc648e8f78116e63112
+  options13 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "output file"#) -}
+49193c5d303db9903236f9402267a40c
+  options14 :: System.Console.GetOpt.ArgDescr Evolverbetert.Flag
+  {- Strictness: m2,
+     Unfolding: (System.Console.GetOpt.ReqArg
+                   @ Evolverbetert.Flag
+                   Evolverbetert.OutputFile
+                   Evolverbetert.options15) -}
+b5dcce608812638025a0a901dbb910b9
+  options15 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "FILEPATH"#) -}
+b6969f096180058599ea7cf8eff0c749
+  options16 :: [GHC.Base.String]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Base.String
+                   Evolverbetert.options17
+                   (GHC.Types.[] @ GHC.Base.String)) -}
+53673841d2dd70dc11b81ec899226370
+  options17 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "output-file"#) -}
+1bef22208b44b8cbca90c2b201ebc4b7
+  options18 :: [GHC.Types.Char]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   Evolverbetert.options19
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+0d54d3c79b3ac90a50031859b82d967e
+  options19 :: GHC.Types.Char
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'o'#) -}
+3c4d2d35112bde248fab7e53481f4b3f
+  options2 :: [System.Console.GetOpt.OptDescr Evolverbetert.Flag]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (System.Console.GetOpt.OptDescr Evolverbetert.Flag)
+                   Evolverbetert.options20
+                   Evolverbetert.options3) -}
+cb5ee2d353eb450855613a4a77cc8a31
+  options20 :: System.Console.GetOpt.OptDescr Evolverbetert.Flag
+  {- Strictness: m,
+     Unfolding: (System.Console.GetOpt.Option
+                   @ Evolverbetert.Flag
+                   Evolverbetert.options26
+                   Evolverbetert.options24
+                   Evolverbetert.options22
+                   Evolverbetert.options21) -}
+0f7ec2f65ae26a8df0f74b823c72cb54
+  options21 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "give the seed for the first agent RNG (default: 420)"#) -}
+cf6fe1ec718b0b17479cafec884750fe
+  options22 :: System.Console.GetOpt.ArgDescr Evolverbetert.Flag
+  {- Strictness: m2,
+     Unfolding: (System.Console.GetOpt.ReqArg
+                   @ Evolverbetert.Flag
+                   Evolverbetert.AgentSeed
+                   Evolverbetert.options23) -}
+5ac5e0fcdca0e95c2ad214944b959126
+  options23 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "INT"#) -}
+74f5b76b87fd67117d6c6fc451fa2d06
+  options24 :: [GHC.Base.String]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Base.String
+                   Evolverbetert.options25
+                   (GHC.Types.[] @ GHC.Base.String)) -}
+5b3ebb69b6e6163f584b26fdfb30e8dc
+  options25 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "agent-seed"#) -}
+adf4cd524805c104544051c1e87cf645
+  options26 :: [GHC.Types.Char]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   Evolverbetert.options27
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+fedf8263e5669d120ab774790e81e734
+  options27 :: GHC.Types.Char
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'a'#) -}
+f6dedabd649f176f72b83d39528ab00d
+  options28 :: System.Console.GetOpt.OptDescr Evolverbetert.Flag
+  {- Strictness: m,
+     Unfolding: (System.Console.GetOpt.Option
+                   @ Evolverbetert.Flag
+                   Evolverbetert.options33
+                   Evolverbetert.options31
+                   Evolverbetert.options30
+                   Evolverbetert.options29) -}
+b4cb28ac3bbcd1145aeb2116659462e1
+  options29 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "give the seed for the world RNG (default: 420)"#) -}
+5ab2295c34e6579f34d061fe589fea54
+  options3 :: [System.Console.GetOpt.OptDescr Evolverbetert.Flag]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (System.Console.GetOpt.OptDescr Evolverbetert.Flag)
+                   Evolverbetert.options12
+                   Evolverbetert.options4) -}
+030812e39a5d92648e46e82da50e6257
+  options30 :: System.Console.GetOpt.ArgDescr Evolverbetert.Flag
+  {- Strictness: m2,
+     Unfolding: (System.Console.GetOpt.ReqArg
+                   @ Evolverbetert.Flag
+                   Evolverbetert.WorldSeed
+                   Evolverbetert.options23) -}
+ccbc9da9c3436e132632de4e3f16730d
+  options31 :: [GHC.Base.String]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Base.String
+                   Evolverbetert.options32
+                   (GHC.Types.[] @ GHC.Base.String)) -}
+ec0c33e6dbe603ca7dd5ea2fa960cbd1
+  options32 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "world-seed"#) -}
+addb86acb17808d37720d3a2f688da8a
+  options33 :: [GHC.Types.Char]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   Evolverbetert.options34
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+e320e965e79d6348c1a26c13f2ee6f73
+  options34 :: GHC.Types.Char
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'w'#) -}
+565c813879cf78fec0d6750586be3df8
+  options35 :: System.Console.GetOpt.OptDescr Evolverbetert.Flag
+  {- Strictness: m,
+     Unfolding: (System.Console.GetOpt.Option
+                   @ Evolverbetert.Flag
+                   Evolverbetert.options40
+                   Evolverbetert.options38
+                   Evolverbetert.options37
+                   Evolverbetert.options36) -}
+fad00d92ba974e8f7dd851e0d15ad70e
+  options36 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "display this help info"#) -}
+67f13905ec18ca270684eeeef035b593
+  options37 :: System.Console.GetOpt.ArgDescr Evolverbetert.Flag
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (System.Console.GetOpt.NoArg
+                   @ Evolverbetert.Flag
+                   Evolverbetert.Help) -}
+73b03072e6911f8c7728edff8a30cfa2
+  options38 :: [GHC.Base.String]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Base.String
+                   Evolverbetert.options39
+                   (GHC.Types.[] @ GHC.Base.String)) -}
+f45bf89707a28ad468d093a879a9dd4e
+  options39 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "help"#) -}
+bb8ea3afc1fc9e07726da1b3752e2110
+  options4 :: [System.Console.GetOpt.OptDescr Evolverbetert.Flag]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (System.Console.GetOpt.OptDescr Evolverbetert.Flag)
+                   Evolverbetert.options5
+                   (GHC.Types.[]
+                      @ (System.Console.GetOpt.OptDescr Evolverbetert.Flag))) -}
+8795d02d8788ee710abe76322afb36f8
+  options40 :: [GHC.Types.Char]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   Evolverbetert.options41
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+73f21e40c32f47f85647515689c4ee48
+  options41 :: GHC.Types.Char
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'h'#) -}
+7c5cf7a898435c06d6c04c30cc7a63e1
+  options5 :: System.Console.GetOpt.OptDescr Evolverbetert.Flag
+  {- Strictness: m,
+     Unfolding: (System.Console.GetOpt.Option
+                   @ Evolverbetert.Flag
+                   Evolverbetert.options10
+                   Evolverbetert.options8
+                   Evolverbetert.options7
+                   Evolverbetert.options6) -}
+8f931b4e326ccbff3f21ed87e2cf185f
+  options6 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "display CA in a window (Not yet working! Change the parameter file)"#) -}
+ec8734bc2c0fbdaa325294c289349f73
+  options7 :: System.Console.GetOpt.ArgDescr Evolverbetert.Flag
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (System.Console.GetOpt.NoArg
+                   @ Evolverbetert.Flag
+                   Evolverbetert.Graphics) -}
+a4595668de6fc7e51dbed35b8d5053b9
+  options8 :: [GHC.Base.String]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Base.String
+                   Evolverbetert.options9
+                   (GHC.Types.[] @ GHC.Base.String)) -}
+1121da00b6525cd428d23025fecc5d42
+  options9 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "graphics"#) -}
+e1a1beadd889ad9ba568342e4a00cd63
+  outputString :: World.World -> Parameters.Time -> GHC.Base.String
+  {- Arity: 2, Strictness: <S,1*U(1*U(A,A,U,U),1*U(U))><S(S),1*U(U)>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: World.World) (w1 :: Parameters.Time) ->
+                 case w of ww { World.World ww1 ww2 ->
+                 case w1 of ww3 { GHC.Types.I# ww4 ->
+                 Evolverbetert.$woutputString ww1 ww2 ww4 } }) -}
+f36204526b86a5b42554038c4c1f53cf
+  reproduceAgent ::
+    World.World
+    -> (GHC.Types.Int, GHC.Types.Int) -> MyRandom.Rand World.Agent
+  {- Arity: 3,
+     Strictness: <S,1*U(1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U),U(U))><L,1*U(1*U(U),1*U(U))><S(SSL),1*U(U,U,U(U))>m,
+     Unfolding: InlineRule (0, True, True)
+                Evolverbetert.newAssoc2
+                  `cast`
+                (<World.World>_R
+                 ->_R <(GHC.Types.Int, GHC.Types.Int)>_R
+                 ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                               <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                               <Data.Functor.Identity.Identity>_R
+                               <World.Agent>_N)) -}
 instance GHC.Classes.Eq [Evolverbetert.Flag]
   = Evolverbetert.$fEqFlag
 instance GHC.Classes.Ord [Evolverbetert.Flag]

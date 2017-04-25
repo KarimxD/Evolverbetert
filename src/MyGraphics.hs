@@ -6,8 +6,6 @@ import           Graphics.UI.GLUT
 import qualified Parameters        as P
 import           World
 
-
-
 showWorld :: IORef World -> IO ()
 showWorld worldRef = do
     clear [ColorBuffer]
@@ -34,17 +32,15 @@ drawSquares world = renderPrimitive Quads $ mapM_ drawQuad P.worldCoods
                 y1 = fromIntegral y + 1
                 c = colorHammDist (ags!(x,y)) (env world)
 
-
-
 colorHammDist :: Agent -> Env -> Color4 Float
 colorHammDist NoAgent _ = Color4 0 0 0 0
 colorHammDist ag env = myHSV (1 - relHammDist) 1 1
-    where relHammDist = fromIntegral (hammDistAg ag env) / fromIntegral P.nrGeneTypes
+    where relHammDist = fromIntegral (hammDistAg env ag) / fromIntegral P.nrGeneTypes
 
 colorFit :: Agent -> Env -> Color4 Float
 colorFit NoAgent _ = Color4 0 0 0 0
 colorFit ag env = myHSV (realToFrac fit) 0.7 1
-        where fit = fitnessAgent ag env
+        where fit = fitnessAgent env ag
 
 myHSV :: Float -> Float -> Float -> Color4 Float
 myHSV h s v
@@ -60,20 +56,20 @@ myHSV h s v
         c = s * v
         m = v - c
 
-hsv :: Int -> Float -> Float -> Color4 Float
-hsv h s v
-    | h' < 1    = plusM (c,x,0) --Color4 (c+m) (x+m) m 1
-    | h' < 2    = plusM (x,c,0) --Color4 (x+m) (c+m) m 1
-    | h' < 3    = plusM (0,c,x) --Color4 m (c+m) (x+m) 1
-    | h' < 4    = plusM (0,x,c) --Color4 m (x+m) (c+m) 1
-    | h' < 5    = plusM (x,0,c) --Color4 (x+m) m (c+m) 1
-    | otherwise = plusM (c,0,x) --Color4 (c+m) m (x+m) 1
-    where
-        plusM (a, b, c) = Color4 (a+m) (b+m) (c+m) 1
-        h' = fromIntegral h / 60
-        c  = s * v
-        x  = c * (1- abs (h' `mod'` 2 - 1))
-        m = v - c
+-- hsv :: Int -> Float -> Float -> Color4 Float
+-- hsv h s v
+--     | h' < 1    = plusM (c,x,0) --Color4 (c+m) (x+m) m 1
+--     | h' < 2    = plusM (x,c,0) --Color4 (x+m) (c+m) m 1
+--     | h' < 3    = plusM (0,c,x) --Color4 m (c+m) (x+m) 1
+--     | h' < 4    = plusM (0,x,c) --Color4 m (x+m) (c+m) 1
+--     | h' < 5    = plusM (x,0,c) --Color4 (x+m) m (c+m) 1
+--     | otherwise = plusM (c,0,x) --Color4 (c+m) m (x+m) 1
+--     where
+--         plusM (a, b, c) = Color4 (a+m) (b+m) (c+m) 1
+--         h' = fromIntegral h / 60
+--         c  = s * v
+--         x  = c * (1- abs (h' `mod'` 2 - 1))
+--         m = v - c
 
 -- hSVtoRGB :: Int -> Double -> Double -> Color4 GLfloat
 -- hSVtoRGB h s v = case h' of
