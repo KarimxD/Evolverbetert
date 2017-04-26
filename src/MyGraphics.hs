@@ -5,6 +5,7 @@ import           Data.IORef
 import           Graphics.UI.GLUT
 import qualified Parameters        as P
 import           World
+import Types
 
 showWorld :: IORef World -> IO ()
 showWorld worldRef = do

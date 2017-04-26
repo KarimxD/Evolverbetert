@@ -22,7 +22,7 @@ def main(argv):
     doplot(inputfile)
 
 def doplot(f):
-    data = np.loadtxt(f, delimiter=' ', usecols=(0,1,2,3))
+    data = np.loadtxt(f, delimiter=' ', usecols=(0,1,2,3), skiprows = 2)
     t, env, hammdist, gen_length = data.T
 
     fig, ax1 = plt.subplots()
@@ -37,7 +37,7 @@ def doplot(f):
     ax1.set_ybound(0,12)
 
     plt.title(f)
-    plt.plot((0, 200000), (3, 3), 'g-')
+    plt.plot((0, 350000), (3, 3), 'g-')
     plt.show()
 
 if __name__ == "__main__":

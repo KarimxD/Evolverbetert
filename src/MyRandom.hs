@@ -59,8 +59,8 @@ getDouble :: Rand Double
 getDouble = state randomDouble
 {-# INLINE getDouble #-}
 
-getRange :: (Int,Int) -> Rand Int
-getRange = state . randomR
+getRange :: Integral a => (Int,Int) -> Rand a
+getRange = fmap fromIntegral . state . randomR
 {-# INLINE getRange #-}
 
 

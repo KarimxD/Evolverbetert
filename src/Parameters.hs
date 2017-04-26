@@ -1,5 +1,6 @@
 module Parameters where
 import           GHC.Word
+import Types
 type Time = Int
 type Prob = Double
 
@@ -8,42 +9,50 @@ type Prob = Double
 
 -- defaultWorldSeed = 420 :: Int
 -- defaultInitialAgentSeed = 420 :: Int
-defaultOutputFile = "/home/karim/Data/output.txt"
+defaultOutputFile = "/home/karim/Data/output.txt" :: String
+display = False :: Bool
+
+-- * World Parameters
 
 width  = 50 :: Int
 height = 50 :: Int
-display = True :: Bool
-
-
-outputStep = 50 :: Time;
-outputTime t = t `mod` outputStep == 0
-outputAllStep = 1000
-outputAllTime t = t `mod` outputAllStep == 0
-
 worldBounds = ((0::Int, 0::Int), (width-1, height-1))
 worldCoods = [(x, y) | x <- [0..width-1], y <- [0..height-1]]
+nrEnv = 2 :: Int
 
-maxTime = round 6e5 :: Int -- 500000 :: Int
--- maxTime = floor 6e5 :: Int -- 500000 :: Int
+
+
+-- * Time Parameters
+
+outputStep = 50 :: Time
+outputTime t = t `mod` outputStep == 0
+dumpStep = 1000
+dumpTime t = t `mod` dumpStep == 0
+maxTime = 200--round 1e6 :: Int -- 500000 :: Int
+     :: Int
+-- * Fitness Parameters
 
 devTime = 20 :: Int -- # of steps agent gets to find attractor of network
 selectionPressure = 10 :: Int
 deathRate = 0.3 :: Prob
-envSwitchProb = 3e-4 :: Prob
 
-nrEnv = 2 :: Int
 
-{-
+-- * Genome and network properties
+
+{- |
  When only 2 environments are used,
  NrOverlap and NrSpecific contribute to the same
  (namely genes expressed in A, and not in B, and vice versa)
 -}
-nrGeneTypes = nrHouseHold + nrOverlap + nrSpecific :: Int -- usually 20
+nrGeneTypes' = (\(ID a) -> a) nrGeneTypes
+nrGeneTypes = ID $ nrHouseHold + nrOverlap + nrSpecific -- usually 20
 nrHouseHold = 8 :: Int; nrOverlap = 0 :: Int; nrSpecific = 12 :: Int
-
 minThres = -2 :: Int; maxThres = 2 :: Int
 
--- Mutational Parameters
+-- * Probabilities for mutation and environmental change
+
+envSwitchProb = 3e-4 :: Prob
+
 pGenDel     = 3e-4 :: Prob
 pGenDup     = 2e-4 :: Prob
 pGenThresCh = 5e-6 :: Prob

@@ -1,5 +1,3 @@
-{-# LANGUAGE BangPatterns #-}
-
 module Mutations (
 mutAg) where
 
@@ -7,6 +5,7 @@ import           Misc
 import           Parameters
 -- import Control.Monad.Random (getRandom, getRange, MonadRandom)
 import           MyRandom
+import Types
 
 import           Control.Monad
 import           Data.List
@@ -173,5 +172,5 @@ mutAg ag@(Agent genome gst) = do
     let gst' = gSTFromGenome genome'
     return (Agent genome' gst')
 
-randGeneType :: Rand Int
-randGeneType = getRange (0, nrGeneTypes-1)
+randGeneType :: Rand ID
+randGeneType = ID <$> getRange (0, nrGeneTypes'-1)

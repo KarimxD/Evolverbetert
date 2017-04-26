@@ -8,7 +8,7 @@
 -- Stability   :  internal
 -- Portability :  non-portable (GHC extensions)
 --
--- Basic data types and classes.
+-- The program
 --
 -----------------------------------------------------------------------------
 module Evolverbetert where
@@ -18,6 +18,8 @@ import           MyGraphics             (showWorld)
 import           MyRandom
 import qualified Parameters             as P
 import           World
+import Types
+import Parsing
 
 import qualified Data.ByteString.Char8  as B (hPutStrLn)
 import           Data.IORef             (IORef, newIORef, readIORef, writeIORef)
@@ -35,7 +37,7 @@ import           Data.Maybe             (fromMaybe)
 
 import           Data.Array.IArray      (array, assocs, elems, (!))
 import           Data.List              (find, maximumBy)
-import           Data.List.Split        (splitEvery)
+import           Data.List.Split        (splitEvery, splitOn)
 import qualified Data.Map               as Map
 
 import qualified Control.Monad.Parallel as Par (mapM)
@@ -209,6 +211,7 @@ options =
     , Option ['w'] ["world-seed"]  (ReqArg WorldSeed "INT")       "give the seed for the world RNG (default: 420)"
     , Option ['a'] ["agent-seed"]  (ReqArg AgentSeed "INT")       "give the seed for the first agent RNG (default: 420)"
     , Option ['o'] ["output-file"] (ReqArg OutputFile "FILEPATH") "output file"
+    , Option ['d'] ["dump-file"]   (ReqArg DumpFile "FILEPATH")   "dump CA content"
     , Option ['g'] ["graphics"]    (NoArg Graphics)               "display CA in a window (Not yet working! Change the parameter file)"
     ]
 
@@ -221,12 +224,27 @@ compilerOpts argv = case getOpt Permute options argv of
 data Flag
     = Help
     | OutputFile String
+    | DumpFile String
     | WorldSeed String
     | AgentSeed String
     | Graphics
     deriving (Eq, Ord, Show)
 isHelp        Help          = True; isHelp _       = False
 isOutputFile (OutputFile _) = True; isOutputFile _ = False
+isDumpFIle   (DumpFile _)   = True; isDumpFile _   = False
 isWorldSeed  (WorldSeed  _) = True; isWorldSeed _  = False
 isAgentSeed  (AgentSeed  _) = True; isAgentSeed _  = False
 isGraphics    Graphics      = True; isGraphics _   = False
+
+
+
+-- | Just a standard agent that can be used
+-- should not be used though, as the tfbs weights have strange weights and such
+
+genome2 = [map parseLoc $ splitOn "," "18:1,15:-2,G1:-1:0,0:-1,G5:-1:0,G12:-1:0,T,G10:-2:0,5:-1,15:1,G15:-1:0,G7:-2:0,T,T,7:1,6:1,G14:-1:0,15:-1,10:1,G19:-1:0,10:-1,3:-1,17:1,G11:-2:0,G6:-1:0,T,18:-1,3:-1,G9:-2:0,G3:-2:0,13:-1,8:1,G2:-1:0,11:-1,7:1,G16:-1:0,T,13:1,6:1,1:-1,G18:-1:0,G17:-1:0,6:1,2:1,G0:-2:0,17:1,6:-1,G8:-1:0,8:1,16:-1,G4:-2:0,G13:-1:1"]
+genome1 = [map parseLoc $ splitOn "," "14:-1,9:-1,G17:0,16:-1,G12:0,G19:-1,6:-1,4:1,G16:0,G18:0,17:-1,9:-1,8:-1,G0:0,G14:0,9:-1,4:-1,G10:0,9:-1,2:-1,G6:-1,3:-1,G5:-1,7:-1,G1:-1,19:-1,G7:-1,17:1,4:-1,G2:-1,G9:-1,G11:-1,G4:1,17:-1,11:-1,17:1,G8:1,7:1,G3:1,10:-1,G13:1,10:-1,3:-1,G15:1"]
+
+agent0 :: Agent
+agent0 = devAg $ Agent genome0 defaultGst
+    where
+            genome0 = [map parseLoc $ splitOn "," "18:6,15:-2,G1:-1:0,0:-4,G5:-1:0,G12:-1:0,T,G10:-2:0,5:-2,15:3,G15:-1:0,G7:-3:0,T,T,7:4,6:2,G14:-1:0,15:-6,10:5,G19:-1:0,10:-2,3:-6,17:2,G11:-2:0,G6:-1:0,T,18:-5,3:-1,G9:-3:0,G3:-3:0,13:-5,8:4,G2:-1:0,11:-5,7:4,G16:-1:0,T,13:3,6:5,1:-6,G18:-1:0,G17:-1:0,6:0,2:5,G0:-3:0,17:4,6:-1,G8:-1:0,8:5,16:-4,G4:-3:0,G13:-1:1"]
