@@ -1,3 +1,4 @@
+{-# LANGUAGE FlexibleInstances #-}
 module Parsing  where
 import World
 import Types
@@ -7,52 +8,87 @@ import qualified Data.Map as Map
 import qualified Data.List as List
 import qualified Data.Array.IArray as Array
 
-instance Show Agent where
-    show ag = show (concatMap show $ head $ genome ag, showGST $ geneStateTable ag) --Only works on agents with 1 chromosome
+class MyShow a where
+    myShow :: a -> String
+
+class MyRead a where
+    myRead :: String -> a
+
+
+instance MyShow Agent where
+    myShow NoAgent = "NoAgent"
+    myShow ag = show (concatMap myShow $ head $ genome ag, myShow $ geneStateTable ag) --Only works on agents with 1 chromosome
+parseAgent "NoAgent" = NoAgent
 parseAgent str =  --Only works on agents with 1 chromosome
     Agent genome gst
     where
         gst = gSTFromGenome genome
-        genome = [map parseLoc loci] :: Genome
+        genome = [map myRead loci] :: Genome
         loci = splitOn "," str :: [String]
 
-instance Show Locus where
-    show Transposon = "T"
-    show (CGene (Gene i t gs)) = "G" ++ show i ++ ":" ++ show t ++ ":" ++ show gs
-    show (CTfbs (Tfbs i w)) = show i ++ ":" ++ show w
-parseLoc :: String -> Locus
-parseLoc str
-    | h == 'G'   = CGene $ Gene (parseID $ tail $ head s) (parseThres $ s!!1) (parseGeneState $ s!!2)
-    | str == "T" = Transposon
-    | otherwise  = CTfbs $ Tfbs (parseID $ head s) (parseWeight $ s!!1)
-        where h = head str; s = splitOn ":" str
 
-showGST :: GeneStateTable -> String
-showGST = List.intersperse ' ' . concatMap (show . snd) . Map.toList
-readGST :: String -> GeneStateTable
-readGST = Map.fromList . zip [0..] . map (parseGeneState . pure) . filter (/= ' ')
+instance MyShow GeneStateTable where
+    myShow = List.intersperse ' ' . concatMap (myShow . snd) . Map.toList
+instance MyRead GeneStateTable where
+    myRead = Map.fromList . zip [0..] . map (myRead . pure) . filter (/= ' ')
 
-instance Show Thres where
-    show (Thres i) = show i
-parseThres :: String -> Thres
-parseThres = Thres . read
+instance MyShow ID where
+    myShow (ID i) = show i
+instance MyRead ID where
+    myRead = ID . read
 
-instance Show Weight where
-    show (Weight i) = show i
-parseWeight :: String -> Weight
-parseWeight = Weight . read
+instance MyShow Thres where
+    myShow (Thres i) = show i
+instance MyRead Thres where
+    myRead = Thres . read
 
-instance Show ID where
-    show (ID i) = show i
-parseID :: String -> ID
-parseID = ID . read
+instance MyShow Weight where
+    myShow (Weight i) = show i
+instance MyRead Weight where
+    myRead = Weight . read
 
-instance Show GeneState where
-    show (GS True) = show 1
-    show (GS False)= show 0
-parseGeneState :: String -> GeneState
-parseGeneState "1" = GS True
-parseGeneState _   = GS False
+instance MyShow GeneState where
+    myShow (GS True) = show (1 :: Int)
+    myShow _         = show (0 :: Int)
+instance MyRead GeneState where
+    myRead = fromInteger . read
 
-showAgents :: Agents -> String
-showAgents = show . Array.assocs
+instance MyShow Locus where
+    myShow Transposon = "T"
+    myShow (CGene (Gene i t gs)) = "G" ++ myShow i ++ ":" ++ myShow t ++ ":" ++ myShow gs
+    myShow (CTfbs (Tfbs i w)) = myShow i ++ ":" ++ myShow w
+instance MyRead Locus where
+    myRead str
+        | h == 'G'   = CGene $ Gene (myRead $ tail $ head s) (myRead $ s!!1) (myRead $ s!!2)
+        | str == "T" = Transposon
+        | otherwise  = CTfbs $ Tfbs (myRead $ head s) (myRead $ s!!1)
+             where h = head str; s = splitOn ":" str
+
+instance MyShow Chromosome where
+    myShow loci = List.intercalate "," (map myShow loci)
+instance MyRead Chromosome where
+    myRead = map myRead . splitOn ","
+-- instance Show Thres where
+--     show (Thres i) = show i
+-- parseThres :: String -> Thres
+-- parseThres = Thres . read
+--
+-- instance Show Weight where
+--     show (Weight i) = show i
+-- parseWeight :: String -> Weight
+-- parseWeight = Weight . read
+--
+-- instance Show ID where
+--     show (ID i) = show i
+-- parseID :: String -> ID
+-- parseID = ID . read
+--
+-- instance Show GeneState where
+--     show (GS True) = show 1
+--     show (GS False)= show 0
+-- parseGeneState :: String -> GeneState
+-- parseGeneState "1" = GS True
+-- parseGeneState _   = GS False
+--
+-- showAgents :: Agents -> String
+-- showAgents = show . Array.assocs

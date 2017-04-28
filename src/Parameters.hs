@@ -9,7 +9,7 @@ type Prob = Double
 
 -- defaultWorldSeed = 420 :: Int
 -- defaultInitialAgentSeed = 420 :: Int
-defaultOutputFile = "/home/karim/Data/output.txt" :: String
+-- defaultOutputFile = "/home/karim/Data/output.txt" :: String
 display = False :: Bool
 
 -- * World Parameters
@@ -20,10 +20,9 @@ worldBounds = ((0::Int, 0::Int), (width-1, height-1))
 worldCoods = [(x, y) | x <- [0..width-1], y <- [0..height-1]]
 nrEnv = 2 :: Int
 
-
-
 -- * Time Parameters
-
+vOutputStep = 10000 :: Time
+vOutputTime = (0 ==) . flip rem vOutputStep
 outputStep = 50 :: Time
 outputTime t = t `mod` outputStep == 0
 dumpStep = 1000

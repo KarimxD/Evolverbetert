@@ -12,7 +12,7 @@ type Env = Int
 type Agents = Array (Int, Int) Agent
 data Agent = Agent {    genome         :: Genome
                     ,   geneStateTable :: GeneStateTable}
-           | NoAgent deriving (Eq, Ord)
+           | NoAgent deriving (Show, Read, Eq, Ord)
 
 type Genome = [Chromosome]
 type Chromosome = [Locus]
@@ -20,14 +20,14 @@ type GeneStateTable = Map.Map ID GeneState
 data Locus
     = Transposon
     | CGene     Gene
-    | CTfbs     Tfbs     deriving (Eq, Ord)
+    | CTfbs     Tfbs     deriving (Show, Read, Eq, Ord)
 
 
 
 
 data Gene = Gene {      geneID :: ID
                     ,   thres :: Thres
-                    ,   genSt :: GeneState } deriving (Eq)
+                    ,   genSt :: GeneState } deriving (Show, Read, Eq)
 instance Ord Gene where
     Gene i1 t1 gs1 `compare` Gene i2 t2 gs2 =
         if i1 == i2
@@ -38,15 +38,15 @@ instance Ord Gene where
 instance GeneType Gene where iD = geneID
 
 data Tfbs = Tfbs {      tfbsID :: ID
-                    ,   wt :: Weight } deriving (Eq, Ord)
+                    ,   wt :: Weight } deriving (Show, Read, Eq, Ord)
 instance GeneType Tfbs where iD = tfbsID
 
 class GeneType a where
     iD :: a -> ID
 
-newtype Thres     = Thres Int      deriving  (Eq, Ord, Real, Num, Enum, Integral, Bounded)
+newtype Thres     = Thres Int      deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded)
 
-newtype Weight    = Weight Int     deriving  (Eq, Ord, Real, Num, Enum, Integral, Bounded)
+newtype Weight    = Weight Int     deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded)
 
 --
 -- newtype Thres = Thres Int         deriving (Show, Read, Eq, Ord)
@@ -55,7 +55,7 @@ newtype Weight    = Weight Int     deriving  (Eq, Ord, Real, Num, Enum, Integral
 
 
 
-newtype GeneState = GS Bool deriving  (Eq, Ord, Enum, Bounded)
+newtype GeneState = GS Bool deriving  (Show, Read, Eq, Ord, Enum, Bounded)
 instance Real GeneState where
     toRational (GS True)  = 1
     toRational (GS False) = 0
@@ -67,7 +67,7 @@ instance Num GeneState where
     fromInteger a = if a > 0 then GS True else GS False
 
 
-newtype ID = ID Int deriving  (Eq, Ord, Real, Num, Enum, Integral, Bounded)
+newtype ID = ID Int deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded)
 -- instance Enum ID where toEnum = ID; fromEnum (ID a) = a
 -- instance Real ID where toRational (ID a) = toRational a
 -- instance Integral ID where
