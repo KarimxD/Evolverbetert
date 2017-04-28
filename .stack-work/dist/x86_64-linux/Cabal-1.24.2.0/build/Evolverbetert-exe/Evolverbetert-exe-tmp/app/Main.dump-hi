@@ -1,13 +1,13 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-26 15:37:14.423052 UTC
+2017-04-28 14:41:03.961511 UTC
 
-interface main@main:Main [hpc] 8002
-  interface hash: 3dec60a3207df296cc4b4bd4c9f980f5
-  ABI hash: 8f51da8d55378747e28550328b35160a
+interface main@main:Main 8002
+  interface hash: 4698113757c8b08fee3254c2ff8ddfea
+  ABI hash: 88ba772e82e351174b085a54687316a8
   export-list hash: 8f9e0643fe36d0f4552eb7d91f3a0b33
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
-  flag hash: 556d495876d99eae0434530b2f092b35
+  flag hash: 8df5fb82aa48ab54902d1f6c59ce730c
   sig of: Nothing
   used TH splices: False
   where
@@ -68,7 +68,7 @@ family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
                          primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
                          text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text
-import  -/  Evolverbetert-0.1.0.0@Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Evolverbetert 6791facdd1c2eb021215370a1953aa07
+import  -/  Evolverbetert-0.1.0.0@Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Evolverbetert 3e93393b392172cd37be786c0713a4ab
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
 import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
 d6831ef04cb9301b090dfae6f7bb7ec7
@@ -83,23 +83,19 @@ d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "main"#) -}
-e9e8bb3cd78b815478332a2041673dfd
+5bbf1fa234b5ce74c97df0bbb7de3ed7
   main :: GHC.Types.IO ()
-  {- Unfolding: InlineRule (0, True, True)
-                Main.main1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-0790136dcd1360e3a819344eacfb3b39
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Evolverbetert.main1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
+966d22436cbb18e98867c29d524c0913
   main1 ::
-    GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
-  {- Unfolding: ({__scc {main@main:Main.main} True False} Evolverbetert.main1) -}
-75edc32f138da6a0d5d5fdb43da34984
-  main2 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 1,
      Unfolding: (GHC.TopHandler.runMainIO1
                    @ ()
-                   Main.main1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R))) -}
+                   Evolverbetert.main1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R))) -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

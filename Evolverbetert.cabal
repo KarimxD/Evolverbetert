@@ -15,7 +15,7 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Evolverbetert, Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types
+  exposed-modules:     Evolverbetert, Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types, Parsing
   build-depends:       bytestring, primitive, mwc-random, data-memocombinators, random-shuffle, monad-parallel, GLUT, text, ansi-terminal, split, MonadRandom, random, array, containers, mtl, mersenne-random-pure64, base >= 4.7 && < 5
   default-language:    Haskell2010
 

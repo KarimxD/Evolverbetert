@@ -46,46 +46,48 @@ import qualified Control.Monad.Parallel as Par (mapM)
 -- output.
 -- Generates an initial agent, populates the world wit it
 -- Sets the PRNG
-initialize :: [Flag] -> IO (IORef World, [Handle])
+initialize :: Options -> IO (IORef World, [Handle])
 initialize flags = do
-    let WorldSeed sWorldSeed = fromMaybe (WorldSeed "420") (find isWorldSeed flags)
-        AgentSeed sAgentSeed = fromMaybe (AgentSeed "420") (find isAgentSeed flags)
-        OutputFile outputFile = fromMaybe (OutputFile "") (find isOutputFile flags)
-        VOutputFile vOutputFile = fromMaybe (VOutputFile "") (find isVOutputFile flags)
-        worldSeed = read sWorldSeed
-        agentSeed = read sAgentSeed
 
-    when (Help `elem` flags) $ ioError $ userError ('\n': usageInfo header options)
-
-    let initialAgent = evalRand randomAgent (pureMT agentSeed)
-        initialWorld = World startAgents 0
-            where startAgents = array P.worldBounds $ zip P.worldCoods $ repeat initialAgent
-
-    w <- newIORef initialWorld
-    setMyStdGen $ pureMT worldSeed
-
-    hs   <- if Console `elem` flags
-            then return [stdout]
-            else return []
-
-    hs'  <- if outputFile /= ""
-            then do file <- openFile outputFile ReadWriteMode
-                    return [file]
-            else return []
-
-    hs'' <- if vOutputFile /= ""
-            then do file <- openFile vOutputFile ReadWriteMode
-                    return [file]
-            else return []
-
-    let handles = hs ++ hs' ++ hs''
-
-    when (length handles < 1) $ error "no output specified"
-
-    when (isJust $ find ( (==outputFile) . show ) handles)
-        $ return () --B.hPutStrLn h $ fromString $ "Initial Agent is: " ++ myShow initialAgent
-    return (w, [h])
-        where header = "Usage: Evolverbetert [OPTION...]"
+    return undefined
+    --
+    -- let WorldSeed sWorldSeed = fromMaybe (WorldSeed "420") (find isWorldSeed flags)
+    --     AgentSeed sAgentSeed = fromMaybe (AgentSeed "420") (find isAgentSeed flags)
+    --     OutputFile outputFile = fromMaybe (OutputFile "") (find isOutputFolder flags)
+    --     worldSeed = read sWorldSeed
+    --     agentSeed = read sAgentSeed
+    --
+    -- when (Help `elem` flags) $ ioError $ userError ('\n': usageInfo header options)
+    --
+    -- let initialAgent = evalRand randomAgent (pureMT agentSeed)
+    --     initialWorld = World startAgents 0
+    --         where startAgents = array P.worldBounds $ zip P.worldCoods $ repeat initialAgent
+    --
+    -- w <- newIORef initialWorld
+    -- setMyStdGen $ pureMT worldSeed
+    --
+    -- hs   <- if Console `elem` flags
+    --         then return [stdout]
+    --         else return []
+    --
+    -- hs'  <- if outputFile /= ""
+    --         then do file <- openFile outputFile ReadWriteMode
+    --                 return [file]
+    --         else return []
+    --
+    -- hs'' <- if vOutputFile /= ""
+    --         then do file <- openFile vOutputFile ReadWriteMode
+    --                 return [file]
+    --         else return []
+    --
+    -- let handles = hs ++ hs' ++ hs''
+    --
+    -- when (length handles < 1) $ error "no output specified"
+    --
+    -- when (isJust $ find ( (==outputFile) . show ) handles)
+    --     $ return () --B.hPutStrLn h $ fromString $ "Initial Agent is: " ++ myShow initialAgent
+    -- return (w, [h])
+    --     where header = "Usage: Evolverbetert [OPTION...]"
 
 
 -- | Maybe initializes graphical display dependent on 'P.display' in "Parameters"
@@ -213,42 +215,92 @@ reproduceAgent (World ags env) ix = do
         else return $ ags!ix
     else return NoAgent -- if you die
 
-options :: [OptDescr Flag]
+
+data Options = Options
+    { optHelp        :: Bool
+    , optShowVersion :: Bool
+    , optWorldSeed   :: Int
+    , optAgentSeed   :: Int
+    , optOutput      :: FilePath
+    , optVOutput     :: Bool
+    , optConsole     :: Bool
+    } deriving Show
+
+defaultOptions = Options
+    { optHelp        = False
+    , optShowVersion = False
+    , optWorldSeed   = 420
+    , optAgentSeed   = 420
+    , optOutput      = undefined
+    , optVOutput     = False
+    , optConsole     = False
+    }
+
+options :: [OptDescr (Options -> Options)]
 options =
-    [ Option ['h'] ["help"]          (NoArg Help)                    "display this help info"
-    , Option ['w'] ["world-seed"]    (ReqArg WorldSeed "INT")        "give the seed for the world RNG (default: 420)"
-    , Option ['a'] ["agent-seed"]    (ReqArg AgentSeed "INT")        "give the seed for the first agent RNG (default: 420)"
-    , Option ['o'] ["output-file"]   (ReqArg OutputFile "FILEPATH")  "output file"
-    , Option ['v'] ["v-output-file"] (ReqArg VOutputFile "FILEPATH") "outputs whole world to this file every " ++ P.vOutputStep
-    , Option ['d'] ["dump-file"]     (ReqArg DumpFile "FILEPATH")    "dump CA content"
-    , Option ['g'] ["graphics"]      (NoArg Graphics)                "display CA in a window (Not yet working! Change the parameter file)"
-    , Option ['c'] ["console"]       (NoArg Console)                 "display info in the console"
+    [ Option ['V','?'] ["version"]
+        (NoArg $ \ opts -> opts { optShowVersion = True })
+        "show version number"
+    , Option ['o']     ["output"]
+        (ReqArg (\ d opts -> opts { optOutput = d }) "DIR")
+        "Direcory for output"
+    , Option ['v']     ["verbose"]
+        (NoArg (\opts -> opts { optVOutput = True }))
+        "Create a file to sometimes output whole world"
+    , Option ['c']     []
+        (NoArg (\opts -> opts { optConsole = True }))
+        "Write output to console"
+    , Option ['w']     ["world-seed"]
+        (ReqArg (\s opts -> opts {optWorldSeed = read s}) "INT")
+        "The seed used by the world"
+    , Option ['a']     ["agent-seed"]
+        (ReqArg (\s opts -> opts {optWorldSeed = read s}) "INT")
+        "The seed used for the initial agent generation"
     ]
 
-compilerOpts :: [String] -> IO ([Flag], [String])
-compilerOpts argv = case getOpt Permute options argv of
-    (o,n,[]  ) -> return (o,n)
-    (_,_,errs) -> ioError (userError (concat errs ++ usageInfo header options))
-    where header = "Usage: Evolverbetert [OPTION...] files..."
+compilerOpts :: [String] -> IO (Options, [String])
+compilerOpts argv =
+    case getOpt Permute options argv of
+        (o,n,[]  ) -> return (foldl (flip id) defaultOptions o, n)
+        (_,_,errs) -> ioError (userError (concat errs ++ usageInfo header options))
+        where header = "Usage: ic [OPTION...] files..."
 
-data Flag
-    = Help
-    | OutputFile FilePath
-    | VOutputFile FilePath
-    | DumpFile String
-    | WorldSeed String
-    | AgentSeed String
-    | Graphics
-    | Console
-    deriving (Eq, Ord, Show)
-isHelp        Help           = True; isHelp _        = False
-isOutputFile (OutputFile _)  = True; isOutputFile _  = False
-isDumpFIle   (DumpFile _)    = True; isDumpFile _    = False
-isWorldSeed  (WorldSeed  _)  = True; isWorldSeed _   = False
-isAgentSeed  (AgentSeed  _)  = True; isAgentSeed _   = False
-isGraphics    Graphics       = True; isGraphics _    = False
-isConsole     Console        = True; isConsole _     = False
-isVOutputFile(VOutputFile _) = True; isVOutputFile _ = False
+
+-- options :: [OptDescr Flag]
+-- options =
+--     [ Option ['h'] ["help"]          (NoArg Help)                    "display this help info"
+--     , Option ['w'] ["world-seed"]    (ReqArg WorldSeed "INT")        "give the seed for the world RNG (default: 420)"
+--     , Option ['a'] ["agent-seed"]    (ReqArg AgentSeed "INT")        "give the seed for the first agent RNG (default: 420)"
+--     , Option ['o'] ["output-file"]   (ReqArg OutputFile "FILEPATH")  "output file"
+--     , Option ['d'] ["dump-file"]     (ReqArg DumpFile "FILEPATH")    "dump CA content"
+--     , Option ['g'] ["graphics"]      (NoArg Graphics)                "display CA in a window (Not yet working! Change the parameter file)"
+--     , Option ['c'] ["console"]       (NoArg Console)                 "display info in the console"
+--     ]
+--
+-- compilerOpts :: [String] -> IO ([Flag], [String])
+-- compilerOpts argv = case getOpt Permute options argv of
+--     (o,n,[]  ) -> return (o,n)
+--     (_,_,errs) -> ioError (userError (concat errs ++ usageInfo header options))
+--     where header = "Usage: Evolverbetert [OPTION...] files..."
+--
+-- data Flag
+--     = Help
+--     | OutputFile FilePath
+--     | VOutputFile FilePath
+--     | DumpFile String
+--     | WorldSeed String
+--     | AgentSeed String
+--     | Graphics
+--     | Console
+--     deriving (Eq, Ord, Show)
+-- isHelp        Help           = True; isHelp _        = False
+-- isOutputFile (OutputFile _)  = True; isOutputFile _  = False
+-- isDumpFIle   (DumpFile _)    = True; isDumpFile _    = False
+-- isWorldSeed  (WorldSeed  _)  = True; isWorldSeed _   = False
+-- isAgentSeed  (AgentSeed  _)  = True; isAgentSeed _   = False
+-- isGraphics    Graphics       = True; isGraphics _    = False
+-- isConsole     Console        = True; isConsole _     = False
+-- isVOutputFile(VOutputFile _) = True; isVOutputFile _ = False
 
 
 

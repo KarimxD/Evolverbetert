@@ -1,13 +1,13 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-26 15:37:05.628128 UTC
+2017-04-28 14:38:39.273739 UTC
 
-interface Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Misc [hpc] 8002
-  interface hash: da54571386f0bf65160ea805418867a6
-  ABI hash: 7c0846d5151aa3976be221f5a46a4e97
-  export-list hash: fb044bf498acb33549eb7c51f9d2b907
+interface Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Misc 8002
+  interface hash: dfb631f1fb729839bec094e4e1911eeb
+  ABI hash: 0bb0c75bf8c1507de7475068ae5a714e
+  export-list hash: 2e2317e17d14009b42df24905f8e3cf5
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
-  flag hash: 566c261facb1547c57528108f6948d9c
+  flag hash: ab396f11155bd696ab63895436e6f1df
   sig of: Nothing
   used TH splices: False
   where
@@ -24,7 +24,6 @@ package dependencies: array-0.5.1.1@array-0.5.1.1 base-4.9.1.0
                       mersenne-random-pure64-0.2.2.0@mersenne-random-pure64-0.2.2.0-560i5rQoI3i9IX3BgSFLBV
                       mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6
                       random-1.1@random-1.1-9tceXaeYIMZ4JrKq20Egog
-                      split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk
                       time-1.6.0.1@time-1.6.0.1 transformers-0.5.2.0@transformers-0.5.2.0
 orphans: Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:MyRandom
          base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
@@ -42,14 +41,14 @@ family instance modules: base-4.9.1.0:Control.Applicative
                          base-4.9.1.0:GHC.IO.Exception base-4.9.1.0:GHC.TypeLits
                          containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
-import  -/  MyRandom 182c41d4defde8d08f518d29f4df558c
-  exports: 6a3b246076d887accae198004a7f70d6
-  Rand 86a475c1a4a2e3e28a826bd2f49fdf44
-  getDouble bad88a8c20ffa90c2054a378b8a71658
-import  -/  Parameters 934216b463092aab34aa8d6da02a0ffd
-  exports: 2da6637e19561a3c84dac8b2f8e0f38b
-  height 610d1ee7055745e8bd88aa61ba7d6a54
-  width 9537722c1d52c4a43542c71e46733379
+import  -/  MyRandom 4f2e9849e92fd7720cbebccfe2801265
+  exports: 9b2c6f35135fc9455c1a3dd162ebc359
+  Rand 8ad6bc0a02980079a34b3d183be0e1cc
+  getDouble 77c5acbc26eb9fac333f57a3beffe418
+import  -/  Parameters f0b6d02e7496adab47282d49bc269f44
+  exports: 840d86f5bb30fe7f211c714f30c387f7
+  height 11a41b235c8c74d554ad15017020aa10
+  width 9796718fd371819fe8c1f5ab4717d562
 import  -/  array-0.5.1.1@array-0.5.1.1:Data.Array.IO f8199cab63c935f592e25034b9fdef7e
 import  -/  base-4.9.1.0:Control.Monad a6784c5dab0d75c63dabec5a37843f98
 import  -/  base-4.9.1.0:Data.Foldable 3e0b6967a1da89945d0e2d47266337a2
@@ -71,11 +70,12 @@ fb9f378e14bc4d356ebd60c13e1a3acc
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
                    "Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT"#) -}
-bb98ed586174c6af270ecb5d2f3671fa
+fe38a23936802fd5e386572afc05c6cc
   $wmoore8 ::
-    GHC.Types.Int -> GHC.Types.Int -> [(GHC.Types.Int, GHC.Types.Int)]
-  {- Arity: 2, Strictness: <L,U(U)><L,U(U)>, Inline: [0] -}
-7ce08b90e1f70653f50b7fb332c29672
+    GHC.Prim.Int# -> GHC.Types.Int -> [(GHC.Types.Int, GHC.Types.Int)]
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,U><L,U(U)>,
+     Inline: [0] -}
+f0f92d0e303443fc724a4906a66a7d9e
   $wrepeatCollect ::
     GHC.Base.Monad m => GHC.Prim.Int# -> (a -> m a) -> a -> m a
   {- Arity: 3, HasNoCafRefs,
@@ -85,67 +85,29 @@ bb98ed586174c6af270ecb5d2f3671fa
                    (w :: GHC.Base.Monad m)
                    (ww :: GHC.Prim.Int#)
                    (w1 :: a -> m a) ->
-                 {__scc {Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Misc.repeatCollect} True True} case GHC.Prim.tagToEnum#
-                                                                                                            @ GHC.Types.Bool
-                                                                                                            (GHC.Prim.<#
-                                                                                                               0#
-                                                                                                               ww) of wild {
-                                                                                                       GHC.Types.False
-                                                                                                       -> GHC.Base.return
-                                                                                                            @ m
-                                                                                                            w
-                                                                                                            @ a
-                                                                                                       GHC.Types.True
-                                                                                                       -> let {
-                                                                                                            n :: a
-                                                                                                                 -> m a
-                                                                                                            = GHC.Base.return
-                                                                                                                @ m
-                                                                                                                w
-                                                                                                                @ a
-                                                                                                          } in
-                                                                                                          letrec {
-                                                                                                            $wxs :: GHC.Prim.Int#
-                                                                                                                    -> a
-                                                                                                                    -> m a
-                                                                                                              {- Arity: 2,
-                                                                                                                 Strictness: <S,1*U><L,U>,
-                                                                                                                 Inline: [0] -}
-                                                                                                            = \ (ww1 :: GHC.Prim.Int#)
-                                                                                                                (w2 :: a) ->
-                                                                                                              case ww1 of ds1 {
-                                                                                                                DEFAULT
-                                                                                                                -> GHC.Base.>>=
-                                                                                                                     @ m
-                                                                                                                     w
-                                                                                                                     @ a
-                                                                                                                     @ a
-                                                                                                                     ($wxs
-                                                                                                                        (GHC.Prim.-#
-                                                                                                                           ds1
-                                                                                                                           1#)
-                                                                                                                        w2)
-                                                                                                                     w1
-                                                                                                                1#
-                                                                                                                -> Control.Monad.>=>
-                                                                                                                     @ m
-                                                                                                                     @ a
-                                                                                                                     @ a
-                                                                                                                     @ a
-                                                                                                                     w
-                                                                                                                     n
-                                                                                                                     w1
-                                                                                                                     w2 }
-                                                                                                          } in
-                                                                                                          \ (w2 :: a) ->
-                                                                                                          $wxs
-                                                                                                            ww
-                                                                                                            w2 }) -}
-892171fb445e407e3e08b7538686fede
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.<# 0# ww) of wild {
+                   GHC.Types.False -> GHC.Base.return @ m w @ a
+                   GHC.Types.True
+                   -> let {
+                        n :: a -> m a = GHC.Base.return @ m w @ a
+                      } in
+                      letrec {
+                        $wxs :: GHC.Prim.Int# -> a -> m a
+                          {- Arity: 2, Strictness: <S,1*U><L,U>, Inline: [0] -}
+                        = \ (ww1 :: GHC.Prim.Int#) (w2 :: a) ->
+                          case ww1 of ds1 {
+                            DEFAULT
+                            -> GHC.Base.>>= @ m w @ a @ a ($wxs (GHC.Prim.-# ds1 1#) w2) w1
+                            1# -> Control.Monad.>=> @ m @ a @ a @ a w n w1 w2 }
+                      } in
+                      \ (w2 :: a) -> $wxs ww w2 }) -}
+ac094690c25bb9be58c2f3d1463a4a6d
   maybeCh ::
     a -> (a -> MyRandom.Rand a) -> GHC.Types.Double -> MyRandom.Rand a
-  {- Arity: 4,
-     Strictness: <L,U><L,1*C1(C1(U(U,U)))><S(S),1*U(U)><L,U>,
+  {- Arity: 4, HasNoCafRefs,
+     Strictness: <L,U><L,1*C1(C1(U(U,U)))><L,1*U(U)><S(SSL),1*U(U,U,U(U))>,
      Inline: INLINE (sat-args=3),
      Unfolding: InlineRule (3, False, False)
                 (\ @ a
@@ -206,14 +168,16 @@ bb98ed586174c6af270ecb5d2f3671fa
                               @ a
                               (f x)
                               s' } }))) -}
-341232d9428eb6d95fb3aa3c0729b480
+50291001c9a31f3c61b6249f3d3d58dd
   moore8 ::
     (GHC.Types.Int, GHC.Types.Int) -> [(GHC.Types.Int, GHC.Types.Int)]
-  {- Arity: 1, Strictness: <S,1*U(U(U),U(U))>, Inline: INLINE[0],
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(S(S)L),1*U(1*U(U),U(U))>,
+     Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
                 (\ (w :: (GHC.Types.Int, GHC.Types.Int)) ->
-                 case w of ww { (,) ww1 ww2 -> Misc.$wmoore8 ww1 ww2 }) -}
-ab0ef29ccb62aa11a48c680eab6b52cc
+                 case w of ww { (,) ww1 ww2 ->
+                 case ww1 of ww3 { GHC.Types.I# ww4 -> Misc.$wmoore8 ww4 ww2 } }) -}
+5338f70319a7422a96987dbdaf32ebfb
   repeatCollect ::
     GHC.Base.Monad m => GHC.Types.Int -> (a -> m a) -> a -> m a
   {- Arity: 3, HasNoCafRefs,
@@ -227,18 +191,20 @@ ab0ef29ccb62aa11a48c680eab6b52cc
                    (w2 :: a -> m a) ->
                  case w1 of ww { GHC.Types.I# ww1 ->
                  Misc.$wrepeatCollect @ m @ a w ww1 w2 }) -}
-4fca1d26faa861b98116b2524e388ac2
+5e7d641eb5231974b5d0f26e9c1b319c
   valueResultPairs :: (a -> b) -> [a] -> [(a, b)]
-  {- Arity: 1, HasNoCafRefs, Strictness: <L,C(U)>,
-     Unfolding: InlineRule (1, True, False)
-                (\ @ a @ b (f :: a -> b) ->
-                 {__scc {Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Misc.valueResultPairs} True True} GHC.Base.map
-                                                                                                          @ a
-                                                                                                          @ (a,
-                                                                                                             b)
-                                                                                                          (\ (x :: a) ->
-                                                                                                           {__scc {Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Misc.valueResultPairs.\} True False} (x,
-                                                                                                                                                                                                      {__scc {Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Misc.valueResultPairs.\} False True} f x))) -}
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,C(U)><S,1*U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ @ a @ b (f :: a -> b) (eta :: [a]) ->
+                 GHC.Base.build
+                   @ (a, b)
+                   (\ @ b1 (c :: (a, b) -> b1 -> b1)[OneShot] (n :: b1)[OneShot] ->
+                    GHC.Base.foldr
+                      @ a
+                      @ b1
+                      (GHC.Base.mapFB @ (a, b) @ b1 @ a c (\ (x :: a) -> (x, f x)))
+                      n
+                      eta)) -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

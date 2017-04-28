@@ -1,0 +1,750 @@
+
+==================== FINAL INTERFACE ====================
+2017-04-28 14:38:42.253525 UTC
+
+interface Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Parsing 8002
+  interface hash: 2731a931c478ffbe16b916381e1b1f90
+  ABI hash: 7c05ecc690298d45f84dc38e7b97ca7a
+  export-list hash: 1146147ff8cbb9a9526f62fc34e16d96
+  orphan hash: 5526d4a526e48a0fb5236b9a9adb9d00
+  flag hash: 0ffea4b86a7d632aec14361a41b8af4a
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Parsing.parseAgent
+  Parsing.MyRead{Parsing.myRead}
+  Parsing.MyShow{Parsing.myShow}
+module dependencies: Misc MyRandom Parameters Types World
+package dependencies: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3KMH
+                      array-0.5.1.1@array-0.5.1.1 base-4.9.1.0
+                      containers-0.5.7.1@containers-0.5.7.1
+                      deepseq-1.4.2.0@deepseq-1.4.2.0 ghc-prim-0.5.0.0
+                      integer-gmp-1.0.0.1
+                      mersenne-random-pure64-0.2.2.0@mersenne-random-pure64-0.2.2.0-560i5rQoI3i9IX3BgSFLBV
+                      mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6
+                      primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH
+                      random-1.1@random-1.1-9tceXaeYIMZ4JrKq20Egog
+                      random-shuffle-0.0.4@random-shuffle-0.0.4-97h14tPp7Ru21125sv6IMi
+                      split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk
+                      time-1.6.0.1@time-1.6.0.1 transformers-0.5.2.0@transformers-0.5.2.0
+orphans: Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:MyRandom
+         base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
+         time-1.6.0.1@time-1.6.0.1:Data.Time.Calendar.Gregorian
+         time-1.6.0.1@time-1.6.0.1:Data.Time.Format.Parse
+         time-1.6.0.1@time-1.6.0.1:Data.Time.LocalTime.LocalTime
+         transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Error
+family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3KMH:Control.Monad.Trans.Random.Lazy
+                         base-4.9.1.0:Control.Applicative base-4.9.1.0:Data.Complex
+                         base-4.9.1.0:Data.Either base-4.9.1.0:Data.Functor.Const
+                         base-4.9.1.0:Data.Functor.Identity base-4.9.1.0:Data.List.NonEmpty
+                         base-4.9.1.0:Data.Monoid base-4.9.1.0:Data.Semigroup
+                         base-4.9.1.0:Data.Type.Equality base-4.9.1.0:Data.Version
+                         base-4.9.1.0:Data.Void base-4.9.1.0:GHC.Exts
+                         base-4.9.1.0:GHC.Generics base-4.9.1.0:GHC.IO.Exception
+                         base-4.9.1.0:GHC.TypeLits
+                         containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
+                         containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
+                         primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
+import  -/  Types 344386ad26f015f50945c7403febc394
+  exports: 1903460ec2f3fff4e3f5c7bd897ec01f
+  Agent 989805efb3f727f1ff780e610d060a11
+  Agent c366e34cef18e343b1b97128d4a7d6c2
+  CGene a9775cd0f1a1e6dd0cd1c7f53da23029
+  CTfbs b60a3d1277cb8492d319aa9229b026b8
+  Chromosome a45a495818bb58e4eb217380cb6d210a
+  GS a7b7de9d2c670fb8282c7ac71617ef72
+  Gene 3e5e521b4c205f8f285d529a8c73ce1f
+  GeneState 03b02abd1f9f0b17f85b54269576f890
+  GeneStateTable bb3b2c0c1c94fb002ce6e46aadd8b1da
+  Genome 3bce35ea30a7a3eb58af4c6cfab74479
+  ID 859e5213a4e604522bdadd8473dc98b4
+  ID 817eaa265a1866a0c3a20a6482f764fc
+  Locus 07657b88e6375bd6d708a4d154921905
+  NoAgent a73a1bd211a68ac21cb525c28ff0ada8
+  Tfbs e68e61ea55ad4e78f6bb15dca3a9414d
+  Thres be2b035fd06286f1f27474ed89a1bbfb
+  Thres b4d1ca11eda71c74c7df7a27380685f5
+  Transposon b721c916cbd0441def67bd7ad87884aa
+  Weight c393512a1c46c0657ea43ccf87452326
+  Weight 95aa6bc61f3ed402a00e2e8be584a9c3
+  geneStateTable c25d8717abe1bae082eda7e9a6c438c4
+  genome 11d8a3f40be1d9eda29de80663873961
+import  -/  World dfd77106894c91a2dfa1fb78596cea33
+  exports: 875aa2b1f13df4fda2489f6c319043ff
+  gSTFromGenome 5213aafe988646b864eb8bdc1e9e812a
+import  -/  array-0.5.1.1@array-0.5.1.1:Data.Array.IArray 606f8bb830eb2a88c29c91f27c77f304
+import  -/  base-4.9.1.0:Data.Foldable 3e0b6967a1da89945d0e2d47266337a2
+import  -/  base-4.9.1.0:Data.List 07ae2acca6538aa0800bd0a993ac6ac1
+import  -/  base-4.9.1.0:Data.OldList 27987919d8da2f92e3f472ca81f730f8
+import  -/  base-4.9.1.0:Data.Tuple 7dc4bbb45d2e69c991ffac438beeca11
+import  -/  base-4.9.1.0:GHC.Base c4231c43c07e46080a26bf94094c7aa1
+import  -/  base-4.9.1.0:GHC.List ab8c4e523e6c479c549d3bcd5fc4a439
+import  -/  base-4.9.1.0:GHC.Num 00bfaa7b2f9d6084913c0697a8a49ec8
+import  -/  base-4.9.1.0:GHC.Show a027f5ac24879eaba752f44aa90fe511
+import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
+import  -/  base-4.9.1.0:Text.Read 75c59863e882ebaec4532e9465e2ee9b
+import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map 20d4ffbee41965d03d6a989425473dc4
+import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base d432f6875983131473086af8cb290590
+import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
+import  -/  split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split c60198a427bfd51d9fb4562c059ec1d2
+import  -/  split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals 25dced234ed01c9c803d678763a4d772
+1be4d27b2adb52f02d6e9545731001a7
+  $fMyReadGeneState :: Parsing.MyRead Types.GeneState
+  DFunId
+  {- Arity: 1, Strictness: <L,U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyReadGeneState_$cmyRead
+                  `cast`
+                (Sym (Parsing.N:MyRead[0]) <Types.GeneState>_N) -}
+2aed819a55a15cb2d63e84891fe3a85b
+  $fMyReadGeneState1 :: GHC.Base.String -> GHC.Integer.Type.Integer
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ (s :: GHC.Base.String) ->
+                 case Text.Read.readEither6
+                        @ GHC.Integer.Type.Integer
+                        (Text.ParserCombinators.ReadP.run
+                           @ GHC.Integer.Type.Integer
+                           Parsing.$fMyReadGeneState4
+                           s) of wild {
+                   [] -> Parsing.$fMyReadGeneState3
+                   : x ds
+                   -> case ds of wild1 {
+                        [] -> x : ipv ipv1 -> Parsing.$fMyReadGeneState2 } }) -}
+d514994eba808bc2661c107838a6d93f
+  $fMyReadGeneState2 :: GHC.Integer.Type.Integer
+  {- Strictness: x -}
+88c50cc2487d9ee98f442dfb981aefcb
+  $fMyReadGeneState3 :: GHC.Integer.Type.Integer
+  {- Strictness: x -}
+4998289838bc8e326a24aca16c886fc2
+  $fMyReadGeneState4 ::
+    Text.ParserCombinators.ReadP.P GHC.Integer.Type.Integer
+  {- Unfolding: (GHC.Read.$fReadInteger3
+                   GHC.Read.$fReadInteger_$sconvertInt
+                   Text.ParserCombinators.ReadPrec.minPrec
+                   @ GHC.Integer.Type.Integer
+                   (Text.Read.readEither5 @ GHC.Integer.Type.Integer)) -}
+0b63242e9da0d30a697086c59a48399a
+  $fMyReadGeneState_$cmyRead :: GHC.Base.String -> Types.GeneState
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (x :: GHC.Base.String) ->
+                 case GHC.Integer.Type.gtInteger#
+                        (Parsing.$fMyReadGeneState1 x)
+                        Types.$fNumGeneState_dt of wild { DEFAULT ->
+                 (GHC.Prim.tagToEnum# @ GHC.Types.Bool wild)
+                   `cast`
+                 (Sym (Types.N:GeneState[0])) }) -}
+1be4d27b2adb52f02d6e9545731001a7
+  $fMyReadID :: Parsing.MyRead Types.ID
+  DFunId
+  {- Arity: 1, Strictness: <L,U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyReadID_$cmyRead
+                  `cast`
+                (Sym (Parsing.N:MyRead[0]) <Types.ID>_N) -}
+b390b5b2105e1b7f08e8b84da3d98d01
+  $fMyReadID1 :: GHC.Base.String -> GHC.Types.Int
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ (s :: GHC.Base.String) ->
+                 case Text.Read.readEither6
+                        @ GHC.Types.Int
+                        (Text.ParserCombinators.ReadP.run
+                           @ GHC.Types.Int
+                           Parsing.$fMyReadID4
+                           s) of wild {
+                   [] -> Parsing.$fMyReadID3
+                   : x ds
+                   -> case ds of wild1 {
+                        [] -> x : ipv ipv1 -> Parsing.$fMyReadID2 } }) -}
+e54905ddc46ce72cffe326101b71eb61
+  $fMyReadID2 :: GHC.Types.Int
+  {- Strictness: x -}
+e916142fd70f5c5123a85cb044041981
+  $fMyReadID3 :: GHC.Types.Int
+  {- Strictness: x -}
+ac322ee4616f86e4110618c1869a9b0d
+  $fMyReadID4 :: Text.ParserCombinators.ReadP.P GHC.Types.Int
+  {- Unfolding: (GHC.Read.$fReadInt3
+                   GHC.Read.$fReadInt_$sconvertInt
+                   Text.ParserCombinators.ReadPrec.minPrec
+                   @ GHC.Types.Int
+                   (Text.Read.readEither5 @ GHC.Types.Int)) -}
+5a8e3baa551815339176a384010d0d06
+  $fMyReadID_$cmyRead :: GHC.Base.String -> Types.ID
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (0, True, True)
+                Parsing.$fMyReadID1
+                  `cast`
+                (<GHC.Base.String>_R ->_R Sym (Types.N:ID[0])) -}
+1be4d27b2adb52f02d6e9545731001a7
+  $fMyReadLocus :: Parsing.MyRead Types.Locus
+  DFunId
+  {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyReadLocus_$cmyRead
+                  `cast`
+                (Sym (Parsing.N:MyRead[0]) <Types.Locus>_N) -}
+73fef00945e4eee44bc81b6d63ce81aa
+  $fMyReadLocus_$cmyRead :: GHC.Base.String -> Types.Locus
+  {- Arity: 1, Strictness: <S,1*U> -}
+1be4d27b2adb52f02d6e9545731001a7
+  $fMyReadMap :: Parsing.MyRead Types.GeneStateTable
+  DFunId
+  {- Arity: 1, Strictness: <L,1*U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyReadMap_$cmyRead
+                  `cast`
+                (Sym (Parsing.N:MyRead[0]) <Types.GeneStateTable>_N) -}
+64873679905e851c57fac91d0a8a8d3f
+  $fMyReadMap1 :: [GHC.Types.Int]
+  {- Unfolding: (GHC.Enum.eftInt 0# 9223372036854775807#) -}
+b39b732fab7fd3c59763953b13ba6a50
+  $fMyReadMap2 ::
+    Data.Map.Base.Map Types.ID a1
+    -> [(Types.ID, a1)] -> Data.Map.Base.Map Types.ID a1
+  {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
+cc40d3863bf076511c8f62b654216443
+  $fMyReadMap_$cmyRead :: GHC.Base.String -> Types.GeneStateTable
+  {- Arity: 1, Strictness: <L,1*U>,
+     Unfolding: (\ (x :: [GHC.Types.Char]) ->
+                 Parsing.$fMyReadMap_$sfromList
+                   @ Types.GeneState
+                   (GHC.List.zip
+                      @ Types.ID
+                      @ Types.GeneState
+                      Parsing.$fMyReadMap1 `cast` ([Sym (Types.N:ID[0])])_R
+                      (Parsing.$fMyReadMap_go x))) -}
+fef6c6c0a25d144e185b544104c1251e
+  $fMyReadMap_$sfromList ::
+    [(Types.ID, a)] -> Data.Map.Base.Map Types.ID a
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ @ a (ds :: [(Types.ID, a)]) ->
+                 case ds of wild {
+                   [] -> Data.Map.Base.Tip @ Types.ID @ a
+                   : ds1 ds2
+                   -> case ds1 of wild1 { (,) kx x ->
+                      case ds2 of wild2 {
+                        []
+                        -> case kx `cast` (Types.N:ID[0]) of nt { GHC.Types.I# ipv ->
+                           Data.Map.Base.Bin
+                             @ Types.ID
+                             @ a
+                             1#
+                             nt `cast` (Sym (Types.N:ID[0]))
+                             x
+                             (Data.Map.Base.Tip @ Types.ID @ a)
+                             (Data.Map.Base.Tip @ Types.ID @ a) }
+                        : ipv ipv1
+                        -> case ipv of wild3 { (,) ky ds3 ->
+                           case kx `cast` (Types.N:ID[0]) of wild4 { GHC.Types.I# x1 ->
+                           case ky `cast` (Types.N:ID[0]) of wild5 { GHC.Types.I# y ->
+                           case GHC.Prim.tagToEnum#
+                                  @ GHC.Types.Bool
+                                  (GHC.Prim.>=# x1 y) of wild6 {
+                             GHC.Types.False
+                             -> Parsing.$wpoly_go10
+                                  @ a
+                                  1#
+                                  (Data.Map.Base.Bin
+                                     @ Types.ID
+                                     @ a
+                                     1#
+                                     (GHC.Types.I# x1) `cast` (Sym (Types.N:ID[0]))
+                                     x
+                                     (Data.Map.Base.Tip @ Types.ID @ a)
+                                     (Data.Map.Base.Tip @ Types.ID @ a))
+                                  wild2
+                             GHC.Types.True
+                             -> Parsing.$fMyReadMap2
+                                  @ a
+                                  (Data.Map.Base.Bin
+                                     @ Types.ID
+                                     @ a
+                                     1#
+                                     (GHC.Types.I# x1) `cast` (Sym (Types.N:ID[0]))
+                                     x
+                                     (Data.Map.Base.Tip @ Types.ID @ a)
+                                     (Data.Map.Base.Tip @ Types.ID @ a))
+                                  wild2 } } } } } } }) -}
+19b37caff668b752fcd519cd3bd8fc7e
+  $fMyReadMap_go :: [GHC.Types.Char] -> [Types.GeneState]
+  {- Arity: 1, Strictness: <S,1*U> -}
+1be4d27b2adb52f02d6e9545731001a7
+  $fMyReadThres :: Parsing.MyRead Types.Thres
+  DFunId
+  {- Arity: 1, Strictness: <L,U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyReadThres_$cmyRead
+                  `cast`
+                (Sym (Parsing.N:MyRead[0]) <Types.Thres>_N) -}
+e6d770ba17d6cbb25b8740c7f6ff0f02
+  $fMyReadThres_$cmyRead :: GHC.Base.String -> Types.Thres
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (0, True, True)
+                Parsing.$fMyReadID1
+                  `cast`
+                (<GHC.Base.String>_R ->_R Sym (Types.N:Thres[0])) -}
+1be4d27b2adb52f02d6e9545731001a7
+  $fMyReadWeight :: Parsing.MyRead Types.Weight
+  DFunId
+  {- Arity: 1, Strictness: <L,U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyReadWeight_$cmyRead
+                  `cast`
+                (Sym (Parsing.N:MyRead[0]) <Types.Weight>_N) -}
+8c7f3d21eb0258d78ccfd76991d96058
+  $fMyReadWeight_$cmyRead :: GHC.Base.String -> Types.Weight
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (0, True, True)
+                Parsing.$fMyReadID1
+                  `cast`
+                (<GHC.Base.String>_R ->_R Sym (Types.N:Weight[0])) -}
+1be4d27b2adb52f02d6e9545731001a7
+  $fMyRead[] :: Parsing.MyRead Types.Chromosome
+  DFunId
+  {- Arity: 1, Strictness: <L,U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyRead[]_$cmyRead
+                  `cast`
+                (Sym (Parsing.N:MyRead[0]) <Types.Chromosome>_N) -}
+a958e2dab5bf05e70eb01dc165f19843
+  $fMyRead[]1 :: [GHC.Types.Char] -> [[GHC.Types.Char]]
+  {- Unfolding: (Data.List.Split.Internals.splitOn
+                   @ GHC.Types.Char
+                   GHC.Classes.$fEqChar
+                   Parsing.$fMyRead[]2) -}
+3e5bc462eb59873f3242bf0fbb16d6a4
+  $fMyRead[]2 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# ","#) -}
+32552933a15a6a047897d8b3d35da53b
+  $fMyRead[]_$cmyRead :: GHC.Base.String -> Types.Chromosome
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (x :: [GHC.Types.Char]) ->
+                 GHC.Base.build
+                   @ Types.Locus
+                   (\ @ b1
+                      (c :: Types.Locus -> b1 -> b1)[OneShot]
+                      (n :: b1)[OneShot] ->
+                    GHC.Base.foldr
+                      @ [GHC.Types.Char]
+                      @ b1
+                      (GHC.Base.mapFB
+                         @ Types.Locus
+                         @ b1
+                         @ [GHC.Types.Char]
+                         c
+                         Parsing.$fMyReadLocus_$cmyRead)
+                      n
+                      (Parsing.$fMyRead[]1 x))) -}
+619c1d7c4d6112051ab7ca9eaf4d6619
+  $fMyShowAgent :: Parsing.MyShow Types.Agent
+  DFunId
+  {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyShowAgent_$cmyShow
+                  `cast`
+                (Sym (Parsing.N:MyShow[0] <Types.Agent>_N)) -}
+b52f58a0aef2f53fa73a40cfa9f61fe9
+  $fMyShowAgent1 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "NoAgent"#) -}
+365c73fe7cf7e01fda919cd3bc92a3a3
+  $fMyShowAgent2 :: [GHC.Types.Char]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   GHC.Show.shows4
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+dc6c7d2f1e0128b151f5ef586bcd8c4b
+  $fMyShowAgent3 :: GHC.Types.Char
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# ' '#) -}
+a1b5ab28c5099eaca659bf1fc3987194
+  $fMyShowAgent_$cmyShow :: Types.Agent -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ (ds :: Types.Agent) ->
+                 case ds of wild {
+                   Types.Agent ipv ipv1
+                   -> GHC.Types.:
+                        @ GHC.Types.Char
+                        GHC.Show.shows7
+                        (GHC.Types.:
+                           @ GHC.Types.Char
+                           GHC.Show.shows6
+                           (case ipv of wild1 {
+                              [] -> case GHC.List.badHead ret_ty [GHC.Types.Char] of {}
+                              : x ds1
+                              -> GHC.Show.showLitString
+                                   (Parsing.$fMyShowAgent_go x)
+                                   (GHC.Types.:
+                                      @ GHC.Types.Char
+                                      GHC.Show.shows6
+                                      (GHC.Types.:
+                                         @ GHC.Types.Char
+                                         GHC.Show.shows5
+                                         (let {
+                                            ww2 :: [GHC.Types.Char]
+                                            = case Parsing.$fMyShowAgent_go10
+                                                     (GHC.Types.[] @ GHC.Types.Char)
+                                                     ipv1 of wild2 {
+                                                [] -> GHC.Types.[] @ GHC.Types.Char
+                                                : x1 xs
+                                                -> GHC.Types.:
+                                                     @ GHC.Types.Char
+                                                     x1
+                                                     (Data.OldList.prependToAll
+                                                        @ GHC.Types.Char
+                                                        Parsing.$fMyShowAgent3
+                                                        xs) }
+                                          } in
+                                          GHC.Show.$fShow(,)_$sgo
+                                            Parsing.$fMyShowAgent2
+                                            (\ (eta1 :: GHC.Base.String) ->
+                                             GHC.Show.shows_$cshowList1 ww2 eta1)
+                                            (GHC.Types.[] @ GHC.Show.ShowS)))) }))
+                   Types.NoAgent -> Parsing.$fMyShowAgent1 }) -}
+03cf2f584c4abbb0eb404116af54d34b
+  $fMyShowAgent_go :: [Types.Locus] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,1*U> -}
+73a51d5124617259747d69238447e7de
+  $fMyShowAgent_go10 ::
+    [GHC.Types.Char]
+    -> Data.Map.Base.Map Types.ID Types.GeneState -> [GHC.Types.Char]
+  {- Arity: 2, Strictness: <L,1*U><S,1*U> -}
+619c1d7c4d6112051ab7ca9eaf4d6619
+  $fMyShowGeneState :: Parsing.MyShow Types.GeneState
+  DFunId
+  {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyShowGeneState_$cmyShow
+                  `cast`
+                (Sym (Parsing.N:MyShow[0] <Types.GeneState>_N)) -}
+5d615c52b0695479396435e9e2627ab8
+  $fMyShowGeneState1 :: GHC.Base.String
+  {- Unfolding: (case GHC.Show.$wshowSignedInt
+                        0#
+                        1#
+                        (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
+                 GHC.Types.: @ GHC.Types.Char ww5 ww6 }) -}
+11f7a1042a246649fcde2aae4e95dcf8
+  $fMyShowGeneState2 :: GHC.Base.String
+  {- Unfolding: (case GHC.Show.$wshowSignedInt
+                        0#
+                        0#
+                        (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
+                 GHC.Types.: @ GHC.Types.Char ww5 ww6 }) -}
+465c24d2e0d6000b9d0f26fda057c461
+  $fMyShowGeneState_$cmyShow :: Types.GeneState -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Types.GeneState) ->
+                 case ds `cast` (Types.N:GeneState[0]) of wild {
+                   GHC.Types.False -> Parsing.$fMyShowGeneState2
+                   GHC.Types.True -> Parsing.$fMyShowGeneState1 }) -}
+619c1d7c4d6112051ab7ca9eaf4d6619
+  $fMyShowID :: Parsing.MyShow Types.ID
+  DFunId
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m2,
+     Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyShowID_$cmyShow
+                  `cast`
+                (Sym (Parsing.N:MyShow[0] <Types.ID>_N)) -}
+3727b8c864ea1e169ca04e576534c1f6
+  $fMyShowID_$cmyShow :: Types.ID -> GHC.Base.String
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m2,
+     Unfolding: InlineRule (0, True, True)
+                GHC.Show.$fShowInt_$cshow
+                  `cast`
+                (Sym (Types.N:ID[0]) ->_R <GHC.Base.String>_R) -}
+619c1d7c4d6112051ab7ca9eaf4d6619
+  $fMyShowLocus :: Parsing.MyShow Types.Locus
+  DFunId
+  {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyShowLocus_$cmyShow
+                  `cast`
+                (Sym (Parsing.N:MyShow[0] <Types.Locus>_N)) -}
+449b339ca3441d114b9d8f5c0c71028a
+  $fMyShowLocus1 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "T"#) -}
+64b29d12986297d3d853c537707787b2
+  $fMyShowLocus_$cmyShow :: Types.Locus -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ (ds :: Types.Locus) ->
+                 case ds of wild {
+                   Types.Transposon -> Parsing.$fMyShowLocus1
+                   Types.CGene ds1
+                   -> case ds1 of wild1 { Types.Gene i t gs ->
+                      GHC.CString.unpackAppendCString#
+                        "G"#
+                        (case i `cast` (Types.N:ID[0]) of ww2 { GHC.Types.I# ww3 ->
+                         case GHC.Show.$wshowSignedInt
+                                0#
+                                ww3
+                                (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
+                         GHC.Base.++
+                           @ GHC.Types.Char
+                           (GHC.Types.: @ GHC.Types.Char ww5 ww6)
+                           (GHC.CString.unpackAppendCString#
+                              ":"#
+                              (case t `cast` (Types.N:Thres[0]) of ww1 { GHC.Types.I# ww8 ->
+                               case GHC.Show.$wshowSignedInt
+                                      0#
+                                      ww8
+                                      (GHC.Types.[] @ GHC.Types.Char) of ww9 { (#,#) ww10 ww11 ->
+                               GHC.Base.++
+                                 @ GHC.Types.Char
+                                 (GHC.Types.: @ GHC.Types.Char ww10 ww11)
+                                 (GHC.CString.unpackAppendCString#
+                                    ":"#
+                                    (case gs `cast` (Types.N:GeneState[0]) of wild2 {
+                                       GHC.Types.False -> Parsing.$fMyShowGeneState2
+                                       GHC.Types.True -> Parsing.$fMyShowGeneState1 })) } })) } }) }
+                   Types.CTfbs ds1
+                   -> case ds1 of wild1 { Types.Tfbs i w ->
+                      case i `cast` (Types.N:ID[0]) of ww2 { GHC.Types.I# ww3 ->
+                      case GHC.Show.$wshowSignedInt
+                             0#
+                             ww3
+                             (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
+                      GHC.Base.++
+                        @ GHC.Types.Char
+                        (GHC.Types.: @ GHC.Types.Char ww5 ww6)
+                        (GHC.CString.unpackAppendCString#
+                           ":"#
+                           (case w `cast` (Types.N:Weight[0]) of ww1 { GHC.Types.I# ww8 ->
+                            case GHC.Show.$wshowSignedInt
+                                   0#
+                                   ww8
+                                   (GHC.Types.[] @ GHC.Types.Char) of ww9 { (#,#) ww10 ww11 ->
+                            GHC.Types.: @ GHC.Types.Char ww10 ww11 } })) } } } }) -}
+619c1d7c4d6112051ab7ca9eaf4d6619
+  $fMyShowMap :: Parsing.MyShow Types.GeneStateTable
+  DFunId
+  {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyShowMap_$cmyShow
+                  `cast`
+                (Sym (Parsing.N:MyShow[0] <Types.GeneStateTable>_N)) -}
+b22524bc47a764069856e68798e75a2c
+  $fMyShowMap1 ::
+    Data.Map.Base.Map Types.ID Types.GeneState -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ (x :: Data.Map.Base.Map Types.ID Types.GeneState) ->
+                 Parsing.$fMyShowAgent_go10 (GHC.Types.[] @ GHC.Types.Char) x) -}
+0aabc90cd4c7d1710fd2a5db89c61f78
+  $fMyShowMap_$cmyShow :: Types.GeneStateTable -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (x :: Data.Map.Base.Map Types.ID Types.GeneState) ->
+                 case Parsing.$fMyShowMap1 x of wild {
+                   [] -> GHC.Types.[] @ GHC.Types.Char
+                   : x1 xs
+                   -> GHC.Types.:
+                        @ GHC.Types.Char
+                        x1
+                        (Data.OldList.prependToAll
+                           @ GHC.Types.Char
+                           Parsing.$fMyShowAgent3
+                           xs) }) -}
+619c1d7c4d6112051ab7ca9eaf4d6619
+  $fMyShowThres :: Parsing.MyShow Types.Thres
+  DFunId
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m2,
+     Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyShowThres_$cmyShow
+                  `cast`
+                (Sym (Parsing.N:MyShow[0] <Types.Thres>_N)) -}
+7e66c2343d161121849c07a4b7237921
+  $fMyShowThres_$cmyShow :: Types.Thres -> GHC.Base.String
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m2,
+     Unfolding: InlineRule (0, True, True)
+                GHC.Show.$fShowInt_$cshow
+                  `cast`
+                (Sym (Types.N:Thres[0]) ->_R <GHC.Base.String>_R) -}
+619c1d7c4d6112051ab7ca9eaf4d6619
+  $fMyShowWeight :: Parsing.MyShow Types.Weight
+  DFunId
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m2,
+     Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyShowWeight_$cmyShow
+                  `cast`
+                (Sym (Parsing.N:MyShow[0] <Types.Weight>_N)) -}
+735a50bfc207b081adf588aaa4a6ff16
+  $fMyShowWeight_$cmyShow :: Types.Weight -> GHC.Base.String
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m2,
+     Unfolding: InlineRule (0, True, True)
+                GHC.Show.$fShowInt_$cshow
+                  `cast`
+                (Sym (Types.N:Weight[0]) ->_R <GHC.Base.String>_R) -}
+619c1d7c4d6112051ab7ca9eaf4d6619
+  $fMyShow[] :: Parsing.MyShow Types.Chromosome
+  DFunId
+  {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Parsing.$fMyShow[]_$cmyShow
+                  `cast`
+                (Sym (Parsing.N:MyShow[0] <Types.Chromosome>_N)) -}
+026316dd2d0215656ae47161758d662e
+  $fMyShow[]_$cmyShow :: Types.Chromosome -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ (loci :: Types.Chromosome) ->
+                 case GHC.Base.map
+                        @ Types.Locus
+                        @ [GHC.Types.Char]
+                        Parsing.$fMyShowLocus_$cmyShow
+                        loci of wild {
+                   [] -> GHC.Types.[] @ GHC.Types.Char
+                   : x xs1
+                   -> Data.OldList.intercalate_$spoly_go
+                        @ GHC.Types.Char
+                        x
+                        (Data.OldList.prependToAll
+                           @ [GHC.Types.Char]
+                           Parsing.$fMyRead[]2
+                           xs1) }) -}
+b75c828542b8fcf0d7672d069148b2ac
+  $tc'C:MyRead :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   4807510427710587424##
+                   6928450790286029622##
+                   Parsing.$trModule
+                   Parsing.$tc'C:MyRead1) -}
+604189b76e0d3d5ed5d6c47d223fc612
+  $tc'C:MyRead1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "'C:MyRead"#) -}
+57a45b5c0caa379f2135dd453cfb7808
+  $tc'C:MyShow :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   12079972352778127583##
+                   13610301942489079485##
+                   Parsing.$trModule
+                   Parsing.$tc'C:MyShow1) -}
+0b9584e2025dbf98fc31893dde3c0aea
+  $tc'C:MyShow1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "'C:MyShow"#) -}
+5ee80dd2d529284b6278bee6219b698e
+  $tcMyRead :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   6964480593020186861##
+                   14784814894039268497##
+                   Parsing.$trModule
+                   Parsing.$tcMyRead1) -}
+48baf00cc642f55f11f8e3d03e78174f
+  $tcMyRead1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "MyRead"#) -}
+ec8f99dce468e77070193eaab571dc4f
+  $tcMyShow :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   12921510918578451696##
+                   10478015018167014687##
+                   Parsing.$trModule
+                   Parsing.$tcMyShow1) -}
+c871ae6e8604599d1c104182cd0d01e5
+  $tcMyShow1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "MyShow"#) -}
+18807446ce47da44327324635d5e0529
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Parsing.$trModule2
+                   Parsing.$trModule1) -}
+4fc5e5856e0a9886b6fac38a42ee668a
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "Parsing"#) -}
+bb118beca4a4790795bebb54764780bf
+  $trModule2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS
+                   "Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT"#) -}
+12cffaf7f70874209f8b4e50b3ecae92
+  $w$sgo10 ::
+    GHC.Prim.Int#
+    -> a1
+    -> Data.Map.Base.Map Types.ID a1
+    -> Data.Map.Base.Map Types.ID a1
+  {- Arity: 3, Strictness: <L,U><L,U><S,1*U>, Inline: [0] -}
+1605b3cad2462d31f182e67787dd34ea
+  $wpoly_go10 ::
+    GHC.Prim.Int#
+    -> Data.Map.Base.Map Types.ID a
+    -> [(Types.ID, a)]
+    -> Data.Map.Base.Map Types.ID a
+  {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
+1be4d27b2adb52f02d6e9545731001a7
+  class MyRead a where
+    myRead :: GHC.Base.String -> a
+    {-# MINIMAL myRead #-}
+619c1d7c4d6112051ab7ca9eaf4d6619
+  class MyShow a where
+    myShow :: a -> GHC.Base.String
+    {-# MINIMAL myShow #-}
+78cc50c8c1a6dcbd47533e17e5b53553
+  parseAgent :: [GHC.Types.Char] -> Types.Agent
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: (\ (ds :: [GHC.Types.Char]) ->
+                 case GHC.Base.eqString ds Parsing.$fMyShowAgent1 of wild {
+                   GHC.Types.False
+                   -> let {
+                        genome :: [Types.Locus]
+                        = GHC.Base.map
+                            @ [GHC.Types.Char]
+                            @ Types.Locus
+                            Parsing.$fMyReadLocus_$cmyRead
+                            (Parsing.$fMyRead[]1 ds)
+                      } in
+                      let {
+                        genome1 :: Types.Genome
+                        = GHC.Types.:
+                            @ Types.Chromosome
+                            genome
+                            (GHC.Types.[] @ Types.Chromosome)
+                      } in
+                      Types.Agent
+                        genome1
+                        (World.gSTFromGenome_makeGst
+                           (Data.Map.Base.Tip @ Types.ID @ Types.GeneState)
+                           (World.reduceToGenes_go genome1))
+                   GHC.Types.True -> Types.NoAgent }) -}
+instance Parsing.MyRead [Types.GeneState]
+  = Parsing.$fMyReadGeneState
+instance Parsing.MyRead [Types.ID] = Parsing.$fMyReadID
+instance Parsing.MyRead [Types.Locus] = Parsing.$fMyReadLocus
+instance Parsing.MyRead [Data.Map.Base.Map] = Parsing.$fMyReadMap
+instance Parsing.MyRead [Types.Thres] = Parsing.$fMyReadThres
+instance Parsing.MyRead [Types.Weight] = Parsing.$fMyReadWeight
+instance Parsing.MyRead [[]] = Parsing.$fMyRead[]
+instance Parsing.MyShow [Types.Agent] = Parsing.$fMyShowAgent
+instance Parsing.MyShow [Types.GeneState]
+  = Parsing.$fMyShowGeneState
+instance Parsing.MyShow [Types.ID] = Parsing.$fMyShowID
+instance Parsing.MyShow [Types.Locus] = Parsing.$fMyShowLocus
+instance Parsing.MyShow [Data.Map.Base.Map] = Parsing.$fMyShowMap
+instance Parsing.MyShow [Types.Thres] = Parsing.$fMyShowThres
+instance Parsing.MyShow [Types.Weight] = Parsing.$fMyShowWeight
+instance Parsing.MyShow [[]] = Parsing.$fMyShow[]
+"SPEC/Parsing fromList @ ID _" [ALWAYS] forall @ a
+                                               ($dOrd :: GHC.Classes.Ord Types.ID)
+  Data.Map.Base.fromList @ Types.ID @ a $dOrd
+  = Parsing.$fMyReadMap_$sfromList @ a
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: none
+require own pkg trusted: False
+
