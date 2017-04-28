@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-28 14:38:39.010411 UTC
+2017-04-28 16:31:31.987593 UTC
 
-interface Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Parameters 8002
-  interface hash: 9ed8dabcc29af6a86611d257d865e2c4
-  ABI hash: f0b6d02e7496adab47282d49bc269f44
-  export-list hash: 840d86f5bb30fe7f211c714f30c387f7
+interface Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG:Parameters 8002
+  interface hash: 89a0e098bff81d954ebbf13bb04cca02
+  ABI hash: f6207debca8ae6a6a2f80b3a30b982b7
+  export-list hash: 019275192dc9600464829c891d28e48a
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: ab396f11155bd696ab63895436e6f1df
   sig of: Nothing
@@ -62,48 +62,48 @@ family instance modules: base-4.9.1.0:Control.Applicative
                          base-4.9.1.0:GHC.IO.Exception base-4.9.1.0:GHC.TypeLits
                          containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
-import  -/  Types 344386ad26f015f50945c7403febc394
-  exports: 1903460ec2f3fff4e3f5c7bd897ec01f
-  ID 859e5213a4e604522bdadd8473dc98b4
+import  -/  Types 1d3d1e1d433c54e7bfb57452891f64d7
+  exports: f90e62a4294bef8d4adecbf5aeb850c0
+  ID 0d673b2a916b10c9dd854ba8ee53f405
 import  -/  base-4.9.1.0:GHC.Base c4231c43c07e46080a26bf94094c7aa1
 import  -/  base-4.9.1.0:GHC.Num 00bfaa7b2f9d6084913c0697a8a49ec8
 import  -/  base-4.9.1.0:GHC.Real 82e4e59051a13dba1da63e1e970a69e6
 import  -/  base-4.9.1.0:GHC.Word 2f8cb4e909eeef2f95e1563807dd9268
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
 import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
-9fbaefb0518586ffae3ed03cdc635fcf
+64b0a024ca4f14fafc522bb67bad39c1
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.Module
                    Parameters.$trModule2
                    Parameters.$trModule1) -}
-db61e0f5c2c3f74d9439fb8cb47d140b
+7c5f0775b546f75448a4bb112e791083
   $trModule1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Parameters"#) -}
-e1dab03d448f7d19881c280b713ba819
+2269855befd68a0769d46a75b4c3ede4
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
-                   "Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT"#) -}
-b9237f89dcca355d6e31740b337ba81c
+                   "Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG"#) -}
+1d62bb5e271e64fd5f4e31ca242355fa
   type Prob = GHC.Types.Double
-879d5e19ebb9bc15f9454477e91cb426
+76230c54d0b6809d2454e41663fb6957
   type Time = GHC.Types.Int
-e9e76292deec60b132755b09265774eb
+73ea0cd2fdf2d06f7840dd6c95b30ecc
   deathRate :: Parameters.Prob
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.D# 0.3##) -}
-3138758efe15eb148b79f0a965e6e100
+707b87183b4972fe3ecd083e708c4d4d
   devTime :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 20#) -}
-072523fa7d913d43a379ea317d7f8603
+36696911d734b2a668e5373c29f0cb71
   display :: GHC.Types.Bool
   {- HasNoCafRefs,
      Unfolding: InlineRule (0, True, True) GHC.Types.False -}
-311d763c8e471662bde34464c6fede86
+ddadde0436b1b6750310a4fc23ee09f3
   dumpStep :: GHC.Integer.Type.Integer
   {- HasNoCafRefs, Unfolding: (1000) -}
-87e75642c5ff5f29b6d5a73f1a83d13f
+0138b5fcf542822c7e1f80283ab160b2
   dumpTime :: GHC.Integer.Type.Integer -> GHC.Types.Bool
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (1, True, False)
@@ -112,49 +112,49 @@ e9e76292deec60b132755b09265774eb
                         (GHC.Integer.Type.modInteger t Parameters.dumpStep)
                         Parameters.dumpTime1 of wild { DEFAULT ->
                  GHC.Prim.tagToEnum# @ GHC.Types.Bool wild }) -}
-78e71b60aa7e9e9b4b139932ef3717fb
+63da390b382d16b6ac26e57a5618dc33
   dumpTime1 :: GHC.Integer.Type.Integer
   {- HasNoCafRefs, Unfolding: (0) -}
-3b796b939ca858dba44d32d2598e0f4c
+460587cb1f7e659b21fd899d184e1b6b
   envSwitchProb :: Parameters.Prob
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.D# 3.0e-4##) -}
-11a41b235c8c74d554ad15017020aa10
+660130facfb2dc1c53bd9743db4215de
   height :: GHC.Types.Int
   {- Strictness: m, Unfolding: (Parameters.width) -}
-9afe6a92e63b333e74e871dd72c8c317
+015334934caa6ce4d5ec4045a3510839
   maxThres :: GHC.Types.Int
   {- Strictness: m, Unfolding: (Parameters.nrEnv) -}
-057b674afcde196356588867ab75e122
+22f9bea5d43cf30286d565cad390aaeb
   maxTime :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 200#) -}
-cf6f0fc7343b7d217e1f8024a505f326
+dfd84a1c08f327dade4935e3628ceedd
   minThres :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# -2#) -}
-8345559e80d2531135319c3308fbfd0b
+dad657cc3cc1034efa1940e50fd3b271
   nrEnv :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 2#) -}
-8d60383bc8b496178ecfac64972cb69c
+0e174033f78111c9b1241f86aa65480e
   nrGeneTypes :: Types.ID
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
                 Parameters.devTime `cast` (Sym (Types.N:ID[0])) -}
-8dd42f5a9d45378b888a53efbf75de72
+75ef947213dd4ce9a76f5d53638a5732
   nrGeneTypes' :: GHC.Types.Int
   {- Strictness: m, Unfolding: (Parameters.devTime) -}
-2fb11f80eab096177671126324812e2f
+66be3db94062b72bd043e3b7221eee88
   nrHouseHold :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 8#) -}
-020d2d35097afaa2afd284a2b1a08f4d
+850482e4511956f6d301a7f47189ea15
   nrOverlap :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0#) -}
-3491fe8778e3293ee78ca63c14657239
+2557d767afa5ca142ce385dfbf5ca3aa
   nrSpecific :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 12#) -}
-4b35dae3c282555be3b2b1591e3c3083
+2965c7ade5412449c01d89191080e40f
   outputStep :: Parameters.Time
   {- Strictness: m, Unfolding: (Parameters.width) -}
-220cbf22aed063a812d0c13d564d9048
+66d97c99f9258facf5c88aa88fa7fb5f
   outputTime :: Parameters.Time -> GHC.Types.Bool
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>,
      Unfolding: InlineRule (1, True, False)
@@ -162,42 +162,42 @@ cf6f0fc7343b7d217e1f8024a505f326
                  case t of wild1 { GHC.Types.I# x ->
                  case GHC.Classes.modInt# x 50# of ww2 {
                    DEFAULT -> GHC.Types.False 0# -> GHC.Types.True } }) -}
-2b01b1a1d4180beb3c191609c3764d8c
+9b0da2d638cc3da09e9262ad7d6353b2
   pGenDel :: Parameters.Prob
   {- Strictness: m, Unfolding: (Parameters.envSwitchProb) -}
-5835dbe290d7b9c3dbc29ad1e62acb21
+6cffa84e02a513f21768440dddecd4e1
   pGenDup :: Parameters.Prob
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.D# 2.0e-4##) -}
-3aa7e3013562cfde731d8d7054458483
+9ad1f60576fe8a3966ea3ccd0840b791
   pGenThresCh :: Parameters.Prob
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.D# 5.0e-6##) -}
-f6af20bbc20acc91eb3cf05094e578d1
+ca8e73e4f1978c50e09c99e4bc86b120
   pTfbsDel :: Parameters.Prob
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.D# 3.0e-5##) -}
-4c7758239bd9a9e789a073a5a8833099
+1fdddd238815544b141159eda1ae633e
   pTfbsDup :: Parameters.Prob
   {- Strictness: m, Unfolding: (Parameters.pTfbsWtCh) -}
-aebb3df07dbe4d968721fa0a26f5305c
+6e44b3ee881c83bbb037d587f3227602
   pTfbsInnov :: Parameters.Prob
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.D# 1.0e-5##) -}
-be1b6960c551bf3bacab9ed57d329f75
+f599a117021440efd6579cba1367dde7
   pTfbsPrefCh :: Parameters.Prob
   {- Strictness: m, Unfolding: (Parameters.pTfbsWtCh) -}
-be095b98af981745619d2fc90f5a33c1
+646699a373dd3b2cff61094fdbe7e2dd
   pTfbsWtCh :: Parameters.Prob
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.D# 2.0e-5##) -}
-c4d9629fd29388c791e69055784ce3a6
+55064c0fc333290ac0674ffeeddd9905
   selectionPressure :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 10#) -}
-4c2af54f682c633531ce703f0107160d
+c1a18bd24c27f418fd14b59e2c37350e
   vOutputStep :: Parameters.Time
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 10000#) -}
-ed7007b23b8fb654878cfdfb393f014a
+a10dbd8ace81ef9ffa722ad45ef441eb
   vOutputTime :: Parameters.Time -> GHC.Types.Bool
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>,
      Unfolding: InlineRule (1, True, False)
@@ -205,29 +205,29 @@ ed7007b23b8fb654878cfdfb393f014a
                  case x of wild2 { GHC.Types.I# x1 ->
                  case GHC.Prim.remInt# x1 10000# of wild {
                    DEFAULT -> GHC.Types.False 0# -> GHC.Types.True } }) -}
-9796718fd371819fe8c1f5ab4717d562
+a261c43f906ee8619481f77b3701ccc6
   width :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 50#) -}
-bbc48d4f2b3efd5c4253ddddfd736c4c
+406903bf771b0cbf87aa67a5850c1de7
   worldBounds ::
     ((GHC.Types.Int, GHC.Types.Int), (GHC.Types.Int, GHC.Types.Int))
   {- HasNoCafRefs, Strictness: m,
      Unfolding: ((Parameters.worldBounds3, Parameters.worldBounds1)) -}
-4b645489adc4d1d56cf98eb7049d4609
+8b498a91785dab2338144aaa679ea300
   worldBounds1 :: (GHC.Types.Int, GHC.Types.Int)
   {- HasNoCafRefs, Strictness: m,
      Unfolding: ((Parameters.worldBounds2, Parameters.worldBounds2)) -}
-9ca7ec78e4d98b96135823607c105867
+e27451cfc208301a657b400fb757dbe6
   worldBounds2 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 49#) -}
-e364645400c227eb51d001f9b447eedf
+ff4e700d95cdc2638643be1e63054a88
   worldBounds3 :: (GHC.Types.Int, GHC.Types.Int)
   {- HasNoCafRefs, Strictness: m,
      Unfolding: ((Parameters.nrOverlap, Parameters.nrOverlap)) -}
-8f3de24b4ce4ba0142ea3923677c8b2f
+16105ec29055af5ea8d59b6c7df4a155
   worldCoods :: [(GHC.Types.Int, GHC.Types.Int)]
   {- Unfolding: (Parameters.worldCoods_go 0#) -}
-b1f82c2212c98df502b059cb5c4ba21e
+ae5820c2aea334d3aa65245ab662124f
   worldCoods_go :: GHC.Prim.Int# -> [(GHC.Types.Int, GHC.Types.Int)]
   {- Arity: 1, Strictness: <L,U> -}
 vectorised variables:

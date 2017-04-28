@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-28 14:38:38.050297 UTC
+2017-04-28 16:31:29.91665 UTC
 
-interface Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Types 8002
-  interface hash: a6c0f9aba9de45111c8bdc46adc65664
-  ABI hash: 344386ad26f015f50945c7403febc394
-  export-list hash: 1903460ec2f3fff4e3f5c7bd897ec01f
+interface Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG:Types 8002
+  interface hash: d28da4e76a81a784608306fbe46f659e
+  ABI hash: 1d3d1e1d433c54e7bfb57452891f64d7
+  export-list hash: f90e62a4294bef8d4adecbf5aeb850c0
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 5a28ad60f874e9816d7f396ec6a10ddb
   sig of: Nothing
@@ -60,7 +60,7 @@ import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base d432f68759831314
 import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
 import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
 import  -/  integer-gmp-1.0.0.1:GHC.Integer.Type 318df275d77dcdb18e0006d8d7870c2a
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fBoundedGeneState :: GHC.Enum.Bounded Types.GeneState
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -68,17 +68,17 @@ import  -/  integer-gmp-1.0.0.1:GHC.Integer.Type 318df275d77dcdb18e0006d8d7870c2
                   @ Types.GeneState
                   Types.$fBoundedGeneState_$cminBound
                   Types.$fBoundedGeneState_$cmaxBound -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fBoundedGeneState_$cmaxBound :: Types.GeneState
   {- HasNoCafRefs,
      Unfolding: InlineRule (0, True, True)
                 GHC.Types.True `cast` (Sym (Types.N:GeneState[0])) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fBoundedGeneState_$cminBound :: Types.GeneState
   {- HasNoCafRefs,
      Unfolding: InlineRule (0, True, True)
                 GHC.Types.False `cast` (Sym (Types.N:GeneState[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fBoundedID :: GHC.Enum.Bounded Types.ID
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -86,17 +86,17 @@ import  -/  integer-gmp-1.0.0.1:GHC.Integer.Type 318df275d77dcdb18e0006d8d7870c2
                   @ Types.ID
                   Types.$fBoundedID_$cminBound
                   Types.$fBoundedID_$cmaxBound -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fBoundedID_$cmaxBound :: Types.ID
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Base.maxInt `cast` (Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fBoundedID_$cminBound :: Types.ID
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Base.minInt `cast` (Sym (Types.N:ID[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fBoundedThres :: GHC.Enum.Bounded Types.Thres
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -104,17 +104,17 @@ b4d1ca11eda71c74c7df7a27380685f5
                   @ Types.Thres
                   Types.$fBoundedThres_$cminBound
                   Types.$fBoundedThres_$cmaxBound -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fBoundedThres_$cmaxBound :: Types.Thres
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Base.maxInt `cast` (Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fBoundedThres_$cminBound :: Types.Thres
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Base.minInt `cast` (Sym (Types.N:Thres[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fBoundedWeight :: GHC.Enum.Bounded Types.Weight
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -122,17 +122,17 @@ b4d1ca11eda71c74c7df7a27380685f5
                   @ Types.Weight
                   Types.$fBoundedWeight_$cminBound
                   Types.$fBoundedWeight_$cmaxBound -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fBoundedWeight_$cmaxBound :: Types.Weight
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Base.maxInt `cast` (Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fBoundedWeight_$cminBound :: Types.Weight
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Base.minInt `cast` (Sym (Types.N:Weight[0])) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fEnumGeneState :: GHC.Enum.Enum Types.GeneState
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -146,7 +146,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fEnumGeneState_$cenumFromThen
                   Types.$fEnumGeneState_$cenumFromTo
                   Types.$fEnumGeneState_$cenumFromThenTo -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fEnumGeneState_$cenumFrom :: Types.GeneState -> [Types.GeneState]
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (0, True, True)
@@ -154,7 +154,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   `cast`
                 (Sym (Types.N:GeneState[0])
                  ->_R ([Sym (Types.N:GeneState[0])])_R) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fEnumGeneState_$cenumFromThen ::
     Types.GeneState -> Types.GeneState -> [Types.GeneState]
   {- Arity: 2, Strictness: <S,1*U><S,1*U>,
@@ -164,7 +164,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R ([Sym (Types.N:GeneState[0])])_R) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fEnumGeneState_$cenumFromThenTo ::
     Types.GeneState
     -> Types.GeneState -> Types.GeneState -> [Types.GeneState]
@@ -176,7 +176,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R ([Sym (Types.N:GeneState[0])])_R) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fEnumGeneState_$cenumFromTo ::
     Types.GeneState -> Types.GeneState -> [Types.GeneState]
   {- Arity: 2, Strictness: <S,1*U><S,1*U>,
@@ -186,35 +186,35 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R ([Sym (Types.N:GeneState[0])])_R) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fEnumGeneState_$cfromEnum :: Types.GeneState -> GHC.Types.Int
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumBool_$cfromEnum
                   `cast`
                 (Sym (Types.N:GeneState[0]) ->_R <GHC.Types.Int>_R) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fEnumGeneState_$cpred :: Types.GeneState -> Types.GeneState
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumBool_$cpred
                   `cast`
                 (Sym (Types.N:GeneState[0]) ->_R Sym (Types.N:GeneState[0])) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fEnumGeneState_$csucc :: Types.GeneState -> Types.GeneState
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumBool_$csucc
                   `cast`
                 (Sym (Types.N:GeneState[0]) ->_R Sym (Types.N:GeneState[0])) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fEnumGeneState_$ctoEnum :: GHC.Types.Int -> Types.GeneState
   {- Arity: 1, Strictness: <S(S),1*U(1*U)>,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumBool_$ctoEnum
                   `cast`
                 (<GHC.Types.Int>_R ->_R Sym (Types.N:GeneState[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fEnumID :: GHC.Enum.Enum Types.ID
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -228,14 +228,14 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fEnumID_$cenumFromThen
                   Types.$fEnumID_$cenumFromTo
                   Types.$fEnumID_$cenumFromThenTo -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fEnumID_$cenumFrom :: Types.ID -> [Types.ID]
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$cenumFrom
                   `cast`
                 (Sym (Types.N:ID[0]) ->_R ([Sym (Types.N:ID[0])])_R) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fEnumID_$cenumFromThen :: Types.ID -> Types.ID -> [Types.ID]
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -244,7 +244,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R ([Sym (Types.N:ID[0])])_R) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fEnumID_$cenumFromThenTo ::
     Types.ID -> Types.ID -> Types.ID -> [Types.ID]
   {- Arity: 3, HasNoCafRefs,
@@ -256,7 +256,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                  ->_R Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R ([Sym (Types.N:ID[0])])_R) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fEnumID_$cenumFromTo :: Types.ID -> Types.ID -> [Types.ID]
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -265,35 +265,35 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R ([Sym (Types.N:ID[0])])_R) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fEnumID_$cfromEnum :: Types.ID -> GHC.Types.Int
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$cfromEnum
                   `cast`
                 (Sym (Types.N:ID[0]) ->_R <GHC.Types.Int>_R) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fEnumID_$cpred :: Types.ID -> Types.ID
   {- Arity: 1, Strictness: <S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$cpred
                   `cast`
                 (Sym (Types.N:ID[0]) ->_R Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fEnumID_$csucc :: Types.ID -> Types.ID
   {- Arity: 1, Strictness: <S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$csucc
                   `cast`
                 (Sym (Types.N:ID[0]) ->_R Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fEnumID_$ctoEnum :: GHC.Types.Int -> Types.ID
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$cfromEnum
                   `cast`
                 (<GHC.Types.Int>_R ->_R Sym (Types.N:ID[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fEnumThres :: GHC.Enum.Enum Types.Thres
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -307,14 +307,14 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fEnumThres_$cenumFromThen
                   Types.$fEnumThres_$cenumFromTo
                   Types.$fEnumThres_$cenumFromThenTo -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fEnumThres_$cenumFrom :: Types.Thres -> [Types.Thres]
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$cenumFrom
                   `cast`
                 (Sym (Types.N:Thres[0]) ->_R ([Sym (Types.N:Thres[0])])_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fEnumThres_$cenumFromThen ::
     Types.Thres -> Types.Thres -> [Types.Thres]
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
@@ -324,7 +324,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R ([Sym (Types.N:Thres[0])])_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fEnumThres_$cenumFromThenTo ::
     Types.Thres -> Types.Thres -> Types.Thres -> [Types.Thres]
   {- Arity: 3, HasNoCafRefs,
@@ -336,7 +336,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                  ->_R Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R ([Sym (Types.N:Thres[0])])_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fEnumThres_$cenumFromTo ::
     Types.Thres -> Types.Thres -> [Types.Thres]
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
@@ -346,35 +346,35 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R ([Sym (Types.N:Thres[0])])_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fEnumThres_$cfromEnum :: Types.Thres -> GHC.Types.Int
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$cfromEnum
                   `cast`
                 (Sym (Types.N:Thres[0]) ->_R <GHC.Types.Int>_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fEnumThres_$cpred :: Types.Thres -> Types.Thres
   {- Arity: 1, Strictness: <S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$cpred
                   `cast`
                 (Sym (Types.N:Thres[0]) ->_R Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fEnumThres_$csucc :: Types.Thres -> Types.Thres
   {- Arity: 1, Strictness: <S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$csucc
                   `cast`
                 (Sym (Types.N:Thres[0]) ->_R Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fEnumThres_$ctoEnum :: GHC.Types.Int -> Types.Thres
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$cfromEnum
                   `cast`
                 (<GHC.Types.Int>_R ->_R Sym (Types.N:Thres[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fEnumWeight :: GHC.Enum.Enum Types.Weight
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -388,14 +388,14 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fEnumWeight_$cenumFromThen
                   Types.$fEnumWeight_$cenumFromTo
                   Types.$fEnumWeight_$cenumFromThenTo -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fEnumWeight_$cenumFrom :: Types.Weight -> [Types.Weight]
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$cenumFrom
                   `cast`
                 (Sym (Types.N:Weight[0]) ->_R ([Sym (Types.N:Weight[0])])_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fEnumWeight_$cenumFromThen ::
     Types.Weight -> Types.Weight -> [Types.Weight]
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
@@ -405,7 +405,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R ([Sym (Types.N:Weight[0])])_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fEnumWeight_$cenumFromThenTo ::
     Types.Weight -> Types.Weight -> Types.Weight -> [Types.Weight]
   {- Arity: 3, HasNoCafRefs,
@@ -417,7 +417,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                  ->_R Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R ([Sym (Types.N:Weight[0])])_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fEnumWeight_$cenumFromTo ::
     Types.Weight -> Types.Weight -> [Types.Weight]
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
@@ -427,41 +427,41 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R ([Sym (Types.N:Weight[0])])_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fEnumWeight_$cfromEnum :: Types.Weight -> GHC.Types.Int
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$cfromEnum
                   `cast`
                 (Sym (Types.N:Weight[0]) ->_R <GHC.Types.Int>_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fEnumWeight_$cpred :: Types.Weight -> Types.Weight
   {- Arity: 1, Strictness: <S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$cpred
                   `cast`
                 (Sym (Types.N:Weight[0]) ->_R Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fEnumWeight_$csucc :: Types.Weight -> Types.Weight
   {- Arity: 1, Strictness: <S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$csucc
                   `cast`
                 (Sym (Types.N:Weight[0]) ->_R Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fEnumWeight_$ctoEnum :: GHC.Types.Int -> Types.Weight
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Enum.$fEnumInt_$cfromEnum
                   `cast`
                 (<GHC.Types.Int>_R ->_R Sym (Types.N:Weight[0])) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fEqAgent :: GHC.Classes.Eq Types.Agent
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ Types.Agent Types.$fEqAgent_$c== Types.$fEqAgent_$c/= -}
-44d2b718259d965e4abc47386dfb2a8b
+c9cc25f0cef0fe971438b768604df635
   $fEqAgent1 ::
     Data.Map.Base.Map Types.ID Types.GeneState
     -> Data.Map.Base.Map Types.ID Types.GeneState -> GHC.Types.Bool
@@ -470,7 +470,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                    @ Types.GeneState
                    Types.$fEqID
                    Types.$fEqGeneState) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fEqAgent_$c/= :: Types.Agent -> Types.Agent -> GHC.Types.Bool
   {- Arity: 2, Strictness: <S,1*U><S,1*U>,
      Unfolding: InlineRule (2, True, False)
@@ -478,7 +478,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                  case Types.$fEqAgent_$c== a b of wild {
                    GHC.Types.False -> GHC.Types.True
                    GHC.Types.True -> GHC.Types.False }) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fEqAgent_$c== :: Types.Agent -> Types.Agent -> GHC.Types.Bool
   {- Arity: 2, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ (ds :: Types.Agent) (ds1 :: Types.Agent) ->
@@ -498,18 +498,18 @@ c366e34cef18e343b1b97128d4a7d6c2
                    -> case ds1 of wild1 {
                         Types.Agent ipv ipv1 -> GHC.Types.False
                         Types.NoAgent -> GHC.Types.True } }) -}
-0f3e72d2e817d44c13b31283768e0b74
+ee5e27c87c6a9bac79e0ca28ded45341
   $fEqAgent_$dEq :: GHC.Classes.Eq Types.Locus
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True) Types.$fEqLocus -}
-e720a8fdde3a372bdc7776c88fb77347
+88265df6df7a46d0cbd91d25bd194749
   $fEqAgent_$s$fEq[] :: GHC.Classes.Eq [Types.Locus]
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ [Types.Locus]
                   (GHC.Classes.$fEq[]_$c== @ Types.Locus Types.$fEqAgent_$dEq)
                   Types.$fEqAgent_$s$fEq[]_$c/= -}
-e4306220d26d0228c2cac14f729b3a27
+88342f90d512b151a10738205c75ecfd
   $fEqAgent_$s$fEq[]_$c/= ::
     [Types.Locus] -> [Types.Locus] -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -522,13 +522,13 @@ e4306220d26d0228c2cac14f729b3a27
                       Types.$fEqAgent_$dEq
                       x
                       y)) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fEqGene :: GHC.Classes.Eq Types.Gene
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ Types.Gene Types.$fEqLocus_$c==2 Types.$fEqGene_$c/= -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fEqGeneState :: GHC.Classes.Eq Types.GeneState
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -536,7 +536,7 @@ e4306220d26d0228c2cac14f729b3a27
                   @ Types.GeneState
                   Types.$fEqGeneState_$c==
                   Types.$fEqGeneState_$c/= -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fEqGeneState_$c/= ::
     Types.GeneState -> Types.GeneState -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -546,7 +546,7 @@ e4306220d26d0228c2cac14f729b3a27
                 (Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R <GHC.Types.Bool>_R) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fEqGeneState_$c== ::
     Types.GeneState -> Types.GeneState -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -556,7 +556,7 @@ e4306220d26d0228c2cac14f729b3a27
                 (Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R <GHC.Types.Bool>_R) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fEqGene_$c/= :: Types.Gene -> Types.Gene -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)LL),1*U(1*U(U),1*U(U),1*U)><S(S(S)LL),1*U(1*U(U),1*U(U),1*U)>,
@@ -565,12 +565,12 @@ e4306220d26d0228c2cac14f729b3a27
                  case Types.$fEqLocus_$c==2 a b of wild {
                    GHC.Types.False -> GHC.Types.True
                    GHC.Types.True -> GHC.Types.False }) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fEqID :: GHC.Classes.Eq Types.ID
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:. @ Types.ID Types.$fEqID_$c== Types.$fEqID_$c/= -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fEqID_$c/= :: Types.ID -> Types.ID -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -579,7 +579,7 @@ e4306220d26d0228c2cac14f729b3a27
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R <GHC.Types.Bool>_R) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fEqID_$c== :: Types.ID -> Types.ID -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -588,13 +588,13 @@ e4306220d26d0228c2cac14f729b3a27
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R <GHC.Types.Bool>_R) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fEqLocus :: GHC.Classes.Eq Types.Locus
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ Types.Locus Types.$fEqLocus_$c== Types.$fEqLocus_$c/= -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fEqLocus_$c/= :: Types.Locus -> Types.Locus -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ (a :: Types.Locus) (b :: Types.Locus) ->
@@ -648,7 +648,7 @@ e4306220d26d0228c2cac14f729b3a27
                                        (GHC.Prim.==# x1 y1) of wild9 {
                                   GHC.Types.False -> GHC.Types.True
                                   GHC.Types.True -> GHC.Types.False } } } } } } } } } }) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fEqLocus_$c== :: Types.Locus -> Types.Locus -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ (ds :: Types.Locus) (ds1 :: Types.Locus) ->
@@ -664,7 +664,7 @@ e4306220d26d0228c2cac14f729b3a27
                    -> case ds1 of wild1 {
                         DEFAULT -> GHC.Types.False
                         Types.CTfbs b1 -> Types.$fEqLocus_$c==1 a1 b1 } }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fEqLocus_$c==1 :: Types.Tfbs -> Types.Tfbs -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)L),1*U(1*U(U),1*U(U))><S(S(S)L),1*U(1*U(U),1*U(U))>,
@@ -676,7 +676,7 @@ e4306220d26d0228c2cac14f729b3a27
                  case w1 of ww5 { Types.Tfbs ww6 ww7 ->
                  case ww6 `cast` (Types.N:ID[0]) of ww8 { GHC.Types.I# ww9 ->
                  Types.$w$c== ww4 ww2 ww9 ww7 } } } }) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fEqLocus_$c==2 :: Types.Gene -> Types.Gene -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)LL),1*U(1*U(U),1*U(U),1*U)><S(S(S)LL),1*U(1*U(U),1*U(U),1*U)>,
@@ -688,13 +688,13 @@ e4306220d26d0228c2cac14f729b3a27
                  case w1 of ww6 { Types.Gene ww7 ww8 ww9 ->
                  case ww7 `cast` (Types.N:ID[0]) of ww10 { GHC.Types.I# ww11 ->
                  Types.$w$c==1 ww5 ww2 ww3 ww11 ww8 ww9 } } } }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fEqTfbs :: GHC.Classes.Eq Types.Tfbs
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ Types.Tfbs Types.$fEqLocus_$c==1 Types.$fEqTfbs_$c/= -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fEqTfbs_$c/= :: Types.Tfbs -> Types.Tfbs -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)L),1*U(1*U(U),1*U(U))><S(S(S)L),1*U(1*U(U),1*U(U))>,
@@ -706,13 +706,13 @@ e4306220d26d0228c2cac14f729b3a27
                  case w1 of ww5 { Types.Tfbs ww6 ww7 ->
                  case ww6 `cast` (Types.N:ID[0]) of ww8 { GHC.Types.I# ww9 ->
                  Types.$w$c/= ww4 ww2 ww9 ww7 } } } }) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fEqThres :: GHC.Classes.Eq Types.Thres
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ Types.Thres Types.$fEqThres_$c== Types.$fEqThres_$c/= -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fEqThres_$c/= :: Types.Thres -> Types.Thres -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -721,7 +721,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R <GHC.Types.Bool>_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fEqThres_$c== :: Types.Thres -> Types.Thres -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -730,13 +730,13 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R <GHC.Types.Bool>_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fEqWeight :: GHC.Classes.Eq Types.Weight
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ Types.Weight Types.$fEqWeight_$c== Types.$fEqWeight_$c/= -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fEqWeight_$c/= :: Types.Weight -> Types.Weight -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -745,7 +745,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R <GHC.Types.Bool>_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fEqWeight_$c== :: Types.Weight -> Types.Weight -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -754,21 +754,21 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R <GHC.Types.Bool>_R) -}
-f6f7accb35473862d75b702a0145c137
+f5d3f5de163f63c89b0a6f5c1bbc1983
   $fGeneTypeGene :: Types.GeneType Types.Gene
   DFunId
   {- Arity: 1, HasNoCafRefs, Strictness: <S(SLL),1*U(1*U(U),A,A)>m,
      Inline: INLINE (sat-args=0),
      Unfolding: InlineRule (0, False, True)
                 Types.geneID `cast` (Sym (Types.N:GeneType[0] <Types.Gene>_N)) -}
-f6f7accb35473862d75b702a0145c137
+f5d3f5de163f63c89b0a6f5c1bbc1983
   $fGeneTypeTfbs :: Types.GeneType Types.Tfbs
   DFunId
   {- Arity: 1, HasNoCafRefs, Strictness: <S(SL),1*U(1*U(U),A)>m,
      Inline: INLINE (sat-args=0),
      Unfolding: InlineRule (0, False, True)
                 Types.tfbsID `cast` (Sym (Types.N:GeneType[0] <Types.Tfbs>_N)) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fIntegralID :: GHC.Real.Integral Types.ID
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -783,7 +783,7 @@ f6f7accb35473862d75b702a0145c137
                   Types.$fIntegralID_$cquotRem
                   Types.$fIntegralID_$cdivMod
                   Types.$fIntegralID_$ctoInteger -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fIntegralID_$cdiv :: Types.ID -> Types.ID -> Types.ID
   {- Arity: 2, Strictness: <S(S),1*U(U)><S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -792,7 +792,7 @@ f6f7accb35473862d75b702a0145c137
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fIntegralID_$cdivMod ::
     Types.ID -> Types.ID -> (Types.ID, Types.ID)
   {- Arity: 2, Strictness: <S(S),1*U(U)><S(S),1*U(1*U)>m,
@@ -802,7 +802,7 @@ f6f7accb35473862d75b702a0145c137
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R ((,) (Sym (Types.N:ID[0])) (Sym (Types.N:ID[0])))_R) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fIntegralID_$cmod :: Types.ID -> Types.ID -> Types.ID
   {- Arity: 2, Strictness: <L,1*U(U)><S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -811,7 +811,7 @@ f6f7accb35473862d75b702a0145c137
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fIntegralID_$cquot :: Types.ID -> Types.ID -> Types.ID
   {- Arity: 2, Strictness: <S(S),1*U(U)><S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -820,7 +820,7 @@ f6f7accb35473862d75b702a0145c137
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fIntegralID_$cquotRem ::
     Types.ID -> Types.ID -> (Types.ID, Types.ID)
   {- Arity: 2, Strictness: <S(S),1*U(U)><S(S),1*U(1*U)>m,
@@ -830,7 +830,7 @@ f6f7accb35473862d75b702a0145c137
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R ((,) (Sym (Types.N:ID[0])) (Sym (Types.N:ID[0])))_R) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fIntegralID_$crem :: Types.ID -> Types.ID -> Types.ID
   {- Arity: 2, Strictness: <L,1*U(U)><S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -839,14 +839,14 @@ f6f7accb35473862d75b702a0145c137
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fIntegralID_$ctoInteger :: Types.ID -> GHC.Integer.Type.Integer
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m1,
      Unfolding: InlineRule (0, True, True)
                 GHC.Real.$fIntegralInt_$ctoInteger
                   `cast`
                 (Sym (Types.N:ID[0]) ->_R <GHC.Integer.Type.Integer>_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fIntegralThres :: GHC.Real.Integral Types.Thres
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -861,7 +861,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fIntegralThres_$cquotRem
                   Types.$fIntegralThres_$cdivMod
                   Types.$fIntegralThres_$ctoInteger -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fIntegralThres_$cdiv :: Types.Thres -> Types.Thres -> Types.Thres
   {- Arity: 2, Strictness: <S(S),1*U(U)><S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -870,7 +870,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fIntegralThres_$cdivMod ::
     Types.Thres -> Types.Thres -> (Types.Thres, Types.Thres)
   {- Arity: 2, Strictness: <S(S),1*U(U)><S(S),1*U(1*U)>m,
@@ -880,7 +880,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R ((,) (Sym (Types.N:Thres[0])) (Sym (Types.N:Thres[0])))_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fIntegralThres_$cmod :: Types.Thres -> Types.Thres -> Types.Thres
   {- Arity: 2, Strictness: <L,1*U(U)><S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -889,7 +889,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fIntegralThres_$cquot :: Types.Thres -> Types.Thres -> Types.Thres
   {- Arity: 2, Strictness: <S(S),1*U(U)><S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -898,7 +898,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fIntegralThres_$cquotRem ::
     Types.Thres -> Types.Thres -> (Types.Thres, Types.Thres)
   {- Arity: 2, Strictness: <S(S),1*U(U)><S(S),1*U(1*U)>m,
@@ -908,7 +908,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R ((,) (Sym (Types.N:Thres[0])) (Sym (Types.N:Thres[0])))_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fIntegralThres_$crem :: Types.Thres -> Types.Thres -> Types.Thres
   {- Arity: 2, Strictness: <L,1*U(U)><S(S),1*U(1*U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -917,7 +917,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fIntegralThres_$ctoInteger ::
     Types.Thres -> GHC.Integer.Type.Integer
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m1,
@@ -925,7 +925,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 GHC.Real.$fIntegralInt_$ctoInteger
                   `cast`
                 (Sym (Types.N:Thres[0]) ->_R <GHC.Integer.Type.Integer>_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fIntegralWeight :: GHC.Real.Integral Types.Weight
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -940,7 +940,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fIntegralWeight_$cquotRem
                   Types.$fIntegralWeight_$cdivMod
                   Types.$fIntegralWeight_$ctoInteger -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fIntegralWeight_$cdiv ::
     Types.Weight -> Types.Weight -> Types.Weight
   {- Arity: 2, Strictness: <S(S),1*U(U)><S(S),1*U(1*U)>m,
@@ -950,7 +950,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fIntegralWeight_$cdivMod ::
     Types.Weight -> Types.Weight -> (Types.Weight, Types.Weight)
   {- Arity: 2, Strictness: <S(S),1*U(U)><S(S),1*U(1*U)>m,
@@ -961,7 +961,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                  ->_R Sym (Types.N:Weight[0])
                  ->_R ((,)
                          (Sym (Types.N:Weight[0])) (Sym (Types.N:Weight[0])))_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fIntegralWeight_$cmod ::
     Types.Weight -> Types.Weight -> Types.Weight
   {- Arity: 2, Strictness: <L,1*U(U)><S(S),1*U(1*U)>m,
@@ -971,7 +971,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fIntegralWeight_$cquot ::
     Types.Weight -> Types.Weight -> Types.Weight
   {- Arity: 2, Strictness: <S(S),1*U(U)><S(S),1*U(1*U)>m,
@@ -981,7 +981,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fIntegralWeight_$cquotRem ::
     Types.Weight -> Types.Weight -> (Types.Weight, Types.Weight)
   {- Arity: 2, Strictness: <S(S),1*U(U)><S(S),1*U(1*U)>m,
@@ -992,7 +992,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                  ->_R Sym (Types.N:Weight[0])
                  ->_R ((,)
                          (Sym (Types.N:Weight[0])) (Sym (Types.N:Weight[0])))_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fIntegralWeight_$crem ::
     Types.Weight -> Types.Weight -> Types.Weight
   {- Arity: 2, Strictness: <L,1*U(U)><S(S),1*U(1*U)>m,
@@ -1002,7 +1002,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fIntegralWeight_$ctoInteger ::
     Types.Weight -> GHC.Integer.Type.Integer
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m1,
@@ -1010,7 +1010,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 GHC.Real.$fIntegralInt_$ctoInteger
                   `cast`
                 (Sym (Types.N:Weight[0]) ->_R <GHC.Integer.Type.Integer>_R) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fNumGeneState :: GHC.Num.Num Types.GeneState
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -1023,7 +1023,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   (GHC.Base.id @ Types.GeneState)
                   (GHC.Base.id @ Types.GeneState)
                   Types.$fNumGeneState_$cfromInteger -}
-e8a02b7bdd6c36d7005783d9a03ae81c
+58d0f364fdc8b963b4536a348600eb4f
   $fNumGeneState1 :: GHC.Integer.Type.Integer -> GHC.Types.Bool
   {- Arity: 1, HasNoCafRefs, Strictness: <S,U>,
      Unfolding: InlineRule (1, True, False)
@@ -1032,7 +1032,7 @@ e8a02b7bdd6c36d7005783d9a03ae81c
                         a
                         Types.$fNumGeneState_dt of wild { DEFAULT ->
                  GHC.Prim.tagToEnum# @ GHC.Types.Bool wild }) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fNumGeneState_$c* ::
     Types.GeneState -> Types.GeneState -> Types.GeneState
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,1*U>,
@@ -1047,7 +1047,7 @@ e8a02b7bdd6c36d7005783d9a03ae81c
                         -> GHC.Types.False `cast` (Sym (Types.N:GeneState[0])) }
                    GHC.Types.True
                    -> GHC.Types.False `cast` (Sym (Types.N:GeneState[0])) }) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fNumGeneState_$c+ ::
     Types.GeneState -> Types.GeneState -> Types.GeneState
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,1*U>,
@@ -1057,7 +1057,7 @@ e8a02b7bdd6c36d7005783d9a03ae81c
                 (Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fNumGeneState_$c- ::
     Types.GeneState -> Types.GeneState -> Types.GeneState
   {- Arity: 2, HasNoCafRefs, Strictness: <L,U><L,U>,
@@ -1065,7 +1065,7 @@ e8a02b7bdd6c36d7005783d9a03ae81c
      Unfolding: InlineRule (2, False, False)
                 (\ (x :: Types.GeneState) (y :: Types.GeneState) ->
                  Types.$fNumGeneState_$c+ x (Types.$fNumGeneState_$cnegate y)) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fNumGeneState_$cfromInteger ::
     GHC.Integer.Type.Integer -> Types.GeneState
   {- Arity: 1, HasNoCafRefs, Strictness: <S,U>,
@@ -1073,17 +1073,17 @@ e8a02b7bdd6c36d7005783d9a03ae81c
                 Types.$fNumGeneState1
                   `cast`
                 (<GHC.Integer.Type.Integer>_R ->_R Sym (Types.N:GeneState[0])) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fNumGeneState_$cnegate :: Types.GeneState -> Types.GeneState
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
      Unfolding: InlineRule (0, True, True)
                 GHC.Classes.not
                   `cast`
                 (Sym (Types.N:GeneState[0]) ->_R Sym (Types.N:GeneState[0])) -}
-69ca9ece8263afdd2acc83600d568cd7
+f3df0d8563f307547aa2fafab421f1f8
   $fNumGeneState_dt :: GHC.Integer.Type.Integer
   {- HasNoCafRefs, Unfolding: (0) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fNumID :: GHC.Num.Num Types.ID
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -1096,7 +1096,7 @@ e8a02b7bdd6c36d7005783d9a03ae81c
                   Types.$fNumID_$cabs
                   Types.$fNumID_$csignum
                   Types.$fNumID_$cfromInteger -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fNumID_$c* :: Types.ID -> Types.ID -> Types.ID
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -1105,7 +1105,7 @@ e8a02b7bdd6c36d7005783d9a03ae81c
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fNumID_$c+ :: Types.ID -> Types.ID -> Types.ID
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -1114,7 +1114,7 @@ e8a02b7bdd6c36d7005783d9a03ae81c
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fNumID_$c- :: Types.ID -> Types.ID -> Types.ID
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -1123,35 +1123,35 @@ e8a02b7bdd6c36d7005783d9a03ae81c
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fNumID_$cabs :: Types.ID -> Types.ID
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Num.$fNumInt_$cabs
                   `cast`
                 (Sym (Types.N:ID[0]) ->_R Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fNumID_$cfromInteger :: GHC.Integer.Type.Integer -> Types.ID
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Num.$fNumInt_$cfromInteger
                   `cast`
                 (<GHC.Integer.Type.Integer>_R ->_R Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fNumID_$cnegate :: Types.ID -> Types.ID
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Num.$fNumInt_$cnegate
                   `cast`
                 (Sym (Types.N:ID[0]) ->_R Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fNumID_$csignum :: Types.ID -> Types.ID
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Num.$fNumInt_$csignum
                   `cast`
                 (Sym (Types.N:ID[0]) ->_R Sym (Types.N:ID[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fNumThres :: GHC.Num.Num Types.Thres
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -1164,7 +1164,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fNumThres_$cabs
                   Types.$fNumThres_$csignum
                   Types.$fNumThres_$cfromInteger -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fNumThres_$c* :: Types.Thres -> Types.Thres -> Types.Thres
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -1173,7 +1173,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fNumThres_$c+ :: Types.Thres -> Types.Thres -> Types.Thres
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -1182,7 +1182,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fNumThres_$c- :: Types.Thres -> Types.Thres -> Types.Thres
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -1191,35 +1191,35 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fNumThres_$cabs :: Types.Thres -> Types.Thres
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Num.$fNumInt_$cabs
                   `cast`
                 (Sym (Types.N:Thres[0]) ->_R Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fNumThres_$cfromInteger :: GHC.Integer.Type.Integer -> Types.Thres
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Num.$fNumInt_$cfromInteger
                   `cast`
                 (<GHC.Integer.Type.Integer>_R ->_R Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fNumThres_$cnegate :: Types.Thres -> Types.Thres
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Num.$fNumInt_$cnegate
                   `cast`
                 (Sym (Types.N:Thres[0]) ->_R Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fNumThres_$csignum :: Types.Thres -> Types.Thres
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Num.$fNumInt_$csignum
                   `cast`
                 (Sym (Types.N:Thres[0]) ->_R Sym (Types.N:Thres[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fNumWeight :: GHC.Num.Num Types.Weight
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -1232,7 +1232,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fNumWeight_$cabs
                   Types.$fNumWeight_$csignum
                   Types.$fNumWeight_$cfromInteger -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fNumWeight_$c* :: Types.Weight -> Types.Weight -> Types.Weight
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -1241,7 +1241,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fNumWeight_$c+ :: Types.Weight -> Types.Weight -> Types.Weight
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -1250,7 +1250,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fNumWeight_$c- :: Types.Weight -> Types.Weight -> Types.Weight
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -1259,14 +1259,14 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fNumWeight_$cabs :: Types.Weight -> Types.Weight
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Num.$fNumInt_$cabs
                   `cast`
                 (Sym (Types.N:Weight[0]) ->_R Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fNumWeight_$cfromInteger ::
     GHC.Integer.Type.Integer -> Types.Weight
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>m,
@@ -1274,21 +1274,21 @@ b4d1ca11eda71c74c7df7a27380685f5
                 GHC.Num.$fNumInt_$cfromInteger
                   `cast`
                 (<GHC.Integer.Type.Integer>_R ->_R Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fNumWeight_$cnegate :: Types.Weight -> Types.Weight
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Num.$fNumInt_$cnegate
                   `cast`
                 (Sym (Types.N:Weight[0]) ->_R Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fNumWeight_$csignum :: Types.Weight -> Types.Weight
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
                 GHC.Num.$fNumInt_$csignum
                   `cast`
                 (Sym (Types.N:Weight[0]) ->_R Sym (Types.N:Weight[0])) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fOrdAgent :: GHC.Classes.Ord Types.Agent
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -1302,14 +1302,14 @@ c366e34cef18e343b1b97128d4a7d6c2
                   Types.$fOrdAgent_$c>=
                   Types.$fOrdAgent_$cmax
                   Types.$fOrdAgent_$cmin -}
-d45de5cb76c2c4d1214b8540e88c1f34
+872cd254e69c1855839af89322eea8a8
   $fOrdAgent1 :: GHC.Classes.Ord (Types.ID, Types.GeneState)
   {- Unfolding: (GHC.Classes.$fOrd(,)
                    @ Types.ID
                    @ Types.GeneState
                    Types.$fOrdID
                    Types.$fOrdGeneState) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fOrdAgent_$c< :: Types.Agent -> Types.Agent -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ (a :: Types.Agent) (b :: Types.Agent) ->
@@ -1335,7 +1335,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                         Types.NoAgent -> GHC.Types.True }
                    Types.NoAgent
                    -> case b of wild1 { DEFAULT -> GHC.Types.False } }) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fOrdAgent_$c<= :: Types.Agent -> Types.Agent -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ (a :: Types.Agent) (b :: Types.Agent) ->
@@ -1363,7 +1363,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                    -> case b of wild1 {
                         Types.Agent ipv ipv1 -> GHC.Types.False
                         Types.NoAgent -> GHC.Types.True } }) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fOrdAgent_$c> :: Types.Agent -> Types.Agent -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ (a :: Types.Agent) (b :: Types.Agent) ->
@@ -1391,7 +1391,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                    -> case b of wild1 {
                         Types.Agent ipv ipv1 -> GHC.Types.True
                         Types.NoAgent -> GHC.Types.False } }) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fOrdAgent_$c>= :: Types.Agent -> Types.Agent -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ (a :: Types.Agent) (b :: Types.Agent) ->
@@ -1417,7 +1417,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                         Types.NoAgent -> GHC.Types.False }
                    Types.NoAgent
                    -> case b of wild1 { DEFAULT -> GHC.Types.True } }) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fOrdAgent_$ccompare ::
     Types.Agent -> Types.Agent -> GHC.Types.Ordering
   {- Arity: 2, Strictness: <S,1*U><S,1*U>,
@@ -1452,21 +1452,21 @@ c366e34cef18e343b1b97128d4a7d6c2
                    -> case b of wild1 {
                         Types.Agent ipv ipv1 -> GHC.Types.GT
                         Types.NoAgent -> GHC.Types.EQ } }) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fOrdAgent_$cmax :: Types.Agent -> Types.Agent -> Types.Agent
   {- Arity: 2, HasNoCafRefs, Strictness: <S,U><S,U>,
      Unfolding: InlineRule (2, True, False)
                 (\ (x :: Types.Agent) (y :: Types.Agent) ->
                  case Types.$fOrdAgent_$c<= x y of wild {
                    GHC.Types.False -> x GHC.Types.True -> y }) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fOrdAgent_$cmin :: Types.Agent -> Types.Agent -> Types.Agent
   {- Arity: 2, HasNoCafRefs, Strictness: <S,U><S,U>,
      Unfolding: InlineRule (2, True, False)
                 (\ (x :: Types.Agent) (y :: Types.Agent) ->
                  case Types.$fOrdAgent_$c<= x y of wild {
                    GHC.Types.False -> y GHC.Types.True -> x }) -}
-4fd63cec90a9a79921d5d41cac2bcad9
+e193ece6bf1afd06d43e32c285dc045c
   $fOrdAgent_$s$fOrd[] :: GHC.Classes.Ord [Types.Locus]
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
@@ -1479,7 +1479,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                   Types.$fOrdAgent_$s$fOrd[]_$c>=
                   Types.$fOrdAgent_$s$fOrd[]_$cmax
                   Types.$fOrdAgent_$s$fOrd[]_$cmin -}
-50ae2d316b73d4470380fcd51ca9ae8e
+564d4f6fe684134e1d767768c02af567
   $fOrdAgent_$s$fOrd[]_$c< ::
     [Types.Locus] -> [Types.Locus] -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -1491,7 +1491,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                         x
                         y of wild {
                    DEFAULT -> GHC.Types.False GHC.Types.LT -> GHC.Types.True }) -}
-2b1578a8525d7b9cd6dd1e01b2620520
+18277b6ebb4ecd041b369d24859fc7f2
   $fOrdAgent_$s$fOrd[]_$c<= ::
     [Types.Locus] -> [Types.Locus] -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -1503,7 +1503,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                         x
                         y of wild {
                    DEFAULT -> GHC.Types.True GHC.Types.GT -> GHC.Types.False }) -}
-426f2c87074a42bc10aca76baf82742a
+66ca3236895a404f04db18f268568077
   $fOrdAgent_$s$fOrd[]_$c> ::
     [Types.Locus] -> [Types.Locus] -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -1515,7 +1515,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                         x
                         y of wild {
                    DEFAULT -> GHC.Types.False GHC.Types.GT -> GHC.Types.True }) -}
-c06c8817a05478390c93e4e1c404a28d
+a3f19ab7fe24c84090e9c6d205d8882d
   $fOrdAgent_$s$fOrd[]_$c>= ::
     [Types.Locus] -> [Types.Locus] -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -1527,7 +1527,7 @@ c06c8817a05478390c93e4e1c404a28d
                         x
                         y of wild {
                    DEFAULT -> GHC.Types.True GHC.Types.LT -> GHC.Types.False }) -}
-c21c471e50b8c94e0ed41ef03d8ce321
+4802439a3765bc924fe41aa17ab3676c
   $fOrdAgent_$s$fOrd[]_$cmax ::
     [Types.Locus] -> [Types.Locus] -> [Types.Locus]
   {- Arity: 2, HasNoCafRefs, Strictness: <S,U><S,U>,
@@ -1539,7 +1539,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                         x
                         y of wild {
                    DEFAULT -> y GHC.Types.GT -> x }) -}
-5108e2b449e9229f3e6d79a4d2c9f3ba
+1092b0f1e44e44a8d2bc0afb80bbf4da
   $fOrdAgent_$s$fOrd[]_$cmin ::
     [Types.Locus] -> [Types.Locus] -> [Types.Locus]
   {- Arity: 2, HasNoCafRefs, Strictness: <S,U><S,U>,
@@ -1551,11 +1551,11 @@ c21c471e50b8c94e0ed41ef03d8ce321
                         x
                         y of wild {
                    DEFAULT -> x GHC.Types.GT -> y }) -}
-76a8022842d4dca3a11b5f71bfe7db46
+ff46772ee1430cf8f3a6c40fce48b6e5
   $fOrdAgent_$s$fOrd[]_$cp1Ord :: GHC.Classes.Eq [Types.Locus]
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True) Types.$fEqAgent_$s$fEq[] -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fOrdGene :: GHC.Classes.Ord Types.Gene
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -1569,7 +1569,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                   Types.$fOrdLocus_$c>=2
                   Types.$fOrdGene_$cmax
                   Types.$fOrdGene_$cmin -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fOrdGeneState :: GHC.Classes.Ord Types.GeneState
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -1583,7 +1583,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                   Types.$fOrdGeneState_$c>=
                   Types.$fOrdGeneState_$cmax
                   Types.$fOrdGeneState_$cmin -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fOrdGeneState_$c< ::
     Types.GeneState -> Types.GeneState -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -1593,7 +1593,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R <GHC.Types.Bool>_R) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fOrdGeneState_$c<= ::
     Types.GeneState -> Types.GeneState -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -1603,7 +1603,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R <GHC.Types.Bool>_R) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fOrdGeneState_$c> ::
     Types.GeneState -> Types.GeneState -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -1613,7 +1613,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R <GHC.Types.Bool>_R) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fOrdGeneState_$c>= ::
     Types.GeneState -> Types.GeneState -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -1623,7 +1623,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R <GHC.Types.Bool>_R) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fOrdGeneState_$ccompare ::
     Types.GeneState -> Types.GeneState -> GHC.Types.Ordering
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -1633,7 +1633,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R <GHC.Types.Ordering>_R) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fOrdGeneState_$cmax ::
     Types.GeneState -> Types.GeneState -> Types.GeneState
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -1643,7 +1643,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fOrdGeneState_$cmin ::
     Types.GeneState -> Types.GeneState -> Types.GeneState
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -1653,7 +1653,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])
                  ->_R Sym (Types.N:GeneState[0])) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fOrdGene_$cmax :: Types.Gene -> Types.Gene -> Types.Gene
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)LL),U(U(U),U(U),U)><S(S(S)LL),U(U(U),U(U),U)>m,
@@ -1661,7 +1661,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (\ (x :: Types.Gene) (y :: Types.Gene) ->
                  case Types.$fOrdLocus_$ccompare x y of wild {
                    DEFAULT -> y GHC.Types.GT -> x }) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fOrdGene_$cmin :: Types.Gene -> Types.Gene -> Types.Gene
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)LL),U(U(U),U(U),U)><S(S(S)LL),U(U(U),U(U),U)>m,
@@ -1669,7 +1669,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (\ (x :: Types.Gene) (y :: Types.Gene) ->
                  case Types.$fOrdLocus_$ccompare x y of wild {
                    DEFAULT -> x GHC.Types.GT -> y }) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fOrdID :: GHC.Classes.Ord Types.ID
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -1683,7 +1683,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                   Types.$fOrdID_$c>=
                   Types.$fOrdID_$cmax
                   Types.$fOrdID_$cmin -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fOrdID_$c< :: Types.ID -> Types.ID -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -1692,7 +1692,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R <GHC.Types.Bool>_R) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fOrdID_$c<= :: Types.ID -> Types.ID -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -1701,7 +1701,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R <GHC.Types.Bool>_R) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fOrdID_$c> :: Types.ID -> Types.ID -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -1710,7 +1710,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R <GHC.Types.Bool>_R) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fOrdID_$c>= :: Types.ID -> Types.ID -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -1719,7 +1719,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R <GHC.Types.Bool>_R) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fOrdID_$ccompare :: Types.ID -> Types.ID -> GHC.Types.Ordering
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -1728,7 +1728,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R <GHC.Types.Ordering>_R) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fOrdID_$cmax :: Types.ID -> Types.ID -> Types.ID
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -1737,7 +1737,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fOrdID_$cmin :: Types.ID -> Types.ID -> Types.ID
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -1746,7 +1746,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])
                  ->_R Sym (Types.N:ID[0])) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fOrdLocus :: GHC.Classes.Ord Types.Locus
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -1760,7 +1760,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                   Types.$fOrdLocus_$c>=
                   Types.$fOrdLocus_$cmax
                   Types.$fOrdLocus_$cmin -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fOrdLocus_$c< :: Types.Locus -> Types.Locus -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ (a :: Types.Locus) (b :: Types.Locus) ->
@@ -1777,7 +1777,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                    -> case b of wild1 {
                         DEFAULT -> GHC.Types.False
                         Types.CTfbs b1 -> Types.$fOrdLocus_$c<1 a1 b1 } }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fOrdLocus_$c<1 :: Types.Tfbs -> Types.Tfbs -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)L),1*U(1*U(U),1*U(U))><S(S(S)L),1*U(1*U(U),1*U(U))>,
@@ -1789,7 +1789,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                  case w1 of ww5 { Types.Tfbs ww6 ww7 ->
                  case ww6 `cast` (Types.N:ID[0]) of ww8 { GHC.Types.I# ww9 ->
                  Types.$w$c< ww4 ww2 ww9 ww7 } } } }) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fOrdLocus_$c<2 :: Types.Gene -> Types.Gene -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)LL),1*U(1*U(U),1*U(U),1*U)><S(S(S)LL),1*U(1*U(U),1*U(U),1*U)>,
@@ -1797,7 +1797,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (\ (x :: Types.Gene) (y :: Types.Gene) ->
                  case Types.$fOrdLocus_$ccompare x y of wild {
                    DEFAULT -> GHC.Types.False GHC.Types.LT -> GHC.Types.True }) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fOrdLocus_$c<= :: Types.Locus -> Types.Locus -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ (a :: Types.Locus) (b :: Types.Locus) ->
@@ -1812,7 +1812,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                    -> case b of wild1 {
                         DEFAULT -> GHC.Types.False
                         Types.CTfbs b1 -> Types.$fOrdLocus_$c<=1 a1 b1 } }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fOrdLocus_$c<=1 :: Types.Tfbs -> Types.Tfbs -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)L),1*U(1*U(U),1*U(U))><S(S(S)L),1*U(1*U(U),1*U(U))>,
@@ -1824,7 +1824,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                  case w1 of ww5 { Types.Tfbs ww6 ww7 ->
                  case ww6 `cast` (Types.N:ID[0]) of ww8 { GHC.Types.I# ww9 ->
                  Types.$w$c<= ww4 ww2 ww9 ww7 } } } }) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fOrdLocus_$c<=2 :: Types.Gene -> Types.Gene -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)LL),1*U(1*U(U),1*U(U),1*U)><S(S(S)LL),1*U(1*U(U),1*U(U),1*U)>,
@@ -1832,7 +1832,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (\ (x :: Types.Gene) (y :: Types.Gene) ->
                  case Types.$fOrdLocus_$ccompare x y of wild {
                    DEFAULT -> GHC.Types.True GHC.Types.GT -> GHC.Types.False }) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fOrdLocus_$c> :: Types.Locus -> Types.Locus -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ (a :: Types.Locus) (b :: Types.Locus) ->
@@ -1847,7 +1847,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                    -> case b of wild1 {
                         DEFAULT -> GHC.Types.True
                         Types.CTfbs b1 -> Types.$fOrdLocus_$c>1 a1 b1 } }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fOrdLocus_$c>1 :: Types.Tfbs -> Types.Tfbs -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)L),1*U(1*U(U),1*U(U))><S(S(S)L),1*U(1*U(U),1*U(U))>,
@@ -1859,7 +1859,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                  case w1 of ww5 { Types.Tfbs ww6 ww7 ->
                  case ww6 `cast` (Types.N:ID[0]) of ww8 { GHC.Types.I# ww9 ->
                  Types.$w$c> ww4 ww2 ww9 ww7 } } } }) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fOrdLocus_$c>2 :: Types.Gene -> Types.Gene -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)LL),1*U(1*U(U),1*U(U),1*U)><S(S(S)LL),1*U(1*U(U),1*U(U),1*U)>,
@@ -1867,7 +1867,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (\ (x :: Types.Gene) (y :: Types.Gene) ->
                  case Types.$fOrdLocus_$ccompare x y of wild {
                    DEFAULT -> GHC.Types.False GHC.Types.GT -> GHC.Types.True }) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fOrdLocus_$c>= :: Types.Locus -> Types.Locus -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ (a :: Types.Locus) (b :: Types.Locus) ->
@@ -1884,7 +1884,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                    -> case b of wild1 {
                         DEFAULT -> GHC.Types.True
                         Types.CTfbs b1 -> Types.$fOrdLocus_$c>=1 a1 b1 } }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fOrdLocus_$c>=1 :: Types.Tfbs -> Types.Tfbs -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)L),1*U(1*U(U),1*U(U))><S(S(S)L),1*U(1*U(U),1*U(U))>,
@@ -1896,7 +1896,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                  case w1 of ww5 { Types.Tfbs ww6 ww7 ->
                  case ww6 `cast` (Types.N:ID[0]) of ww8 { GHC.Types.I# ww9 ->
                  Types.$w$c>= ww4 ww2 ww9 ww7 } } } }) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fOrdLocus_$c>=2 :: Types.Gene -> Types.Gene -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)LL),1*U(1*U(U),1*U(U),1*U)><S(S(S)LL),1*U(1*U(U),1*U(U),1*U)>,
@@ -1904,7 +1904,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                 (\ (x :: Types.Gene) (y :: Types.Gene) ->
                  case Types.$fOrdLocus_$ccompare x y of wild {
                    DEFAULT -> GHC.Types.True GHC.Types.LT -> GHC.Types.False }) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fOrdLocus_$ccompare ::
     Types.Gene -> Types.Gene -> GHC.Types.Ordering
   {- Arity: 2, HasNoCafRefs,
@@ -1917,7 +1917,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                  case w1 of ww6 { Types.Gene ww7 ww8 ww9 ->
                  case ww7 `cast` (Types.N:ID[0]) of ww10 { GHC.Types.I# ww11 ->
                  Types.$w$ccompare ww5 ww2 ww3 ww11 ww8 ww9 } } } }) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fOrdLocus_$ccompare1 ::
     Types.Locus -> Types.Locus -> GHC.Types.Ordering
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -1935,7 +1935,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                    -> case b of wild1 {
                         DEFAULT -> GHC.Types.GT
                         Types.CTfbs b1 -> Types.$fOrdLocus_$ccompare2 a1 b1 } }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fOrdLocus_$ccompare2 ::
     Types.Tfbs -> Types.Tfbs -> GHC.Types.Ordering
   {- Arity: 2, HasNoCafRefs,
@@ -1948,7 +1948,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                  case w1 of ww5 { Types.Tfbs ww6 ww7 ->
                  case ww6 `cast` (Types.N:ID[0]) of ww8 { GHC.Types.I# ww9 ->
                  Types.$w$ccompare1 ww4 ww2 ww9 ww7 } } } }) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fOrdLocus_$cmax :: Types.Locus -> Types.Locus -> Types.Locus
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ (x :: Types.Locus) (y :: Types.Locus) ->
@@ -1993,7 +1993,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                                             (GHC.Prim.<=# x1 y1) of wild10 {
                                        GHC.Types.False -> wild GHC.Types.True -> wild1 } } } }
                              GHC.Types.True -> wild1 } } } } } } }) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fOrdLocus_$cmin :: Types.Locus -> Types.Locus -> Types.Locus
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ (x :: Types.Locus) (y :: Types.Locus) ->
@@ -2038,7 +2038,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                                             (GHC.Prim.<=# x1 y1) of wild10 {
                                        GHC.Types.False -> wild1 GHC.Types.True -> wild } } } }
                              GHC.Types.True -> wild } } } } } } }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fOrdTfbs :: GHC.Classes.Ord Types.Tfbs
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -2052,7 +2052,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                   Types.$fOrdLocus_$c>=1
                   Types.$fOrdTfbs_$cmax
                   Types.$fOrdTfbs_$cmin -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fOrdTfbs_$cmax :: Types.Tfbs -> Types.Tfbs -> Types.Tfbs
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)L),1*U(U(U),U(U))><S(S(S)L),1*U(U(U),U(U))>m,
@@ -2090,7 +2090,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                    -> Types.Tfbs
                         (GHC.Types.I# ww9) `cast` (Sym (Types.N:ID[0]))
                         ww7 } } } } }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fOrdTfbs_$cmin :: Types.Tfbs -> Types.Tfbs -> Types.Tfbs
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(S(S)L),1*U(U(U),U(U))><S(S(S)L),1*U(U(U),U(U))>m,
@@ -2128,7 +2128,7 @@ c21c471e50b8c94e0ed41ef03d8ce321
                    -> Types.Tfbs
                         (GHC.Types.I# ww4) `cast` (Sym (Types.N:ID[0]))
                         ww2 } } } } }) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fOrdThres :: GHC.Classes.Ord Types.Thres
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -2142,7 +2142,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fOrdThres_$c>=
                   Types.$fOrdThres_$cmax
                   Types.$fOrdThres_$cmin -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fOrdThres_$c< :: Types.Thres -> Types.Thres -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -2151,7 +2151,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R <GHC.Types.Bool>_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fOrdThres_$c<= :: Types.Thres -> Types.Thres -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -2160,7 +2160,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R <GHC.Types.Bool>_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fOrdThres_$c> :: Types.Thres -> Types.Thres -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -2169,7 +2169,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R <GHC.Types.Bool>_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fOrdThres_$c>= :: Types.Thres -> Types.Thres -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -2178,7 +2178,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R <GHC.Types.Bool>_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fOrdThres_$ccompare ::
     Types.Thres -> Types.Thres -> GHC.Types.Ordering
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
@@ -2188,7 +2188,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R <GHC.Types.Ordering>_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fOrdThres_$cmax :: Types.Thres -> Types.Thres -> Types.Thres
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -2197,7 +2197,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fOrdThres_$cmin :: Types.Thres -> Types.Thres -> Types.Thres
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -2206,7 +2206,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])
                  ->_R Sym (Types.N:Thres[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fOrdWeight :: GHC.Classes.Ord Types.Weight
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -2220,7 +2220,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fOrdWeight_$c>=
                   Types.$fOrdWeight_$cmax
                   Types.$fOrdWeight_$cmin -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fOrdWeight_$c< :: Types.Weight -> Types.Weight -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -2229,7 +2229,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R <GHC.Types.Bool>_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fOrdWeight_$c<= :: Types.Weight -> Types.Weight -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -2238,7 +2238,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R <GHC.Types.Bool>_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fOrdWeight_$c> :: Types.Weight -> Types.Weight -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -2247,7 +2247,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R <GHC.Types.Bool>_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fOrdWeight_$c>= :: Types.Weight -> Types.Weight -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
      Unfolding: InlineRule (0, True, True)
@@ -2256,7 +2256,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R <GHC.Types.Bool>_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fOrdWeight_$ccompare ::
     Types.Weight -> Types.Weight -> GHC.Types.Ordering
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>,
@@ -2266,7 +2266,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R <GHC.Types.Ordering>_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fOrdWeight_$cmax :: Types.Weight -> Types.Weight -> Types.Weight
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -2275,7 +2275,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fOrdWeight_$cmin :: Types.Weight -> Types.Weight -> Types.Weight
   {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -2284,7 +2284,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                 (Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])
                  ->_R Sym (Types.N:Weight[0])) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fReadAgent :: GHC.Read.Read Types.Agent
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -2294,7 +2294,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                   Types.$fReadAgent_$creadList
                   Types.$fReadAgent_$creadPrec
                   Types.$fReadAgent_$creadListPrec -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fReadAgent1 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -2314,7 +2314,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                    eta
                    @ b
                    eta1) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fReadAgent2 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> Text.ParserCombinators.ReadP.ReadP Types.Agent
@@ -2328,14 +2328,14 @@ c366e34cef18e343b1b97128d4a7d6c2
                          ->_R Sym (Text.ParserCombinators.ReadP.N:ReadP[0] <Types.Agent>_R))
                         (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                   <Types.Agent>_R)))) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fReadAgent3 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
        (Types.Agent -> Text.ParserCombinators.ReadP.P b)
        -> Text.ParserCombinators.ReadP.P b
   {- Arity: 2, Strictness: <L,1*U(U)><L,C(U)> -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fReadAgent4 :: Text.ParserCombinators.ReadP.P [Types.Agent]
   {- Unfolding: (GHC.Read.list1
                    @ Types.Agent
@@ -2347,14 +2347,14 @@ c366e34cef18e343b1b97128d4a7d6c2
                    @ [Types.Agent]
                    (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                       @ [Types.Agent])) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fReadAgent_$creadList ::
     Text.ParserCombinators.ReadP.ReadS [Types.Agent]
   {- Arity: 1,
      Unfolding: (Text.ParserCombinators.ReadP.run
                    @ [Types.Agent]
                    Types.$fReadAgent4) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fReadAgent_$creadListPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec [Types.Agent]
   {- Arity: 2, Strictness: <L,U><L,U>,
@@ -2367,7 +2367,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                                     <[Types.Agent]>_R))
                      (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                <[Types.Agent]>_R))) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fReadAgent_$creadPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec Types.Agent
   {- Arity: 1,
@@ -2376,7 +2376,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                   `cast`
                 (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                           <Types.Agent>_R)) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fReadAgent_$creadsPrec ::
     GHC.Types.Int -> Text.ParserCombinators.ReadP.ReadS Types.Agent
   {- Arity: 1, Strictness: <L,U>,
@@ -2399,7 +2399,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                       @ Types.Agent
                       (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                          @ Types.Agent))) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fReadGene :: GHC.Read.Read Types.Gene
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -2409,7 +2409,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                   Types.$fReadGene_$creadList
                   Types.$fReadGene_$creadPrec
                   Types.$fReadGene_$creadListPrec -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fReadGene1 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -2429,7 +2429,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                    eta
                    @ b
                    eta1) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fReadGene2 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> Text.ParserCombinators.ReadP.ReadP Types.Gene
@@ -2443,7 +2443,7 @@ c366e34cef18e343b1b97128d4a7d6c2
                          ->_R Sym (Text.ParserCombinators.ReadP.N:ReadP[0] <Types.Gene>_R))
                         (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                   <Types.Gene>_R)))) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fReadGene3 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -2461,10 +2461,10 @@ c366e34cef18e343b1b97128d4a7d6c2
                    GHC.Types.False -> Text.ParserCombinators.ReadP.Fail @ b
                    GHC.Types.True
                    -> Types.$fReadGene5 Types.$fReadGene4 @ b eta } }) -}
-b1cc6161529fcb714bf855d977bfc39b
+72ddcc7ea97207def09287461804ce8f
   $fReadGene4 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 11#) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fReadGene5 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b1.
@@ -2477,7 +2477,7 @@ b1cc6161529fcb714bf855d977bfc39b
                    (w1 :: Types.Gene -> Text.ParserCombinators.ReadP.P b1) ->
                  case Types.$w$creadPrec @ b1 w1 of ww { Unit# ww1 ->
                  Text.ParserCombinators.ReadP.Look @ b1 ww1 }) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fReadGene6 :: Text.ParserCombinators.ReadP.P [Types.Gene]
   {- Unfolding: (GHC.Read.list1
                    @ Types.Gene
@@ -2489,7 +2489,7 @@ b1cc6161529fcb714bf855d977bfc39b
                    @ [Types.Gene]
                    (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                       @ [Types.Gene])) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fReadGeneState :: GHC.Read.Read Types.GeneState
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -2499,7 +2499,7 @@ b1cc6161529fcb714bf855d977bfc39b
                   Types.$fReadGeneState_$creadList
                   Types.$fReadGeneState_$creadPrec
                   Types.$fReadGeneState_$creadListPrec -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fReadGeneState1 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -2519,7 +2519,7 @@ b1cc6161529fcb714bf855d977bfc39b
                    eta
                    @ b
                    eta1) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fReadGeneState2 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> Text.ParserCombinators.ReadP.ReadP Types.GeneState
@@ -2534,7 +2534,7 @@ b1cc6161529fcb714bf855d977bfc39b
                                        <Types.GeneState>_R))
                         (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                   <Types.GeneState>_R)))) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fReadGeneState3 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -2547,10 +2547,10 @@ b1cc6161529fcb714bf855d977bfc39b
                    (w1 :: Types.GeneState -> Text.ParserCombinators.ReadP.P b) ->
                  case w of ww { GHC.Types.I# ww1 ->
                  Types.$w$creadPrec1 ww1 @ b w1 }) -}
-6fea0ae9542a4ac2d68bfffaafe15acd
+a539166f55ae1beb1c639f7bf6bb5747
   $fReadGeneState4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "GS"#) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fReadGeneState5 ::
     Text.ParserCombinators.ReadP.P [Types.GeneState]
   {- Unfolding: (GHC.Read.list1
@@ -2563,14 +2563,14 @@ b1cc6161529fcb714bf855d977bfc39b
                    @ [Types.GeneState]
                    (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                       @ [Types.GeneState])) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fReadGeneState_$creadList ::
     Text.ParserCombinators.ReadP.ReadS [Types.GeneState]
   {- Arity: 1,
      Unfolding: (Text.ParserCombinators.ReadP.run
                    @ [Types.GeneState]
                    Types.$fReadGeneState5) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fReadGeneState_$creadListPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec [Types.GeneState]
   {- Arity: 2, Strictness: <L,U><L,U>,
@@ -2583,7 +2583,7 @@ b1cc6161529fcb714bf855d977bfc39b
                                     <[Types.GeneState]>_R))
                      (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                <[Types.GeneState]>_R))) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fReadGeneState_$creadPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec Types.GeneState
   {- Arity: 1,
@@ -2592,7 +2592,7 @@ b1cc6161529fcb714bf855d977bfc39b
                   `cast`
                 (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                           <Types.GeneState>_R)) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fReadGeneState_$creadsPrec ::
     GHC.Types.Int -> Text.ParserCombinators.ReadP.ReadS Types.GeneState
   {- Arity: 1, Strictness: <L,U>,
@@ -2616,14 +2616,14 @@ b1cc6161529fcb714bf855d977bfc39b
                       @ Types.GeneState
                       (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                          @ Types.GeneState))) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fReadGene_$creadList ::
     Text.ParserCombinators.ReadP.ReadS [Types.Gene]
   {- Arity: 1,
      Unfolding: (Text.ParserCombinators.ReadP.run
                    @ [Types.Gene]
                    Types.$fReadGene6) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fReadGene_$creadListPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec [Types.Gene]
   {- Arity: 2, Strictness: <L,U><L,U>,
@@ -2636,7 +2636,7 @@ b1cc6161529fcb714bf855d977bfc39b
                                     <[Types.Gene]>_R))
                      (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                <[Types.Gene]>_R))) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fReadGene_$creadPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec Types.Gene
   {- Arity: 1,
@@ -2645,7 +2645,7 @@ b1cc6161529fcb714bf855d977bfc39b
                   `cast`
                 (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                           <Types.Gene>_R)) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fReadGene_$creadsPrec ::
     GHC.Types.Int -> Text.ParserCombinators.ReadP.ReadS Types.Gene
   {- Arity: 1, Strictness: <L,U>,
@@ -2668,7 +2668,7 @@ b1cc6161529fcb714bf855d977bfc39b
                       @ Types.Gene
                       (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                          @ Types.Gene))) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fReadID :: GHC.Read.Read Types.ID
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -2678,7 +2678,7 @@ b1cc6161529fcb714bf855d977bfc39b
                   Types.$fReadID_$creadList
                   Types.$fReadID_$creadPrec
                   Types.$fReadID_$creadListPrec -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fReadID1 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -2697,7 +2697,7 @@ b1cc6161529fcb714bf855d977bfc39b
                    eta
                    @ b
                    eta1) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fReadID2 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> Text.ParserCombinators.ReadP.ReadP Types.ID
@@ -2711,7 +2711,7 @@ b1cc6161529fcb714bf855d977bfc39b
                          ->_R Sym (Text.ParserCombinators.ReadP.N:ReadP[0] <Types.ID>_R))
                         (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                   <Types.ID>_R)))) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fReadID3 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -2724,10 +2724,10 @@ b1cc6161529fcb714bf855d977bfc39b
                    (w1 :: Types.ID -> Text.ParserCombinators.ReadP.P b) ->
                  case w of ww { GHC.Types.I# ww1 ->
                  Types.$w$creadPrec2 ww1 @ b w1 }) -}
-a1bce88861c33c0cc5864ed16135b747
+a060f67eb296206985725d7b1c0dc9dc
   $fReadID4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "ID"#) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fReadID5 :: Text.ParserCombinators.ReadP.P [Types.ID]
   {- Unfolding: (GHC.Read.list1
                    @ Types.ID
@@ -2738,14 +2738,14 @@ a1bce88861c33c0cc5864ed16135b747
                    @ [Types.ID]
                    (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                       @ [Types.ID])) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fReadID_$creadList ::
     Text.ParserCombinators.ReadP.ReadS [Types.ID]
   {- Arity: 1,
      Unfolding: (Text.ParserCombinators.ReadP.run
                    @ [Types.ID]
                    Types.$fReadID5) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fReadID_$creadListPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec [Types.ID]
   {- Arity: 2, Strictness: <L,U><L,U>,
@@ -2757,7 +2757,7 @@ a1bce88861c33c0cc5864ed16135b747
                       ->_R Sym (Text.ParserCombinators.ReadP.N:ReadP[0] <[Types.ID]>_R))
                      (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                <[Types.ID]>_R))) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fReadID_$creadPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec Types.ID
   {- Arity: 1,
@@ -2766,7 +2766,7 @@ a1bce88861c33c0cc5864ed16135b747
                   `cast`
                 (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                           <Types.ID>_R)) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fReadID_$creadsPrec ::
     GHC.Types.Int -> Text.ParserCombinators.ReadP.ReadS Types.ID
   {- Arity: 1, Strictness: <L,U>,
@@ -2788,7 +2788,7 @@ a1bce88861c33c0cc5864ed16135b747
                       @ Types.ID
                       (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                          @ Types.ID))) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fReadLocus :: GHC.Read.Read Types.Locus
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -2798,7 +2798,7 @@ a1bce88861c33c0cc5864ed16135b747
                   Types.$fReadLocus_$creadList
                   Types.$fReadLocus_$creadPrec
                   Types.$fReadLocus_$creadListPrec -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fReadLocus1 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -2818,7 +2818,7 @@ a1bce88861c33c0cc5864ed16135b747
                    eta
                    @ b
                    eta1) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fReadLocus2 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> Text.ParserCombinators.ReadP.ReadP Types.Locus
@@ -2832,14 +2832,14 @@ a1bce88861c33c0cc5864ed16135b747
                          ->_R Sym (Text.ParserCombinators.ReadP.N:ReadP[0] <Types.Locus>_R))
                         (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                   <Types.Locus>_R)))) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fReadLocus3 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
        (Types.Locus -> Text.ParserCombinators.ReadP.P b)
        -> Text.ParserCombinators.ReadP.P b
   {- Arity: 2, Strictness: <L,1*U(U)><L,C(U)> -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fReadLocus4 :: Text.ParserCombinators.ReadP.P [Types.Locus]
   {- Unfolding: (GHC.Read.list1
                    @ Types.Locus
@@ -2851,14 +2851,14 @@ a1bce88861c33c0cc5864ed16135b747
                    @ [Types.Locus]
                    (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                       @ [Types.Locus])) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fReadLocus_$creadList ::
     Text.ParserCombinators.ReadP.ReadS [Types.Locus]
   {- Arity: 1,
      Unfolding: (Text.ParserCombinators.ReadP.run
                    @ [Types.Locus]
                    Types.$fReadLocus4) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fReadLocus_$creadListPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec [Types.Locus]
   {- Arity: 2, Strictness: <L,U><L,U>,
@@ -2871,7 +2871,7 @@ a1bce88861c33c0cc5864ed16135b747
                                     <[Types.Locus]>_R))
                      (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                <[Types.Locus]>_R))) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fReadLocus_$creadPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec Types.Locus
   {- Arity: 1,
@@ -2880,7 +2880,7 @@ a1bce88861c33c0cc5864ed16135b747
                   `cast`
                 (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                           <Types.Locus>_R)) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fReadLocus_$creadsPrec ::
     GHC.Types.Int -> Text.ParserCombinators.ReadP.ReadS Types.Locus
   {- Arity: 1, Strictness: <L,U>,
@@ -2903,7 +2903,7 @@ a1bce88861c33c0cc5864ed16135b747
                       @ Types.Locus
                       (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                          @ Types.Locus))) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fReadTfbs :: GHC.Read.Read Types.Tfbs
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -2913,7 +2913,7 @@ a1bce88861c33c0cc5864ed16135b747
                   Types.$fReadTfbs_$creadList
                   Types.$fReadTfbs_$creadPrec
                   Types.$fReadTfbs_$creadListPrec -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fReadTfbs1 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -2933,7 +2933,7 @@ a1bce88861c33c0cc5864ed16135b747
                    eta
                    @ b
                    eta1) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fReadTfbs2 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> Text.ParserCombinators.ReadP.ReadP Types.Tfbs
@@ -2947,7 +2947,7 @@ a1bce88861c33c0cc5864ed16135b747
                          ->_R Sym (Text.ParserCombinators.ReadP.N:ReadP[0] <Types.Tfbs>_R))
                         (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                   <Types.Tfbs>_R)))) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fReadTfbs3 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -2965,7 +2965,7 @@ a1bce88861c33c0cc5864ed16135b747
                    GHC.Types.False -> Text.ParserCombinators.ReadP.Fail @ b
                    GHC.Types.True
                    -> Types.$fReadTfbs4 Types.$fReadGene4 @ b eta } }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fReadTfbs4 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b1.
@@ -2978,7 +2978,7 @@ a1bce88861c33c0cc5864ed16135b747
                    (w1 :: Types.Tfbs -> Text.ParserCombinators.ReadP.P b1) ->
                  case Types.$w$creadPrec3 @ b1 w1 of ww { Unit# ww1 ->
                  Text.ParserCombinators.ReadP.Look @ b1 ww1 }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fReadTfbs5 :: Text.ParserCombinators.ReadP.P [Types.Tfbs]
   {- Unfolding: (GHC.Read.list1
                    @ Types.Tfbs
@@ -2990,14 +2990,14 @@ a1bce88861c33c0cc5864ed16135b747
                    @ [Types.Tfbs]
                    (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                       @ [Types.Tfbs])) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fReadTfbs_$creadList ::
     Text.ParserCombinators.ReadP.ReadS [Types.Tfbs]
   {- Arity: 1,
      Unfolding: (Text.ParserCombinators.ReadP.run
                    @ [Types.Tfbs]
                    Types.$fReadTfbs5) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fReadTfbs_$creadListPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec [Types.Tfbs]
   {- Arity: 2, Strictness: <L,U><L,U>,
@@ -3010,7 +3010,7 @@ a1bce88861c33c0cc5864ed16135b747
                                     <[Types.Tfbs]>_R))
                      (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                <[Types.Tfbs]>_R))) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fReadTfbs_$creadPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec Types.Tfbs
   {- Arity: 1,
@@ -3019,7 +3019,7 @@ a1bce88861c33c0cc5864ed16135b747
                   `cast`
                 (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                           <Types.Tfbs>_R)) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fReadTfbs_$creadsPrec ::
     GHC.Types.Int -> Text.ParserCombinators.ReadP.ReadS Types.Tfbs
   {- Arity: 1, Strictness: <L,U>,
@@ -3042,7 +3042,7 @@ a1bce88861c33c0cc5864ed16135b747
                       @ Types.Tfbs
                       (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                          @ Types.Tfbs))) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fReadThres :: GHC.Read.Read Types.Thres
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3052,7 +3052,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fReadThres_$creadList
                   Types.$fReadThres_$creadPrec
                   Types.$fReadThres_$creadListPrec -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fReadThres1 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -3072,7 +3072,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                    eta
                    @ b
                    eta1) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fReadThres2 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> Text.ParserCombinators.ReadP.ReadP Types.Thres
@@ -3086,7 +3086,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                          ->_R Sym (Text.ParserCombinators.ReadP.N:ReadP[0] <Types.Thres>_R))
                         (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                   <Types.Thres>_R)))) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fReadThres3 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -3099,10 +3099,10 @@ b4d1ca11eda71c74c7df7a27380685f5
                    (w1 :: Types.Thres -> Text.ParserCombinators.ReadP.P b) ->
                  case w of ww { GHC.Types.I# ww1 ->
                  Types.$w$creadPrec4 ww1 @ b w1 }) -}
-bfd2d5c590d1ba57d285328a78886389
+63737b6697acfa5696e903b28b25d716
   $fReadThres4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Thres"#) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fReadThres5 :: Text.ParserCombinators.ReadP.P [Types.Thres]
   {- Unfolding: (GHC.Read.list1
                    @ Types.Thres
@@ -3114,14 +3114,14 @@ b4d1ca11eda71c74c7df7a27380685f5
                    @ [Types.Thres]
                    (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                       @ [Types.Thres])) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fReadThres_$creadList ::
     Text.ParserCombinators.ReadP.ReadS [Types.Thres]
   {- Arity: 1,
      Unfolding: (Text.ParserCombinators.ReadP.run
                    @ [Types.Thres]
                    Types.$fReadThres5) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fReadThres_$creadListPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec [Types.Thres]
   {- Arity: 2, Strictness: <L,U><L,U>,
@@ -3134,7 +3134,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                                     <[Types.Thres]>_R))
                      (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                <[Types.Thres]>_R))) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fReadThres_$creadPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec Types.Thres
   {- Arity: 1,
@@ -3143,7 +3143,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   `cast`
                 (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                           <Types.Thres>_R)) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fReadThres_$creadsPrec ::
     GHC.Types.Int -> Text.ParserCombinators.ReadP.ReadS Types.Thres
   {- Arity: 1, Strictness: <L,U>,
@@ -3166,7 +3166,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                       @ Types.Thres
                       (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                          @ Types.Thres))) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fReadWeight :: GHC.Read.Read Types.Weight
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3176,7 +3176,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fReadWeight_$creadList
                   Types.$fReadWeight_$creadPrec
                   Types.$fReadWeight_$creadListPrec -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fReadWeight1 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -3196,7 +3196,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                    eta
                    @ b
                    eta1) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fReadWeight2 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> Text.ParserCombinators.ReadP.ReadP Types.Weight
@@ -3211,7 +3211,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                                        <Types.Weight>_R))
                         (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                   <Types.Weight>_R)))) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fReadWeight3 ::
     Text.ParserCombinators.ReadPrec.Prec
     -> forall b.
@@ -3224,10 +3224,10 @@ b4d1ca11eda71c74c7df7a27380685f5
                    (w1 :: Types.Weight -> Text.ParserCombinators.ReadP.P b) ->
                  case w of ww { GHC.Types.I# ww1 ->
                  Types.$w$creadPrec5 ww1 @ b w1 }) -}
-8756c49313c39c2425e3c3078c151dd4
+b9b78008da4a0118d6811d6400fe177f
   $fReadWeight4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Weight"#) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fReadWeight5 :: Text.ParserCombinators.ReadP.P [Types.Weight]
   {- Unfolding: (GHC.Read.list1
                    @ Types.Weight
@@ -3239,14 +3239,14 @@ b4d1ca11eda71c74c7df7a27380685f5
                    @ [Types.Weight]
                    (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                       @ [Types.Weight])) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fReadWeight_$creadList ::
     Text.ParserCombinators.ReadP.ReadS [Types.Weight]
   {- Arity: 1,
      Unfolding: (Text.ParserCombinators.ReadP.run
                    @ [Types.Weight]
                    Types.$fReadWeight5) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fReadWeight_$creadListPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec [Types.Weight]
   {- Arity: 2, Strictness: <L,U><L,U>,
@@ -3259,7 +3259,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                                     <[Types.Weight]>_R))
                      (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                                <[Types.Weight]>_R))) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fReadWeight_$creadPrec ::
     Text.ParserCombinators.ReadPrec.ReadPrec Types.Weight
   {- Arity: 1,
@@ -3268,7 +3268,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   `cast`
                 (Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
                           <Types.Weight>_R)) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fReadWeight_$creadsPrec ::
     GHC.Types.Int -> Text.ParserCombinators.ReadP.ReadS Types.Weight
   {- Arity: 1, Strictness: <L,U>,
@@ -3292,7 +3292,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                       @ Types.Weight
                       (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
                          @ Types.Weight))) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fRealGeneState :: GHC.Real.Real Types.GeneState
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3301,21 +3301,21 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fNumGeneState
                   Types.$fOrdGeneState
                   Types.$fRealGeneState_$ctoRational -}
-5441044398afc16625d033568ec32a4f
+ff58fe67a13097f57c1ebc5458e9b8a1
   $fRealGeneState1 :: GHC.Real.Rational
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Real.:%
                    @ GHC.Integer.Type.Integer
                    Types.$fRealGeneState_dt
                    GHC.Real.$fEnumRatio1) -}
-5fbefcf0ffe88da1fd1186e45094ff1a
+7f2a58a18370d3ec77ca560d3a230ac2
   $fRealGeneState2 :: GHC.Real.Rational
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Real.:%
                    @ GHC.Integer.Type.Integer
                    Types.$fNumGeneState_dt
                    GHC.Real.$fEnumRatio1) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fRealGeneState_$ctoRational ::
     Types.GeneState -> GHC.Real.Rational
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>m,
@@ -3324,10 +3324,10 @@ b4d1ca11eda71c74c7df7a27380685f5
                  case ds `cast` (Types.N:GeneState[0]) of wild {
                    GHC.Types.False -> Types.$fRealGeneState2
                    GHC.Types.True -> Types.$fRealGeneState1 }) -}
-42d14b89487f43f3fd73575933b6d069
+299db3b2cdacfac519810847347a576d
   $fRealGeneState_dt :: GHC.Integer.Type.Integer
   {- HasNoCafRefs, Unfolding: (1) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fRealID :: GHC.Real.Real Types.ID
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3336,7 +3336,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fNumID
                   Types.$fOrdID
                   Types.$fRealID_$ctoRational -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fRealID_$ctoRational :: Types.ID -> GHC.Real.Rational
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -3344,7 +3344,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   `cast`
                 (Sym (Types.N:ID[0])
                  ->_R <GHC.Real.Ratio GHC.Integer.Type.Integer>_R) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fRealThres :: GHC.Real.Real Types.Thres
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3353,7 +3353,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fNumThres
                   Types.$fOrdThres
                   Types.$fRealThres_$ctoRational -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fRealThres_$ctoRational :: Types.Thres -> GHC.Real.Rational
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -3361,7 +3361,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   `cast`
                 (Sym (Types.N:Thres[0])
                  ->_R <GHC.Real.Ratio GHC.Integer.Type.Integer>_R) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fRealWeight :: GHC.Real.Real Types.Weight
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3370,7 +3370,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fNumWeight
                   Types.$fOrdWeight
                   Types.$fRealWeight_$ctoRational -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fRealWeight_$ctoRational :: Types.Weight -> GHC.Real.Rational
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m,
      Unfolding: InlineRule (0, True, True)
@@ -3378,7 +3378,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                   `cast`
                 (Sym (Types.N:Weight[0])
                  ->_R <GHC.Real.Ratio GHC.Integer.Type.Integer>_R) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fShowAgent :: GHC.Show.Show Types.Agent
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3387,14 +3387,14 @@ c366e34cef18e343b1b97128d4a7d6c2
                   Types.$fShowAgent_$cshowsPrec
                   Types.$fShowAgent_$cshow
                   Types.$fShowAgent_$cshowList -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fShowAgent1 :: Types.Agent -> GHC.Show.ShowS
   {- Arity: 1,
      Unfolding: (Types.$fShowAgent_$cshowsPrec Types.$fShowAgent2) -}
-fe36e289b264c43ad8f5ba77c6a80f4c
+27ecc3857b805a878e280d909cab388a
   $fShowAgent2 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0#) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fShowAgent_$cshow :: Types.Agent -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
@@ -3403,17 +3403,17 @@ c366e34cef18e343b1b97128d4a7d6c2
                    GHC.Show.shows22
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fShowAgent_$cshowList :: [Types.Agent] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__
                    @ Types.Agent
                    Types.$fShowAgent1) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   $fShowAgent_$cshowsPrec ::
     GHC.Types.Int -> Types.Agent -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <L,1*U(U)><S,1*U> -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fShowGene :: GHC.Show.Show Types.Gene
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3422,40 +3422,40 @@ c366e34cef18e343b1b97128d4a7d6c2
                   Types.$fShowGene_$cshowsPrec
                   Types.$fShowGene_$cshow
                   Types.$fShowGene_$cshowList -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fShowGene1 :: Types.Gene -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (\ (w :: Types.Gene) (w1 :: GHC.Base.String) ->
                  case w of ww { Types.Gene ww1 ww2 ww3 ->
                  Types.$w$cshowsPrec 0# ww1 ww2 ww3 w1 }) -}
-0f7a971ca6c37d5cf119a7fc86fa3bd4
+9c5377c1b3d7560490a66a5559d52d70
   $fShowGene10 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Gene {"#) -}
-23608464de754bede4fe3b72ddd2de2f
+cd5875d4551da209fbdfc2f44957b4fa
   $fShowGene2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "}"#) -}
-4ac91082b55b85da0a6f2b08014c1ac6
+3666ad9fbbd69484c9909fbb640a0240
   $fShowGene3 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "GS "#) -}
-ed75a970001df1ad39000589562e4ec4
+ce87e7941ab6f028c4b5af4d3cc17ffb
   $fShowGene4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "genSt = "#) -}
-f6975fd87089eebe0ef24f75d08f5ef5
+ed211a83553a3c7f26a32433d09cdfc5
   $fShowGene5 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Thres "#) -}
-b6429d7b77cf0b359286d84380e670b0
+84fa972a3301f11cef85a5b2c0d160e0
   $fShowGene6 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "thres = "#) -}
-12d9ffdcea5c0480b588c4195ab82d83
+ab906ca661947cebd2fdbe32cd32abd5
   $fShowGene7 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# ", "#) -}
-e5b2825ccc6f5ce1a89eddc53fbc948a
+6887a038c455fdbcf92d08fe08d27d54
   $fShowGene8 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "ID "#) -}
-f77d32ce236342d895d45faa708fe532
+9091321be768bbd9703276fac612d396
   $fShowGene9 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "geneID = "#) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fShowGeneState :: GHC.Show.Show Types.GeneState
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3464,12 +3464,12 @@ f77d32ce236342d895d45faa708fe532
                   Types.$fShowGeneState_$cshowsPrec
                   Types.$fShowGeneState_$cshow
                   Types.$fShowGeneState_$cshowList -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fShowGeneState1 :: Types.GeneState -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (\ (w :: Types.GeneState) (w1 :: GHC.Base.String) ->
                  Types.$w$cshowsPrec1 0# w w1) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fShowGeneState_$cshow :: Types.GeneState -> GHC.Base.String
   {- Arity: 1, Strictness: <L,1*U>,
      Unfolding: InlineRule (1, True, False)
@@ -3478,13 +3478,13 @@ f77d32ce236342d895d45faa708fe532
                    GHC.Show.shows22
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fShowGeneState_$cshowList :: [Types.GeneState] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__
                    @ Types.GeneState
                    Types.$fShowGeneState1) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $fShowGeneState_$cshowsPrec ::
     GHC.Types.Int -> Types.GeneState -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <S(S),1*U(U)><L,1*U><L,U>,
@@ -3495,7 +3495,7 @@ f77d32ce236342d895d45faa708fe532
                    (w2 :: GHC.Base.String) ->
                  case w of ww { GHC.Types.I# ww1 ->
                  Types.$w$cshowsPrec1 ww1 w1 w2 }) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fShowGene_$cshow :: Types.Gene -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U(1*U(U),1*U(U),1*U)>,
      Unfolding: InlineRule (1, True, False)
@@ -3504,11 +3504,11 @@ f77d32ce236342d895d45faa708fe532
                    GHC.Show.shows22
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fShowGene_$cshowList :: [Types.Gene] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__ @ Types.Gene Types.$fShowGene1) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $fShowGene_$cshowsPrec ::
     GHC.Types.Int -> Types.Gene -> GHC.Show.ShowS
   {- Arity: 3,
@@ -3521,7 +3521,7 @@ f77d32ce236342d895d45faa708fe532
                  case w of ww { GHC.Types.I# ww1 ->
                  case w1 of ww2 { Types.Gene ww3 ww4 ww5 ->
                  Types.$w$cshowsPrec ww1 ww3 ww4 ww5 w2 } }) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fShowID :: GHC.Show.Show Types.ID
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3530,12 +3530,12 @@ f77d32ce236342d895d45faa708fe532
                   Types.$fShowID_$cshowsPrec
                   Types.$fShowID_$cshow
                   Types.$fShowID_$cshowList -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fShowID1 :: Types.ID -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (\ (w :: Types.ID) (w1 :: GHC.Base.String) ->
                  Types.$w$cshowsPrec3 0# w w1) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fShowID_$cshow :: Types.ID -> GHC.Base.String
   {- Arity: 1, Strictness: <L,1*U(U)>,
      Unfolding: (\ (x :: Types.ID) ->
@@ -3548,11 +3548,11 @@ f77d32ce236342d895d45faa708fe532
                            ww3
                            (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
                     GHC.Types.: @ GHC.Types.Char ww5 ww6 } })) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fShowID_$cshowList :: [Types.ID] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__ @ Types.ID Types.$fShowID1) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $fShowID_$cshowsPrec :: GHC.Types.Int -> Types.ID -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <S(S),1*U(U)><L,1*U(U)><L,U>,
      Inline: INLINE[0],
@@ -3560,7 +3560,7 @@ f77d32ce236342d895d45faa708fe532
                 (\ (w :: GHC.Types.Int) (w1 :: Types.ID) (w2 :: GHC.Base.String) ->
                  case w of ww { GHC.Types.I# ww1 ->
                  Types.$w$cshowsPrec3 ww1 w1 w2 }) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fShowLocus :: GHC.Show.Show Types.Locus
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3569,32 +3569,32 @@ f77d32ce236342d895d45faa708fe532
                   Types.$fShowLocus_$cshowsPrec
                   Types.$fShowLocus_$cshow
                   Types.$fShowLocus_$cshowList -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fShowLocus1 :: Types.Locus -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (Types.$fShowLocus_$cshowsPrec Types.$fShowAgent2) -}
-401198291717e068894babf93a8e4dfb
+924b179e784cd7bc0325da40964daed2
   $fShowLocus2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Weight "#) -}
-3075d2cbc1234ab44fe3d4d23a69d8a6
+d90c35e148dfb53848b8bee151bcd9f1
   $fShowLocus3 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "wt = "#) -}
-7d8647f620261047e19eb9d7a131f203
+c82b66a89924b4931916472b573e9516
   $fShowLocus4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "tfbsID = "#) -}
-1f92996b5962f3388e5d3effb7c55254
+f1670e6a26e11c2784438105f9ceb18b
   $fShowLocus5 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Tfbs {"#) -}
-48059f9cf35fad70d0ff615506c8baa6
+ef2664483db863c7a5d6befd85fd3a25
   $fShowLocus6 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "CTfbs "#) -}
-077aadd66d9bc08aeacc70d8de34b76d
+e74515464382e29b0154ca9ac190e5f6
   $fShowLocus7 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "CGene "#) -}
-3eb6a6d6e6df16ffcf83fbd59c540c5a
+fde40bded115dbaa14f8cc1f95471846
   $fShowLocus8 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Transposon"#) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fShowLocus_$cshow :: Types.Locus -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
@@ -3603,13 +3603,13 @@ f77d32ce236342d895d45faa708fe532
                    GHC.Show.shows22
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fShowLocus_$cshowList :: [Types.Locus] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__
                    @ Types.Locus
                    Types.$fShowLocus1) -}
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   $fShowLocus_$cshowsPrec ::
     GHC.Types.Int -> Types.Locus -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <L,1*U(U)><S,1*U><L,U>,
@@ -3668,7 +3668,7 @@ f77d32ce236342d895d45faa708fe532
                                    ww1
                                    ww2
                                    (GHC.Types.: @ GHC.Types.Char GHC.Show.shows4 eta) })) } } }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fShowTfbs :: GHC.Show.Show Types.Tfbs
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3677,13 +3677,13 @@ f77d32ce236342d895d45faa708fe532
                   Types.$fShowTfbs_$cshowsPrec
                   Types.$fShowTfbs_$cshow
                   Types.$fShowTfbs_$cshowList -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fShowTfbs1 :: Types.Tfbs -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (\ (w :: Types.Tfbs) (w1 :: GHC.Base.String) ->
                  case w of ww { Types.Tfbs ww1 ww2 ->
                  Types.$w$cshowsPrec4 0# ww1 ww2 w1 }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fShowTfbs_$cshow :: Types.Tfbs -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U(1*U(U),1*U(U))>,
      Unfolding: InlineRule (1, True, False)
@@ -3692,11 +3692,11 @@ f77d32ce236342d895d45faa708fe532
                    GHC.Show.shows22
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fShowTfbs_$cshowList :: [Types.Tfbs] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__ @ Types.Tfbs Types.$fShowTfbs1) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $fShowTfbs_$cshowsPrec ::
     GHC.Types.Int -> Types.Tfbs -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <S(S),1*U(U)><S,1*U(1*U(U),1*U(U))><L,U>,
@@ -3708,7 +3708,7 @@ f77d32ce236342d895d45faa708fe532
                  case w of ww { GHC.Types.I# ww1 ->
                  case w1 of ww2 { Types.Tfbs ww3 ww4 ->
                  Types.$w$cshowsPrec4 ww1 ww3 ww4 w2 } }) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fShowThres :: GHC.Show.Show Types.Thres
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3717,12 +3717,12 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fShowThres_$cshowsPrec
                   Types.$fShowThres_$cshow
                   Types.$fShowThres_$cshowList -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fShowThres1 :: Types.Thres -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (\ (w :: Types.Thres) (w1 :: GHC.Base.String) ->
                  Types.$w$cshowsPrec2 0# w w1) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fShowThres_$cshow :: Types.Thres -> GHC.Base.String
   {- Arity: 1, Strictness: <L,1*U(U)>,
      Unfolding: (\ (x :: Types.Thres) ->
@@ -3735,13 +3735,13 @@ b4d1ca11eda71c74c7df7a27380685f5
                            ww3
                            (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
                     GHC.Types.: @ GHC.Types.Char ww5 ww6 } })) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fShowThres_$cshowList :: [Types.Thres] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__
                    @ Types.Thres
                    Types.$fShowThres1) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $fShowThres_$cshowsPrec ::
     GHC.Types.Int -> Types.Thres -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <S(S),1*U(U)><L,1*U(U)><L,U>,
@@ -3752,7 +3752,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                    (w2 :: GHC.Base.String) ->
                  case w of ww { GHC.Types.I# ww1 ->
                  Types.$w$cshowsPrec2 ww1 w1 w2 }) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fShowWeight :: GHC.Show.Show Types.Weight
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -3761,12 +3761,12 @@ b4d1ca11eda71c74c7df7a27380685f5
                   Types.$fShowWeight_$cshowsPrec
                   Types.$fShowWeight_$cshow
                   Types.$fShowWeight_$cshowList -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fShowWeight1 :: Types.Weight -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (\ (w :: Types.Weight) (w1 :: GHC.Base.String) ->
                  Types.$w$cshowsPrec5 0# w w1) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fShowWeight_$cshow :: Types.Weight -> GHC.Base.String
   {- Arity: 1, Strictness: <L,1*U(U)>,
      Unfolding: (\ (x :: Types.Weight) ->
@@ -3779,13 +3779,13 @@ b4d1ca11eda71c74c7df7a27380685f5
                            ww3
                            (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
                     GHC.Types.: @ GHC.Types.Char ww5 ww6 } })) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fShowWeight_$cshowList :: [Types.Weight] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__
                    @ Types.Weight
                    Types.$fShowWeight1) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $fShowWeight_$cshowsPrec ::
     GHC.Types.Int -> Types.Weight -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <S(S),1*U(U)><L,1*U(U)><L,U>,
@@ -3796,296 +3796,296 @@ b4d1ca11eda71c74c7df7a27380685f5
                    (w2 :: GHC.Base.String) ->
                  case w of ww { GHC.Types.I# ww1 ->
                  Types.$w$cshowsPrec5 ww1 w1 w2 }) -}
-7d5be095411582e7a5f6d10508da59c1
+4309432772a1c44e9b051652e1285d0c
   $tc'Agent :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   13717071026600258116##
-                   2177163121068691261##
+                   17391354786248050111##
+                   12066703403480939726##
                    Types.$trModule
                    Types.$tc'Agent1) -}
-3c04853acc9ee95a5456ec8aadf36cb3
+0a43ea7df9eb74a0b63914ba2b740804
   $tc'Agent1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'Agent"#) -}
-928d6d9f5096af6a1412aa929fad2d5b
+d0d392fdddd0710343c0ce388b670226
   $tc'C:GeneType :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   13040004606787765055##
-                   8661752189272511450##
+                   12734904215503546603##
+                   16109600913277778402##
                    Types.$trModule
                    Types.$tc'C:GeneType1) -}
-41525d7b2dc84181fdd09609405eb88e
+293a348eaede1206eaf04cee398971bb
   $tc'C:GeneType1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'C:GeneType"#) -}
-9ee134fb859a03a4a9f509815aa0787c
+f7b5d3c39c69cf688a471eb9fb1a4068
   $tc'CGene :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   6138648782990100781##
-                   1923583818575878211##
+                   5931630349224582473##
+                   13038323080199115273##
                    Types.$trModule
                    Types.$tc'CGene1) -}
-7e6174766e3ea7cff3c273769cc15cc7
+04f11042a609bdef4b3cdd617316d6c4
   $tc'CGene1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'CGene"#) -}
-f4f6f8434b3e356dbd731c408ca701d2
+920606084123c49c44e7fe46b77c3882
   $tc'CTfbs :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   999369668416252004##
-                   14736510968910818022##
+                   2285197428802834436##
+                   12393088231382969266##
                    Types.$trModule
                    Types.$tc'CTfbs1) -}
-e17ca8d917982176eb19550234f511bd
+7ab9bd484dd0cdedb212378cc21c3f78
   $tc'CTfbs1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'CTfbs"#) -}
-e00be0e80a64ee10a2ed2399cc03a358
+72bf4c5df292b9b88a9c75b2e29d0e77
   $tc'GS :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   14321501116839215569##
-                   11026533644566359055##
+                   1086090927011835225##
+                   3161726738374905372##
                    Types.$trModule
                    Types.$tc'GS1) -}
-d91aa3268dbaa7907776a006eef38360
+9346448aff728ed75cd3567e37303584
   $tc'GS1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'GS"#) -}
-f798e77680afa10468a76e428b1b1577
+e55b8d4b9f48946a00ebb1e057943082
   $tc'Gene :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   6951063806264134193##
-                   17792599242417815642##
+                   7178675420656378751##
+                   5798066515836978284##
                    Types.$trModule
                    Types.$tc'Gene1) -}
-44b3f4fbdbd8b35d3193292f96b14b62
+20770988cf010bb414370ddceaaed78b
   $tc'Gene1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'Gene"#) -}
-dd57a5a1305677e81506c63f8a38c669
+2f48079c73cff222e116265e19a3072c
   $tc'ID :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   13278953122234441593##
-                   8952106218379984385##
+                   14075638647377242011##
+                   16682031255515666424##
                    Types.$trModule
                    Types.$tc'ID1) -}
-142a725713b379fcbccceb1480f3ac41
+490b84fbdfd456a3fa4430219dafad2a
   $tc'ID1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'ID"#) -}
-e55a1fc7c730914fe6375cd64cfef15a
+2c09030f2842558c30263a5054d8a71f
   $tc'NoAgent :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   5545003087215351968##
-                   16717262006119024740##
+                   12931774204875804514##
+                   7601300116293542704##
                    Types.$trModule
                    Types.$tc'NoAgent1) -}
-c137df1672861bcf050154ae1873abc8
+d6c40c0bc42d8cafd2b720bb13501fc6
   $tc'NoAgent1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'NoAgent"#) -}
-1453fc9ff5e557c92f4dcb6ed4340a52
+80126e8f8568553abb8c44cb07e1b159
   $tc'Tfbs :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   12525212971019027270##
-                   16726322911236538465##
+                   244425642883540667##
+                   2639338598797763645##
                    Types.$trModule
                    Types.$tc'Tfbs1) -}
-de03b4f3898bb8f996d1c153594cba66
+2b5c6c4720388816c8689766bb7f994b
   $tc'Tfbs1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'Tfbs"#) -}
-735559b865e56fdf6a3ba74576eede8b
+462ee3bdf5d08a71e1468f14200b12e9
   $tc'Thres :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   2497977958049164095##
-                   1933558436790113065##
+                   17681359875279564108##
+                   7942339352987437232##
                    Types.$trModule
                    Types.$tc'Thres1) -}
-0a2dc86236a6d179345f88fddef3ab27
+7feb6188a79bea01df7993ecae0f03fb
   $tc'Thres1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'Thres"#) -}
-f6b1eceab37f5e4d645f4386b9197dfa
+31a319982841f42524f4c63558acb227
   $tc'Transposon :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   2787302764975854594##
-                   16772105340701017257##
+                   11998317212355844728##
+                   5804313465496723727##
                    Types.$trModule
                    Types.$tc'Transposon1) -}
-2493a77b6ca3b55fa1f6e731001f68fc
+fcd1b455aebe73b3c86a3e8899ca6699
   $tc'Transposon1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'Transposon"#) -}
-3ad447912053966c92232c40658f187a
+cce0a90ea95f2895c922a4dd16ccf1bb
   $tc'Weight :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   16116657425749902062##
-                   12334414328793412370##
+                   12488400511004081813##
+                   8901432016411168681##
                    Types.$trModule
                    Types.$tc'Weight1) -}
-d651df1a9744633087640295018f19d2
+b24bdc7981f328f57f9b6b61765b1ddd
   $tc'Weight1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'Weight"#) -}
-c636cfeabd3fa233b44421e3533b9251
+e74f482ff2a4436d2f604cbdc7455a81
   $tc'World :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   2637944662775867122##
-                   23725289311612328##
+                   17117751060589367997##
+                   18335515968035554548##
                    Types.$trModule
                    Types.$tc'World1) -}
-db548382b902a02e90cafff8855896cb
+e19df331d46791e644cea672ed00b782
   $tc'World1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'World"#) -}
-73bfc89c3c914f4f754e86ea3511efe9
+dd4f31927c9d1d3954d40c84c848ffee
   $tcAgent :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   7663583667388270771##
-                   12561804582262700945##
+                   9069783961367884451##
+                   14129110576899541934##
                    Types.$trModule
                    Types.$tcAgent1) -}
-6c3e9cbe354ddd64750f511ed75dfec2
+d992b7fab02547998100f9dfdfa7a327
   $tcAgent1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Agent"#) -}
-33ac4cd5fc8228dcd5626791022a652a
+dfbe3086621ad121bdff1229ad86d50d
   $tcGene :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   14272149258308690436##
-                   7314584920444681646##
+                   1434797780491142981##
+                   10401082556835422615##
                    Types.$trModule
                    Types.$tcGene1) -}
-5fd5b632a135585b0f9f1a9c5baae80e
+9a406aafd3d005ddb7ec6d380b2af7cd
   $tcGene1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Gene"#) -}
-be9f2d3dfcc508b63b0522c68f6f72e3
+61418b9beb4d9d10e86d796f6eb93290
   $tcGeneState :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   148212473901593329##
-                   14227789473737973249##
+                   12932424189391564744##
+                   5559757138550573047##
                    Types.$trModule
                    Types.$tcGeneState1) -}
-cf5bd95e4c6f79a9b182ca3eb49c5a5e
+21290983184178cff013294750e4f776
   $tcGeneState1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "GeneState"#) -}
-d2a79691cf65890b08210fb03882f0da
+d010bef0bdae3851302e3bdffbf010bf
   $tcGeneType :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   14737859080173886656##
-                   17262482802804506138##
+                   10311400154504905291##
+                   4344054775112431859##
                    Types.$trModule
                    Types.$tcGeneType1) -}
-7b06322407b6f1dfda9aebc67fc09a11
+57518839683fb13cfdfa5fcb28e8c809
   $tcGeneType1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "GeneType"#) -}
-d22ff42516942bff59a96ec26e3aa6b7
+fb6ab056e7effda8937075bd588a6a61
   $tcID :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   43396462399028478##
-                   4779250508417933572##
+                   16161197552796912728##
+                   15106686966397279128##
                    Types.$trModule
                    Types.$tcID1) -}
-8f890dc2429beb7f3719508c75ea8eab
+ff67fecc80394e33d38cc1de9fa63b5a
   $tcID1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "ID"#) -}
-ef53c8f192a384939988b045a91e1a59
+c488a49a053d434a2febe12f98f74c40
   $tcLocus :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   3664281678073843944##
-                   12707566988757385379##
+                   57223569897512703##
+                   5381983246533731762##
                    Types.$trModule
                    Types.$tcLocus1) -}
-fb97faa0398b4582f36c329037f4e6ba
+8b64d84335310b429660909ba23667eb
   $tcLocus1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Locus"#) -}
-29e228f35345eb6931658b4b57d98e34
+a82a5c7c49b0a082a1000b47353f3940
   $tcTfbs :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   711592396603320655##
-                   6031788743173806144##
+                   11605687661493503731##
+                   17719504751229169654##
                    Types.$trModule
                    Types.$tcTfbs1) -}
-9a07adc4df1abc2fcf09bd2ac3a4bb92
+67774a30f8ea51e882ccf761a5a78b64
   $tcTfbs1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Tfbs"#) -}
-a82a6ad5e57480f4a5e7b2742eaae4b2
+7b76f4c35b2d75c60b267f366f62f001
   $tcThres :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   17798332674343525700##
-                   14010780145419418785##
+                   3817230800429453229##
+                   13243624502572504383##
                    Types.$trModule
                    Types.$tcThres1) -}
-e1e13f57e9e8acb1c94c92724428871b
+a62af2e9bca6622af86503761c68e107
   $tcThres1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Thres"#) -}
-76c85cd2fb5d31afceea9f0270d5a61c
+cf7b366efc8c60cb5ae486aa609d7c7b
   $tcWeight :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   17527411985410523053##
-                   14281726704456241046##
+                   5822295591642784258##
+                   17674171778872955589##
                    Types.$trModule
                    Types.$tcWeight1) -}
-75b7d5e7044f5b7579612f070ed7a58c
+0152ce133d17bb34a74e622e26bc8715
   $tcWeight1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Weight"#) -}
-53e3cd1bd8b1fd658f18b0f6f92cb048
+9579164f9a669d6832f3c06fc7811fb4
   $tcWorld :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   10819147255238240947##
-                   13115467634172629186##
+                   9367313382717878498##
+                   14645030181185334217##
                    Types.$trModule
                    Types.$tcWorld1) -}
-4ed0e9b6cae0a4d1191bbfd6f7de0957
+723925588d53fd116cb8774f62b3bc68
   $tcWorld1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "World"#) -}
-23cca45dad514d1fa45ea690f1aea7ea
+a9d2e02333e713ec5e134e9bd3b2e73e
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.Module Types.$trModule2 Types.$trModule1) -}
-5e26ed2093dfba35d50576c08b3296eb
+d5d327c9b724ac528cad81a0cbc19dfd
   $trModule1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Types"#) -}
-2171a7e866c3021bca8dd1cef1160bca
+3c6c3da13c3b3ae9924d550240d93998
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
-                   "Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT"#) -}
-4088df8747c6b9282ef1932123131b03
+                   "Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG"#) -}
+f83224852540eaea40a1f222beba2b14
   $w$c/= ::
     GHC.Prim.Int#
     -> Types.Weight -> GHC.Prim.Int# -> Types.Weight -> GHC.Types.Bool
@@ -4107,7 +4107,7 @@ e1e13f57e9e8acb1c94c92724428871b
                              (GHC.Prim.==# x y) of wild3 {
                         GHC.Types.False -> GHC.Types.True
                         GHC.Types.True -> GHC.Types.False } } } }) -}
-bdd761cad3d074f84b042030c9187c98
+b2db3fb06ede92d970a26e2a2b825207
   $w$c< ::
     GHC.Prim.Int#
     -> Types.Weight -> GHC.Prim.Int# -> Types.Weight -> GHC.Types.Bool
@@ -4130,7 +4130,7 @@ bdd761cad3d074f84b042030c9187c98
                              ww1 `cast` (Types.N:Weight[0])
                              ww3 `cast` (Types.N:Weight[0]) }
                    GHC.Types.True -> GHC.Types.True }) -}
-1ec785de3bf0371550c4650e5daab302
+ec72c63bca532cfa5c787ace6ec9bf86
   $w$c<= ::
     GHC.Prim.Int#
     -> Types.Weight -> GHC.Prim.Int# -> Types.Weight -> GHC.Types.Bool
@@ -4153,7 +4153,7 @@ bdd761cad3d074f84b042030c9187c98
                              ww1 `cast` (Types.N:Weight[0])
                              ww3 `cast` (Types.N:Weight[0]) }
                    GHC.Types.True -> GHC.Types.True }) -}
-050df7dbe9593308eb5be86ee3fe5526
+3ecdbfb66a469a6d32b70d69220c4a8d
   $w$c== ::
     GHC.Prim.Int#
     -> Types.Weight -> GHC.Prim.Int# -> Types.Weight -> GHC.Types.Bool
@@ -4171,7 +4171,7 @@ bdd761cad3d074f84b042030c9187c98
                    -> GHC.Classes.eqInt
                         ww1 `cast` (Types.N:Weight[0])
                         ww3 `cast` (Types.N:Weight[0]) }) -}
-28d4a32409abd72d8174ed2769620918
+71eb60b7040e35ffb02a10cb83662c18
   $w$c==1 ::
     GHC.Prim.Int#
     -> Types.Thres
@@ -4204,7 +4204,7 @@ bdd761cad3d074f84b042030c9187c98
                         -> GHC.Classes.$fEqBool_$c==
                              ww2 `cast` (Types.N:GeneState[0])
                              ww5 `cast` (Types.N:GeneState[0]) } } } }) -}
-ca9ac9aed3995ef94eb0315e30b591d6
+c3aee578686dfd603144d530ff4b4b4e
   $w$c> ::
     GHC.Prim.Int#
     -> Types.Weight -> GHC.Prim.Int# -> Types.Weight -> GHC.Types.Bool
@@ -4227,7 +4227,7 @@ ca9ac9aed3995ef94eb0315e30b591d6
                              ww1 `cast` (Types.N:Weight[0])
                              ww3 `cast` (Types.N:Weight[0]) }
                    GHC.Types.True -> GHC.Types.False }) -}
-5240d7f861b1732e4e57262b5a8df772
+53e77c0a45ae331007665ceb22113c63
   $w$c>= ::
     GHC.Prim.Int#
     -> Types.Weight -> GHC.Prim.Int# -> Types.Weight -> GHC.Types.Bool
@@ -4250,7 +4250,7 @@ ca9ac9aed3995ef94eb0315e30b591d6
                              ww1 `cast` (Types.N:Weight[0])
                              ww3 `cast` (Types.N:Weight[0]) }
                    GHC.Types.True -> GHC.Types.False }) -}
-e0c84503a4b218339c891e73e2dc134f
+a08b781df458d55c35b15f3a14e2e1d6
   $w$ccompare ::
     GHC.Prim.Int#
     -> Types.Thres
@@ -4288,7 +4288,7 @@ e0c84503a4b218339c891e73e2dc134f
                              -> GHC.Classes.compareInt
                                   ww1 `cast` (Types.N:Thres[0])
                                   ww4 `cast` (Types.N:Thres[0]) } } }) -}
-724e2a0d999b50bf5be042a5ce573221
+48deb48a4ba7d1734fa649f83b830cf8
   $w$ccompare1 ::
     GHC.Prim.Int#
     -> Types.Weight
@@ -4314,12 +4314,12 @@ e0c84503a4b218339c891e73e2dc134f
                              ww1 `cast` (Types.N:Weight[0])
                              ww3 `cast` (Types.N:Weight[0]) }
                    GHC.Types.True -> GHC.Types.LT }) -}
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   $w$creadPrec ::
     (Types.Gene -> Text.ParserCombinators.ReadP.P b1)
     -> (# GHC.Base.String -> Text.ParserCombinators.ReadP.P b1 #)
   {- Arity: 1, Strictness: <L,C(U)>, Inline: [0] -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $w$creadPrec1 ::
     GHC.Prim.Int#
     -> forall b.
@@ -4368,7 +4368,7 @@ e0c84503a4b218339c891e73e2dc134f
                          (Text.ParserCombinators.ReadP.N:ReadP[0] <()>_R)
                            @ b
                            k) }) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $w$creadPrec2 ::
     GHC.Prim.Int#
     -> forall b.
@@ -4417,12 +4417,12 @@ e0c84503a4b218339c891e73e2dc134f
                          (Text.ParserCombinators.ReadP.N:ReadP[0] <()>_R)
                            @ b
                            k) }) -}
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   $w$creadPrec3 ::
     (Types.Tfbs -> Text.ParserCombinators.ReadP.P b1)
     -> (# GHC.Base.String -> Text.ParserCombinators.ReadP.P b1 #)
   {- Arity: 1, Strictness: <L,C(U)>, Inline: [0] -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $w$creadPrec4 ::
     GHC.Prim.Int#
     -> forall b.
@@ -4471,7 +4471,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                          (Text.ParserCombinators.ReadP.N:ReadP[0] <()>_R)
                            @ b
                            k) }) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $w$creadPrec5 ::
     GHC.Prim.Int#
     -> forall b.
@@ -4520,7 +4520,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                          (Text.ParserCombinators.ReadP.N:ReadP[0] <()>_R)
                            @ b
                            k) }) -}
-498eb13bfc0b097a4ac6ecb17d06b0f2
+1bcb1514d72f3f7102bf4aa316e03fbe
   $w$cshowsPrec ::
     GHC.Prim.Int#
     -> Types.ID
@@ -4579,7 +4579,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                         @ GHC.Types.Char
                         GHC.Show.shows7
                         (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows4 w)) }) -}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   $w$cshowsPrec1 ::
     GHC.Prim.Int#
     -> Types.GeneState -> GHC.Base.String -> GHC.Base.String
@@ -4607,7 +4607,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                         @ GHC.Types.Char
                         GHC.Show.shows7
                         (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows4 w1)) }) -}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   $w$cshowsPrec2 ::
     GHC.Prim.Int# -> Types.Thres -> GHC.Base.String -> GHC.Base.String
   {- Arity: 3, Strictness: <S,U><L,1*U(U)><L,U>, Inline: [0],
@@ -4640,7 +4640,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                                       GHC.Show.shows4
                                       w1) of ww4 { (#,#) ww5 ww6 ->
                             GHC.Types.: @ GHC.Types.Char ww5 ww6 } })) }) -}
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   $w$cshowsPrec3 ::
     GHC.Prim.Int# -> Types.ID -> GHC.Base.String -> GHC.Base.String
   {- Arity: 3, Strictness: <S,U><L,1*U(U)><L,U>, Inline: [0],
@@ -4673,7 +4673,7 @@ b4d1ca11eda71c74c7df7a27380685f5
                                       GHC.Show.shows4
                                       w1) of ww4 { (#,#) ww5 ww6 ->
                             GHC.Types.: @ GHC.Types.Char ww5 ww6 } })) }) -}
-d89ed4d9971579713c793c4a90436af9
+da368bc1d9a3fb50af078a5a9456bee0
   $w$cshowsPrec4 ::
     GHC.Prim.Int#
     -> Types.ID -> Types.Weight -> GHC.Base.String -> GHC.Base.String
@@ -4715,7 +4715,7 @@ d89ed4d9971579713c793c4a90436af9
                         @ GHC.Types.Char
                         GHC.Show.shows7
                         (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows4 w)) }) -}
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   $w$cshowsPrec5 ::
     GHC.Prim.Int# -> Types.Weight -> GHC.Base.String -> GHC.Base.String
   {- Arity: 3, Strictness: <S,U><L,1*U(U)><L,U>, Inline: [0],
@@ -4748,46 +4748,46 @@ d89ed4d9971579713c793c4a90436af9
                                       GHC.Show.shows4
                                       w1) of ww4 { (#,#) ww5 ww6 ->
                             GHC.Types.: @ GHC.Types.Char ww5 ww6 } })) }) -}
-c366e34cef18e343b1b97128d4a7d6c2
+d84ba5f3c206a79fef889ed9cdb2a757
   data Agent
     = Agent {genome :: Types.Genome,
              geneStateTable :: Types.GeneStateTable}
     | NoAgent
-d3519252ea53dc1090c337e42ea711ed
+524b60526415887008d525e8a20fd13d
   type Agents =
     GHC.Arr.Array (GHC.Types.Int, GHC.Types.Int) Types.Agent
-a45a495818bb58e4eb217380cb6d210a
+be9bd89ddc70313c7284e6f9911e9f7a
   type Chromosome = [Types.Locus]
-86d083c95cb440c346ac68b02f16b953
+88a064ab5cc38cba53ed6c77954d36cb
   type Env = GHC.Types.Int
-855bc26dbd005a2f673e8ef7757be5ba
+62671c5f4898221a36e080f2cfbaeb99
   data Gene
     = Gene {geneID :: Types.ID,
             thres :: Types.Thres,
             genSt :: Types.GeneState}
-03b02abd1f9f0b17f85b54269576f890
+0624c050dd249dc6c3c731ed15bbb84e
   newtype GeneState = GS GHC.Types.Bool
-bb3b2c0c1c94fb002ce6e46aadd8b1da
+b57ec13db02500ae63d5b8235621c662
   type GeneStateTable = Data.Map.Base.Map Types.ID Types.GeneState
-f6f7accb35473862d75b702a0145c137
+f5d3f5de163f63c89b0a6f5c1bbc1983
   class GeneType a where
     iD :: a -> Types.ID
     {-# MINIMAL iD #-}
-3bce35ea30a7a3eb58af4c6cfab74479
+701a6b59afaf6ac71673981e36ee7744
   type Genome = [Types.Chromosome]
-817eaa265a1866a0c3a20a6482f764fc
+24834833634867f6607836b0def3fd48
   newtype ID = ID GHC.Types.Int
-07657b88e6375bd6d708a4d154921905
+d285aff914c3fb093dd4ccf9b68f4d3b
   data Locus = Transposon | CGene Types.Gene | CTfbs Types.Tfbs
-31a1ab223f703ab4c97341c9dd6d8d8e
+c93ffd2c1a99954afadcac7ff9ddcd6f
   data Tfbs = Tfbs {tfbsID :: Types.ID, wt :: Types.Weight}
-b4d1ca11eda71c74c7df7a27380685f5
+5a251f27da2af8e6b9b6ed5817065a7d
   newtype Thres = Thres GHC.Types.Int
-95aa6bc61f3ed402a00e2e8be584a9c3
+8df82395b7d8e0c5f66b28a03088eed9
   newtype Weight = Weight GHC.Types.Int
-e2028f20bf2ac3a63493ac015c2c65e9
+9738ed488c0ba9f7acf9f8e4b61d0338
   data World = World {agents :: Types.Agents, env :: Types.Env}
-2bc3d2925881c9e59bead66a9d7c065e
+053d754d76f8a2a5d11b8a171540cf92
   agents :: Types.World -> Types.Agents
   RecSel Left Types.World
   {- Arity: 1, HasNoCafRefs,
@@ -4795,28 +4795,28 @@ e2028f20bf2ac3a63493ac015c2c65e9
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Types.World) ->
                  case ds of wild { Types.World ds1 ds2 -> ds1 }) -}
-6f4566b485b711eb343b76370f75ecbb
+93b6534fdd93b641ab6e4cfee2af97c8
   env :: Types.World -> Types.Env
   RecSel Left Types.World
   {- Arity: 1, HasNoCafRefs, Strictness: <S(LS),1*U(A,1*U(U))>m,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Types.World) ->
                  case ds of wild { Types.World ds1 ds2 -> ds2 }) -}
-cb48762210a4dea2f2cac95159bedeaf
+6a480ff37dc80d75e5749f053284690a
   genSt :: Types.Gene -> Types.GeneState
   RecSel Left Types.Gene
   {- Arity: 1, HasNoCafRefs, Strictness: <S(LLS),1*U(A,A,1*U)>,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Types.Gene) ->
                  case ds of wild { Types.Gene ds1 ds2 ds3 -> ds3 }) -}
-60c11022ca35a1fae2505bbfceb25986
+118647d8add2e0b91a4cd1f678e5ba26
   geneID :: Types.Gene -> Types.ID
   RecSel Left Types.Gene
   {- Arity: 1, HasNoCafRefs, Strictness: <S(SLL),1*U(1*U(U),A,A)>m,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Types.Gene) ->
                  case ds of wild { Types.Gene ds1 ds2 ds3 -> ds1 }) -}
-c25d8717abe1bae082eda7e9a6c438c4
+5fb01753af7756874617d8ee409e09ce
   geneStateTable :: Types.Agent -> Types.GeneStateTable
   RecSel Left Types.Agent
   {- Arity: 1, Strictness: <S,1*U>,
@@ -4825,10 +4825,10 @@ c25d8717abe1bae082eda7e9a6c438c4
                  case ds of wild {
                    Types.Agent ds1 ds2 -> ds2
                    Types.NoAgent -> Types.geneStateTable1 }) -}
-ab1afbbb1ddfc566f1f879898bb57166
+b4e9a444b9a6e246bfdc15171e8100bb
   geneStateTable1 :: Types.GeneStateTable
   {- Strictness: x -}
-11d8a3f40be1d9eda29de80663873961
+6a038ef7e18e49a94a93f1667308bb65
   genome :: Types.Agent -> Types.Genome
   RecSel Left Types.Agent
   {- Arity: 1, Strictness: <S,1*U>,
@@ -4836,24 +4836,24 @@ ab1afbbb1ddfc566f1f879898bb57166
                 (\ (ds :: Types.Agent) ->
                  case ds of wild {
                    Types.Agent ds1 ds2 -> ds1 Types.NoAgent -> Types.genome1 }) -}
-3b732aa4430edca0185cb29c43f72032
+2206c45e578b246a62b0257987fdaebd
   genome1 :: Types.Genome
   {- Strictness: x -}
-27c3b8a1d890daa97f838161b7bbcff8
+3767e2efa944b8b8ce916f6fd7698012
   tfbsID :: Types.Tfbs -> Types.ID
   RecSel Left Types.Tfbs
   {- Arity: 1, HasNoCafRefs, Strictness: <S(SL),1*U(1*U(U),A)>m,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Types.Tfbs) ->
                  case ds of wild { Types.Tfbs ds1 ds2 -> ds1 }) -}
-a592cc33e93025684dc810790e30bf15
+925f93286b8a16c750a01b3ac270d3dc
   thres :: Types.Gene -> Types.Thres
   RecSel Left Types.Gene
   {- Arity: 1, HasNoCafRefs, Strictness: <S(LSL),1*U(A,1*U(U),A)>m,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Types.Gene) ->
                  case ds of wild { Types.Gene ds1 ds2 ds3 -> ds2 }) -}
-cdcc271738b535aa713f4f651b69e59d
+f703c1b0edab071ca19a6fd324c2119d
   wt :: Types.Tfbs -> Types.Weight
   RecSel Left Types.Tfbs
   {- Arity: 1, HasNoCafRefs, Strictness: <S(LS),1*U(A,1*U(U))>m,

@@ -26,14 +26,16 @@ import           Data.IORef             (IORef, newIORef, readIORef, writeIORef)
 import           Data.String            (fromString)
 import           Graphics.UI.GLUT       hiding (Help, initialize, mainLoop)
 import           System.Console.GetOpt
-import           System.Environment     (getArgs)
+import           System.Environment     (getArgs, getEnv)
 import           System.IO              (Handle, IOMode (..), hClose, hFlush,
                                          openFile, stdout)
+import System.Directory
+
 
 import           Control.Monad          (when, forM, forM_)
 import           Data.Fixed             (mod')
 import           Data.Function          (on)
-import           Data.Maybe             (fromMaybe, isJust)
+import           Data.Maybe             (fromMaybe, isJust, isNothing, fromJust)
 
 import           Data.Array.IArray      (array, assocs, elems, (!))
 import           Data.List              (find, maximumBy)
@@ -42,14 +44,58 @@ import qualified Data.Map               as Map
 
 import qualified Control.Monad.Parallel as Par (mapM)
 
+data Options = Options
+    { optHelp        :: Bool
+    , optWorldSeed   :: Int
+    , optAgentSeed   :: Int
+    , optOutput      :: Maybe FilePath
+    , optVOutput     :: Bool
+    , optConsole     :: Bool
+    } deriving Show
+
+defaultOptions = Options
+    { optHelp        = False
+    , optWorldSeed   = 420
+    , optAgentSeed   = 420
+    , optOutput      = Nothing
+    , optVOutput     = False
+    , optConsole     = False
+    }
+
 -- | Uses a list of flags to initialize a IORef to a world and a handle for
 -- output.
 -- Generates an initial agent, populates the world wit it
 -- Sets the PRNG
 initialize :: Options -> IO (IORef World, [Handle])
-initialize flags = do
+initialize opts = do
+    when (optHelp opts) $ helpError []
+    when (isNothing (optOutput opts) && not (optConsole opts))
+        $ helpError ["\ny u no want output?!\n"]
 
-    return undefined
+    let initialAgent = evalRand randomAgent $ pureMT $ optAgentSeed opts
+        initialWorld = World startAgents 0
+            where startAgents = array P.worldBounds $ zip P.worldCoods $ repeat initialAgent
+
+    w <- newIORef initialWorld
+    setMyStdGen $ pureMT $ optWorldSeed opts
+
+    userName <- getEnv "USER"
+    let outputDir =  "/linuxhome/tmp/" ++ userName ++ "/"
+    createDirectoryIfMissing False outputDir
+    hs   <- case optOutput opts of
+                 Just o  -> do file <- openFile (outputDir++o) ReadWriteMode
+                               return [file]
+                 Nothing -> return []
+    hs'  <- if   optVOutput opts
+            then do file <- openFile (outputDir++"v"++fromJust (optOutput opts)) ReadWriteMode
+                    return [file]
+            else return []
+    hs'' <- if   optConsole opts
+            then return [stdout]
+            else return []
+
+
+    return (w, hs ++ hs' ++ hs'')
     --
     -- let WorldSeed sWorldSeed = fromMaybe (WorldSeed "420") (find isWorldSeed flags)
     --     AgentSeed sAgentSeed = fromMaybe (AgentSeed "420") (find isAgentSeed flags)
@@ -139,7 +185,6 @@ mainLoop worldRef hs t = do
     when (P.outputTime t) $ forM_ hs $
         \h -> B.hPutStrLn h (fromString $ outputString w t) >> hFlush h
 
-    -- when (P.oup)
 
     std <- getMyStdGen
     let (w',std') = runRand (newWorld w) std
@@ -216,33 +261,15 @@ reproduceAgent (World ags env) ix = do
     else return NoAgent -- if you die
 
 
-data Options = Options
-    { optHelp        :: Bool
-    , optShowVersion :: Bool
-    , optWorldSeed   :: Int
-    , optAgentSeed   :: Int
-    , optOutput      :: FilePath
-    , optVOutput     :: Bool
-    , optConsole     :: Bool
-    } deriving Show
 
-defaultOptions = Options
-    { optHelp        = False
-    , optShowVersion = False
-    , optWorldSeed   = 420
-    , optAgentSeed   = 420
-    , optOutput      = undefined
-    , optVOutput     = False
-    , optConsole     = False
-    }
 
 options :: [OptDescr (Options -> Options)]
 options =
-    [ Option ['V','?'] ["version"]
-        (NoArg $ \ opts -> opts { optShowVersion = True })
-        "show version number"
+    [ Option ['h','?']     ["help"]
+        (NoArg (\opts -> opts { optHelp = True }))
+        "Display this help info"
     , Option ['o']     ["output"]
-        (ReqArg (\ d opts -> opts { optOutput = d }) "DIR")
+        (ReqArg (\ d opts -> opts { optOutput = Just d }) "DIR")
         "Direcory for output"
     , Option ['v']     ["verbose"]
         (NoArg (\opts -> opts { optVOutput = True }))
@@ -254,7 +281,7 @@ options =
         (ReqArg (\s opts -> opts {optWorldSeed = read s}) "INT")
         "The seed used by the world"
     , Option ['a']     ["agent-seed"]
-        (ReqArg (\s opts -> opts {optWorldSeed = read s}) "INT")
+        (ReqArg (\s opts -> opts {optAgentSeed = read s}) "INT")
         "The seed used for the initial agent generation"
     ]
 
@@ -262,48 +289,11 @@ compilerOpts :: [String] -> IO (Options, [String])
 compilerOpts argv =
     case getOpt Permute options argv of
         (o,n,[]  ) -> return (foldl (flip id) defaultOptions o, n)
-        (_,_,errs) -> ioError (userError (concat errs ++ usageInfo header options))
-        where header = "Usage: ic [OPTION...] files..."
+        (_,_,errs) -> helpError errs
 
-
--- options :: [OptDescr Flag]
--- options =
---     [ Option ['h'] ["help"]          (NoArg Help)                    "display this help info"
---     , Option ['w'] ["world-seed"]    (ReqArg WorldSeed "INT")        "give the seed for the world RNG (default: 420)"
---     , Option ['a'] ["agent-seed"]    (ReqArg AgentSeed "INT")        "give the seed for the first agent RNG (default: 420)"
---     , Option ['o'] ["output-file"]   (ReqArg OutputFile "FILEPATH")  "output file"
---     , Option ['d'] ["dump-file"]     (ReqArg DumpFile "FILEPATH")    "dump CA content"
---     , Option ['g'] ["graphics"]      (NoArg Graphics)                "display CA in a window (Not yet working! Change the parameter file)"
---     , Option ['c'] ["console"]       (NoArg Console)                 "display info in the console"
---     ]
---
--- compilerOpts :: [String] -> IO ([Flag], [String])
--- compilerOpts argv = case getOpt Permute options argv of
---     (o,n,[]  ) -> return (o,n)
---     (_,_,errs) -> ioError (userError (concat errs ++ usageInfo header options))
---     where header = "Usage: Evolverbetert [OPTION...] files..."
---
--- data Flag
---     = Help
---     | OutputFile FilePath
---     | VOutputFile FilePath
---     | DumpFile String
---     | WorldSeed String
---     | AgentSeed String
---     | Graphics
---     | Console
---     deriving (Eq, Ord, Show)
--- isHelp        Help           = True; isHelp _        = False
--- isOutputFile (OutputFile _)  = True; isOutputFile _  = False
--- isDumpFIle   (DumpFile _)    = True; isDumpFile _    = False
--- isWorldSeed  (WorldSeed  _)  = True; isWorldSeed _   = False
--- isAgentSeed  (AgentSeed  _)  = True; isAgentSeed _   = False
--- isGraphics    Graphics       = True; isGraphics _    = False
--- isConsole     Console        = True; isConsole _     = False
--- isVOutputFile(VOutputFile _) = True; isVOutputFile _ = False
-
-
-
+helpError :: [String] -> IO a
+helpError errs = ioError (userError (concat errs ++ usageInfo header options))
+    where header = "Usage: ic [OPTION...] files..."
 
 -- | Just a standard agent that can be used
 -- should not be used though, as the tfbs weights have strange weights and such

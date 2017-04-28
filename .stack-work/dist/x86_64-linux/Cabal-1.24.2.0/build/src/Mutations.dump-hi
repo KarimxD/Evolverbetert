@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-28 14:38:41.146703 UTC
+2017-04-28 16:31:34.651638 UTC
 
-interface Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:Mutations 8002
-  interface hash: 85233b7d9a06f24a1ecc447b706e906e
-  ABI hash: da0676acd9497559a8c46399b8bb457f
-  export-list hash: 07e4787ff96df80395353237fc2f2662
+interface Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG:Mutations 8002
+  interface hash: c4095de8d7feae9bd4f2fca4f6a87929
+  ABI hash: 978488fe7c4ef4f4b6e8f65fa19b3b77
+  export-list hash: 022b52032365c225923fc794c85334e1
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: ab396f11155bd696ab63895436e6f1df
   sig of: Nothing
@@ -26,7 +26,7 @@ package dependencies: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3KMH
                       random-shuffle-0.0.4@random-shuffle-0.0.4-97h14tPp7Ru21125sv6IMi
                       split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk
                       time-1.6.0.1@time-1.6.0.1 transformers-0.5.2.0@transformers-0.5.2.0
-orphans: Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT:MyRandom
+orphans: Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG:MyRandom
          base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
          time-1.6.0.1@time-1.6.0.1:Data.Time.Calendar.Gregorian
          time-1.6.0.1@time-1.6.0.1:Data.Time.Format.Parse
@@ -44,50 +44,50 @@ family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3
                          containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
                          primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
-import  -/  Misc 0bb0c75bf8c1507de7475068ae5a714e
-  exports: 2e2317e17d14009b42df24905f8e3cf5
-  maybeCh ac094690c25bb9be58c2f3d1463a4a6d
-  repeatCollect 5338f70319a7422a96987dbdaf32ebfb
-import  -/  MyRandom 4f2e9849e92fd7720cbebccfe2801265
-  exports: 9b2c6f35135fc9455c1a3dd162ebc359
-  Rand 8ad6bc0a02980079a34b3d183be0e1cc
-  getBool 5121cacdae024eab642b6afa60a7251c
-  getDouble 77c5acbc26eb9fac333f57a3beffe418
-  getRange 4bed3b2f5ef49bfbe28dd1fa778bcf97
-import  -/  Parameters f0b6d02e7496adab47282d49bc269f44
-  exports: 840d86f5bb30fe7f211c714f30c387f7
-  Prob b9237f89dcca355d6e31740b337ba81c
-  maxThres 9afe6a92e63b333e74e871dd72c8c317
-  minThres cf6f0fc7343b7d217e1f8024a505f326
-  nrGeneTypes' 8dd42f5a9d45378b888a53efbf75de72
-  pGenDel 2b01b1a1d4180beb3c191609c3764d8c
-  pGenDup 5835dbe290d7b9c3dbc29ad1e62acb21
-  pGenThresCh 3aa7e3013562cfde731d8d7054458483
-  pTfbsDel f6af20bbc20acc91eb3cf05094e578d1
-  pTfbsDup 4c7758239bd9a9e789a073a5a8833099
-  pTfbsInnov aebb3df07dbe4d968721fa0a26f5305c
-  pTfbsPrefCh be1b6960c551bf3bacab9ed57d329f75
-  pTfbsWtCh be095b98af981745619d2fc90f5a33c1
-import  -/  Types 344386ad26f015f50945c7403febc394
-  exports: 1903460ec2f3fff4e3f5c7bd897ec01f
-  Agent 989805efb3f727f1ff780e610d060a11
-  Agent c366e34cef18e343b1b97128d4a7d6c2
-  CGene a9775cd0f1a1e6dd0cd1c7f53da23029
-  CTfbs b60a3d1277cb8492d319aa9229b026b8
-  Chromosome a45a495818bb58e4eb217380cb6d210a
-  Gene 3e5e521b4c205f8f285d529a8c73ce1f
-  Gene 855bc26dbd005a2f673e8ef7757be5ba
-  ID 859e5213a4e604522bdadd8473dc98b4
-  ID 817eaa265a1866a0c3a20a6482f764fc
-  Locus 07657b88e6375bd6d708a4d154921905
-  NoAgent a73a1bd211a68ac21cb525c28ff0ada8
-  Tfbs e68e61ea55ad4e78f6bb15dca3a9414d
-  Tfbs 31a1ab223f703ab4c97341c9dd6d8d8e
-import  -/  World dfd77106894c91a2dfa1fb78596cea33
-  exports: 875aa2b1f13df4fda2489f6c319043ff
-  gSTFromGenome 5213aafe988646b864eb8bdc1e9e812a
-  groupGeneTfbs 8b60ce0bec572956c6c83d096ad9212d
-  reduceToTfbss fab1bb0558b00c320380288dd2f558ac
+import  -/  Misc 9c840ebf3f1e94a077cfa39ed226e971
+  exports: 0296819ec2db101dc5332d4059075e1a
+  maybeCh 8fa9fac1271d134361ed328b751d50a8
+  repeatCollect 92952fb08fe2629995f24405eac78e82
+import  -/  MyRandom ac5c3d52b691d9aaae5b1bb647af66bd
+  exports: dd9a89ae07df5f4335cfca7f1ea96343
+  Rand 15dbc98a9547e867366d8bad46ff1e94
+  getBool 1a401c69c4d6a084aa7fd7a3fab0ef94
+  getDouble 5c31e5f2eec7293d9b501acd10440062
+  getRange 9711cfb1121bda13507439d09b30ac7c
+import  -/  Parameters f6207debca8ae6a6a2f80b3a30b982b7
+  exports: 019275192dc9600464829c891d28e48a
+  Prob 1d62bb5e271e64fd5f4e31ca242355fa
+  maxThres 015334934caa6ce4d5ec4045a3510839
+  minThres dfd84a1c08f327dade4935e3628ceedd
+  nrGeneTypes' 75ef947213dd4ce9a76f5d53638a5732
+  pGenDel 9b0da2d638cc3da09e9262ad7d6353b2
+  pGenDup 6cffa84e02a513f21768440dddecd4e1
+  pGenThresCh 9ad1f60576fe8a3966ea3ccd0840b791
+  pTfbsDel ca8e73e4f1978c50e09c99e4bc86b120
+  pTfbsDup 1fdddd238815544b141159eda1ae633e
+  pTfbsInnov 6e44b3ee881c83bbb037d587f3227602
+  pTfbsPrefCh f599a117021440efd6579cba1367dde7
+  pTfbsWtCh 646699a373dd3b2cff61094fdbe7e2dd
+import  -/  Types 1d3d1e1d433c54e7bfb57452891f64d7
+  exports: f90e62a4294bef8d4adecbf5aeb850c0
+  Agent a1955434041c0ddcdec14b68adc5a3f1
+  Agent d84ba5f3c206a79fef889ed9cdb2a757
+  CGene 680029b02a23350830aad4d9f0e2089c
+  CTfbs 5916ad2c7072433425c96231e7b8b1a8
+  Chromosome be9bd89ddc70313c7284e6f9911e9f7a
+  Gene 68ede29c9044f65efd71e0cd3c3e9014
+  Gene 62671c5f4898221a36e080f2cfbaeb99
+  ID 0d673b2a916b10c9dd854ba8ee53f405
+  ID 24834833634867f6607836b0def3fd48
+  Locus d285aff914c3fb093dd4ccf9b68f4d3b
+  NoAgent 6206322b95deab4ed7ee3e59b287efbd
+  Tfbs 5bceda15efcd159a3b066bf330bd57ff
+  Tfbs c93ffd2c1a99954afadcac7ff9ddcd6f
+import  -/  World 3e7e2a4072f3caa69daebccfb176ef08
+  exports: e67d5e73efc3ddbb195eae358efd5ab7
+  gSTFromGenome 733a75bbb4e9e111a659144805a69954
+  groupGeneTfbs 549341764583244ff800560b165b91f0
+  reduceToTfbss 41222c07f689bc60298b001c062aedb5
 import  -/  base-4.9.1.0:Control.Monad a6784c5dab0d75c63dabec5a37843f98
 import  -/  base-4.9.1.0:Data.Foldable 3e0b6967a1da89945d0e2d47266337a2
 import  -/  base-4.9.1.0:Data.Functor 5ab1dc703df5b482e77efb697833ca3c
@@ -100,31 +100,31 @@ import  -/  base-4.9.1.0:GHC.Num 00bfaa7b2f9d6084913c0697a8a49ec8
 import  -/  base-4.9.1.0:GHC.Real 82e4e59051a13dba1da63e1e970a69e6
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
 import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
-753a4b5488b866828e038b20c9a6d536
+d00076454bb175820aaeb79dd21beb6e
   $s^1 :: Parameters.Prob
   {- Strictness: x -}
-725341e62f7cb187159c114cb8fb1d5a
+559aa912e0c99af1c7ed70d80e57df24
   $s^2 :: GHC.Integer.Type.Integer
   {- HasNoCafRefs, Unfolding: (0) -}
-add5074536257f68bd50d9c8908bc88d
+1ecc5dc32f48cd103ebc6a3d152831c6
   $seven1 :: GHC.Integer.Type.Integer
   {- HasNoCafRefs, Unfolding: (2) -}
-48e758d63f7c8be47074786b0f45a8da
+b86d9da16d262a673b9c8b2c41aaacb3
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.Module
                    Mutations.$trModule2
                    Mutations.$trModule1) -}
-cc50c358df3fe0568e03e360d30928d9
+02a3a9b8523af0993e291e5e10897ba2
   $trModule1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Mutations"#) -}
-fda198ae3c348aab815744bd1e3f4f4d
+27448ad2512f6fa9d8d692edc70ae9d8
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
-                   "Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT"#) -}
-0cdd9d50c5d5bd84de4b1457d5e3fd81
+                   "Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG"#) -}
+708ae20362779f0e5090020aeb8a545c
   $w$s^ ::
     Parameters.Prob -> GHC.Integer.Type.Integer -> GHC.Prim.Double#
   {- Arity: 2, Strictness: <L,U(U)><S,U>, Inline: [0],
@@ -144,11 +144,11 @@ fda198ae3c348aab815744bd1e3f4f4d
                         GHC.Types.True -> 1.0## } }
                    GHC.Types.True
                    -> case Mutations.$s^1 ret_ty GHC.Prim.Double# of {} } }) -}
-14bfa3d27d2fd6d31532c05bb962d52e
+5eb31ffe139f0ff59400ab3d0b668647
   $wf ::
     GHC.Prim.Double# -> GHC.Integer.Type.Integer -> GHC.Prim.Double#
   {- Arity: 2, Strictness: <L,U><S,U>, Inline: [0] -}
-2a6df00e210f49392a54bbc61ebe74f3
+990d66ed1967cc8426e45ebfcf712877
   mutAg :: Types.Agent -> MyRandom.Rand Types.Agent
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ (ds :: Types.Agent) ->
@@ -200,7 +200,7 @@ fda198ae3c348aab815744bd1e3f4f4d
                                      <System.Random.Mersenne.Pure64.Internal.PureMT>_N
                                      <Data.Functor.Identity.Identity>_R
                                      <Types.Agent>_N))) }) -}
-651db5b6ac558edb89e91086b1ed8940
+4b7f6cd28064cf9150fbde7de207b902
   mutAg1 ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (Types.Agent, System.Random.Mersenne.Pure64.Internal.PureMT)
@@ -208,7 +208,7 @@ fda198ae3c348aab815744bd1e3f4f4d
      Unfolding: InlineRule (1, True, False)
                 (\ (eta1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
                  (Types.NoAgent, eta1)) -}
-a613f6c915fca90e92718ee0d56dd7c9
+bcc32b03af5948c1737a8991cc82e899
   mutAg_go ::
     [Types.Chromosome]
     -> Control.Monad.Trans.State.Strict.StateT

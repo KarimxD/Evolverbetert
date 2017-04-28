@@ -63,6 +63,13 @@
   (major1) == 0 && (major2) <  5 || \
   (major1) == 0 && (major2) == 5 && (minor) <= 1)
 
+/* package directory-1.3.0.0 */
+#define VERSION_directory "1.3.0.0"
+#define MIN_VERSION_directory(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  3 || \
+  (major1) == 1 && (major2) == 3 && (minor) <= 0)
+
 /* package mersenne-random-pure64-0.2.2.0 */
 #define VERSION_mersenne_random_pure64 "0.2.2.0"
 #define MIN_VERSION_mersenne_random_pure64(major1,major2,minor) (\
@@ -210,7 +217,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT"
+#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG"
 
-#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-JiawwqdleTNHNC9Qg9fPkT"
+#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG"
 
