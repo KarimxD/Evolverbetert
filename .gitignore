@@ -1,0 +1,15 @@
+# exclude everything except src, app, .git and cabal/stack files
+
+/*
+
+!/src/
+!/app/
+!/test/
+!/.git/
+!/LICENCE
+!/README.md
+!/stack.yaml
+!/Evolverbetert.cabal
+!/.gitignore
+!/.tags
+!/.tags1

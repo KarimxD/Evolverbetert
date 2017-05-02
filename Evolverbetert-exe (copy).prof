@@ -1,7 +1,7 @@
 	Mon Apr  3 13:18 2017 Time and Allocation Profiling Report  (Final)
 
 	   Evolverbetert-exe +RTS -N -hc -p -RTS
-
+alsla
 	total time  =       14.61 secs   (14609 ticks @ 1000 us, 1 processor)
 	total alloc = 21,838,863,968 bytes  (excludes profiling overheads)
 
