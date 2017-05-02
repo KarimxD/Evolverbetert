@@ -30,46 +30,37 @@ import           System.Environment     (getArgs, getEnv)
 import           System.IO              (Handle, IOMode (..), hClose, hFlush,
                                          openFile, stdout)
 import System.Directory
+import Data.Time.Clock
 
 
-import           Control.Monad          (when, forM, forM_)
+import           Control.Monad          (when, unless, forM, forM_)
 import           Data.Fixed             (mod')
 import           Data.Function          (on)
 import           Data.Maybe             (fromMaybe, isJust, isNothing, fromJust)
 
 import           Data.Array.IArray      (array, assocs, elems, (!))
-import           Data.List              (find, maximumBy)
+import           Data.List              (find, maximumBy, genericLength)
 import           Data.List.Split        (splitEvery, splitOn)
-import qualified Data.Map               as Map
+import qualified Data.Map.Strict               as Map
 
 import qualified Control.Monad.Parallel as Par (mapM)
 
-data Options = Options
-    { optHelp        :: Bool
-    , optWorldSeed   :: Int
-    , optAgentSeed   :: Int
-    , optOutput      :: Maybe FilePath
-    , optVOutput     :: Bool
-    , optConsole     :: Bool
-    } deriving Show
-
-defaultOptions = Options
-    { optHelp        = False
-    , optWorldSeed   = 420
-    , optAgentSeed   = 420
-    , optOutput      = Nothing
-    , optVOutput     = False
-    , optConsole     = False
-    }
+data Handles = Handles {
+      hOutput      :: Maybe Handle
+    , hVOutput     :: Maybe Handle
+    , hConsole     :: Maybe Handle
+}
+stdHandles :: Handles
+stdHandles = Handles Nothing Nothing Nothing
 
 -- | Uses a list of flags to initialize a IORef to a world and a handle for
 -- output.
 -- Generates an initial agent, populates the world wit it
 -- Sets the PRNG
-initialize :: Options -> IO (IORef World, [Handle])
+initialize :: Options -> IO (IORef World, Handles)
 initialize opts = do
     when (optHelp opts) $ helpError []
-    when (isNothing (optOutput opts) && not (optConsole opts))
+    unless (optOutput opts || optConsole opts || optVOutput opts || optGraphics opts)
         $ helpError ["\ny u no want output?!\n"]
 
     let initialAgent = evalRand randomAgent $ pureMT $ optAgentSeed opts
@@ -80,60 +71,33 @@ initialize opts = do
     setMyStdGen $ pureMT $ optWorldSeed opts
 
     userName <- getEnv "USER"
-    let outputDir =  "/linuxhome/tmp/" ++ userName ++ "/"
-    createDirectoryIfMissing False outputDir
-    hs   <- case optOutput opts of
-                 Just o  -> do file <- openFile (outputDir++o) ReadWriteMode
-                               return [file]
-                 Nothing -> return []
-    hs'  <- if   optVOutput opts
-            then do file <- openFile (outputDir++"v"++fromJust (optOutput opts)) ReadWriteMode
-                    return [file]
-            else return []
-    hs'' <- if   optConsole opts
-            then return [stdout]
-            else return []
+    UTCTime date time <- getCurrentTime
+    let outputDir =  "/linuxhome/tmp/" ++ userName ++ "/Evolverbetert/" ++ show date ++ "-" ++ takeWhile (/= '.') (show time) ++ "/"
+    when (optOutput opts || optVOutput opts) $ createDirectoryIfMissing True outputDir
+    let handles = stdHandles
+
+    handles' <- if optOutput opts
+                then do file <- openFile (outputDir++"output.txt") ReadWriteMode
+                        return handles {hOutput = Just file}
+                else return handles {hOutput = Nothing}
+
+    handles'' <- if optVOutput opts
+                 then do file <- openFile (outputDir++"voutput.txt") ReadWriteMode
+                         return handles' {hVOutput = Just file}
+                 else return handles' {hVOutput = Nothing}
+
+    handles''' <- if optConsole opts
+                  then return handles'' {hConsole = Just stdout}
+                  else return handles'' {hConsole = Nothing}
 
 
-    return (w, hs ++ hs' ++ hs'')
-    --
-    -- let WorldSeed sWorldSeed = fromMaybe (WorldSeed "420") (find isWorldSeed flags)
-    --     AgentSeed sAgentSeed = fromMaybe (AgentSeed "420") (find isAgentSeed flags)
-    --     OutputFile outputFile = fromMaybe (OutputFile "") (find isOutputFolder flags)
-    --     worldSeed = read sWorldSeed
-    --     agentSeed = read sAgentSeed
-    --
-    -- when (Help `elem` flags) $ ioError $ userError ('\n': usageInfo header options)
-    --
-    -- let initialAgent = evalRand randomAgent (pureMT agentSeed)
-    --     initialWorld = World startAgents 0
-    --         where startAgents = array P.worldBounds $ zip P.worldCoods $ repeat initialAgent
-    --
-    -- w <- newIORef initialWorld
-    -- setMyStdGen $ pureMT worldSeed
-    --
-    -- hs   <- if Console `elem` flags
-    --         then return [stdout]
-    --         else return []
-    --
-    -- hs'  <- if outputFile /= ""
-    --         then do file <- openFile outputFile ReadWriteMode
-    --                 return [file]
-    --         else return []
-    --
-    -- hs'' <- if vOutputFile /= ""
-    --         then do file <- openFile vOutputFile ReadWriteMode
-    --                 return [file]
-    --         else return []
-    --
-    -- let handles = hs ++ hs' ++ hs''
-    --
-    -- when (length handles < 1) $ error "no output specified"
-    --
-    -- when (isJust $ find ( (==outputFile) . show ) handles)
-    --     $ return () --B.hPutStrLn h $ fromString $ "Initial Agent is: " ++ myShow initialAgent
-    -- return (w, [h])
-    --     where header = "Usage: Evolverbetert [OPTION...]"
+    forM_ [hOutput handles''', hConsole handles'''] $ \m -> case m of
+        Just h -> B.hPutStrLn h $ fromString
+                    $  "world-seed="   ++ show (optWorldSeed opts)
+                    ++ "; agent-seed=" ++ show (optAgentSeed opts)
+                    ++ "; initialAgent = " ++ myShow initialAgent
+        _      -> return ()
+    return (w, handles''')
 
 
 -- | Maybe initializes graphical display dependent on 'P.display' in "Parameters"
@@ -142,12 +106,12 @@ initialize opts = do
 main :: IO ()
 main = do
     args <- getArgs
-    (flags, strings) <- compilerOpts args
-    (worldRef, hs) <- initialize flags
+    (opts, strings) <- compilerOpts args
+    (worldRef, hs) <- initialize opts
 
 
     -- All GLUT related stuff
-    when P.display $ do
+    when (optGraphics opts) $ do
         getArgsAndInitialize
         let pixelsPerUnit = 10
             w = pixelsPerUnit * fromIntegral P.width
@@ -159,7 +123,7 @@ main = do
                 (fromIntegral (screenSizeX - w) `div` 2)
                 (fromIntegral (screenSizeY - h) `div` 2)
         initialWindowPosition $= initialPos
-        createWindow "Evolverbetert v1.0"
+        createWindow "Evolverbetert v1"
         matrixMode $= Projection
         loadIdentity
         ortho2D 0 (fromIntegral w / fromIntegral pixelsPerUnit)
@@ -168,22 +132,27 @@ main = do
         displayCallback $= showWorld worldRef
 
     -- Where the magic happens... Recursive function that ends on P.maxTime
-    B.hPutStrLn (head hs) $ fromString "Hello, World!"
-    mainLoop worldRef hs 0
-    B.hPutStrLn (head hs) $ fromString "Goodbye World!"
-    forM_ hs hClose
+    -- B.hPutStrLn (fromMaybe stdout $ hOutput hs) $ fromString "Hello, World!"
+    mainLoop worldRef opts hs 0
+    -- B.hPutStrLn (fromMaybe stdout $ hOutput hs) $ fromString "Goodbye World!"
+    -- forM_ hs hClose
 
 -- | Recursive function that reads the IORef of the world, changes it with
 -- 'newWorld' and writes to world back.
 -- Also writes output if 'P.outputTime'
 -- Might display graphical output using mainLoopEvent from "MyGraphics"
-mainLoop :: IORef World -> [Handle] -> P.Time -> IO ()
-mainLoop worldRef hs t | t == P.maxTime = return ()
-mainLoop worldRef hs t = do
+mainLoop :: IORef World -> Options -> Handles -> P.Time -> IO ()
+mainLoop worldRef opts hs t | t == P.maxTime = return ()
+mainLoop worldRef opts hs t = do
     w <- readIORef worldRef
 
-    when (P.outputTime t) $ forM_ hs $
-        \h -> B.hPutStrLn h (fromString $ outputString w t) >> hFlush h
+    when (P.outputTime t) $ forM_ [hOutput hs, hConsole hs] $ \m -> case m of
+        Just h -> B.hPutStrLn h (fromString $ outputString w t) >> hFlush h
+        _      -> return ()
+
+    when (P.vOutputTime t) $ case hVOutput hs of
+        Just h -> B.hPutStrLn h (fromString $ show t ++ " ; " ++ show w)
+        _      -> return ()
 
 
     std <- getMyStdGen
@@ -192,9 +161,9 @@ mainLoop worldRef hs t = do
 
     writeIORef worldRef w'
 
-    when P.display $    mainLoopEvent >> postRedisplay Nothing
+    when (optGraphics opts) $    mainLoopEvent >> postRedisplay Nothing
 
-    mainLoop worldRef hs (t+1)
+    mainLoop worldRef opts hs (t+1)
 
 -- | Changes the Environment dependent on 'P.nrEnv' It works like a clock
 chEnv :: Env -> Rand Env
@@ -221,13 +190,20 @@ outputString w@(World ags env) t =
     show t
     ++ " " ++ show env -- current environment
     ++ " " ++ show (hammDistAg env bestAgent) -- Hamming distance of best agent
+    ++ " " ++ show (hammDistAg otherenv bestOtherAgent)
+    ++ " " ++ show avgHammDist
     ++ " " ++ show (length bestChrom) -- The length of the genome of best
     ++ " " ++ myShow bestChrom
     where
-        bestAgent = maximumBy (compare `on` fitnessAgent env) $ elems ags
+        bestAgent = maximumBy (compare `on` fitnessAgent env) els
+        bestOtherAgent = maximumBy (compare `on` fitnessAgent otherenv) els
         bestChrom = head . genome $ bestAgent
-        maxFitness (World ags env) = maximum $ map (fitnessAgent env) (elems ags)
-        minHammDist (World ags env) = minimum $ map (hammDistAg env) (elems ags)
+        maxFitness = maximum $ map (fitnessAgent env) els
+        minHammDist = minimum $ map (hammDistAg env) els
+        avgHammDist = average $ map (hammDistAg env) els
+        els = elems ags
+        otherenv = 1 + (-1)*env
+        average xs = realToFrac (sum xs) / genericLength xs
 
 
 -- | uses 'reproduceAgent' to make a new coordinate-Agent association
@@ -261,7 +237,25 @@ reproduceAgent (World ags env) ix = do
     else return NoAgent -- if you die
 
 
+data Options = Options
+    { optHelp        :: Bool
+    , optWorldSeed   :: Int
+    , optAgentSeed   :: Int
+    , optOutput      :: Bool
+    , optVOutput     :: Bool
+    , optConsole     :: Bool
+    , optGraphics    :: Bool
+    } deriving Show
 
+defaultOptions = Options
+    { optHelp        = False
+    , optWorldSeed   = 420
+    , optAgentSeed   = 420
+    , optOutput      = False
+    , optVOutput     = False
+    , optConsole     = False
+    , optGraphics    = False
+    }
 
 options :: [OptDescr (Options -> Options)]
 options =
@@ -269,7 +263,7 @@ options =
         (NoArg (\opts -> opts { optHelp = True }))
         "Display this help info"
     , Option ['o']     ["output"]
-        (ReqArg (\ d opts -> opts { optOutput = Just d }) "DIR")
+        (NoArg (\opts -> opts { optOutput = True }))
         "Direcory for output"
     , Option ['v']     ["verbose"]
         (NoArg (\opts -> opts { optVOutput = True }))
@@ -283,6 +277,9 @@ options =
     , Option ['a']     ["agent-seed"]
         (ReqArg (\s opts -> opts {optAgentSeed = read s}) "INT")
         "The seed used for the initial agent generation"
+    , Option ['g']     ["graphics"]
+        (NoArg (\opts -> opts { optGraphics = True }))
+        "Display CA in graphical window"
     ]
 
 compilerOpts :: [String] -> IO (Options, [String])

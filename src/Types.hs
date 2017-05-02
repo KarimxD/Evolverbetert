@@ -1,12 +1,12 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
 module Types where
-import Data.Map as Map
+import Data.Map.Strict as Map
 import Data.List as List
 import Data.Array.IArray
 
 data World = World {    agents :: Agents
-                    ,   env :: Env}
+                    ,   env :: Env} deriving (Show, Read, Eq)
 
 type Env = Int
 type Agents = Array (Int, Int) Agent

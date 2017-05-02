@@ -4,7 +4,7 @@ import World
 import Types
 import           Data.List.Split     (splitOn)
 
-import qualified Data.Map as Map
+import qualified Data.Map.Strict as Map
 import qualified Data.List as List
 import qualified Data.Array.IArray as Array
 
@@ -25,7 +25,6 @@ parseAgent str =  --Only works on agents with 1 chromosome
         gst = gSTFromGenome genome
         genome = [map myRead loci] :: Genome
         loci = splitOn "," str :: [String]
-
 
 instance MyShow GeneStateTable where
     myShow = List.intersperse ' ' . concatMap (myShow . snd) . Map.toList

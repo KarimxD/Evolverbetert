@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-28 16:36:03.375097 UTC
+2017-05-01 15:21:25.860977 UTC
 
-interface Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG:Evolverbetert 8002
-  interface hash: d582de747af53c0fe3561c1ef65bf93b
-  ABI hash: 038bbd0abc96a07082c62926b9a266ea
-  export-list hash: ac0775d4c003820ce02bb170f4dc439f
+interface Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Evolverbetert 8002
+  interface hash: 7b2014491c133bd5730d6f57156c3b85
+  ABI hash: 231e5af9624630b6ba3d219dbcb1acf7
+  export-list hash: f73ce21b7edc4bec69798ad2ae86031a
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: ab396f11155bd696ab63895436e6f1df
   sig of: Nothing
@@ -28,7 +28,9 @@ exports:
   Evolverbetert.options
   Evolverbetert.outputString
   Evolverbetert.reproduceAgent
-  Evolverbetert.Options{Evolverbetert.Options optAgentSeed optConsole optHelp optOutput optVOutput optWorldSeed}
+  Evolverbetert.stdHandles
+  Evolverbetert.Handles{Evolverbetert.Handles hConsole hOutput hVOutput}
+  Evolverbetert.Options{Evolverbetert.Options optAgentSeed optConsole optGraphics optHelp optOutput optVOutput optWorldSeed}
 module dependencies: Misc Mutations MyGraphics MyRandom Parameters
                      Parsing Types World
 package dependencies: GLURaw-2.0.0.3@GLURaw-2.0.0.3-G12M6COyQIU5WfRlrIwPuj
@@ -59,7 +61,7 @@ package dependencies: GLURaw-2.0.0.3@GLURaw-2.0.0.3-G12M6COyQIU5WfRlrIwPuj
                       text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR
                       time-1.6.0.1@time-1.6.0.1 transformers-0.5.2.0@transformers-0.5.2.0
                       unix-2.7.2.1@unix-2.7.2.1
-orphans: Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG:MyRandom
+orphans: Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:MyRandom
          base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
          binary-0.8.3.0@binary-0.8.3.0:Data.Binary.Generic
          bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Builder
@@ -86,63 +88,63 @@ family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
                          primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
                          text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text
-import  -/  Misc 9c840ebf3f1e94a077cfa39ed226e971
-  exports: 0296819ec2db101dc5332d4059075e1a
-  maybeCh 8fa9fac1271d134361ed328b751d50a8
-  moore8 a4fb2be91ca6cd5ecfb37f23d3588b3f
-import  -/  Mutations 978488fe7c4ef4f4b6e8f65fa19b3b77
-  exports: 022b52032365c225923fc794c85334e1
-  mutAg 990d66ed1967cc8426e45ebfcf712877
-import  -/  MyGraphics bbed0515b5079d8dde3312a093b6b5b3
-  exports: e9c36c4e3de29928099813dd6b4c692d
-  showWorld 197d8f685b47fbe878898555be205364
-import  -/  MyRandom ac5c3d52b691d9aaae5b1bb647af66bd
-  exports: dd9a89ae07df5f4335cfca7f1ea96343
-  Rand 15dbc98a9547e867366d8bad46ff1e94
-  evalRand 3f6bf9002409028265d15437ce04f073
-  getDouble 5c31e5f2eec7293d9b501acd10440062
-  getMyStdGen 4e961113d2d2c12c900916721f0904f8
-  getRange 9711cfb1121bda13507439d09b30ac7c
-  pureMT c26aaf9fab7c1bb4b9465a8d235023b8
-  runRand ff752c417ceea785c2f2d9674787ff44
-  setMyStdGen 6730a11040d4b3d9d67fb14d8bebb2c1
-import  -/  Parameters f6207debca8ae6a6a2f80b3a30b982b7
-  exports: 019275192dc9600464829c891d28e48a
-  Time 76230c54d0b6809d2454e41663fb6957
-  deathRate 73ea0cd2fdf2d06f7840dd6c95b30ecc
-  display 36696911d734b2a668e5373c29f0cb71
-  envSwitchProb 460587cb1f7e659b21fd899d184e1b6b
-  height 660130facfb2dc1c53bd9743db4215de
-  maxTime 22f9bea5d43cf30286d565cad390aaeb
-  nrEnv dad657cc3cc1034efa1940e50fd3b271
-  outputTime 66d97c99f9258facf5c88aa88fa7fb5f
-  selectionPressure 55064c0fc333290ac0674ffeeddd9905
-  width a261c43f906ee8619481f77b3701ccc6
-  worldBounds 406903bf771b0cbf87aa67a5850c1de7
-  worldCoods 16105ec29055af5ea8d59b6c7df4a155
-import  -/  Parsing 369ede456b3ac7c6aa1829ba5dbfffc2
-  exports: ac8d1adfd936b9666d54ccb43ba99290
-  myRead 1f331f603e8ba308caf9c946d7872dcf
-  myShow 10f6842d749b72442562ccd5ade46c4f
-import  -/  Types 1d3d1e1d433c54e7bfb57452891f64d7
-  exports: f90e62a4294bef8d4adecbf5aeb850c0
-  Agent a1955434041c0ddcdec14b68adc5a3f1
-  Agent d84ba5f3c206a79fef889ed9cdb2a757
-  Env 88a064ab5cc38cba53ed6c77954d36cb
-  Genome 701a6b59afaf6ac71673981e36ee7744
-  NoAgent 6206322b95deab4ed7ee3e59b287efbd
-  World 189ef8724a22cb619fe67b64fb541de7
-  World 9738ed488c0ba9f7acf9f8e4b61d0338
-  agents 053d754d76f8a2a5d11b8a171540cf92
-  env 93b6534fdd93b641ab6e4cfee2af97c8
-  genome 6a038ef7e18e49a94a93f1667308bb65
-import  -/  World 3e7e2a4072f3caa69daebccfb176ef08
-  exports: e67d5e73efc3ddbb195eae358efd5ab7
-  defaultGst ee6757ec50987f027152d881ab04619f
-  devAg 4b6b0c9d94d22f75c8e796d1a68b213e
-  fitnessAgent 058741f30c7dee0a8ab3d52aecef8af9
-  hammDistAg 837f653cab505cf95809969d328ed51c
-  randomAgent e241046c885b7ecf8f999258e0d8619e
+import  -/  Misc 26966a5460f11b18001e088f70cf76ac
+  exports: 28ae6ccada868e7efb3c96f7ae6d68f9
+  maybeCh b7e06c2b1d262fd0b4aef1f7150dcfb3
+  moore8 610363e082046b81ec379113dadabd09
+import  -/  Mutations a6cc818de23f6dd599ccc739e3c76bd1
+  exports: abb0dea61ea03ef57e98d0edb44e921a
+  mutAg e2dd087fb7799b2ded1dc8d8a4f22d8e
+import  -/  MyGraphics 9d83cfd30d0fc7698149b2474c7b5972
+  exports: 97d0333b14588eeefaee8442dfd1870c
+  showWorld 2a24f2c623c2878a8f65ff8863c9d1ad
+import  -/  MyRandom 6dee9bd9efb866e95f63ee556ef06dbe
+  exports: ac39067651296e54e6af2d56bdaa576b
+  Rand 06a931c974819790dbc40b2dccffa196
+  evalRand 73bce04bc3456941ef5fa04c444001a2
+  getDouble 4584580bb6279fc885c128afdd8c35df
+  getMyStdGen d3b151ed14d8ad80e62616660ed5c727
+  getRange bc5d1e4299975812df90bffc86867575
+  pureMT cd286d5d65a776d017e2c4c4a38d713d
+  runRand 776a26e9febff712e0920d04c7ddbef8
+  setMyStdGen 6d2f372defb9d6a8a11a2e8fb6cf3cf0
+import  -/  Parameters 60ff55bcb82c2c83af83a8d2acb246b2
+  exports: fea0ab185fab0b15ba191f9d3ea960f0
+  Time 647c451342cc2efff01df54e66ddcb27
+  deathRate bb02b8a4436aae06e1196b88d358cd5d
+  envSwitchProb abdca94cc9dc490d5c683857abd0a393
+  height 471e2f4f554e19b554b21caf63ace78e
+  maxTime 2bc1216e0957570bf7f3f8a0f4cfdd19
+  nrEnv 69d3caeacd6bc6b4fcd08c69259eb1f7
+  outputTime 5dde02ce28980dc5df02a4e20995f423
+  selectionPressure af1f06d252a7013bb9d17f1c4cbd2a14
+  vOutputTime 96e54fbcd94f3376a1ec4d2311a4f79c
+  width 4470d3b90c978bea5dc808f6c800a600
+  worldBounds 7f0019d5ab3318acf1f3f95937808a9f
+  worldCoods 2ae336931cd4b0460b72c8bec2e6cd2c
+import  -/  Parsing 3ce07fed38dc929c2194d93b60f265f9
+  exports: c53f6fd4706f2be4c1d9cfdc774ad26b
+  myRead 353d719dd4426285986305dc561d70f3
+  myShow 97d483d08c590cc1deb571af85b00942
+import  -/  Types 553fe5882bac7964d9e18ed5fc1899e3
+  exports: f2d3892cae9faa75e4d9e5ce4ff3401f
+  Agent 60b09a4470e22147e56c42e0035f87fe
+  Agent 4db872eec646ad15f031961699453d7d
+  Env 3acf42e6b3ff031d4328eeca7f593f33
+  Genome 31e3370e16839f7422c62e17856b87c5
+  NoAgent 339da968cef368d0f2975264de06a36a
+  World 1f5a39e7b4535e9d9d60a2e3b3f3ad75
+  World 1570f7c2c5d5f3fd6c86483737d155b6
+  agents d8e257b5a9ba3766bd9c42c43fa03eb6
+  env b2fc631954cb3156687f173510503a02
+  genome caf01e8667618822fcc76af63288dcf0
+import  -/  World fae719142ff1d0cc47926353810ce652
+  exports: 1e87020408db611578f66aeb540278f6
+  defaultGst b24ba51d05b2fd455fa26d548df348af
+  devAg 3c7d87a83b367dd757a782d7b119c6bd
+  fitnessAgent 45c7feb2545c88cffbb51258423943f8
+  hammDistAg 7067b2060c4834b04013305ad5363662
+  randomAgent 821e646829c609c27331e0d347fee160
 import  -/  GLUT-2.7.0.11@GLUT-2.7.0.11-IP0PzJz4wI8KYXyKTnttpl:Graphics.UI.GLUT 850ab735296960c40e0ec36d1d65a5d9
 import  -/  GLUT-2.7.0.11@GLUT-2.7.0.11-IP0PzJz4wI8KYXyKTnttpl:Graphics.UI.GLUT.Begin 05dfd16366721fd6a3e5ed4e8d031496
 import  -/  GLUT-2.7.0.11@GLUT-2.7.0.11-IP0PzJz4wI8KYXyKTnttpl:Graphics.UI.GLUT.Callbacks.Window 055811271b55e7da82a607ecad66f70a
@@ -161,11 +163,11 @@ import  -/  base-4.9.1.0:Data.Function 7aca86bfbd92366def5f260e30cb2628
 import  -/  base-4.9.1.0:Data.IORef 71c87b0b25a8bca3e3f4497725f5e543
 import  -/  base-4.9.1.0:Data.List 07ae2acca6538aa0800bd0a993ac6ac1
 import  -/  base-4.9.1.0:Data.Maybe d876c4ffe4b3c43755a781e8ad860d88
+import  -/  base-4.9.1.0:Data.OldList 27987919d8da2f92e3f472ca81f730f8
 import  -/  base-4.9.1.0:Data.String b34df69c7b6358cd40a379c8a0a78dcf
 import  -/  base-4.9.1.0:Data.Traversable 556020d7cf3c4a34a774600512918a37
 import  -/  base-4.9.1.0:Data.Tuple 7dc4bbb45d2e69c991ffac438beeca11
 import  -/  base-4.9.1.0:GHC.Base c4231c43c07e46080a26bf94094c7aa1
-import  -/  base-4.9.1.0:GHC.IO eb504c57b397cf133849f8586f15dafb
 import  -/  base-4.9.1.0:GHC.IO.Exception 5064be4c355632a1d1c4f2322f56ac52
 import  -/  base-4.9.1.0:GHC.IO.Handle ba98a5b34d78cbf48b41fe58a3735c69
 import  -/  base-4.9.1.0:GHC.IO.Handle.FD dbf0d0d4f42ab1465129a88ccf7880ff
@@ -182,14 +184,17 @@ import  -/  base-4.9.1.0:System.Environment 08cb808e8e6a7821e6f8cfa76a977431
 import  -/  base-4.9.1.0:System.IO e4a64a8e3dce8616da54f0ee7104f7db
 import  -/  base-4.9.1.0:Text.Read 75c59863e882ebaec4532e9465e2ee9b
 import  -/  bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Char8 64661030f691dd1495e363eeda7a5344
-import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map 20d4ffbee41965d03d6a989425473dc4
+import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map.Strict 9d0c0962e53270a0a3fb5cb63723a381
 import  -/  directory-1.3.0.0@directory-1.3.0.0:System.Directory 8ff5ebd6a93811413df021d2be39a158
 import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
 import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
 import  -/  monad-parallel-0.7.2.2@monad-parallel-0.7.2.2-DgGZ1OYT6KM5SKZdJnC6sE:Control.Monad.Parallel 3d5939245e33ac38d24f11e881f73827
 import  -/  split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split c60198a427bfd51d9fb4562c059ec1d2
 import  -/  split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals 25dced234ed01c9c803d678763a4d772
-3faec2878543a2956eb1c3b1afddbb79
+import  -/  time-1.6.0.1@time-1.6.0.1:Data.Time.Clock 497255c34b71ccfa0ab1bf8f9ae56005
+import  -/  time-1.6.0.1@time-1.6.0.1:Data.Time.Clock.POSIX d107248af877060d00321d9c66f5a2b1
+import  -/  time-1.6.0.1@time-1.6.0.1:Data.Time.Clock.UTC a11128e40404d4167f29d45f57b1b0af
+56ed3d18ccdb5c12ed2a64dd6b30c093
   $fShowOptions :: GHC.Show.Show Evolverbetert.Options
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -198,151 +203,198 @@ import  -/  split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.I
                   Evolverbetert.$fShowOptions_$cshowsPrec
                   Evolverbetert.$fShowOptions_$cshow
                   Evolverbetert.$fShowOptions_$cshowList -}
-3faec2878543a2956eb1c3b1afddbb79
+56ed3d18ccdb5c12ed2a64dd6b30c093
   $fShowOptions_$cshow :: Evolverbetert.Options -> GHC.Base.String
-  {- Arity: 1, Strictness: <S,1*U(U,U(U),U(U),1*U,U,U)>,
+  {- Arity: 1,
+     Strictness: <S,1*U(1*U,1*U(U),1*U(U),1*U,1*U,1*U,1*U)>,
      Unfolding: InlineRule (1, True, False)
                 (\ (x :: Evolverbetert.Options) ->
                  Evolverbetert.$fShowOptions_$cshowsPrec
                    GHC.Show.shows22
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-3faec2878543a2956eb1c3b1afddbb79
+56ed3d18ccdb5c12ed2a64dd6b30c093
   $fShowOptions_$cshowList ::
     [Evolverbetert.Options] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__
                    @ Evolverbetert.Options
                    Evolverbetert.$fShowOptions_$sshows) -}
-3faec2878543a2956eb1c3b1afddbb79
+56ed3d18ccdb5c12ed2a64dd6b30c093
   $fShowOptions_$cshowsPrec ::
     GHC.Types.Int -> Evolverbetert.Options -> GHC.Show.ShowS
-  {- Arity: 2, Strictness: <S(S),1*U(U)><S,1*U(U,U(U),U(U),1*U,U,U)>,
+  {- Arity: 3,
+     Strictness: <S(S),1*U(U)><S,1*U(1*U,1*U(U),1*U(U),1*U,1*U,1*U,1*U)><L,U>,
      Inline: INLINE[0],
-     Unfolding: InlineRule (2, True, False)
-                (\ (w :: GHC.Types.Int) (w1 :: Evolverbetert.Options) ->
+     Unfolding: InlineRule (3, True, False)
+                (\ (w :: GHC.Types.Int)
+                   (w1 :: Evolverbetert.Options)
+                   (w2 :: GHC.Base.String) ->
                  case w of ww { GHC.Types.I# ww1 ->
-                 case w1 of ww2 { Evolverbetert.Options ww3 ww4 ww5 ww6 ww7 ww8 ->
-                 Evolverbetert.$w$cshowsPrec ww1 ww3 ww4 ww5 ww6 ww7 ww8 } }) -}
-3faec2878543a2956eb1c3b1afddbb79
+                 case w1 of ww2 { Evolverbetert.Options ww3 ww4 ww5 ww6 ww7 ww8 ww9 ->
+                 Evolverbetert.$w$cshowsPrec
+                   ww1
+                   ww3
+                   ww4
+                   ww5
+                   ww6
+                   ww7
+                   ww8
+                   ww9
+                   w2 } }) -}
+56ed3d18ccdb5c12ed2a64dd6b30c093
   $fShowOptions_$sshows :: Evolverbetert.Options -> GHC.Show.ShowS
-  {- Arity: 1,
+  {- Arity: 2,
      Unfolding: InlineRule (0, True, False)
                 (Evolverbetert.$fShowOptions_$cshowsPrec GHC.Show.shows22) -}
-138dcd854a7ad051fedbd14580df0fe6
+382414a6692a2407d99341da78025843
+  $tc'Handles :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   12831594164166259663##
+                   6242492281326240709##
+                   Evolverbetert.$trModule
+                   Evolverbetert.$tc'Handles1) -}
+1c47286ba0a5ac28b451afadc370fecf
+  $tc'Handles1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "'Handles"#) -}
+63613141b85f202582a290bc76b608cc
   $tc'Options :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   7350994617849036001##
-                   8149764770745399999##
+                   13314375678342736816##
+                   15233057850455558562##
                    Evolverbetert.$trModule
                    Evolverbetert.$tc'Options1) -}
-2a00b86609c117128917192593bfc9eb
+9de863d91d0d174d89ddcabc012cbcd0
   $tc'Options1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'Options"#) -}
-7d59d3a0d26bef5caadce5f136da1845
+995d012ac43b4a07839e72af47091fe7
+  $tcHandles :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   13478430599453955256##
+                   13439347746858157120##
+                   Evolverbetert.$trModule
+                   Evolverbetert.$tcHandles1) -}
+a786003208aaf011660db057bdea9a3f
+  $tcHandles1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "Handles"#) -}
+13e920c48548011693e9b7a89c4bbb12
   $tcOptions :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   11151946408863419763##
-                   1425973102095954546##
+                   5049647288832264508##
+                   11999943095026506741##
                    Evolverbetert.$trModule
                    Evolverbetert.$tcOptions1) -}
-7eb874063a316fbb39667621521c6db0
+616c46a7db1600a373afab55bac6e565
   $tcOptions1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Options"#) -}
-41f9679182e568d6c1a30453b9d8d65a
+78ee74537a354c7ef0cd5bc2017dae52
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.Module
                    Evolverbetert.$trModule2
                    Evolverbetert.$trModule1) -}
-90ae8245635ca082d6072a4b2d4c5e37
+aeecebf33cafeb691606c9fc9d2222c2
   $trModule1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Evolverbetert"#) -}
-2acccbad2f1af9a5e2ce12f51b855fe8
+b4a97a5dfce195f67e2f4971f8c488bf
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
-                   "Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG"#) -}
-5ef3585189f3cb08dfe19d199280e665
+                   "Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF"#) -}
+67f6cb1b769135b84b7b98897f2e0945
   $w$cshowsPrec ::
     GHC.Prim.Int#
     -> GHC.Types.Bool
     -> GHC.Types.Int
     -> GHC.Types.Int
-    -> GHC.Base.Maybe GHC.IO.FilePath
     -> GHC.Types.Bool
     -> GHC.Types.Bool
-    -> GHC.Show.ShowS
-  {- Arity: 7,
-     Strictness: <S,U><L,U><L,U(U)><L,U(U)><L,1*U><L,U><L,U>,
+    -> GHC.Types.Bool
+    -> GHC.Types.Bool
+    -> GHC.Base.String
+    -> GHC.Base.String
+  {- Arity: 9,
+     Strictness: <S,U><L,1*U><L,1*U(U)><L,1*U(U)><L,1*U><L,1*U><L,1*U><L,1*U><L,U>,
      Inline: [0] -}
-b3ca7b056d96c0f1848f56e4c2165a4a
+f10f1749ad9c1780382bcb419ace77f7
   $wf :: GHC.Prim.Double# -> GHC.Prim.Int# -> GHC.Prim.Double#
   {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,U>, Inline: [0] -}
-b5a99b3c65777b1736ecd9c30a11bb3b
+06d39acf12a84c79d8eddc9afa83f3c7
   $winitialize ::
     GHC.Types.Bool
     -> GHC.Types.Int
     -> GHC.Types.Int
-    -> GHC.Base.Maybe GHC.IO.FilePath
+    -> GHC.Types.Bool
+    -> GHC.Types.Bool
     -> GHC.Types.Bool
     -> GHC.Types.Bool
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld,
-          (GHC.IORef.IORef Types.World, [GHC.IO.Handle.Types.Handle]) #)
-  {- Arity: 7,
-     Strictness: <S,1*U><L,1*U(U)><L,1*U(U)><S,U><L,1*U><L,U><S,U>,
+          (GHC.IORef.IORef Types.World, Evolverbetert.Handles) #)
+  {- Arity: 8,
+     Strictness: <S,1*U><L,U(U)><L,U(U)><S,U><L,U><L,U><L,1*U><S,U>,
      Inline: [0] -}
-423b34ccaca1c3fd5971b0aebd8e33f3
+7896d70502defad9e5482049f1d79978
   $wmainLoop ::
     GHC.IORef.IORef Types.World
-    -> [GHC.IO.Handle.Types.Handle]
+    -> Evolverbetert.Options
+    -> Evolverbetert.Handles
     -> GHC.Prim.Int#
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
-  {- Arity: 4, Strictness: <L,1*U(U)><L,U><S,U><S,U>, Inline: [0] -}
-d4556c05bfca40f8421b7dfe856d7d54
+  {- Arity: 5,
+     Strictness: <L,1*U(U)><L,1*U(A,A,A,A,A,A,U)><L,U(U,U,U)><S,U><S,U>,
+     Inline: [0] -}
+dd09696c8665191aebfd517a17d6fdf1
   $woutputString ::
     Types.Agents -> Types.Env -> GHC.Prim.Int# -> GHC.Base.String
   {- Arity: 3, Strictness: <L,1*U(A,A,U,U)><L,1*U(U)><S,U>,
      Inline: [0] -}
-dc414fedd6d83118ead88a9c2f116f86
+2c94541e61ab1875cf0d5d403e9ff5b8
   $wreproduceAgent ::
     Types.Agents
     -> Types.Env
     -> (GHC.Types.Int, GHC.Types.Int)
-    -> GHC.Prim.ByteArray#
-    -> GHC.Prim.Int#
-    -> System.Random.Mersenne.Pure64.Internal.MTBlock
+    -> System.Random.Mersenne.Pure64.Internal.PureMT
     -> (# Types.Agent, System.Random.Mersenne.Pure64.Internal.PureMT #)
-  {- Arity: 6,
-     Strictness: <L,1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U)><L,U(U)><L,1*U(1*U(U),1*U(U))><S,U><S,U><L,U(U)>,
+  {- Arity: 4,
+     Strictness: <L,1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U)><L,U(U)><L,1*U(1*U(U),1*U(U))><L,1*U(U,U,U(U))>,
      Inline: [0] -}
-3faec2878543a2956eb1c3b1afddbb79
+64efa4675ca3fb39b5cc52f98b4e0b16
+  data Handles
+    = Handles {hOutput :: GHC.Base.Maybe GHC.IO.Handle.Types.Handle,
+               hVOutput :: GHC.Base.Maybe GHC.IO.Handle.Types.Handle,
+               hConsole :: GHC.Base.Maybe GHC.IO.Handle.Types.Handle}
+56ed3d18ccdb5c12ed2a64dd6b30c093
   data Options
     = Options {optHelp :: GHC.Types.Bool,
                optWorldSeed :: GHC.Types.Int,
                optAgentSeed :: GHC.Types.Int,
-               optOutput :: GHC.Base.Maybe GHC.IO.FilePath,
+               optOutput :: GHC.Types.Bool,
                optVOutput :: GHC.Types.Bool,
-               optConsole :: GHC.Types.Bool}
-07325a39afa3f9b7eeaa7ca97e397fb2
+               optConsole :: GHC.Types.Bool,
+               optGraphics :: GHC.Types.Bool}
+d9318abaa30544b7c5f20fd384b0d3f5
   agent0 :: Types.Agent
   {- Unfolding: (World.devAg_takeUntilSame Evolverbetert.agent1) -}
-ee1908c2162ae5c7c430424046bad2ea
+d222d99382de136768f70656d814799e
   agent1 :: [Types.Agent]
   {- Unfolding: (World.$wgo1 Evolverbetert.agent2 20#) -}
-7374d8f6a9d7fc268756915ed3f3200f
+75b07e9b528bb59897057a2308b7095a
   agent2 :: Types.Agent
   {- Unfolding: (Types.Agent
                    Evolverbetert.genome0
                    World.defaultGst) -}
-01bb268e78735fb6bbbb0beb44656e59
+d71ed6a588ed3db4051daa8257e59b82
   chEnv :: Types.Env -> MyRandom.Rand Types.Env
   {- Arity: 2, Strictness: <L,1*U(U)><S(SSL),1*U(U,U,U(U))>m,
      Unfolding: InlineRule (0, True, True)
@@ -353,7 +405,7 @@ ee1908c2162ae5c7c430424046bad2ea
                                <System.Random.Mersenne.Pure64.Internal.PureMT>_N
                                <Data.Functor.Identity.Identity>_R
                                <Types.Env>_N)) -}
-a5dd58d9ba969d4a24211cdf7f195ef1
+375eeedf20b3dc99af0d60f8b986379b
   chEnv1 ::
     Types.Env
     -> System.Random.Mersenne.Pure64.Internal.PureMT
@@ -365,7 +417,9 @@ a5dd58d9ba969d4a24211cdf7f195ef1
                 (\ (w :: Types.Env)
                    (w1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
                  case w1 of ww { System.Random.Mersenne.Pure64.Internal.PureMT ww1 ww2 ww3 ->
-                 case MyRandom.$wrandomR
+                 case MyRandom.$wgetRange
+                        @ Types.Env
+                        GHC.Real.$fIntegralInt
                         1#
                         Evolverbetert.chEnv2
                         ww1
@@ -381,10 +435,10 @@ a5dd58d9ba969d4a24211cdf7f195ef1
                  (Sym (Data.Functor.Identity.N:Identity[0]
                            <(Types.Env,
                              System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) } }) -}
-3ccbedb70bba5a759638aa520df5437f
+cbb88107664e870d34d477e8a976fc2a
   chEnv2 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 1#) -}
-313ee107b36ed83cc94218b39471f1ed
+f45886b9fd495b8fa6ac2134f6aa75d8
   compilerOpts ::
     [GHC.Base.String]
     -> GHC.Types.IO (Evolverbetert.Options, [GHC.Base.String])
@@ -395,7 +449,7 @@ a5dd58d9ba969d4a24211cdf7f195ef1
                 (<[GHC.Base.String]>_R
                  ->_R Sym (GHC.Types.N:IO[0]
                                <(Evolverbetert.Options, [GHC.Base.String])>_R)) -}
-28c53580f6e9d915abc9c5dc627bd27d
+2e3f737bf93bde5e684367fd6dcaca87
   compilerOpts1 ::
     [GHC.Base.String]
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -435,96 +489,122 @@ a5dd58d9ba969d4a24211cdf7f195ef1
                               (GHC.Base.Nothing @ Foreign.C.Types.CInt)
                               (GHC.Base.Nothing @ GHC.IO.FilePath)))
                         eta } }) -}
-b3ef93f9defde6eff051d8acab7b3e25
+90648aebf7ad0f796a53744675f5bf44
   compilerOpts_go :: [[GHC.Types.Char]] -> [GHC.Types.Char]
   {- Arity: 1, Strictness: <S,1*U> -}
-6a83278b1459c8d106ab7d8b3cd5607e
+c0eeefc20d7a8db72fe685131a724410
   compilerOpts_go1 ::
     [Evolverbetert.Options -> Evolverbetert.Options]
     -> Evolverbetert.Options -> Evolverbetert.Options
-  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U,U,U,U,U,U)> -}
-f8a81c54d0d8b85461620917bd7bd8de
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S,1*U><L,U(U,U,U,U,U,U,U)> -}
+0a79ecd392d133626a524f4f7bdf4061
   defaultOptions :: Evolverbetert.Options
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (Evolverbetert.Options
                    GHC.Types.False
                    Evolverbetert.defaultOptions1
                    Evolverbetert.defaultOptions1
-                   (GHC.Base.Nothing @ GHC.IO.FilePath)
+                   GHC.Types.False
+                   GHC.Types.False
                    GHC.Types.False
                    GHC.Types.False) -}
-87849bd4fda5c165dfb6400328f97961
+448218c73ba085688c1ce4002858aed3
   defaultOptions1 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 420#) -}
-f2dbb8536b41d1b8100e816f16d1c98c
+759af6050ecf0308809210d6e9c12fa0
   genome0 :: Types.Genome
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Chromosome
                    Evolverbetert.genome4
                    (GHC.Types.[] @ Types.Chromosome)) -}
-ae9aaaa33a21dff7855442e6c7e783ed
+8d3e61d1e4b753ffe43249eccf174ee4
   genome1 :: Types.Genome
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Chromosome
                    Evolverbetert.genome9
                    (GHC.Types.[] @ Types.Chromosome)) -}
-c25baaaeffe3dcdae33e25abcaed01bd
+124332aea9e4331d7c2a26a4eedb9e55
   genome10 :: [[GHC.Types.Char]]
   {- Unfolding: (Evolverbetert.genome7 Evolverbetert.genome11) -}
-770cf481bdc3ac393b8a7086ad8be345
+c7b6eb4891b2b21a831e8c0971616550
   genome11 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "14:-1,9:-1,G17:0,16:-1,G12:0,G19:-1,6:-1,4:1,G16:0,G18:0,17:-1,9:-1,8:-1,G0:0,G14:0,9:-1,4:-1,G10:0,9:-1,2:-1,G6:-1,3:-1,G5:-1,7:-1,G1:-1,19:-1,G7:-1,17:1,4:-1,G2:-1,G9:-1,G11:-1,G4:1,17:-1,11:-1,17:1,G8:1,7:1,G3:1,10:-1,G13:1,10:-1,3:-1,G15:1"#) -}
-e37079bb14da23fecbf6046f81ffc4c5
+351f9183d00b457ca9aec48d8dc7b876
   genome12 :: [Types.Locus]
   {- Unfolding: (GHC.Base.map
                    @ [GHC.Types.Char]
                    @ Types.Locus
                    Parsing.$fMyReadLocus_$cmyRead
                    Evolverbetert.genome13) -}
-edcf73eaed1cd69528b0ef7e5300b31b
+caf14e6a96062cf2aa2d9111e64f3f3e
   genome13 :: [[GHC.Types.Char]]
   {- Unfolding: (Evolverbetert.genome7 Evolverbetert.genome14) -}
-1844f39ba6623954c69cd57b6b2d8bda
+16b0f86b4ad0f5b8033465bb0a59490a
   genome14 :: [GHC.Types.Char]
-82c401b01c9af4f3a8a784198c437227
+e4805613d496a5f45353c99e5c54947a
   genome2 :: Types.Genome
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Chromosome
                    Evolverbetert.genome12
                    (GHC.Types.[] @ Types.Chromosome)) -}
-1427011b72e37e1edeadb1561d448ad2
+3b870cff57ac279f689d0217a57483b0
   genome4 :: [Types.Locus]
   {- Unfolding: (GHC.Base.map
                    @ [GHC.Types.Char]
                    @ Types.Locus
                    Parsing.$fMyReadLocus_$cmyRead
                    Evolverbetert.genome5) -}
-2f79e192acdc52111852d85c426bf04b
+1d03e3b31934da43d5c7536d9aae0368
   genome5 :: [[GHC.Types.Char]]
   {- Unfolding: (Evolverbetert.genome7 Evolverbetert.genome6) -}
-5919429b2322fdcaa0b49986b3ce537c
+62008a69f90445a4e7705feafebd6687
   genome6 :: [GHC.Types.Char]
-b5ca78674b228b6771908a6bfe9a06cd
+9bb53235643e16b77f7c07bfb6b49825
   genome7 :: [GHC.Types.Char] -> [[GHC.Types.Char]]
   {- Unfolding: (Data.List.Split.Internals.splitOn
                    @ GHC.Types.Char
                    GHC.Classes.$fEqChar
                    Evolverbetert.genome8) -}
-d2b6b1c1b999f661148328ba9e83d271
+1ed4f7f7e495bff785694d35c34f9c0e
   genome8 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# ","#) -}
-4edd349701280124f08f907132bdb0d1
+fd533f6625775494abbd3434027394fe
   genome9 :: [Types.Locus]
   {- Unfolding: (GHC.Base.map
                    @ [GHC.Types.Char]
                    @ Types.Locus
                    Parsing.$fMyReadLocus_$cmyRead
                    Evolverbetert.genome10) -}
-e7ce4dfd546b0c086e96249d5989aa2f
+8816293cf1a3c7e548540c5db1c9b920
+  hConsole ::
+    Evolverbetert.Handles -> GHC.Base.Maybe GHC.IO.Handle.Types.Handle
+  RecSel Left Evolverbetert.Handles
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LLS),1*U(A,A,1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Evolverbetert.Handles) ->
+                 case ds of wild { Evolverbetert.Handles ds1 ds2 ds3 -> ds3 }) -}
+15399fd6120540314dc6eafed07adab0
+  hOutput ::
+    Evolverbetert.Handles -> GHC.Base.Maybe GHC.IO.Handle.Types.Handle
+  RecSel Left Evolverbetert.Handles
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(SLL),1*U(1*U,A,A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Evolverbetert.Handles) ->
+                 case ds of wild { Evolverbetert.Handles ds1 ds2 ds3 -> ds1 }) -}
+945fccf63369bd94138d16b8afce44fc
+  hVOutput ::
+    Evolverbetert.Handles -> GHC.Base.Maybe GHC.IO.Handle.Types.Handle
+  RecSel Left Evolverbetert.Handles
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LSL),1*U(A,1*U,A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Evolverbetert.Handles) ->
+                 case ds of wild { Evolverbetert.Handles ds1 ds2 ds3 -> ds2 }) -}
+0aa410479036de7233c05821adde5219
   helpError :: [GHC.Base.String] -> GHC.Types.IO a
   {- Arity: 2, Strictness: <B,1*U><B,U>x,
      Unfolding: InlineRule (0, True, True)
@@ -532,156 +612,92 @@ e7ce4dfd546b0c086e96249d5989aa2f
                   `cast`
                 (forall (a :: <*>_N).
                  <[GHC.Base.String]>_R ->_R Sym (GHC.Types.N:IO[0] <a>_R)) -}
-0361d2329e8fe7422e6b0ff9ddc2dae7
+0ce9d6f6b0b490a74052f4180ff8cd82
   helpError1 ::
     [GHC.Base.String]
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, a #)
   {- Arity: 2, Strictness: <B,1*U><B,U>x -}
-4ed513cead784bc5076fd09d149ead2f
+30bc2be2ca2e1c9dee055b3589864945
   initialize ::
     Evolverbetert.Options
     -> GHC.Types.IO
-         (GHC.IORef.IORef Types.World, [GHC.IO.Handle.Types.Handle])
+         (GHC.IORef.IORef Types.World, Evolverbetert.Handles)
   {- Arity: 2,
-     Strictness: <S(SLLSLL),1*U(1*U,1*U(U),1*U(U),U,1*U,U)><S,U>,
+     Strictness: <S(SLLSLLL),1*U(1*U,U(U),U(U),U,U,U,1*U)><S,U>,
      Unfolding: InlineRule (0, True, True)
                 Evolverbetert.initialize1
                   `cast`
                 (<Evolverbetert.Options>_R
                  ->_R Sym (GHC.Types.N:IO[0]
-                               <(GHC.IORef.IORef Types.World,
-                                 [GHC.IO.Handle.Types.Handle])>_R)) -}
-54f81934915c66d04eaf135742fd6f30
+                               <(GHC.IORef.IORef Types.World, Evolverbetert.Handles)>_R)) -}
+73d31a620c248591f57d66c2809eeaba
   initialize1 ::
     Evolverbetert.Options
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld,
-          (GHC.IORef.IORef Types.World, [GHC.IO.Handle.Types.Handle]) #)
+          (GHC.IORef.IORef Types.World, Evolverbetert.Handles) #)
   {- Arity: 2,
-     Strictness: <S(SLLSLL),1*U(1*U,1*U(U),1*U(U),U,1*U,U)><S,U>,
+     Strictness: <S(SLLSLLL),1*U(1*U,U(U),U(U),U,U,U,1*U)><S,U>,
      Inline: INLINE[0],
      Unfolding: InlineRule (2, True, False)
                 (\ (w :: Evolverbetert.Options)
                    (w1 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 case w of ww { Evolverbetert.Options ww1 ww2 ww3 ww4 ww5 ww6 ->
-                 Evolverbetert.$winitialize ww1 ww2 ww3 ww4 ww5 ww6 w1 }) -}
-aef605da2e1dc14dc7f19ea7f82adb7f
+                 case w of ww { Evolverbetert.Options ww1 ww2 ww3 ww4 ww5 ww6 ww7 ->
+                 Evolverbetert.$winitialize ww1 ww2 ww3 ww4 ww5 ww6 ww7 w1 }) -}
+73e77820195989881c48971f3f0ab850
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Evolverbetert.main1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-3f6b8bae3dfe6f7728e9fac75a05af92
+eaa6353cba24aacd32e98059a840ecef
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
-  {- Arity: 1, Strictness: <S,U>,
-     Unfolding: (\ (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 case System.Environment.getArgs1 s of ds1 { (#,#) ipv ipv1 ->
-                 case Evolverbetert.compilerOpts1
-                        ipv1
-                        ipv of ds2 { (#,#) ipv2 ipv3 ->
-                 case ipv3 of wild { (,) flags strings ->
-                 case flags of ww { Evolverbetert.Options ww1 ww2 ww3 ww4 ww5 ww6 ->
-                 case Evolverbetert.$winitialize
-                        ww1
-                        ww2
-                        ww3
-                        ww4
-                        ww5
-                        ww6
-                        ipv2 of ds3 { (#,#) ipv4 ipv5 ->
-                 case ipv5 of wild1 { (,) worldRef hs ->
-                 case GHC.Prim.newMutVar#
-                        @ GHC.ForeignPtr.Finalizers
-                        @ GHC.Prim.RealWorld
-                        GHC.ForeignPtr.NoFinalizers
-                        GHC.Prim.realWorld# of ds4 { (#,#) ipv6 ipv7 ->
-                 let {
-                   addr# :: GHC.Prim.Addr# = "Hello, World!"#
-                 } in
-                 case {__pkg_ccall bytestring-0.10.8.1@bytestring-0.10.8.1 strlen GHC.Prim.Addr#
-                                                                                  -> GHC.Prim.State#
-                                                                                       GHC.Prim.RealWorld
-                                                                                  -> (# GHC.Prim.State#
-                                                                                          GHC.Prim.RealWorld,
-                                                                                        GHC.Prim.Word# #)}
-                        addr#
-                        ipv6 of wild2 { (#,#) ds5 ds6 ->
-                 case Data.ByteString.Char8.$whPutStrLn
-                        (GHC.List.head @ GHC.IO.Handle.Types.Handle hs)
-                        addr#
-                        (GHC.ForeignPtr.PlainForeignPtr ipv7)
-                        0#
-                        (GHC.Prim.word2Int# ds6)
-                        ipv4 of ds7 { (#,#) ipv8 ipv9 ->
-                 case Evolverbetert.$wmainLoop
-                        worldRef
-                        hs
-                        0#
-                        ipv8 of ds8 { (#,#) ipv10 ipv11 ->
-                 let {
-                   addr#1 :: GHC.Prim.Addr# = "Goodbye World!"#
-                 } in
-                 case {__pkg_ccall bytestring-0.10.8.1@bytestring-0.10.8.1 strlen GHC.Prim.Addr#
-                                                                                  -> GHC.Prim.State#
-                                                                                       GHC.Prim.RealWorld
-                                                                                  -> (# GHC.Prim.State#
-                                                                                          GHC.Prim.RealWorld,
-                                                                                        GHC.Prim.Word# #)}
-                        addr#1
-                        ipv6 of wild3 { (#,#) ds9 ds10 ->
-                 case Data.ByteString.Char8.$whPutStrLn
-                        (GHC.List.head @ GHC.IO.Handle.Types.Handle hs)
-                        addr#1
-                        (GHC.ForeignPtr.PlainForeignPtr ipv7)
-                        0#
-                        (GHC.Prim.word2Int# ds10)
-                        ipv10 of ds11 { (#,#) ipv12 ipv13 ->
-                 Evolverbetert.main2 hs ipv12 } } } } } } } } } } } }) -}
-ef3ecccff4126b5379126fd57efd0f06
-  main2 ::
-    [GHC.IO.Handle.Types.Handle]
-    -> GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
-  {- Arity: 2, Strictness: <S,1*U><S,U> -}
-683a71c9ec1389f5f5bf840a539ebc6e
+  {- Arity: 1, Strictness: <S,U> -}
+6f2d062d72bb8eff3fd04ff04618ef1d
   mainLoop ::
     GHC.IORef.IORef Types.World
-    -> [GHC.IO.Handle.Types.Handle]
+    -> Evolverbetert.Options
+    -> Evolverbetert.Handles
     -> Parameters.Time
     -> GHC.Types.IO ()
-  {- Arity: 4, Strictness: <L,1*U(U)><L,U><S(S),1*U(U)><S,U>,
+  {- Arity: 5,
+     Strictness: <L,1*U(U)><L,1*U(A,A,A,A,A,A,U)><L,U(U,U,U)><S(S),1*U(U)><S,U>,
      Unfolding: InlineRule (0, True, True)
                 Evolverbetert.mainLoop1
                   `cast`
                 (<GHC.IORef.IORef Types.World>_R
-                 ->_R <[GHC.IO.Handle.Types.Handle]>_R
+                 ->_R <Evolverbetert.Options>_R
+                 ->_R <Evolverbetert.Handles>_R
                  ->_R <Parameters.Time>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-ccb7be1893a40a3501c74b35a73c04fc
+4cf521f1fc37e515f430a506a8c5a37a
   mainLoop1 ::
     GHC.IORef.IORef Types.World
-    -> [GHC.IO.Handle.Types.Handle]
+    -> Evolverbetert.Options
+    -> Evolverbetert.Handles
     -> Parameters.Time
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
-  {- Arity: 4, Strictness: <L,1*U(U)><L,U><S(S),1*U(U)><S,U>,
+  {- Arity: 5,
+     Strictness: <L,1*U(U)><L,1*U(A,A,A,A,A,A,U)><L,U(U,U,U)><S(S),1*U(U)><S,U>,
      Inline: INLINE[0],
-     Unfolding: InlineRule (4, True, False)
+     Unfolding: InlineRule (5, True, False)
                 (\ (w :: GHC.IORef.IORef Types.World)
-                   (w1 :: [GHC.IO.Handle.Types.Handle])
-                   (w2 :: Parameters.Time)
-                   (w3 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 case w2 of ww { GHC.Types.I# ww1 ->
-                 Evolverbetert.$wmainLoop w w1 ww1 w3 }) -}
-faab87ccd496dd8ace91fd7f215d8676
+                   (w1 :: Evolverbetert.Options)
+                   (w2 :: Evolverbetert.Handles)
+                   (w3 :: Parameters.Time)
+                   (w4 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case w3 of ww { GHC.Types.I# ww1 ->
+                 Evolverbetert.$wmainLoop w w1 w2 ww1 w4 }) -}
+61f88fb4aff3fc16237ed2c8944dbbd0
   newAssoc ::
     Types.World
     -> ((GHC.Types.Int, GHC.Types.Int), Types.Agent)
     -> MyRandom.Rand ((GHC.Types.Int, GHC.Types.Int), Types.Agent)
   {- Arity: 3,
-     Strictness: <S,1*U(1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U),U(U))><S,1*U(U(U(U),U(U)),A)><S(SSL),1*U(U,U,U(U))>m,
+     Strictness: <S,1*U(1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U),U(U))><S,1*U(U(U(U),U(U)),A)><L,1*U(U,U,U(U))>m,
      Unfolding: InlineRule (0, True, True)
                 Evolverbetert.newAssoc1
                   `cast`
@@ -691,7 +707,7 @@ faab87ccd496dd8ace91fd7f215d8676
                                <System.Random.Mersenne.Pure64.Internal.PureMT>_N
                                <Data.Functor.Identity.Identity>_R
                                <((GHC.Types.Int, GHC.Types.Int), Types.Agent)>_N)) -}
-49c9763e7269c9de146ad3cdc284a646
+26145f466ba1a69b0db5e7e638125ce9
   newAssoc1 ::
     Types.World
     -> ((GHC.Types.Int, GHC.Types.Int), Types.Agent)
@@ -700,7 +716,7 @@ faab87ccd496dd8ace91fd7f215d8676
          (((GHC.Types.Int, GHC.Types.Int), Types.Agent),
           System.Random.Mersenne.Pure64.Internal.PureMT)
   {- Arity: 3,
-     Strictness: <S,1*U(1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U),U(U))><S,1*U(U(U(U),U(U)),A)><S(SSL),1*U(U,U,U(U))>m,
+     Strictness: <S,1*U(1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U),U(U))><S,1*U(U(U(U),U(U)),A)><L,1*U(U,U,U(U))>m,
      Unfolding: InlineRule (3, True, False)
                 (\ (w :: Types.World)
                    (ds :: ((GHC.Types.Int, GHC.Types.Int), Types.Agent))
@@ -716,7 +732,7 @@ faab87ccd496dd8ace91fd7f215d8676
                  (Sym (Data.Functor.Identity.N:Identity[0]
                            <(((GHC.Types.Int, GHC.Types.Int), Types.Agent),
                              System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) } }) -}
-ac4bc21bb521ad0812ff5bd889c9d754
+9142e30dda425b93c28cb8c1a366e57d
   newAssoc2 ::
     Types.World
     -> (GHC.Types.Int, GHC.Types.Int)
@@ -724,27 +740,24 @@ ac4bc21bb521ad0812ff5bd889c9d754
     -> Data.Functor.Identity.Identity
          (Types.Agent, System.Random.Mersenne.Pure64.Internal.PureMT)
   {- Arity: 3,
-     Strictness: <S,1*U(1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U),U(U))><L,1*U(1*U(U),1*U(U))><S(SSL),1*U(U,U,U(U))>m,
+     Strictness: <S,1*U(1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U),U(U))><L,1*U(1*U(U),1*U(U))><L,1*U(U,U,U(U))>m,
      Inline: INLINE[0],
      Unfolding: InlineRule (3, True, False)
                 (\ (w :: Types.World)
                    (w1 :: (GHC.Types.Int, GHC.Types.Int))
                    (w2 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
                  case w of ww { Types.World ww1 ww2 ->
-                 case w2 of ww3 { System.Random.Mersenne.Pure64.Internal.PureMT ww4 ww5 ww6 ->
                  case Evolverbetert.$wreproduceAgent
                         ww1
                         ww2
                         w1
-                        ww4
-                        ww5
-                        ww6 of ww7 { (#,#) ww8 ww9 ->
-                 (ww8, ww9)
+                        w2 of ww3 { (#,#) ww4 ww5 ->
+                 (ww4, ww5)
                    `cast`
                  (Sym (Data.Functor.Identity.N:Identity[0]
                            <(Types.Agent,
-                             System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) } } }) -}
-15e00d594912cdd8955079c544e64fd8
+                             System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) } }) -}
+e8582a03112195abaf0dc796bd0bcd03
   newWorld :: Types.World -> MyRandom.Rand Types.World
   {- Arity: 2,
      Strictness: <L,U(U(U(U(U),U(U)),U(U(U),U(U)),U,U),U(U))>,
@@ -755,7 +768,7 @@ ac4bc21bb521ad0812ff5bd889c9d754
                                 <System.Random.Mersenne.Pure64.Internal.PureMT>_N
                                 <Data.Functor.Identity.Identity>_R
                                 <Types.World>_N))) -}
-eab40e1e1d367e27ca3415cad1a25657
+5bb02074b1e89249accbc9aba263f9b8
   newWorld1 ::
     Types.World
     -> System.Random.Mersenne.Pure64.Internal.PureMT
@@ -763,62 +776,70 @@ eab40e1e1d367e27ca3415cad1a25657
          (Types.World, System.Random.Mersenne.Pure64.Internal.PureMT)
   {- Arity: 2,
      Strictness: <L,U(U(U(U(U),U(U)),U(U(U),U(U)),U,U),U(U))> -}
-3e38504efe98309f74e5afa3a1fe33eb
+de6ec65881d122f58f96e1768c87bfec
   optAgentSeed :: Evolverbetert.Options -> GHC.Types.Int
   RecSel Left Evolverbetert.Options
   {- Arity: 1, HasNoCafRefs,
-     Strictness: <S(LLSLLL),1*U(A,A,1*U(U),A,A,A)>m,
+     Strictness: <S(LLSLLLL),1*U(A,A,1*U(U),A,A,A,A)>m,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Evolverbetert.Options) ->
-                 case ds of wild { Evolverbetert.Options ds1 ds2 ds3 ds4 ds5 ds6 ->
+                 case ds of wild { Evolverbetert.Options ds1 ds2 ds3 ds4 ds5 ds6 ds7 ->
                  ds3 }) -}
-9fe8126309caf00363e75fc678f19e83
+7eb4048d852b36e8b1f86153e646dfef
   optConsole :: Evolverbetert.Options -> GHC.Types.Bool
   RecSel Left Evolverbetert.Options
   {- Arity: 1, HasNoCafRefs,
-     Strictness: <S(LLLLLS),1*U(A,A,A,A,A,1*U)>,
+     Strictness: <S(LLLLLSL),1*U(A,A,A,A,A,1*U,A)>,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Evolverbetert.Options) ->
-                 case ds of wild { Evolverbetert.Options ds1 ds2 ds3 ds4 ds5 ds6 ->
+                 case ds of wild { Evolverbetert.Options ds1 ds2 ds3 ds4 ds5 ds6 ds7 ->
                  ds6 }) -}
-a7f4479a1c9281ff09fe3ce398e50032
+6faeb45a6f2baf525ea3bc77ec4b8086
+  optGraphics :: Evolverbetert.Options -> GHC.Types.Bool
+  RecSel Left Evolverbetert.Options
+  {- Arity: 1, HasNoCafRefs,
+     Strictness: <S(LLLLLLS),1*U(A,A,A,A,A,A,1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Evolverbetert.Options) ->
+                 case ds of wild { Evolverbetert.Options ds1 ds2 ds3 ds4 ds5 ds6 ds7 ->
+                 ds7 }) -}
+7077dd6678c111bd67e743438aa1af29
   optHelp :: Evolverbetert.Options -> GHC.Types.Bool
   RecSel Left Evolverbetert.Options
   {- Arity: 1, HasNoCafRefs,
-     Strictness: <S(SLLLLL),1*U(1*U,A,A,A,A,A)>,
+     Strictness: <S(SLLLLLL),1*U(1*U,A,A,A,A,A,A)>,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Evolverbetert.Options) ->
-                 case ds of wild { Evolverbetert.Options ds1 ds2 ds3 ds4 ds5 ds6 ->
+                 case ds of wild { Evolverbetert.Options ds1 ds2 ds3 ds4 ds5 ds6 ds7 ->
                  ds1 }) -}
-e7670160f1d8eac6cfbdbb48b12e351f
-  optOutput ::
-    Evolverbetert.Options -> GHC.Base.Maybe GHC.IO.FilePath
+f885bcad2407a9d0bec61e9d8ccdc341
+  optOutput :: Evolverbetert.Options -> GHC.Types.Bool
   RecSel Left Evolverbetert.Options
   {- Arity: 1, HasNoCafRefs,
-     Strictness: <S(LLLSLL),1*U(A,A,A,1*U,A,A)>,
+     Strictness: <S(LLLSLLL),1*U(A,A,A,1*U,A,A,A)>,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Evolverbetert.Options) ->
-                 case ds of wild { Evolverbetert.Options ds1 ds2 ds3 ds4 ds5 ds6 ->
+                 case ds of wild { Evolverbetert.Options ds1 ds2 ds3 ds4 ds5 ds6 ds7 ->
                  ds4 }) -}
-c63caef4fc330470a47345796d72340f
+3f4296bbd49048c889737e5849cabed4
   optVOutput :: Evolverbetert.Options -> GHC.Types.Bool
   RecSel Left Evolverbetert.Options
   {- Arity: 1, HasNoCafRefs,
-     Strictness: <S(LLLLSL),1*U(A,A,A,A,1*U,A)>,
+     Strictness: <S(LLLLSLL),1*U(A,A,A,A,1*U,A,A)>,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Evolverbetert.Options) ->
-                 case ds of wild { Evolverbetert.Options ds1 ds2 ds3 ds4 ds5 ds6 ->
+                 case ds of wild { Evolverbetert.Options ds1 ds2 ds3 ds4 ds5 ds6 ds7 ->
                  ds5 }) -}
-d871210de539c38876cbd287503fe94a
+3fdad04fc34f65dbb8b1e69c57844941
   optWorldSeed :: Evolverbetert.Options -> GHC.Types.Int
   RecSel Left Evolverbetert.Options
   {- Arity: 1, HasNoCafRefs,
-     Strictness: <S(LSLLLL),1*U(A,1*U(U),A,A,A,A)>m,
+     Strictness: <S(LSLLLLL),1*U(A,1*U(U),A,A,A,A,A)>m,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Evolverbetert.Options) ->
-                 case ds of wild { Evolverbetert.Options ds1 ds2 ds3 ds4 ds5 ds6 ->
+                 case ds of wild { Evolverbetert.Options ds1 ds2 ds3 ds4 ds5 ds6 ds7 ->
                  ds2 }) -}
-af6567aeb9ff461c02eeae1e160366d0
+1747b96464979dbc0936235afd901404
   options ::
     [System.Console.GetOpt.OptDescr
        (Evolverbetert.Options -> Evolverbetert.Options)]
@@ -826,9 +847,9 @@ af6567aeb9ff461c02eeae1e160366d0
      Unfolding: (GHC.Types.:
                    @ (System.Console.GetOpt.OptDescr
                         (Evolverbetert.Options -> Evolverbetert.Options))
-                   Evolverbetert.options46
+                   Evolverbetert.options54
                    Evolverbetert.options1) -}
-f27c60da943f8666393d4d47045c11e6
+dac92f7d1255365a811a11a15a1b6799
   options1 ::
     [System.Console.GetOpt.OptDescr
        (Evolverbetert.Options -> Evolverbetert.Options)]
@@ -836,16 +857,70 @@ f27c60da943f8666393d4d47045c11e6
      Unfolding: (GHC.Types.:
                    @ (System.Console.GetOpt.OptDescr
                         (Evolverbetert.Options -> Evolverbetert.Options))
-                   Evolverbetert.options37
+                   Evolverbetert.options46
                    Evolverbetert.options2) -}
-2a41b5102789155a4c88c3997175d362
-  options10 ::
+b034af065f070914ad428eb9a7a048ea
+  options10 :: Evolverbetert.Options -> Evolverbetert.Options
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U,U,U,U,U,U,A)>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ (opts :: Evolverbetert.Options) ->
+                 case opts of wild { Evolverbetert.Options ds ds1 ds2 ds3 ds4 ds5 ds6 ->
+                 Evolverbetert.Options ds ds1 ds2 ds3 ds4 ds5 GHC.Types.True }) -}
+e44efcba20affccd94f769b794384bc1
+  options11 :: [GHC.Base.String]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Base.String
+                   Evolverbetert.options12
+                   (GHC.Types.[] @ GHC.Base.String)) -}
+db98f2dd312627176285eb81a3683e40
+  options12 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "graphics"#) -}
+1c3d857d619e37148cdf504a299bd13e
+  options13 :: [GHC.Types.Char]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   Evolverbetert.options14
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+8dd38616cc837a2b4e30946c50e9493a
+  options14 :: GHC.Types.Char
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'g'#) -}
+c4d916f80314b184c42ef61001516be8
+  options15 ::
+    System.Console.GetOpt.OptDescr
+      (Evolverbetert.Options -> Evolverbetert.Options)
+  {- Strictness: m,
+     Unfolding: (System.Console.GetOpt.Option
+                   @ (Evolverbetert.Options -> Evolverbetert.Options)
+                   Evolverbetert.options22
+                   Evolverbetert.options20
+                   Evolverbetert.options17
+                   Evolverbetert.options16) -}
+00287980aea119f2d897546754fc07de
+  options16 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "The seed used for the initial agent generation"#) -}
+65f12efc739586b752c1f06964b818e0
+  options17 ::
+    System.Console.GetOpt.ArgDescr
+      (Evolverbetert.Options -> Evolverbetert.Options)
+  {- Strictness: m2,
+     Unfolding: (System.Console.GetOpt.ReqArg
+                   @ (Evolverbetert.Options -> Evolverbetert.Options)
+                   Evolverbetert.options19
+                   Evolverbetert.options18) -}
+7dc10be8cdad71538b135d714a72a12c
+  options18 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "INT"#) -}
+0969979d3b70da2a0be73c4adbe9298a
+  options19 ::
     GHC.Base.String -> Evolverbetert.Options -> Evolverbetert.Options
-  {- Arity: 2, Strictness: <L,U><S,1*U(U,U,A,U,U,U)>m,
+  {- Arity: 2, Strictness: <L,U><S,1*U(U,U,A,U,U,U,U)>m,
      Inline: INLINE[0],
      Unfolding: InlineRule (2, True, False)
                 (\ (w :: GHC.Base.String) (w1 :: Evolverbetert.Options) ->
-                 case w1 of ww { Evolverbetert.Options ww1 ww2 ww3 ww4 ww5 ww6 ->
+                 case w1 of ww { Evolverbetert.Options ww1 ww2 ww3 ww4 ww5 ww6 ww7 ->
                  Evolverbetert.Options
                    ww1
                    ww2
@@ -874,59 +949,70 @@ f27c60da943f8666393d4d47045c11e6
                                 Text.Read.readEither2 } })
                    ww4
                    ww5
-                   ww6 }) -}
-c1f2f8c1544f7b5b2fffc2a93626c66d
-  options11 :: [GHC.Base.String]
+                   ww6
+                   ww7 }) -}
+c38789b2ec757fea95709b0d0934fee4
+  options2 ::
+    [System.Console.GetOpt.OptDescr
+       (Evolverbetert.Options -> Evolverbetert.Options)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (System.Console.GetOpt.OptDescr
+                        (Evolverbetert.Options -> Evolverbetert.Options))
+                   Evolverbetert.options38
+                   Evolverbetert.options3) -}
+ae7b1c4a0a31afb86e94ec87327824bc
+  options20 :: [GHC.Base.String]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ GHC.Base.String
-                   Evolverbetert.options12
+                   Evolverbetert.options21
                    (GHC.Types.[] @ GHC.Base.String)) -}
-a50362bce672f6a120bf3f0f096defe3
-  options12 :: [GHC.Types.Char]
+6999235873719d49fe3c418509f408c2
+  options21 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "agent-seed"#) -}
-feb49adaee2ae2e6d91280864e583a72
-  options13 :: [GHC.Types.Char]
+ae0ccbc6f09c67d9cfe9073be40d8089
+  options22 :: [GHC.Types.Char]
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ GHC.Types.Char
-                   Evolverbetert.options14
+                   Evolverbetert.options23
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-ae6fa20f3fc75cf465beff9871d63e40
-  options14 :: GHC.Types.Char
+70b20011c40ac548bb4385e3c3db3fd4
+  options23 :: GHC.Types.Char
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'a'#) -}
-7008cd737b869524f3c3038321741e1b
-  options15 ::
+7e3c1aa48e19a134936cf02ab459b6b8
+  options24 ::
     System.Console.GetOpt.OptDescr
       (Evolverbetert.Options -> Evolverbetert.Options)
   {- Strictness: m,
      Unfolding: (System.Console.GetOpt.Option
                    @ (Evolverbetert.Options -> Evolverbetert.Options)
-                   Evolverbetert.options21
-                   Evolverbetert.options19
-                   Evolverbetert.options17
-                   Evolverbetert.options16) -}
-3e37b9a9e8014a630ff7fea43a7a3333
-  options16 :: [GHC.Types.Char]
+                   Evolverbetert.options30
+                   Evolverbetert.options28
+                   Evolverbetert.options26
+                   Evolverbetert.options25) -}
+8aeacf05579e261da4b54157e3ca22b1
+  options25 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "The seed used by the world"#) -}
-7ab5081abae081db1679b89e95550b09
-  options17 ::
+beaa6367dec63bbd01028a9e0b780953
+  options26 ::
     System.Console.GetOpt.ArgDescr
       (Evolverbetert.Options -> Evolverbetert.Options)
   {- Strictness: m2,
      Unfolding: (System.Console.GetOpt.ReqArg
                    @ (Evolverbetert.Options -> Evolverbetert.Options)
-                   Evolverbetert.options18
-                   Evolverbetert.options9) -}
-2bb27be97553e3298664d537a11269e5
-  options18 ::
+                   Evolverbetert.options27
+                   Evolverbetert.options18) -}
+d094235d8e67d090839dfada9ff066eb
+  options27 ::
     GHC.Base.String -> Evolverbetert.Options -> Evolverbetert.Options
-  {- Arity: 2, Strictness: <L,U><S,1*U(U,A,U,U,U,U)>m,
+  {- Arity: 2, Strictness: <L,U><S,1*U(U,A,U,U,U,U,U)>m,
      Inline: INLINE[0],
      Unfolding: InlineRule (2, True, False)
                 (\ (w :: GHC.Base.String) (w1 :: Evolverbetert.Options) ->
-                 case w1 of ww { Evolverbetert.Options ww1 ww2 ww3 ww4 ww5 ww6 ->
+                 case w1 of ww { Evolverbetert.Options ww1 ww2 ww3 ww4 ww5 ww6 ww7 ->
                  Evolverbetert.Options
                    ww1
                    (case Text.Read.readEither6
@@ -955,89 +1041,19 @@ ae6fa20f3fc75cf465beff9871d63e40
                    ww3
                    ww4
                    ww5
-                   ww6 }) -}
-435c4b967e54f94ed2d91bfb214ae786
-  options19 :: [GHC.Base.String]
+                   ww6
+                   ww7 }) -}
+072bdd9fc5524ddbd553cfcdab0afe44
+  options28 :: [GHC.Base.String]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ GHC.Base.String
-                   Evolverbetert.options20
-                   (GHC.Types.[] @ GHC.Base.String)) -}
-1fde1664919605153d89ad3ffb52b79f
-  options2 ::
-    [System.Console.GetOpt.OptDescr
-       (Evolverbetert.Options -> Evolverbetert.Options)]
-  {- Strictness: m2,
-     Unfolding: (GHC.Types.:
-                   @ (System.Console.GetOpt.OptDescr
-                        (Evolverbetert.Options -> Evolverbetert.Options))
                    Evolverbetert.options29
-                   Evolverbetert.options3) -}
-a03a969afd0aacf04806114ea052aa5d
-  options20 :: [GHC.Types.Char]
+                   (GHC.Types.[] @ GHC.Base.String)) -}
+0587ee83a30311e00f2764c300798ad9
+  options29 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "world-seed"#) -}
-5aa331c369b654cbb194606ca77f9a08
-  options21 :: [GHC.Types.Char]
-  {- HasNoCafRefs, Strictness: m2,
-     Unfolding: (GHC.Types.:
-                   @ GHC.Types.Char
-                   Evolverbetert.options22
-                   (GHC.Types.[] @ GHC.Types.Char)) -}
-93cb895281a43e5e9d6f96524989962f
-  options22 :: GHC.Types.Char
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'w'#) -}
-d90e514f1df7840f31e4392ffdd6bf89
-  options23 ::
-    System.Console.GetOpt.OptDescr
-      (Evolverbetert.Options -> Evolverbetert.Options)
-  {- Strictness: m,
-     Unfolding: (System.Console.GetOpt.Option
-                   @ (Evolverbetert.Options -> Evolverbetert.Options)
-                   Evolverbetert.options27
-                   (GHC.Types.[] @ GHC.Base.String)
-                   Evolverbetert.options25
-                   Evolverbetert.options24) -}
-84613553c22e25ec6516ec08cf18b584
-  options24 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString#
-                   "Write output to console"#) -}
-10096eaa8a42ea30cd7dd26989e84daa
-  options25 ::
-    System.Console.GetOpt.ArgDescr
-      (Evolverbetert.Options -> Evolverbetert.Options)
-  {- HasNoCafRefs, Strictness: m1,
-     Unfolding: (System.Console.GetOpt.NoArg
-                   @ (Evolverbetert.Options -> Evolverbetert.Options)
-                   Evolverbetert.options26) -}
-e7f743f2834a57309e2a94ca60acd294
-  options26 :: Evolverbetert.Options -> Evolverbetert.Options
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U,U,U,U,U,A)>m,
-     Unfolding: InlineRule (1, True, False)
-                (\ (opts :: Evolverbetert.Options) ->
-                 case opts of wild { Evolverbetert.Options ds ds1 ds2 ds3 ds4 ds5 ->
-                 Evolverbetert.Options ds ds1 ds2 ds3 ds4 GHC.Types.True }) -}
-d194cda8b994f55772a61ce1401b1df4
-  options27 :: [GHC.Types.Char]
-  {- HasNoCafRefs, Strictness: m2,
-     Unfolding: (GHC.Types.:
-                   @ GHC.Types.Char
-                   Evolverbetert.options28
-                   (GHC.Types.[] @ GHC.Types.Char)) -}
-025df385405a64712d68f47fe9bf8fef
-  options28 :: GHC.Types.Char
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'c'#) -}
-19d90875b632467b674de007d2516e0e
-  options29 ::
-    System.Console.GetOpt.OptDescr
-      (Evolverbetert.Options -> Evolverbetert.Options)
-  {- Strictness: m,
-     Unfolding: (System.Console.GetOpt.Option
-                   @ (Evolverbetert.Options -> Evolverbetert.Options)
-                   Evolverbetert.options35
-                   Evolverbetert.options33
-                   Evolverbetert.options31
-                   Evolverbetert.options30) -}
-8b345ed9010cceef3808879ad5b2b911
+dba4d957a8e64b5b6d64698b17cb93af
   options3 ::
     [System.Console.GetOpt.OptDescr
        (Evolverbetert.Options -> Evolverbetert.Options)]
@@ -1045,49 +1061,60 @@ d194cda8b994f55772a61ce1401b1df4
      Unfolding: (GHC.Types.:
                    @ (System.Console.GetOpt.OptDescr
                         (Evolverbetert.Options -> Evolverbetert.Options))
-                   Evolverbetert.options23
+                   Evolverbetert.options32
                    Evolverbetert.options4) -}
-66f85c07fd31f7027e9ea982d645c2ba
+d46045d9faa19c94ba661ee8deef7ceb
   options30 :: [GHC.Types.Char]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   Evolverbetert.options31
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+b072e9bd4d3a6d9dc274136b0826c297
+  options31 :: GHC.Types.Char
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'w'#) -}
+ff88b67555a519b0f0c5c0c816e9227c
+  options32 ::
+    System.Console.GetOpt.OptDescr
+      (Evolverbetert.Options -> Evolverbetert.Options)
+  {- Strictness: m,
+     Unfolding: (System.Console.GetOpt.Option
+                   @ (Evolverbetert.Options -> Evolverbetert.Options)
+                   Evolverbetert.options36
+                   (GHC.Types.[] @ GHC.Base.String)
+                   Evolverbetert.options34
+                   Evolverbetert.options33) -}
+57beb5775c4265b63add24128f7317be
+  options33 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
-                   "Create a file to sometimes output whole world"#) -}
-244d316b4aa3f0ddbd0c1c80fea56217
-  options31 ::
+                   "Write output to console"#) -}
+ea75f5db428ce6db01e5305c5ff90a66
+  options34 ::
     System.Console.GetOpt.ArgDescr
       (Evolverbetert.Options -> Evolverbetert.Options)
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (System.Console.GetOpt.NoArg
                    @ (Evolverbetert.Options -> Evolverbetert.Options)
-                   Evolverbetert.options32) -}
-bd4e5bd6fa5e8e0b862d1bccd07f8abd
-  options32 :: Evolverbetert.Options -> Evolverbetert.Options
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U,U,U,U,A,U)>m,
+                   Evolverbetert.options35) -}
+3168e72317c7db774d5f466cb825c3e0
+  options35 :: Evolverbetert.Options -> Evolverbetert.Options
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U,U,U,U,U,A,U)>m,
      Unfolding: InlineRule (1, True, False)
                 (\ (opts :: Evolverbetert.Options) ->
-                 case opts of wild { Evolverbetert.Options ds ds1 ds2 ds3 ds4 ds5 ->
-                 Evolverbetert.Options ds ds1 ds2 ds3 GHC.Types.True ds5 }) -}
-432f3f1abd25cb00da659cbca386c364
-  options33 :: [GHC.Base.String]
-  {- Strictness: m2,
-     Unfolding: (GHC.Types.:
-                   @ GHC.Base.String
-                   Evolverbetert.options34
-                   (GHC.Types.[] @ GHC.Base.String)) -}
-f03f5a71e5a28bf9bd6e0e774148e32d
-  options34 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "verbose"#) -}
-b76c0d24021afb97801924cb18242d8b
-  options35 :: [GHC.Types.Char]
+                 case opts of wild { Evolverbetert.Options ds ds1 ds2 ds3 ds4 ds5 ds6 ->
+                 Evolverbetert.Options ds ds1 ds2 ds3 ds4 GHC.Types.True ds6 }) -}
+dc5b448a28d3acfcbcf72edd62099836
+  options36 :: [GHC.Types.Char]
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ GHC.Types.Char
-                   Evolverbetert.options36
+                   Evolverbetert.options37
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-8629f4010777d528c25083202f1739b6
-  options36 :: GHC.Types.Char
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'v'#) -}
-5af81e7597a59cc684421f4277171ace
-  options37 ::
+814f907f509fce56ed46bbb48ded1cb5
+  options37 :: GHC.Types.Char
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'c'#) -}
+1d2a1c9770e9ca5bcc9c3404e0d83c96
+  options38 ::
     System.Console.GetOpt.OptDescr
       (Evolverbetert.Options -> Evolverbetert.Options)
   {- Strictness: m,
@@ -1095,22 +1122,13 @@ b76c0d24021afb97801924cb18242d8b
                    @ (Evolverbetert.Options -> Evolverbetert.Options)
                    Evolverbetert.options44
                    Evolverbetert.options42
-                   Evolverbetert.options39
-                   Evolverbetert.options38) -}
-363cd54ead6b2d992a5ee7dffd7eed58
-  options38 :: [GHC.Types.Char]
+                   Evolverbetert.options40
+                   Evolverbetert.options39) -}
+1d5e8cb36f379f7ecc4d7382cbf1a340
+  options39 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
-                   "Direcory for output"#) -}
-4368e29c90bec16ad5e941f54109d38d
-  options39 ::
-    System.Console.GetOpt.ArgDescr
-      (Evolverbetert.Options -> Evolverbetert.Options)
-  {- Strictness: m2,
-     Unfolding: (System.Console.GetOpt.ReqArg
-                   @ (Evolverbetert.Options -> Evolverbetert.Options)
-                   Evolverbetert.options41
-                   Evolverbetert.options40) -}
-47808dd985bbf7fffed9ee7c5f6e8f9c
+                   "Create a file to sometimes output whole world"#) -}
+adf4bed0592cd9bd06f98a7e3ee3d02a
   options4 ::
     [System.Console.GetOpt.OptDescr
        (Evolverbetert.Options -> Evolverbetert.Options)]
@@ -1118,46 +1136,44 @@ b76c0d24021afb97801924cb18242d8b
      Unfolding: (GHC.Types.:
                    @ (System.Console.GetOpt.OptDescr
                         (Evolverbetert.Options -> Evolverbetert.Options))
-                   Evolverbetert.options15
+                   Evolverbetert.options24
                    Evolverbetert.options5) -}
-011a77d84bc24b4dbb37afe8747fe4db
-  options40 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "DIR"#) -}
-0ce9991f69edfdb07f16cecf5e3a3659
-  options41 ::
-    GHC.Base.String -> Evolverbetert.Options -> Evolverbetert.Options
-  {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,1*U(U,U,U,A,U,U)>m,
-     Unfolding: InlineRule (2, True, False)
-                (\ (d :: GHC.Base.String) (opts :: Evolverbetert.Options) ->
-                 case opts of wild { Evolverbetert.Options ds ds1 ds2 ds3 ds4 ds5 ->
-                 Evolverbetert.Options
-                   ds
-                   ds1
-                   ds2
-                   (GHC.Base.Just @ GHC.Base.String d)
-                   ds4
-                   ds5 }) -}
-6c4fdd45ebf67a2414249d6278f8979c
+02d7fc45f5426fb0973d71f05898b556
+  options40 ::
+    System.Console.GetOpt.ArgDescr
+      (Evolverbetert.Options -> Evolverbetert.Options)
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (System.Console.GetOpt.NoArg
+                   @ (Evolverbetert.Options -> Evolverbetert.Options)
+                   Evolverbetert.options41) -}
+badc5b9732b477b239ec72840e28934a
+  options41 :: Evolverbetert.Options -> Evolverbetert.Options
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U,U,U,U,A,U,U)>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ (opts :: Evolverbetert.Options) ->
+                 case opts of wild { Evolverbetert.Options ds ds1 ds2 ds3 ds4 ds5 ds6 ->
+                 Evolverbetert.Options ds ds1 ds2 ds3 GHC.Types.True ds5 ds6 }) -}
+1d30a391f3dd1ed9939829b62e89f830
   options42 :: [GHC.Base.String]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ GHC.Base.String
                    Evolverbetert.options43
                    (GHC.Types.[] @ GHC.Base.String)) -}
-3d39383214b26edc647d80e495397bba
+a86ad2caa8a2cbbcaf5d85266400c787
   options43 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "output"#) -}
-8e77dd15ebc82feaf41068c831e51a72
+  {- Unfolding: (GHC.CString.unpackCString# "verbose"#) -}
+5e0b905f3f57bb1b9c92c03a48369803
   options44 :: [GHC.Types.Char]
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ GHC.Types.Char
                    Evolverbetert.options45
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-6fd6623526d3dab81a2b85aa9291a932
+ca3d97cd917f27eb89b618cf721c80d5
   options45 :: GHC.Types.Char
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'o'#) -}
-ba4876c15d601cba7c0934a457b80aa3
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'v'#) -}
+430efc02aae4037e7affc4888d5c5b13
   options46 ::
     System.Console.GetOpt.OptDescr
       (Evolverbetert.Options -> Evolverbetert.Options)
@@ -1168,11 +1184,11 @@ ba4876c15d601cba7c0934a457b80aa3
                    Evolverbetert.options50
                    Evolverbetert.options48
                    Evolverbetert.options47) -}
-e79a3650ee4149b87e82b64c7efc67f5
+1372dccbd0b8c69841e10cb9b0046407
   options47 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
-                   "Display this help info"#) -}
-ac78254505d42227ad5e14fde7c7e38c
+                   "Direcory for output"#) -}
+5e26be6d881ccaa0797c68b006cac940
   options48 ::
     System.Console.GetOpt.ArgDescr
       (Evolverbetert.Options -> Evolverbetert.Options)
@@ -1180,14 +1196,14 @@ ac78254505d42227ad5e14fde7c7e38c
      Unfolding: (System.Console.GetOpt.NoArg
                    @ (Evolverbetert.Options -> Evolverbetert.Options)
                    Evolverbetert.options49) -}
-eb00826ab65b045e31ab48ac8ca7762f
+cbb87f3ab8c71f5e5a52e826e5d81d9f
   options49 :: Evolverbetert.Options -> Evolverbetert.Options
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(A,U,U,U,U,U)>m,
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U,U,U,A,U,U,U)>m,
      Unfolding: InlineRule (1, True, False)
                 (\ (opts :: Evolverbetert.Options) ->
-                 case opts of wild { Evolverbetert.Options ds ds1 ds2 ds3 ds4 ds5 ->
-                 Evolverbetert.Options GHC.Types.True ds1 ds2 ds3 ds4 ds5 }) -}
-6fd8647b5e48d78f84354224b09c5727
+                 case opts of wild { Evolverbetert.Options ds ds1 ds2 ds3 ds4 ds5 ds6 ->
+                 Evolverbetert.Options ds ds1 ds2 GHC.Types.True ds4 ds5 ds6 }) -}
+fdd16efa09af6e461955a20617bd9ed0
   options5 ::
     [System.Console.GetOpt.OptDescr
        (Evolverbetert.Options -> Evolverbetert.Options)]
@@ -1195,42 +1211,102 @@ eb00826ab65b045e31ab48ac8ca7762f
      Unfolding: (GHC.Types.:
                    @ (System.Console.GetOpt.OptDescr
                         (Evolverbetert.Options -> Evolverbetert.Options))
-                   Evolverbetert.options6
-                   (GHC.Types.[]
-                      @ (System.Console.GetOpt.OptDescr
-                           (Evolverbetert.Options -> Evolverbetert.Options)))) -}
-368e696da7e9d0357dd09518c92163c7
+                   Evolverbetert.options15
+                   Evolverbetert.options6) -}
+13aacc581bbd74466b9f496716eb130d
   options50 :: [GHC.Base.String]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ GHC.Base.String
                    Evolverbetert.options51
                    (GHC.Types.[] @ GHC.Base.String)) -}
-507a6dd8069a716f35aded56611c4c41
+f9bee89403d8185bacf8027bfed365e4
   options51 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "help"#) -}
-7d7d449427f404a6342109d8dcc03996
+  {- Unfolding: (GHC.CString.unpackCString# "output"#) -}
+e00bae4a352b89d281dfcbc9ccddeb51
   options52 :: [GHC.Types.Char]
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ GHC.Types.Char
-                   Evolverbetert.options55
-                   Evolverbetert.options53) -}
-97560ee41e46225af164ade50b8e4165
-  options53 :: [GHC.Types.Char]
+                   Evolverbetert.options53
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+85005eb02e749bc67574e586cffcf922
+  options53 :: GHC.Types.Char
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'o'#) -}
+91c542aa14688a50f1d25583ed32bc43
+  options54 ::
+    System.Console.GetOpt.OptDescr
+      (Evolverbetert.Options -> Evolverbetert.Options)
+  {- Strictness: m,
+     Unfolding: (System.Console.GetOpt.Option
+                   @ (Evolverbetert.Options -> Evolverbetert.Options)
+                   Evolverbetert.options60
+                   Evolverbetert.options58
+                   Evolverbetert.options56
+                   Evolverbetert.options55) -}
+d7b09d9891495367b990fdf7bfe5fab8
+  options55 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "Display this help info"#) -}
+539c4cfe18e34dbb36d44c4fd592887c
+  options56 ::
+    System.Console.GetOpt.ArgDescr
+      (Evolverbetert.Options -> Evolverbetert.Options)
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (System.Console.GetOpt.NoArg
+                   @ (Evolverbetert.Options -> Evolverbetert.Options)
+                   Evolverbetert.options57) -}
+398eb48aaadf99f4c618581989ca8f02
+  options57 :: Evolverbetert.Options -> Evolverbetert.Options
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(A,U,U,U,U,U,U)>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ (opts :: Evolverbetert.Options) ->
+                 case opts of wild { Evolverbetert.Options ds ds1 ds2 ds3 ds4 ds5 ds6 ->
+                 Evolverbetert.Options GHC.Types.True ds1 ds2 ds3 ds4 ds5 ds6 }) -}
+439c9a780938f87f8dbac83b6cb532c4
+  options58 :: [GHC.Base.String]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Base.String
+                   Evolverbetert.options59
+                   (GHC.Types.[] @ GHC.Base.String)) -}
+79349105208a3c08f36712da8b3e2160
+  options59 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "help"#) -}
+f528a837cf54f7bd70249d8b7d4c788f
+  options6 ::
+    [System.Console.GetOpt.OptDescr
+       (Evolverbetert.Options -> Evolverbetert.Options)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (System.Console.GetOpt.OptDescr
+                        (Evolverbetert.Options -> Evolverbetert.Options))
+                   Evolverbetert.options7
+                   (GHC.Types.[]
+                      @ (System.Console.GetOpt.OptDescr
+                           (Evolverbetert.Options -> Evolverbetert.Options)))) -}
+bafc5d5b52755a16098332cff805cbe8
+  options60 :: [GHC.Types.Char]
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ GHC.Types.Char
-                   Evolverbetert.options54
+                   Evolverbetert.options63
+                   Evolverbetert.options61) -}
+17609d5bcd7adb94e88b750f5c6b7390
+  options61 :: [GHC.Types.Char]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   Evolverbetert.options62
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-3e511462e6b6d0b39a3f7a650ccaace6
-  options54 :: GHC.Types.Char
+16d2d235740dfedc70e4086246c5193f
+  options62 :: GHC.Types.Char
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# '?'#) -}
-4895b8a7d19db27eb2367fd3c22c6ee0
-  options55 :: GHC.Types.Char
+217635883a4a2ddaf12f0c9cbe182420
+  options63 :: GHC.Types.Char
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# 'h'#) -}
-fdd6d1a80de61a77e8e2683b01e0ba1e
-  options6 ::
+d663385ef26c6bd7efae4e8442b92251
+  options7 ::
     System.Console.GetOpt.OptDescr
       (Evolverbetert.Options -> Evolverbetert.Options)
   {- Strictness: m,
@@ -1238,25 +1314,21 @@ fdd6d1a80de61a77e8e2683b01e0ba1e
                    @ (Evolverbetert.Options -> Evolverbetert.Options)
                    Evolverbetert.options13
                    Evolverbetert.options11
-                   Evolverbetert.options8
-                   Evolverbetert.options7) -}
-3fa2a41ce5b05178481e8d4aa85ac9d9
-  options7 :: [GHC.Types.Char]
+                   Evolverbetert.options9
+                   Evolverbetert.options8) -}
+e9b287c21a899edba29bb52f3bd5e274
+  options8 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
-                   "The seed used for the initial agent generation"#) -}
-c5905e9fe2c86814409170560df5edaa
-  options8 ::
+                   "Display CA in graphical window"#) -}
+7b7d61d3c917eaa6766bec36b9a494f1
+  options9 ::
     System.Console.GetOpt.ArgDescr
       (Evolverbetert.Options -> Evolverbetert.Options)
-  {- Strictness: m2,
-     Unfolding: (System.Console.GetOpt.ReqArg
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (System.Console.GetOpt.NoArg
                    @ (Evolverbetert.Options -> Evolverbetert.Options)
-                   Evolverbetert.options10
-                   Evolverbetert.options9) -}
-9ef916f74a5b5c80979559bf97058dc9
-  options9 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "INT"#) -}
-be21ba1e7141a6770a55dd022590b934
+                   Evolverbetert.options10) -}
+d6cdcbb4d69526aaa4fdb4785f958ad0
   outputString :: Types.World -> Parameters.Time -> GHC.Base.String
   {- Arity: 2, Strictness: <S,1*U(1*U(A,A,U,U),1*U(U))><S(S),1*U(U)>,
      Inline: INLINE[0],
@@ -1265,12 +1337,12 @@ be21ba1e7141a6770a55dd022590b934
                  case w of ww { Types.World ww1 ww2 ->
                  case w1 of ww3 { GHC.Types.I# ww4 ->
                  Evolverbetert.$woutputString ww1 ww2 ww4 } }) -}
-a1bcf30a4129f44715c5fa9093396ff9
+34b6f4b6485ee5ee99d48f68436a0607
   reproduceAgent ::
     Types.World
     -> (GHC.Types.Int, GHC.Types.Int) -> MyRandom.Rand Types.Agent
   {- Arity: 3,
-     Strictness: <S,1*U(1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U),U(U))><L,1*U(1*U(U),1*U(U))><S(SSL),1*U(U,U,U(U))>m,
+     Strictness: <S,1*U(1*U(U(1*U(U),1*U(U)),U(1*U(U),1*U(U)),U,U),U(U))><L,1*U(1*U(U),1*U(U))><L,1*U(U,U,U(U))>m,
      Unfolding: InlineRule (0, True, True)
                 Evolverbetert.newAssoc2
                   `cast`
@@ -1280,6 +1352,13 @@ a1bcf30a4129f44715c5fa9093396ff9
                                <System.Random.Mersenne.Pure64.Internal.PureMT>_N
                                <Data.Functor.Identity.Identity>_R
                                <Types.Agent>_N)) -}
+d0d0ed7d6917fd771464ec31ad49b3d6
+  stdHandles :: Evolverbetert.Handles
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Evolverbetert.Handles
+                   (GHC.Base.Nothing @ GHC.IO.Handle.Types.Handle)
+                   (GHC.Base.Nothing @ GHC.IO.Handle.Types.Handle)
+                   (GHC.Base.Nothing @ GHC.IO.Handle.Types.Handle)) -}
 instance GHC.Show.Show [Evolverbetert.Options]
   = Evolverbetert.$fShowOptions
 "SPEC/Evolverbetert shows @ Options" [ALWAYS] forall ($dShow :: GHC.Show.Show

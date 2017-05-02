@@ -133,6 +133,13 @@
   (major1) == 1 && (major2) <  2 || \
   (major1) == 1 && (major2) == 2 && (minor) <= 2)
 
+/* package time-1.6.0.1 */
+#define VERSION_time "1.6.0.1"
+#define MIN_VERSION_time(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  6 || \
+  (major1) == 1 && (major2) == 6 && (minor) <= 0)
+
 /* tool alex-3.1.6 */
 #define TOOL_VERSION_alex "3.1.6"
 #define MIN_TOOL_VERSION_alex(major1,major2,minor) (\
@@ -217,7 +224,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG"
+#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF"
 
-#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG"
+#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF"
 

@@ -27,7 +27,7 @@ outputStep = 50 :: Time
 outputTime t = t `mod` outputStep == 0
 dumpStep = 1000
 dumpTime t = t `mod` dumpStep == 0
-maxTime = 200--round 1e6 :: Int -- 500000 :: Int
+maxTime = -1 --round 1e6 -- 500000
      :: Int
 -- * Fitness Parameters
 

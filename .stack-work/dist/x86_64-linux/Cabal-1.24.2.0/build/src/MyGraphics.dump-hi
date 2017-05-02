@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-28 16:31:35.516209 UTC
+2017-05-01 15:14:54.987338 UTC
 
-interface Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG:MyGraphics 8002
-  interface hash: fad22c89cd5ff9c6ae83360fba93b8ac
-  ABI hash: bbed0515b5079d8dde3312a093b6b5b3
-  export-list hash: e9c36c4e3de29928099813dd6b4c692d
+interface Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:MyGraphics 8002
+  interface hash: bce092d45562127c3cef54bb735d05b2
+  ABI hash: 9d83cfd30d0fc7698149b2474c7b5972
+  export-list hash: 97d0333b14588eeefaee8442dfd1870c
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: ab396f11155bd696ab63895436e6f1df
   sig of: Nothing
@@ -38,7 +38,7 @@ package dependencies: GLURaw-2.0.0.3@GLURaw-2.0.0.3-G12M6COyQIU5WfRlrIwPuj
                       stm-2.4.4.1@stm-2.4.4.1-JQn4hNPyYjP5m9AcbI88Ve
                       text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR
                       time-1.6.0.1@time-1.6.0.1 transformers-0.5.2.0@transformers-0.5.2.0
-orphans: Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG:MyRandom
+orphans: Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:MyRandom
          base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
          binary-0.8.3.0@binary-0.8.3.0:Data.Binary.Generic
          bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Builder
@@ -65,22 +65,22 @@ family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
                          primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
                          text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text
-import  -/  Parameters f6207debca8ae6a6a2f80b3a30b982b7
-  exports: 019275192dc9600464829c891d28e48a
-  nrGeneTypes 0e174033f78111c9b1241f86aa65480e
-  worldCoods 16105ec29055af5ea8d59b6c7df4a155
-import  -/  Types 1d3d1e1d433c54e7bfb57452891f64d7
-  exports: f90e62a4294bef8d4adecbf5aeb850c0
-  Agent d84ba5f3c206a79fef889ed9cdb2a757
-  Env 88a064ab5cc38cba53ed6c77954d36cb
-  NoAgent 6206322b95deab4ed7ee3e59b287efbd
-  World 9738ed488c0ba9f7acf9f8e4b61d0338
-  agents 053d754d76f8a2a5d11b8a171540cf92
-  env 93b6534fdd93b641ab6e4cfee2af97c8
-import  -/  World 3e7e2a4072f3caa69daebccfb176ef08
-  exports: e67d5e73efc3ddbb195eae358efd5ab7
-  fitnessAgent 058741f30c7dee0a8ab3d52aecef8af9
-  hammDistAg 837f653cab505cf95809969d328ed51c
+import  -/  Parameters 60ff55bcb82c2c83af83a8d2acb246b2
+  exports: fea0ab185fab0b15ba191f9d3ea960f0
+  nrGeneTypes a1c77a0f3df6e651d9a15658687e819f
+  worldCoods 2ae336931cd4b0460b72c8bec2e6cd2c
+import  -/  Types 553fe5882bac7964d9e18ed5fc1899e3
+  exports: f2d3892cae9faa75e4d9e5ce4ff3401f
+  Agent 4db872eec646ad15f031961699453d7d
+  Env 3acf42e6b3ff031d4328eeca7f593f33
+  NoAgent 339da968cef368d0f2975264de06a36a
+  World 1570f7c2c5d5f3fd6c86483737d155b6
+  agents d8e257b5a9ba3766bd9c42c43fa03eb6
+  env b2fc631954cb3156687f173510503a02
+import  -/  World fae719142ff1d0cc47926353810ce652
+  exports: 1e87020408db611578f66aeb540278f6
+  fitnessAgent 45c7feb2545c88cffbb51258423943f8
+  hammDistAg 7067b2060c4834b04013305ad5363662
 import  -/  GLUT-2.7.0.11@GLUT-2.7.0.11-IP0PzJz4wI8KYXyKTnttpl:Graphics.UI.GLUT 850ab735296960c40e0ec36d1d65a5d9
 import  -/  GLUT-2.7.0.11@GLUT-2.7.0.11-IP0PzJz4wI8KYXyKTnttpl:Graphics.UI.GLUT.Window 050ef4cbfa70b612c77f709bb8027899
 import  -/  OpenGL-3.0.1.0@OpenGL-3.0.1.0-BckrJgI63aX3I0VRJxU6fY:Graphics.Rendering.OpenGL.GL.BeginEnd 0192170a7b0a7c989acfee77b53496c1
@@ -103,28 +103,28 @@ import  -/  base-4.9.1.0:GHC.Real 82e4e59051a13dba1da63e1e970a69e6
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
 import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
 import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
-92cfe65ad29bacf0d88e7574a4b7d249
+38595e74807f0ba6a577c63ed72b07af
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.Module
                    MyGraphics.$trModule2
                    MyGraphics.$trModule1) -}
-e9ded3355acacd5164d6abb38787c030
+2d20f13a914ffb1f367c522bf524977b
   $trModule1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "MyGraphics"#) -}
-8fbf41da809b34d34707a20eed5e7e08
+a07529a34f5d9d5c035e870a707d528c
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
-                   "Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG"#) -}
-6c9032db533794e0ed9dadbd8198b216
+                   "Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF"#) -}
+a73c95c07237c6a8bcef5a81dc17c7f3
   $wshowWorld ::
     GHC.Prim.MutVar# GHC.Prim.RealWorld Types.World
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 2, Strictness: <S,U><S,U>, Inline: [0] -}
-197d8f685b47fbe878898555be205364
+2a24f2c623c2878a8f65ff8863c9d1ad
   showWorld :: GHC.IORef.IORef Types.World -> GHC.Types.IO ()
   {- Arity: 2, Strictness: <S(S),1*U(U)><S,U>,
      Unfolding: InlineRule (0, True, True)
@@ -132,7 +132,7 @@ e9ded3355acacd5164d6abb38787c030
                   `cast`
                 (<GHC.IORef.IORef Types.World>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-c45fa0521d69432b7b3ebf19a747bcb2
+6e5e875f729a1bcaefedb4d8ff662462
   showWorld1 ::
     GHC.IORef.IORef Types.World
     -> GHC.Prim.State# GHC.Prim.RealWorld

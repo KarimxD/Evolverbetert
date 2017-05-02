@@ -1,13 +1,13 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-28 16:31:32.520407 UTC
+2017-05-01 15:14:51.005321 UTC
 
-interface Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG:MyRandom [orphan module] 8002
-  interface hash: 4880a479c0fa54120a1972c59ab579a9
-  ABI hash: ac5c3d52b691d9aaae5b1bb647af66bd
-  export-list hash: dd9a89ae07df5f4335cfca7f1ea96343
-  orphan hash: 1f820a31088708e6895e2368ea2532c7
-  flag hash: ab396f11155bd696ab63895436e6f1df
+interface Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:MyRandom [orphan module] 8002
+  interface hash: 0812fc8c6b990f6e242bf24216144c90
+  ABI hash: 6dee9bd9efb866e95f63ee556ef06dbe
+  export-list hash: ac39067651296e54e6af2d56bdaa576b
+  orphan hash: 3e5d02090bb8cf34071231a11415f927
+  flag hash: 60ede7202df718eda107a0d677bc46fc
   sig of: Nothing
   used TH splices: False
   where
@@ -67,7 +67,7 @@ import  -/  mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6:Control.Monad.State.Class
 import  -/  mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6:Control.Monad.State.Strict eff0af50b9ed40c32939885d02cca72b
 import  -/  random-1.1@random-1.1-9tceXaeYIMZ4JrKq20Egog:System.Random b21db0c0ea43dc1ad218556cd0b064c7
 import  -/  transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.State.Strict 978f397cc30fa26d55cf117e3751a6ed
-b39942d44330fcd4aff83607ecc0b696
+24ff0aeb517c22f4b4a3ac8ce4f10d9e
   $fRandomGenPureMT ::
     System.Random.RandomGen
       System.Random.Mersenne.Pure64.Internal.PureMT
@@ -78,7 +78,7 @@ b39942d44330fcd4aff83607ecc0b696
                   MyRandom.randomInt
                   MyRandom.$fRandomGenPureMT_$s$dmgenRange
                   MyRandom.$fRandomGenPureMT_$csplit -}
-60f649dc898af38a178fd9124fdba2b4
+5d3db2e23a8c533e2a45da527133141e
   $fRandomGenPureMT_$csplit ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (System.Random.Mersenne.Pure64.Internal.PureMT,
@@ -88,7 +88,7 @@ b39942d44330fcd4aff83607ecc0b696
      Unfolding: InlineRule (1, True, False)
                 (\ (w :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
                  case MyRandom.$w$csplit w of ww { (#,#) ww1 ww2 -> (ww1, ww2) }) -}
-9a9548de6064872ce6605c44892b933b
+2c553c5c37a4e3a5919269daf3ab84eb
   $fRandomGenPureMT_$s$dmgenRange ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (GHC.Types.Int, GHC.Types.Int)
@@ -96,22 +96,22 @@ b39942d44330fcd4aff83607ecc0b696
      Unfolding: InlineRule (-1, True, False)
                 (\ (ds :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
                  (GHC.Base.minInt, GHC.Base.maxInt)) -}
-37fac31249330715660131a06662f521
+73c622c3dfd91f6287ba2f040e725b30
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.Module
                    MyRandom.$trModule2
                    MyRandom.$trModule1) -}
-a3338d3bf9f2abc041ab17758631c714
+984bfb4d0d3cceac23b6986aadb3acd8
   $trModule1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "MyRandom"#) -}
-d163f5da56b2a5935ea062da9f2e514c
+152cee191b7a4ec0f5a90b2fccd9e1dc
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
-                   "Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG"#) -}
-997643324310de997a09a9b79156f9e4
+                   "Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF"#) -}
+c7ea269eede65d2b28be57aa0df27a44
   $w$csplit ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (# System.Random.Mersenne.Pure64.Internal.PureMT,
@@ -169,18 +169,102 @@ d163f5da56b2a5935ea062da9f2e514c
                       0#
                       (System.Random.Mersenne.Pure64.MTBlock.nextBlock
                          dt2) } } } } } #)) -}
-77a7b41e87da21a90246e9795bb3258f
-  $wrandomR ::
+acb8e0c89a04139c8624ff17fddb02d5
+  $wgetBool ::
+    System.Random.Mersenne.Pure64.Internal.PureMT
+    -> (# GHC.Types.Bool,
+          System.Random.Mersenne.Pure64.Internal.PureMT #)
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,1*U(U,U,U(U))>,
+     Inline: [0],
+     Unfolding: (\ (w :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
+                 let {
+                   ds :: (GHC.Word.Word64,
+                          System.Random.Mersenne.Pure64.Internal.PureMT)
+                   = case w of wild { System.Random.Mersenne.Pure64.Internal.PureMT dt dt1 nxt ->
+                     (case GHC.Prim.indexWord64Array# dt dt1 of wild2 { DEFAULT ->
+                      case {__pkg_ccall mersenne-random-pure64-0.2.2.0@mersenne-random-pure64-0.2.2.0-560i5rQoI3i9IX3BgSFLBV mix_bits GHC.Prim.Word#
+                                                                                                                                      -> GHC.Prim.State#
+                                                                                                                                           GHC.Prim.RealWorld
+                                                                                                                                      -> (# GHC.Prim.State#
+                                                                                                                                              GHC.Prim.RealWorld,
+                                                                                                                                            GHC.Prim.Word# #)}
+                             wild2
+                             GHC.Prim.realWorld# of wild1 { (#,#) ds3 ds4 ->
+                      GHC.Word.W64# ds4 } },
+                      case GHC.Prim.tagToEnum#
+                             @ GHC.Types.Bool
+                             (GHC.Prim.<# dt1 311#) of wild1 {
+                        GHC.Types.False -> MyRandom.mkPureMT nxt
+                        GHC.Types.True
+                        -> System.Random.Mersenne.Pure64.Internal.PureMT
+                             dt
+                             (GHC.Prim.+# dt1 1#)
+                             nxt }) }
+                 } in
+                 (# case ds of wild { (,) i g' ->
+                    case i of wild1 { GHC.Word.W64# x# ->
+                    GHC.Prim.tagToEnum#
+                      @ GHC.Types.Bool
+                      (GHC.Prim.<##
+                         0.5##
+                         (GHC.Prim./##
+                            (GHC.Prim.word2Double# (GHC.Prim.quotWord# x# 2048##))
+                            9.007199254740992e15##)) } },
+                    case ds of wild { (,) i g' -> g' } #)) -}
+dd6239a26ad421426f8d6e4d4c6a8f9f
+  $wgetDouble ::
+    System.Random.Mersenne.Pure64.Internal.PureMT
+    -> (# GHC.Types.Double,
+          System.Random.Mersenne.Pure64.Internal.PureMT #)
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,1*U(U,U,U(U))>,
+     Inline: [0],
+     Unfolding: (\ (w :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
+                 let {
+                   ds :: (GHC.Word.Word64,
+                          System.Random.Mersenne.Pure64.Internal.PureMT)
+                   = case w of wild { System.Random.Mersenne.Pure64.Internal.PureMT dt dt1 nxt ->
+                     (case GHC.Prim.indexWord64Array# dt dt1 of wild2 { DEFAULT ->
+                      case {__pkg_ccall mersenne-random-pure64-0.2.2.0@mersenne-random-pure64-0.2.2.0-560i5rQoI3i9IX3BgSFLBV mix_bits GHC.Prim.Word#
+                                                                                                                                      -> GHC.Prim.State#
+                                                                                                                                           GHC.Prim.RealWorld
+                                                                                                                                      -> (# GHC.Prim.State#
+                                                                                                                                              GHC.Prim.RealWorld,
+                                                                                                                                            GHC.Prim.Word# #)}
+                             wild2
+                             GHC.Prim.realWorld# of wild1 { (#,#) ds3 ds4 ->
+                      GHC.Word.W64# ds4 } },
+                      case GHC.Prim.tagToEnum#
+                             @ GHC.Types.Bool
+                             (GHC.Prim.<# dt1 311#) of wild1 {
+                        GHC.Types.False -> MyRandom.mkPureMT nxt
+                        GHC.Types.True
+                        -> System.Random.Mersenne.Pure64.Internal.PureMT
+                             dt
+                             (GHC.Prim.+# dt1 1#)
+                             nxt }) }
+                 } in
+                 (# case ds of wild { (,) i g' ->
+                    case i of wild1 { GHC.Word.W64# x# ->
+                    GHC.Types.D#
+                      (GHC.Prim./##
+                         (GHC.Prim.word2Double# (GHC.Prim.quotWord# x# 2048##))
+                         9.007199254740992e15##) } },
+                    case ds of wild { (,) i g' -> g' } #)) -}
+12e9e6014672050567140c69fe656022
+  $wgetRange ::
+    GHC.Real.Integral a =>
     GHC.Prim.Int#
     -> GHC.Types.Int
     -> GHC.Prim.ByteArray#
     -> GHC.Prim.Int#
     -> System.Random.Mersenne.Pure64.Internal.MTBlock
-    -> (# GHC.Types.Int,
-          System.Random.Mersenne.Pure64.Internal.PureMT #)
-  {- Arity: 5, HasNoCafRefs,
-     Strictness: <L,U><L,1*U(U)><S,U><S,U><L,U(U)>, Inline: [0],
-     Unfolding: (\ (ww :: GHC.Prim.Int#)
+    -> (# a, System.Random.Mersenne.Pure64.Internal.PureMT #)
+  {- Arity: 6, HasNoCafRefs,
+     Strictness: <L,1*U(1*U(1*U(A,A,A,A,A,A,1*C1(U)),A,A),A,A,A,A,A,A,A,A)><L,U><L,1*U(U)><S,U><S,U><L,U(U)>,
+     Inline: [0],
+     Unfolding: (\ @ a
+                   (w :: GHC.Real.Integral a)
+                   (ww :: GHC.Prim.Int#)
                    (ww1 :: GHC.Types.Int)
                    (ww2 :: GHC.Prim.ByteArray#)
                    (ww3 :: GHC.Prim.Int#)
@@ -206,304 +290,168 @@ d163f5da56b2a5935ea062da9f2e514c
                  let {
                    n :: GHC.Prim.Int# = GHC.Prim.double2Int# x1
                  } in
+                 let {
+                   $w$j :: GHC.Prim.Int#
+                           -> (# a, System.Random.Mersenne.Pure64.Internal.PureMT #)
+                     {- Arity: 1, Strictness: <S,U>, Inline: [0] -}
+                   = \ (w1 :: GHC.Prim.Int#)[OneShot] ->
+                     case GHC.Prim.tagToEnum#
+                            @ GHC.Types.Bool
+                            (GHC.Prim.<# w1 ww) of wild3 {
+                       GHC.Types.False
+                       -> case GHC.Prim.tagToEnum#
+                                 @ GHC.Types.Bool
+                                 (GHC.Prim.># w1 x) of wild4 {
+                            GHC.Types.False
+                            -> (# GHC.Num.fromInteger
+                                    @ a
+                                    (GHC.Real.$p1Real @ a (GHC.Real.$p1Integral @ a w))
+                                    (GHC.Integer.Type.smallInteger w1),
+                                  case GHC.Prim.tagToEnum#
+                                         @ GHC.Types.Bool
+                                         (GHC.Prim.<# ww3 311#) of wild5 {
+                                    GHC.Types.False -> MyRandom.mkPureMT ww4
+                                    GHC.Types.True
+                                    -> System.Random.Mersenne.Pure64.Internal.PureMT
+                                         ww2
+                                         (GHC.Prim.+# ww3 1#)
+                                         ww4 } #)
+                            GHC.Types.True
+                            -> (# GHC.Num.fromInteger
+                                    @ a
+                                    (GHC.Real.$p1Real @ a (GHC.Real.$p1Integral @ a w))
+                                    (GHC.Integer.Type.smallInteger ww),
+                                  case GHC.Prim.tagToEnum#
+                                         @ GHC.Types.Bool
+                                         (GHC.Prim.<# ww3 311#) of wild5 {
+                                    GHC.Types.False -> MyRandom.mkPureMT ww4
+                                    GHC.Types.True
+                                    -> System.Random.Mersenne.Pure64.Internal.PureMT
+                                         ww2
+                                         (GHC.Prim.+# ww3 1#)
+                                         ww4 } #) }
+                       GHC.Types.True
+                       -> (# GHC.Num.fromInteger
+                               @ a
+                               (GHC.Real.$p1Real @ a (GHC.Real.$p1Integral @ a w))
+                               (GHC.Integer.Type.smallInteger ww),
+                             case GHC.Prim.tagToEnum#
+                                    @ GHC.Types.Bool
+                                    (GHC.Prim.<# ww3 311#) of wild4 {
+                               GHC.Types.False -> MyRandom.mkPureMT ww4
+                               GHC.Types.True
+                               -> System.Random.Mersenne.Pure64.Internal.PureMT
+                                    ww2
+                                    (GHC.Prim.+# ww3 1#)
+                                    ww4 } #) }
+                 } in
                  case GHC.Prim.tagToEnum#
                         @ GHC.Types.Bool
                         (GHC.Prim.<## x1 (GHC.Prim.int2Double# n)) of wild3 {
-                   GHC.Types.False
-                   -> let {
-                        x2 :: GHC.Prim.Int# = GHC.Prim.+# ww n
-                      } in
-                      case GHC.Prim.tagToEnum#
-                             @ GHC.Types.Bool
-                             (GHC.Prim.<# x2 ww) of wild4 {
-                        GHC.Types.False
-                        -> case GHC.Prim.tagToEnum#
-                                  @ GHC.Types.Bool
-                                  (GHC.Prim.># x2 x) of wild5 {
-                             GHC.Types.False
-                             -> (# GHC.Types.I# x2,
-                                   case GHC.Prim.tagToEnum#
-                                          @ GHC.Types.Bool
-                                          (GHC.Prim.<# ww3 311#) of wild6 {
-                                     GHC.Types.False -> MyRandom.mkPureMT ww4
-                                     GHC.Types.True
-                                     -> System.Random.Mersenne.Pure64.Internal.PureMT
-                                          ww2
-                                          (GHC.Prim.+# ww3 1#)
-                                          ww4 } #)
-                             GHC.Types.True
-                             -> (# GHC.Types.I# ww,
-                                   case GHC.Prim.tagToEnum#
-                                          @ GHC.Types.Bool
-                                          (GHC.Prim.<# ww3 311#) of wild6 {
-                                     GHC.Types.False -> MyRandom.mkPureMT ww4
-                                     GHC.Types.True
-                                     -> System.Random.Mersenne.Pure64.Internal.PureMT
-                                          ww2
-                                          (GHC.Prim.+# ww3 1#)
-                                          ww4 } #) }
-                        GHC.Types.True
-                        -> (# GHC.Types.I# ww,
-                              case GHC.Prim.tagToEnum#
-                                     @ GHC.Types.Bool
-                                     (GHC.Prim.<# ww3 311#) of wild5 {
-                                GHC.Types.False -> MyRandom.mkPureMT ww4
-                                GHC.Types.True
-                                -> System.Random.Mersenne.Pure64.Internal.PureMT
-                                     ww2
-                                     (GHC.Prim.+# ww3 1#)
-                                     ww4 } #) }
+                   GHC.Types.False -> $w$j (GHC.Prim.+# ww n)
                    GHC.Types.True
-                   -> let {
-                        x2 :: GHC.Prim.Int# = GHC.Prim.+# ww (GHC.Prim.-# n 1#)
-                      } in
-                      case GHC.Prim.tagToEnum#
-                             @ GHC.Types.Bool
-                             (GHC.Prim.<# x2 ww) of wild4 {
-                        GHC.Types.False
-                        -> case GHC.Prim.tagToEnum#
-                                  @ GHC.Types.Bool
-                                  (GHC.Prim.># x2 x) of wild5 {
-                             GHC.Types.False
-                             -> (# GHC.Types.I# x2,
-                                   case GHC.Prim.tagToEnum#
-                                          @ GHC.Types.Bool
-                                          (GHC.Prim.<# ww3 311#) of wild6 {
-                                     GHC.Types.False -> MyRandom.mkPureMT ww4
-                                     GHC.Types.True
-                                     -> System.Random.Mersenne.Pure64.Internal.PureMT
-                                          ww2
-                                          (GHC.Prim.+# ww3 1#)
-                                          ww4 } #)
-                             GHC.Types.True
-                             -> (# GHC.Types.I# ww,
-                                   case GHC.Prim.tagToEnum#
-                                          @ GHC.Types.Bool
-                                          (GHC.Prim.<# ww3 311#) of wild6 {
-                                     GHC.Types.False -> MyRandom.mkPureMT ww4
-                                     GHC.Types.True
-                                     -> System.Random.Mersenne.Pure64.Internal.PureMT
-                                          ww2
-                                          (GHC.Prim.+# ww3 1#)
-                                          ww4 } #) }
-                        GHC.Types.True
-                        -> (# GHC.Types.I# ww,
-                              case GHC.Prim.tagToEnum#
-                                     @ GHC.Types.Bool
-                                     (GHC.Prim.<# ww3 311#) of wild5 {
-                                GHC.Types.False -> MyRandom.mkPureMT ww4
-                                GHC.Types.True
-                                -> System.Random.Mersenne.Pure64.Internal.PureMT
-                                     ww2
-                                     (GHC.Prim.+# ww3 1#)
-                                     ww4 } #) } } } } }) -}
-15dbc98a9547e867366d8bad46ff1e94
+                   -> $w$j (GHC.Prim.+# ww (GHC.Prim.-# n 1#)) } } } }) -}
+06a931c974819790dbc40b2dccffa196
   type Rand =
     Control.Monad.Trans.State.Strict.State
       System.Random.Mersenne.Pure64.Internal.PureMT
     :: * -> *
-3f6bf9002409028265d15437ce04f073
+73bce04bc3456941ef5fa04c444001a2
   evalRand ::
     Control.Monad.Trans.State.Strict.State
       System.Random.Mersenne.Pure64.Internal.PureMT a
     -> System.Random.Mersenne.Pure64.Internal.PureMT -> a
   {- Arity: 2, HasNoCafRefs,
      Strictness: <C(S(SL)),1*C1(U(1*U,A))><L,U>,
-     Inline: INLINE (sat-args=0),
-     Unfolding: InlineRule (0, False, True)
+     Unfolding: InlineRule (0, True, True)
                 (Control.Monad.Trans.State.Strict.evalState
                    @ System.Random.Mersenne.Pure64.Internal.PureMT) -}
-1a401c69c4d6a084aa7fd7a3fab0ef94
+9b8cc6d67d9cde7e83cb4d8883224863
   getBool :: MyRandom.Rand GHC.Types.Bool
   {- Arity: 1, HasNoCafRefs, Strictness: <L,1*U(U,U,U(U))>m,
-     Inline: INLINE (sat-args=0),
-     Unfolding: InlineRule (0, False, False)
-                (Control.Monad.State.Class.$fMonadStatesStateT_$cstate
-                   @ Data.Functor.Identity.Identity
-                   @ System.Random.Mersenne.Pure64.Internal.PureMT
-                   Data.Functor.Identity.$fMonadIdentity
-                   @ GHC.Types.Bool
-                   MyRandom.randomBool) -}
-5c31e5f2eec7293d9b501acd10440062
+     Unfolding: InlineRule (0, True, True)
+                MyRandom.getBool1
+                  `cast`
+                (Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                          <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                          <Data.Functor.Identity.Identity>_R
+                          <GHC.Types.Bool>_N)) -}
+bebb0b62e0d2edb0b9086b87ac368b9c
+  getBool1 ::
+    System.Random.Mersenne.Pure64.Internal.PureMT
+    -> Data.Functor.Identity.Identity
+         (GHC.Types.Bool, System.Random.Mersenne.Pure64.Internal.PureMT)
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,1*U(U,U,U(U))>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
+                 case MyRandom.$wgetBool w of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2)
+                   `cast`
+                 (Sym (Data.Functor.Identity.N:Identity[0]
+                           <(GHC.Types.Bool,
+                             System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) }) -}
+4584580bb6279fc885c128afdd8c35df
   getDouble :: MyRandom.Rand GHC.Types.Double
   {- Arity: 1, HasNoCafRefs, Strictness: <L,1*U(U,U,U(U))>m,
-     Inline: INLINE (sat-args=0),
-     Unfolding: InlineRule (0, False, False)
-                (Control.Monad.State.Class.$fMonadStatesStateT_$cstate
-                   @ Data.Functor.Identity.Identity
-                   @ System.Random.Mersenne.Pure64.Internal.PureMT
-                   Data.Functor.Identity.$fMonadIdentity
-                   @ GHC.Types.Double
-                   MyRandom.randomDouble) -}
-42b51d370ba582df43ed004a89b1cb45
+     Unfolding: InlineRule (0, True, True)
+                MyRandom.getDouble1
+                  `cast`
+                (Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                          <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                          <Data.Functor.Identity.Identity>_R
+                          <GHC.Types.Double>_N)) -}
+6409b7269cfe8a5f1fdb14ceb4719980
+  getDouble1 ::
+    System.Random.Mersenne.Pure64.Internal.PureMT
+    -> Data.Functor.Identity.Identity
+         (GHC.Types.Double, System.Random.Mersenne.Pure64.Internal.PureMT)
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,1*U(U,U,U(U))>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
+                 case MyRandom.$wgetDouble w of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2)
+                   `cast`
+                 (Sym (Data.Functor.Identity.N:Identity[0]
+                           <(GHC.Types.Double,
+                             System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) }) -}
+cf23ec2a849e468b2e7d745f0c23c4b7
   getModifyRand ::
     MyRandom.Rand System.Random.Mersenne.Pure64.Internal.PureMT
   {- Arity: 1, HasNoCafRefs, Strictness: <L,U(U,U,U(U))>m,
-     Inline: INLINE (sat-args=0),
-     Unfolding: InlineRule (0, False, False)
-                (let {
-                   m1 :: Control.Monad.Trans.State.Strict.StateT
-                           System.Random.Mersenne.Pure64.Internal.PureMT
-                           Data.Functor.Identity.Identity
-                           System.Random.Mersenne.Pure64.Internal.PureMT
-                   = GHC.Base.$
-                       @ 'GHC.Types.PtrRepLifted
-                       @ (System.Random.Mersenne.Pure64.Internal.PureMT
-                          -> (System.Random.Mersenne.Pure64.Internal.PureMT,
-                              System.Random.Mersenne.Pure64.Internal.PureMT))
-                       @ (Control.Monad.Trans.State.Strict.StateT
-                            System.Random.Mersenne.Pure64.Internal.PureMT
-                            Data.Functor.Identity.Identity
-                            System.Random.Mersenne.Pure64.Internal.PureMT)
-                       (Control.Monad.Trans.State.Strict.state
-                          @ Data.Functor.Identity.Identity
-                          @ System.Random.Mersenne.Pure64.Internal.PureMT
-                          @ System.Random.Mersenne.Pure64.Internal.PureMT
-                          Data.Functor.Identity.$fMonadIdentity)
-                       (\ (s1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
-                        (s1, s1))
-                 } in
-                 GHC.Base.$
-                   @ 'GHC.Types.PtrRepLifted
-                   @ (System.Random.Mersenne.Pure64.Internal.PureMT
-                      -> Data.Functor.Identity.Identity
-                           (System.Random.Mersenne.Pure64.Internal.PureMT,
-                            System.Random.Mersenne.Pure64.Internal.PureMT))
-                   @ (Control.Monad.Trans.State.Strict.StateT
-                        System.Random.Mersenne.Pure64.Internal.PureMT
-                        Data.Functor.Identity.Identity
-                        System.Random.Mersenne.Pure64.Internal.PureMT)
-                   (\ (tpl :: System.Random.Mersenne.Pure64.Internal.PureMT
-                              -> Data.Functor.Identity.Identity
-                                   (System.Random.Mersenne.Pure64.Internal.PureMT,
-                                    System.Random.Mersenne.Pure64.Internal.PureMT)) ->
-                    tpl)
-                     `cast`
-                   (<System.Random.Mersenne.Pure64.Internal.PureMT
-                     -> Data.Functor.Identity.Identity
-                          (System.Random.Mersenne.Pure64.Internal.PureMT,
-                           System.Random.Mersenne.Pure64.Internal.PureMT)>_R
-                    ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
-                                  <System.Random.Mersenne.Pure64.Internal.PureMT>_N
-                                  <Data.Functor.Identity.Identity>_R
-                                  <System.Random.Mersenne.Pure64.Internal.PureMT>_N))
-                   (\ (s1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
-                    Data.Functor.Identity.$fMonadIdentity_$c>>=
-                      @ (System.Random.Mersenne.Pure64.Internal.PureMT,
-                         System.Random.Mersenne.Pure64.Internal.PureMT)
-                      @ (System.Random.Mersenne.Pure64.Internal.PureMT,
-                         System.Random.Mersenne.Pure64.Internal.PureMT)
-                      (Control.Monad.Trans.State.Strict.runStateT
-                         @ System.Random.Mersenne.Pure64.Internal.PureMT
-                         @ Data.Functor.Identity.Identity
-                         @ System.Random.Mersenne.Pure64.Internal.PureMT
-                         m1
-                         s1)
-                      (\ (ds :: (System.Random.Mersenne.Pure64.Internal.PureMT,
-                                 System.Random.Mersenne.Pure64.Internal.PureMT))[OneShot] ->
-                       case ds of wild { (,) a1 s' ->
-                       let {
-                         m2 :: Control.Monad.Trans.State.Strict.StateT
-                                 System.Random.Mersenne.Pure64.Internal.PureMT
-                                 Data.Functor.Identity.Identity
-                                 ()
-                         = let {
-                             s2 :: System.Random.Mersenne.Pure64.Internal.PureMT
-                             = case a1 of wild1 { System.Random.Mersenne.Pure64.Internal.PureMT dt dt1 nxt ->
-                               let {
-                                 i :: GHC.Types.Int = GHC.Types.I# dt1
-                               } in
-                               case GHC.Classes.ltInt
-                                      i
-                                      (GHC.Num.$fNumInt_$c-
-                                         System.Random.Mersenne.Pure64.Base.blockLen
-                                         (GHC.Types.I# 1#)) of wild2 {
-                                 GHC.Types.False -> MyRandom.mkPureMT nxt
-                                 GHC.Types.True
-                                 -> case GHC.Num.$fNumInt_$c+
-                                           i
-                                           (GHC.Types.I# 1#) of dt2 { GHC.Types.I# dt3 ->
-                                    System.Random.Mersenne.Pure64.Internal.PureMT dt dt3 nxt } } }
-                           } in
-                           GHC.Base.$
-                             @ 'GHC.Types.PtrRepLifted
-                             @ (System.Random.Mersenne.Pure64.Internal.PureMT
-                                -> ((), System.Random.Mersenne.Pure64.Internal.PureMT))
-                             @ (Control.Monad.Trans.State.Strict.StateT
-                                  System.Random.Mersenne.Pure64.Internal.PureMT
-                                  Data.Functor.Identity.Identity
-                                  ())
-                             (Control.Monad.Trans.State.Strict.state
-                                @ Data.Functor.Identity.Identity
-                                @ System.Random.Mersenne.Pure64.Internal.PureMT
-                                @ ()
-                                Data.Functor.Identity.$fMonadIdentity)
-                             (\ (ds1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
-                              (GHC.Tuple.(), s2))
-                       } in
-                       let {
-                         k :: Control.Monad.Trans.State.Strict.StateT
-                                System.Random.Mersenne.Pure64.Internal.PureMT
-                                Data.Functor.Identity.Identity
-                                System.Random.Mersenne.Pure64.Internal.PureMT
-                           {- Arity: 1 -}
-                         = Control.Monad.Trans.State.Strict.$fMonadStateT_$creturn
-                             @ Data.Functor.Identity.Identity
-                             @ System.Random.Mersenne.Pure64.Internal.PureMT
-                             Data.Functor.Identity.$fMonadIdentity
-                             @ System.Random.Mersenne.Pure64.Internal.PureMT
-                             a1
-                       } in
-                       Control.Monad.Trans.State.Strict.runStateT
-                         @ System.Random.Mersenne.Pure64.Internal.PureMT
-                         @ Data.Functor.Identity.Identity
-                         @ System.Random.Mersenne.Pure64.Internal.PureMT
-                         (GHC.Base.$
-                            @ 'GHC.Types.PtrRepLifted
-                            @ (System.Random.Mersenne.Pure64.Internal.PureMT
-                               -> Data.Functor.Identity.Identity
-                                    (System.Random.Mersenne.Pure64.Internal.PureMT,
-                                     System.Random.Mersenne.Pure64.Internal.PureMT))
-                            @ (Control.Monad.Trans.State.Strict.StateT
-                                 System.Random.Mersenne.Pure64.Internal.PureMT
-                                 Data.Functor.Identity.Identity
-                                 System.Random.Mersenne.Pure64.Internal.PureMT)
-                            (\ (tpl :: System.Random.Mersenne.Pure64.Internal.PureMT
-                                       -> Data.Functor.Identity.Identity
-                                            (System.Random.Mersenne.Pure64.Internal.PureMT,
-                                             System.Random.Mersenne.Pure64.Internal.PureMT)) ->
-                             tpl)
-                              `cast`
-                            (<System.Random.Mersenne.Pure64.Internal.PureMT
-                              -> Data.Functor.Identity.Identity
-                                   (System.Random.Mersenne.Pure64.Internal.PureMT,
-                                    System.Random.Mersenne.Pure64.Internal.PureMT)>_R
-                             ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
-                                           <System.Random.Mersenne.Pure64.Internal.PureMT>_N
-                                           <Data.Functor.Identity.Identity>_R
-                                           <System.Random.Mersenne.Pure64.Internal.PureMT>_N))
-                            (\ (s2 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
-                             Data.Functor.Identity.$fMonadIdentity_$c>>=
-                               @ ((), System.Random.Mersenne.Pure64.Internal.PureMT)
-                               @ (System.Random.Mersenne.Pure64.Internal.PureMT,
-                                  System.Random.Mersenne.Pure64.Internal.PureMT)
-                               (Control.Monad.Trans.State.Strict.runStateT
-                                  @ System.Random.Mersenne.Pure64.Internal.PureMT
-                                  @ Data.Functor.Identity.Identity
-                                  @ ()
-                                  m2
-                                  s2)
-                               (\ (ds1 :: ((),
-                                           System.Random.Mersenne.Pure64.Internal.PureMT))[OneShot] ->
-                                case ds1 of wild1 { (,) a2 s'1 ->
-                                Control.Monad.Trans.State.Strict.runStateT
-                                  @ System.Random.Mersenne.Pure64.Internal.PureMT
-                                  @ Data.Functor.Identity.Identity
-                                  @ System.Random.Mersenne.Pure64.Internal.PureMT
-                                  k
-                                  s'1 })))
-                         s' }))) -}
-4e961113d2d2c12c900916721f0904f8
+     Unfolding: InlineRule (0, True, True)
+                MyRandom.getModifyRand1
+                  `cast`
+                (Trans
+                     (<System.Random.Mersenne.Pure64.Internal.PureMT>_R
+                      ->_R Sym (Data.Functor.Identity.N:Identity[0]
+                                    <(System.Random.Mersenne.Pure64.Internal.PureMT,
+                                      System.Random.Mersenne.Pure64.Internal.PureMT)>_R))
+                     (Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                               <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                               <Data.Functor.Identity.Identity>_R
+                               <System.Random.Mersenne.Pure64.Internal.PureMT>_N))) -}
+91ab34f9a9f5e95c25c5cce76345e9cc
+  getModifyRand1 ::
+    System.Random.Mersenne.Pure64.Internal.PureMT
+    -> (System.Random.Mersenne.Pure64.Internal.PureMT,
+        System.Random.Mersenne.Pure64.Internal.PureMT)
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,U(U,U,U(U))>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ (s1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
+                 (s1,
+                  case s1 of wild { System.Random.Mersenne.Pure64.Internal.PureMT dt dt1 nxt ->
+                  case GHC.Prim.tagToEnum#
+                         @ GHC.Types.Bool
+                         (GHC.Prim.<# dt1 311#) of wild1 {
+                    GHC.Types.False -> MyRandom.mkPureMT nxt
+                    GHC.Types.True
+                    -> System.Random.Mersenne.Pure64.Internal.PureMT
+                         dt
+                         (GHC.Prim.+# dt1 1#)
+                         nxt } })) -}
+d3b151ed14d8ad80e62616660ed5c727
   getMyStdGen ::
     GHC.Types.IO System.Random.Mersenne.Pure64.Internal.PureMT
   {- Arity: 1,
@@ -512,7 +460,7 @@ d163f5da56b2a5935ea062da9f2e514c
                   `cast`
                 (Sym (GHC.Types.N:IO[0]
                           <System.Random.Mersenne.Pure64.Internal.PureMT>_R)) -}
-8d2390fe235a214a40bcb94caa389305
+aa173fbcf617ae891bf7a976cae79753
   getMyStdGen1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld,
@@ -524,7 +472,7 @@ d163f5da56b2a5935ea062da9f2e514c
                    MyRandom.theMyStdGen
                      `cast`
                    (GHC.IORef.N:IORef[0] <System.Random.Mersenne.Pure64.Internal.PureMT>_N)) -}
-35b0ec84ae8d440a78142a90928be14c
+8bc0e4f0f97c968d705725df3f2659ae
   getMyStdRandom ::
     (System.Random.Mersenne.Pure64.Internal.PureMT
      -> (a, System.Random.Mersenne.Pure64.Internal.PureMT))
@@ -537,7 +485,7 @@ d163f5da56b2a5935ea062da9f2e514c
                  <System.Random.Mersenne.Pure64.Internal.PureMT
                   -> (a, System.Random.Mersenne.Pure64.Internal.PureMT)>_R
                  ->_R Sym (GHC.Types.N:IO[0] <a>_R)) -}
-adb2ace3e075a12eeccd5d8007cd12f8
+6acc5a0c94ce2930a9330a783646ee14
   getMyStdRandom1 ::
     (System.Random.Mersenne.Pure64.Internal.PureMT
      -> (a, System.Random.Mersenne.Pure64.Internal.PureMT))
@@ -563,90 +511,54 @@ adb2ace3e075a12eeccd5d8007cd12f8
                          (a'1, v) } })
                         eta of ds1 { (#,#) ipv ipv1 ->
                  case ipv1 of b1 { DEFAULT -> ds1 } } }) -}
-9711cfb1121bda13507439d09b30ac7c
+bc5d1e4299975812df90bffc86867575
   getRange ::
     GHC.Real.Integral a =>
     (GHC.Types.Int, GHC.Types.Int) -> MyRandom.Rand a
   {- Arity: 3, HasNoCafRefs,
      Strictness: <L,1*U(1*U(1*U(A,A,A,A,A,A,1*C1(U)),A,A),A,A,A,A,A,A,A,A)><S(SL),1*U(1*U(U),1*U(U))><S(SSL),1*U(U,U,U(U))>m,
-     Inline: INLINE (sat-args=0),
-     Unfolding: InlineRule (1, False, False)
+     Unfolding: InlineRule (0, True, True)
+                MyRandom.getRange1
+                  `cast`
+                (forall (a :: <*>_N).
+                 <GHC.Real.Integral a>_R
+                 ->_R <(GHC.Types.Int, GHC.Types.Int)>_R
+                 ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                               <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                               <Data.Functor.Identity.Identity>_R
+                               <a>_N)) -}
+0a7adb3af315aad58840d51b5c6cabfb
+  getRange1 ::
+    GHC.Real.Integral a =>
+    (GHC.Types.Int, GHC.Types.Int)
+    -> System.Random.Mersenne.Pure64.Internal.PureMT
+    -> Data.Functor.Identity.Identity
+         (a, System.Random.Mersenne.Pure64.Internal.PureMT)
+  {- Arity: 3, HasNoCafRefs,
+     Strictness: <L,1*U(1*U(1*U(A,A,A,A,A,A,1*C1(U)),A,A),A,A,A,A,A,A,A,A)><S(SL),1*U(1*U(U),1*U(U))><S(SSL),1*U(U,U,U(U))>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (3, True, False)
                 (\ @ a
-                   ($dIntegral :: GHC.Real.Integral a)
-                   (eta :: (GHC.Types.Int, GHC.Types.Int)) ->
-                 let {
-                   f :: GHC.Real.Real a = GHC.Real.$p1Integral @ a $dIntegral
-                 } in
-                 let {
-                   f1 :: GHC.Num.Num a = GHC.Real.$p1Real @ a f
-                 } in
-                 let {
-                   m1 :: System.Random.Mersenne.Pure64.Internal.PureMT
-                         -> (GHC.Types.Int, System.Random.Mersenne.Pure64.Internal.PureMT)
-                     {- Arity: 1 -}
-                   = MyRandom.randomR eta
-                 } in
-                 let {
-                   m2 :: Control.Monad.Trans.State.Strict.StateT
-                           System.Random.Mersenne.Pure64.Internal.PureMT
-                           Data.Functor.Identity.Identity
-                           GHC.Types.Int
-                     {- Arity: 1 -}
-                   = Control.Monad.State.Class.$fMonadStatesStateT_$cstate
-                       @ Data.Functor.Identity.Identity
-                       @ System.Random.Mersenne.Pure64.Internal.PureMT
-                       Data.Functor.Identity.$fMonadIdentity
-                       @ GHC.Types.Int
-                       m1
-                 } in
-                 GHC.Base.$
-                   @ 'GHC.Types.PtrRepLifted
-                   @ (System.Random.Mersenne.Pure64.Internal.PureMT
-                      -> Data.Functor.Identity.Identity
-                           (a, System.Random.Mersenne.Pure64.Internal.PureMT))
-                   @ (Control.Monad.Trans.State.Strict.StateT
-                        System.Random.Mersenne.Pure64.Internal.PureMT
-                        Data.Functor.Identity.Identity
-                        a)
-                   (\ (tpl :: System.Random.Mersenne.Pure64.Internal.PureMT
-                              -> Data.Functor.Identity.Identity
-                                   (a, System.Random.Mersenne.Pure64.Internal.PureMT)) ->
-                    tpl)
-                     `cast`
-                   (<System.Random.Mersenne.Pure64.Internal.PureMT
-                     -> Data.Functor.Identity.Identity
-                          (a, System.Random.Mersenne.Pure64.Internal.PureMT)>_R
-                    ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
-                                  <System.Random.Mersenne.Pure64.Internal.PureMT>_N
-                                  <Data.Functor.Identity.Identity>_R
-                                  <a>_N))
-                   (\ (s1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
-                    GHC.Base.$
-                      @ 'GHC.Types.PtrRepLifted
-                      @ (Data.Functor.Identity.Identity
-                           (GHC.Types.Int, System.Random.Mersenne.Pure64.Internal.PureMT))
-                      @ (Data.Functor.Identity.Identity
-                           (a, System.Random.Mersenne.Pure64.Internal.PureMT))
-                      (Data.Functor.Identity.$fFunctorIdentity_$cfmap
-                         @ (GHC.Types.Int, System.Random.Mersenne.Pure64.Internal.PureMT)
-                         @ (a, System.Random.Mersenne.Pure64.Internal.PureMT)
-                         (\ (ds :: (GHC.Types.Int,
-                                    System.Random.Mersenne.Pure64.Internal.PureMT)) ->
-                          case ds of wild { (,) a1 s' ->
-                          (GHC.Real.fromIntegral
-                             @ GHC.Types.Int
-                             @ a
-                             GHC.Real.$fIntegralInt
-                             f1
-                             a1,
-                           s') }))
-                      (Control.Monad.Trans.State.Strict.runStateT
-                         @ System.Random.Mersenne.Pure64.Internal.PureMT
-                         @ Data.Functor.Identity.Identity
-                         @ GHC.Types.Int
-                         m2
-                         s1))) -}
-3030b2191895218947eab11b18ce1b6a
+                   (w :: GHC.Real.Integral a)
+                   (w1 :: (GHC.Types.Int, GHC.Types.Int))
+                   (w2 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
+                 case w1 of ww { (,) ww1 ww2 ->
+                 case ww1 of ww3 { GHC.Types.I# ww4 ->
+                 case w2 of ww5 { System.Random.Mersenne.Pure64.Internal.PureMT ww6 ww7 ww8 ->
+                 case MyRandom.$wgetRange
+                        @ a
+                        w
+                        ww4
+                        ww2
+                        ww6
+                        ww7
+                        ww8 of ww9 { (#,#) ww10 ww11 ->
+                 (ww10, ww11)
+                   `cast`
+                 (Sym (Data.Functor.Identity.N:Identity[0]
+                           <(a,
+                             System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) } } } }) -}
+996ee45914eccb107bf03f0c136134e9
   mkPureMT ::
     System.Random.Mersenne.Pure64.Internal.MTBlock
     -> System.Random.Mersenne.Pure64.Internal.PureMT
@@ -658,7 +570,7 @@ adb2ace3e075a12eeccd5d8007cd12f8
                    dt1
                    0#
                    (System.Random.Mersenne.Pure64.MTBlock.nextBlock dt) }) -}
-c26aaf9fab7c1bb4b9465a8d235023b8
+cd286d5d65a776d017e2c4c4a38d713d
   pureMT ::
     GHC.Real.Integral a =>
     a -> System.Random.Mersenne.Pure64.Internal.PureMT
@@ -676,7 +588,7 @@ c26aaf9fab7c1bb4b9465a8d235023b8
                    dt1
                    0#
                    (System.Random.Mersenne.Pure64.MTBlock.nextBlock dt) } }) -}
-8e72015f311299ed65f101edffcf8f37
+52aeb483b9ac6df85ca12466cb3a5ca3
   randomBool ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (GHC.Types.Bool, System.Random.Mersenne.Pure64.Internal.PureMT)
@@ -718,48 +630,7 @@ c26aaf9fab7c1bb4b9465a8d235023b8
                        (GHC.Float.word2Double (GHC.Types.W# x#))
                        (GHC.Types.D# 9.007199254740992e15##)) } },
                   case ds of wild { (,) i g' -> g' })) -}
-ba7d44802e436b98b59344451945d709
-  randomDouble ::
-    System.Random.Mersenne.Pure64.Internal.PureMT
-    -> (GHC.Types.Double,
-        System.Random.Mersenne.Pure64.Internal.PureMT)
-  {- Arity: 1, HasNoCafRefs, Strictness: <L,1*U(U,U,U(U))>m,
-     Inline: INLINE (sat-args=1),
-     Unfolding: InlineRule (1, False, False)
-                (\ (g :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
-                 let {
-                   ds :: (GHC.Word.Word64,
-                          System.Random.Mersenne.Pure64.Internal.PureMT)
-                   = case g of wild { System.Random.Mersenne.Pure64.Internal.PureMT dt dt1 nxt ->
-                     let {
-                       i :: GHC.Types.Int = GHC.Types.I# dt1
-                     } in
-                     (System.Random.Mersenne.Pure64.MTBlock.mixWord64
-                        (System.Random.Mersenne.Pure64.MTBlock.lookupBlock
-                           (System.Random.Mersenne.Pure64.Internal.MTBlock dt)
-                           i),
-                      case GHC.Classes.ltInt
-                             i
-                             (GHC.Num.$fNumInt_$c-
-                                System.Random.Mersenne.Pure64.Base.blockLen
-                                (GHC.Types.I# 1#)) of wild1 {
-                        GHC.Types.False -> MyRandom.mkPureMT nxt
-                        GHC.Types.True
-                        -> case GHC.Num.$fNumInt_$c+
-                                  i
-                                  (GHC.Types.I# 1#) of dt2 { GHC.Types.I# dt3 ->
-                           System.Random.Mersenne.Pure64.Internal.PureMT dt dt3 nxt } }) }
-                 } in
-                 (case ds of wild { (,) i g' ->
-                  case GHC.Word.$fIntegralWord64_$cquot
-                         i
-                         (GHC.Word.$fBitsWord64_$cfromInteger
-                            2048) of wild1 { GHC.Word.W64# x# ->
-                  GHC.Float.$fFractionalDouble_$c/
-                    (GHC.Float.word2Double (GHC.Types.W# x#))
-                    (GHC.Types.D# 9.007199254740992e15##) } },
-                  case ds of wild { (,) i g' -> g' })) -}
-e7281c2061a831a5c73a8f3e77f8e639
+3f23b379af16396fe22fb9bed5a33e01
   randomInt ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (GHC.Types.Int, System.Random.Mersenne.Pure64.Internal.PureMT)
@@ -794,39 +665,17 @@ e7281c2061a831a5c73a8f3e77f8e639
                   case i of wild1 { GHC.Word.W64# x# ->
                   GHC.Types.I# (GHC.Prim.word2Int# x#) } },
                   case ds of wild { (,) i g' -> g' })) -}
-7b032ab61c89cc23bec057147765092a
-  randomR ::
-    (GHC.Types.Int, GHC.Types.Int)
-    -> System.Random.Mersenne.Pure64.Internal.PureMT
-    -> (GHC.Types.Int, System.Random.Mersenne.Pure64.Internal.PureMT)
-  {- Arity: 2, HasNoCafRefs,
-     Strictness: <S(SL),1*U(1*U(U),1*U(U))><S(SSL),1*U(U,U,U(U))>m,
-     Inline: INLINE[0],
-     Unfolding: InlineRule (2, True, False)
-                (\ (w :: (GHC.Types.Int, GHC.Types.Int))
-                   (w1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
-                 case w of ww { (,) ww1 ww2 ->
-                 case ww1 of ww3 { GHC.Types.I# ww4 ->
-                 case w1 of ww5 { System.Random.Mersenne.Pure64.Internal.PureMT ww6 ww7 ww8 ->
-                 case MyRandom.$wrandomR
-                        ww4
-                        ww2
-                        ww6
-                        ww7
-                        ww8 of ww9 { (#,#) ww10 ww11 ->
-                 (ww10, ww11) } } } }) -}
-ff752c417ceea785c2f2d9674787ff44
+776a26e9febff712e0920d04c7ddbef8
   runRand ::
     Control.Monad.Trans.State.Strict.State
       System.Random.Mersenne.Pure64.Internal.PureMT a
     -> System.Random.Mersenne.Pure64.Internal.PureMT
     -> (a, System.Random.Mersenne.Pure64.Internal.PureMT)
   {- Arity: 2, HasNoCafRefs, Strictness: <C(S),1*C1(U(U,U))><L,U>,
-     Inline: INLINE (sat-args=0),
-     Unfolding: InlineRule (0, False, True)
+     Unfolding: InlineRule (0, True, True)
                 (Control.Monad.Trans.State.Strict.runState
                    @ System.Random.Mersenne.Pure64.Internal.PureMT) -}
-6730a11040d4b3d9d67fb14d8bebb2c1
+6d2f372defb9d6a8a11a2e8fb6cf3cf0
   setMyStdGen ::
     System.Random.Mersenne.Pure64.Internal.PureMT -> GHC.Types.IO ()
   {- Arity: 2,
@@ -835,7 +684,7 @@ ff752c417ceea785c2f2d9674787ff44
                   `cast`
                 (<System.Random.Mersenne.Pure64.Internal.PureMT>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-ed39f5841e47b0f13121b74e6d6b8c9e
+1eb7ee82b9096753e6e440be85ef9914
   setMyStdGen1 ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -847,7 +696,7 @@ ed39f5841e47b0f13121b74e6d6b8c9e
                    MyRandom.theMyStdGen
                      `cast`
                    (GHC.IORef.N:IORef[0] <System.Random.Mersenne.Pure64.Internal.PureMT>_N)) -}
-c541bf856df9c0f35e7235b04ec32479
+f8af935b6cbad543edb635a04db11e40
   theMyStdGen ::
     GHC.IORef.IORef System.Random.Mersenne.Pure64.Internal.PureMT
   {- Inline: NOINLINE -}

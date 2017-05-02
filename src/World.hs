@@ -7,7 +7,7 @@ module World
     where
 import Control.Monad
 import qualified Data.List         as List
-import qualified Data.Map          as Map
+import qualified Data.Map.Strict          as Map
 import           Data.Array.IArray
 import           Misc
 import qualified Parameters        as P
@@ -59,7 +59,7 @@ locusEffect _ _ = 0
 -- Kills the agent if it doesn't have all genes (when length gst /= 'P.nrGeneTypes')
 updateAgent :: Agent -> Agent
 updateAgent NoAgent = NoAgent
-updateAgent (Agent !chroms !gst) =
+updateAgent (Agent chroms gst) =
     if length newGST == P.nrGeneTypes'
         then Agent newGenome newGST
         else NoAgent
@@ -127,16 +127,18 @@ takeWhileInclusive f ls = takeWhileInclusive' f ([], ls)
             then (henk, xs)
             else takeWhileInclusive' f (henk,xs)
                 where henk = a ++ [x]
+                --
+                -- > foldr f z []     = z
+                -- > foldr f z (x:xs) = x `f` foldr f z xs
 
 -- | Generate GST from a genome
 gSTFromGenome :: Genome -> GeneStateTable
-gSTFromGenome genes = makeGst Map.empty $ reduceToGenes genes
+gSTFromGenome = makeGST . reduceToGenes --makeGst Map.empty $ reduceToGenes genes
     where
-    makeGst :: GeneStateTable -> [Gene] -> GeneStateTable
-    makeGst gst [] = gst
-    makeGst gst (g:genes) = makeGst (Map.insertWith max k val gst) genes
-        where k = iD g
-              val = genSt g
+    makeGST :: [Gene] -> GeneStateTable
+    makeGST = List.foldl'
+        (\acc x -> Map.insertWith max (iD x) (genSt x) acc)
+        Map.empty
 
 -- | Reduce a genome to a list of its transcription factor binding sites
 reduceToTfbss :: Genome -> [Tfbs]
@@ -153,7 +155,7 @@ fitnessAgent e  NoAgent      = 0
 
 -- | Uses targetGST to check fitness of passed GST
 fitnessGST :: Env -> GeneStateTable -> Double
-fitnessGST !env !gst = (1 - d / dmax)^p
+fitnessGST env gst = (1 - d / dmax)^p
     where
         p = P.selectionPressure
         dmax = fromIntegral P.nrGeneTypes
@@ -168,7 +170,7 @@ hammDist :: (Eq a) => [a] -> [a] -> Int
 hammDist [] _ = 0
 hammDist _ [] = 0
 hammDist (a:as) (b:bs) = if a /= b then 1 + hammDist as bs else hammDist as bs
-{-# SPECIALIZE hammDist :: [(Int,Int)] -> [(Int,Int)] -> Int #-}
+-- {-# SPECIALIZE hammDist :: [(Int,Int)] -> [(Int,Int)] -> Int #-}
 
 hammDistAg :: Env -> Agent -> Int
 hammDistAg _ NoAgent = fromIntegral P.nrGeneTypes
@@ -180,7 +182,6 @@ targetGST 0 = Map.fromList $ valueResultPairs (targetExpression 0) [0..P.nrGeneT
 targetGST 1 = Map.fromList $ valueResultPairs (targetExpression 1) [0..P.nrGeneTypes-1]
 targetGST env = Map.fromList $
     take P.nrGeneTypes' $ valueResultPairs (targetExpression env) [0..]
-
 
 {- | the targetExpression of a Gene in an Environment
 example for nrEnv = 4 and nrHouseHold = 4, nrOverlap = 3, nrUnique = 5

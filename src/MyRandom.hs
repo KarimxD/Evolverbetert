@@ -1,3 +1,5 @@
+{-# LANGUAGE BangPatterns #-}
+
 module MyRandom
 (
     Rand
@@ -37,11 +39,11 @@ type Rand = State PureMT
 
 runRand :: State PureMT a -> PureMT -> (a, PureMT)
 runRand = runState
-{-# INLINE runRand #-}
+-- {-# INLINE runRand #-}
 
 evalRand :: State PureMT a -> PureMT -> a
 evalRand = evalState
-{-# INLINE evalRand #-}
+-- {-# INLINE evalRand #-}
 
 getModifyRand :: Rand PureMT
 getModifyRand = do
@@ -49,19 +51,19 @@ getModifyRand = do
     let (_,new) = next it
     put new
     return it
-{-# INLINE getModifyRand #-}
+-- {-# INLINE getModifyRand #-}
 
 getBool :: Rand Bool
 getBool = state randomBool
-{-# INLINE getBool #-}
+-- {-# INLINE getBool #-}
 
 getDouble :: Rand Double
 getDouble = state randomDouble
-{-# INLINE getDouble #-}
+-- {-# INLINE getDouble #-}
 
 getRange :: Integral a => (Int,Int) -> Rand a
 getRange = fmap fromIntegral . state . randomR
-{-# INLINE getRange #-}
+-- {-# INLINE getRange #-}
 
 
 -- Rand2

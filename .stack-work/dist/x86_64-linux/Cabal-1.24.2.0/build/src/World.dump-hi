@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-28 16:31:33.868682 UTC
+2017-05-01 15:14:52.591839 UTC
 
-interface Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG:World 8002
-  interface hash: 59a4143d4436cfd81379f24a72b1ef09
-  ABI hash: 3e7e2a4072f3caa69daebccfb176ef08
-  export-list hash: e67d5e73efc3ddbb195eae358efd5ab7
-  orphan hash: 21b7f9155387bbb37f43bdb7fdd25b42
+interface Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:World 8002
+  interface hash: b3d9c031aea5dddce6ba36c9007d2092
+  ABI hash: fae719142ff1d0cc47926353810ce652
+  export-list hash: 1e87020408db611578f66aeb540278f6
+  orphan hash: 5027707dc8e07f81ff2478a3574ff37d
   flag hash: 60ede7202df718eda107a0d677bc46fc
   sig of: Nothing
   used TH splices: False
@@ -55,7 +55,7 @@ package dependencies: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3KMH
                       random-shuffle-0.0.4@random-shuffle-0.0.4-97h14tPp7Ru21125sv6IMi
                       split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk
                       time-1.6.0.1@time-1.6.0.1 transformers-0.5.2.0@transformers-0.5.2.0
-orphans: Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG:MyRandom
+orphans: Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:MyRandom
          base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
          time-1.6.0.1@time-1.6.0.1:Data.Time.Calendar.Gregorian
          time-1.6.0.1@time-1.6.0.1:Data.Time.Format.Parse
@@ -73,51 +73,51 @@ family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3
                          containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
                          primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
-import  -/  Misc 9c840ebf3f1e94a077cfa39ed226e971
-  exports: 0296819ec2db101dc5332d4059075e1a
-  valueResultPairs 613bcb76caeef1eb45c21b2aa4d5e02f
-import  -/  MyRandom ac5c3d52b691d9aaae5b1bb647af66bd
-  exports: dd9a89ae07df5f4335cfca7f1ea96343
-  Rand 15dbc98a9547e867366d8bad46ff1e94
-  getModifyRand 42b51d370ba582df43ed004a89b1cb45
-  getRange 9711cfb1121bda13507439d09b30ac7c
-  randomBool 8e72015f311299ed65f101edffcf8f37
-import  -/  Parameters f6207debca8ae6a6a2f80b3a30b982b7
-  exports: 019275192dc9600464829c891d28e48a
-  devTime 707b87183b4972fe3ecd083e708c4d4d
-  maxThres 015334934caa6ce4d5ec4045a3510839
-  minThres dfd84a1c08f327dade4935e3628ceedd
-  nrEnv dad657cc3cc1034efa1940e50fd3b271
-  nrGeneTypes 0e174033f78111c9b1241f86aa65480e
-  nrGeneTypes' 75ef947213dd4ce9a76f5d53638a5732
-  nrHouseHold 66be3db94062b72bd043e3b7221eee88
-  nrOverlap 850482e4511956f6d301a7f47189ea15
-  nrSpecific 2557d767afa5ca142ce385dfbf5ca3aa
-  selectionPressure 55064c0fc333290ac0674ffeeddd9905
-import  -/  Types 1d3d1e1d433c54e7bfb57452891f64d7
-  exports: f90e62a4294bef8d4adecbf5aeb850c0
-  Agent a1955434041c0ddcdec14b68adc5a3f1
-  Agent d84ba5f3c206a79fef889ed9cdb2a757
-  CGene 680029b02a23350830aad4d9f0e2089c
-  CTfbs 5916ad2c7072433425c96231e7b8b1a8
-  Chromosome be9bd89ddc70313c7284e6f9911e9f7a
-  Env 88a064ab5cc38cba53ed6c77954d36cb
-  GS 57b8e15c603ed31446c18a568a6ef96e
-  Gene 68ede29c9044f65efd71e0cd3c3e9014
-  Gene 62671c5f4898221a36e080f2cfbaeb99
-  GeneState 0624c050dd249dc6c3c731ed15bbb84e
-  GeneStateTable b57ec13db02500ae63d5b8235621c662
-  Genome 701a6b59afaf6ac71673981e36ee7744
-  ID 0d673b2a916b10c9dd854ba8ee53f405
-  ID 24834833634867f6607836b0def3fd48
-  Locus d285aff914c3fb093dd4ccf9b68f4d3b
-  NoAgent 6206322b95deab4ed7ee3e59b287efbd
-  Tfbs 5bceda15efcd159a3b066bf330bd57ff
-  Tfbs c93ffd2c1a99954afadcac7ff9ddcd6f
-  Weight 8df82395b7d8e0c5f66b28a03088eed9
-  genSt 6a480ff37dc80d75e5749f053284690a
-  geneStateTable 5fb01753af7756874617d8ee409e09ce
-  iD 3750683217ba78b108575c1c15b90b4d
+import  -/  Misc 26966a5460f11b18001e088f70cf76ac
+  exports: 28ae6ccada868e7efb3c96f7ae6d68f9
+  valueResultPairs b19265c427d602f9d915a91047adc7f5
+import  -/  MyRandom 6dee9bd9efb866e95f63ee556ef06dbe
+  exports: ac39067651296e54e6af2d56bdaa576b
+  Rand 06a931c974819790dbc40b2dccffa196
+  getModifyRand cf23ec2a849e468b2e7d745f0c23c4b7
+  getRange bc5d1e4299975812df90bffc86867575
+  randomBool 52aeb483b9ac6df85ca12466cb3a5ca3
+import  -/  Parameters 60ff55bcb82c2c83af83a8d2acb246b2
+  exports: fea0ab185fab0b15ba191f9d3ea960f0
+  devTime 657802903748fd53021df5e74eba0193
+  maxThres 070125156499cd32e01cfe8969701866
+  minThres 1a19d768572f7ec4c8adf7fe42721496
+  nrEnv 69d3caeacd6bc6b4fcd08c69259eb1f7
+  nrGeneTypes a1c77a0f3df6e651d9a15658687e819f
+  nrGeneTypes' e011fbf7decacd58a182c66cc18ab0b2
+  nrHouseHold bd80b4c7afa4a5cccf4fdb20e6abc46b
+  nrOverlap 6ada1aad63892f064ca87768cba3aa2e
+  nrSpecific 83829b96d179c6f27272888987fad966
+  selectionPressure af1f06d252a7013bb9d17f1c4cbd2a14
+import  -/  Types 553fe5882bac7964d9e18ed5fc1899e3
+  exports: f2d3892cae9faa75e4d9e5ce4ff3401f
+  Agent 60b09a4470e22147e56c42e0035f87fe
+  Agent 4db872eec646ad15f031961699453d7d
+  CGene ea527b21dbbed4eaf4515b5bd6300e17
+  CTfbs 6f551280d2a6113da1a228f358db5137
+  Chromosome 24cfb6cfcc1852ed37afecdf0ad745c4
+  Env 3acf42e6b3ff031d4328eeca7f593f33
+  GS f27014f9fcd601a90b5d2335c8847a52
+  Gene f6a3f11ab63a627039089add273149ba
+  Gene db7e187ff2495a3aa6d4abf4d6c779bf
+  GeneState 385bd618b8cbce3dec65b0dc93936685
+  GeneStateTable 9e77d0240feb1db03b5609bb787daa5d
+  Genome 31e3370e16839f7422c62e17856b87c5
+  ID 7e0b9a9dfd2784dbee8f381e1c0e5170
+  ID 16d6e25ed95d1e87249ca076165ebe74
+  Locus 657e65e0e08e728d8f24c605538f3349
+  NoAgent 339da968cef368d0f2975264de06a36a
+  Tfbs 66713721bbe5cab4288d866c04987130
+  Tfbs 9347ef28f2413ea8f008f31ac5268aa5
+  Weight fec0f96660f082d9ff826ee5f52d2dd5
+  genSt acd5da5347b2efa3f84961488063815d
+  geneStateTable 6b9ce6667cb6ef0ceb4e5feb484a2261
+  iD 557b1d3b6ce43a73a2b61631b48875c9
 import  -/  array-0.5.1.1@array-0.5.1.1:Data.Array.IArray 606f8bb830eb2a88c29c91f27c77f304
 import  -/  base-4.9.1.0:Control.Monad a6784c5dab0d75c63dabec5a37843f98
 import  -/  base-4.9.1.0:Data.Foldable 3e0b6967a1da89945d0e2d47266337a2
@@ -130,8 +130,8 @@ import  -/  base-4.9.1.0:GHC.List ab8c4e523e6c479c549d3bcd5fc4a439
 import  -/  base-4.9.1.0:GHC.Num 00bfaa7b2f9d6084913c0697a8a49ec8
 import  -/  base-4.9.1.0:GHC.Real 82e4e59051a13dba1da63e1e970a69e6
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
-import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map 20d4ffbee41965d03d6a989425473dc4
 import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base d432f6875983131473086af8cb290590
+import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map.Strict 9d0c0962e53270a0a3fb5cb63723a381
 import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
 import  -/  mersenne-random-pure64-0.2.2.0@mersenne-random-pure64-0.2.2.0-560i5rQoI3i9IX3BgSFLBV:System.Random.Mersenne.Pure64.Internal bb3ed118165b97070d684375c016de56
 import  -/  mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6:Control.Monad.State 749dca8ca0e6625b32091d445bd92b01
@@ -139,7 +139,7 @@ import  -/  mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6:Control.Monad.State.Class
 import  -/  random-1.1@random-1.1-9tceXaeYIMZ4JrKq20Egog:System.Random b21db0c0ea43dc1ad218556cd0b064c7
 import  -/  random-shuffle-0.0.4@random-shuffle-0.0.4-97h14tPp7Ru21125sv6IMi:System.Random.Shuffle cceab7056a27578a61621d120d955aea
 import  -/  split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split c60198a427bfd51d9fb4562c059ec1d2
-afd3dadc5eaaa4aec7ebbd54398d97f0
+d7a3b43088b8c89ce8daf9ebddc11f3e
   $sfromList :: [(Types.ID, a)] -> Data.Map.Base.Map Types.ID a
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ @ a (ds :: [(Types.ID, a)]) ->
@@ -149,15 +149,16 @@ afd3dadc5eaaa4aec7ebbd54398d97f0
                    -> case ds1 of wild1 { (,) kx x ->
                       case ds2 of wild2 {
                         []
-                        -> case kx `cast` (Types.N:ID[0]) of nt { GHC.Types.I# ipv ->
+                        -> case x of x1 { DEFAULT ->
+                           case kx `cast` (Types.N:ID[0]) of nt { GHC.Types.I# ipv ->
                            Data.Map.Base.Bin
                              @ Types.ID
                              @ a
                              1#
                              nt `cast` (Sym (Types.N:ID[0]))
-                             x
+                             x1
                              (Data.Map.Base.Tip @ Types.ID @ a)
-                             (Data.Map.Base.Tip @ Types.ID @ a) }
+                             (Data.Map.Base.Tip @ Types.ID @ a) } }
                         : ipv ipv1
                         -> case ipv of wild3 { (,) ky ds3 ->
                            case kx `cast` (Types.N:ID[0]) of wild4 { GHC.Types.I# x1 ->
@@ -166,7 +167,8 @@ afd3dadc5eaaa4aec7ebbd54398d97f0
                                   @ GHC.Types.Bool
                                   (GHC.Prim.>=# x1 y) of wild6 {
                              GHC.Types.False
-                             -> World.$wpoly_go10
+                             -> case x of x0 { DEFAULT ->
+                                World.$wpoly_go4
                                   @ a
                                   1#
                                   (Data.Map.Base.Bin
@@ -174,41 +176,42 @@ afd3dadc5eaaa4aec7ebbd54398d97f0
                                      @ a
                                      1#
                                      (GHC.Types.I# x1) `cast` (Sym (Types.N:ID[0]))
-                                     x
+                                     x0
                                      (Data.Map.Base.Tip @ Types.ID @ a)
                                      (Data.Map.Base.Tip @ Types.ID @ a))
-                                  wild2
+                                  wild2 }
                              GHC.Types.True
-                             -> World.$sfromList1
+                             -> case x of x0 { DEFAULT ->
+                                World.$sfromList1
                                   @ a
                                   (Data.Map.Base.Bin
                                      @ Types.ID
                                      @ a
                                      1#
                                      (GHC.Types.I# x1) `cast` (Sym (Types.N:ID[0]))
-                                     x
+                                     x0
                                      (Data.Map.Base.Tip @ Types.ID @ a)
                                      (Data.Map.Base.Tip @ Types.ID @ a))
-                                  wild2 } } } } } } }) -}
-a013c3be46a013e4701d5a212c26958e
+                                  wild2 } } } } } } } }) -}
+214407be3f74a81e63bf359af17fb6d1
   $sfromList1 ::
     Data.Map.Base.Map Types.ID a1
     -> [(Types.ID, a1)] -> Data.Map.Base.Map Types.ID a1
   {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
-7a9df43720118500dee643aed17ea6d2
+05f8cd1a6e70362cc523bacb0b242408
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.Module World.$trModule2 World.$trModule1) -}
-969932f8899e0780334eed6b56ebeb3f
+3d9bb22e41afa1cb415b4d1ae3443d24
   $trModule1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "World"#) -}
-9dca1046d43964b397cfb9239a452bcb
+56b951381ff72b506c39ed6c62686810
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
-                   "Evolverbetert-0.1.0.0-JVauai24MmC4VMIOpFCRwG"#) -}
-8f04e66f996a23b28aa04d92bc530365
+                   "Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF"#) -}
+74227817c7dcf2c442b7cab83bc9b95c
   $w$sgo1 ::
     (Types.ID -> a1 -> a1 -> a1)
     -> GHC.Prim.Int#
@@ -217,51 +220,43 @@ a013c3be46a013e4701d5a212c26958e
     -> Data.Map.Base.Map Types.ID a1
   {- Arity: 4, Strictness: <L,1*C1(C1(C1(U)))><L,U><L,U><S,1*U>,
      Inline: [0] -}
-d8a4e701589de9de0d4c5d293c49ed30
-  $w$sgo10 ::
+39cae9ccb50186b423ebd86c4bd26df6
+  $w$sgo4 ::
     GHC.Prim.Int#
     -> a1
     -> Data.Map.Base.Map Types.ID a1
     -> Data.Map.Base.Map Types.ID a1
-  {- Arity: 3, Strictness: <L,U><L,U><S,1*U>, Inline: [0] -}
-1497857d094f0eddc2ca79fcc9adfe84
+  {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
+ac137bb8557d6fc1ee2f56e2a8d66b47
   $w$shammDist ::
     [(Types.ID, Types.GeneState)]
     -> [(Types.ID, Types.GeneState)] -> GHC.Prim.Int#
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,1*U>,
      Inline: [0] -}
-fe9d7b615b9cc2ae7be44e80c35dddfc
-  $w$shammDist1 ::
-    [(GHC.Types.Int, GHC.Types.Int)]
-    -> [(GHC.Types.Int, GHC.Types.Int)] -> GHC.Prim.Int#
-  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,1*U>,
-     Inline: [0] -}
-fc01054396067cae6b59462f949a2e62
+5b50cdee02559d0822da4dd267f15a6b
   $wf :: GHC.Prim.Double# -> GHC.Prim.Int# -> GHC.Prim.Double#
   {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,U>, Inline: [0] -}
-2b59e7eca1eac2ebaa0d076773855bc4
+f6fc0a4c59f3216d67de7ba9f9e967c3
   $wfitnessGST ::
     GHC.Prim.Int# -> Types.GeneStateTable -> GHC.Prim.Double#
-  {- Arity: 2, Strictness: <S,U><S,1*U>, Inline: [0],
+  {- Arity: 2, Strictness: <S,U><L,1*U>, Inline: [0],
      Unfolding: (\ (ww :: GHC.Prim.Int#) (w :: Types.GeneStateTable) ->
-                 case w of gst { DEFAULT ->
                  case World.$w$shammDist
                         (Data.Map.Base.toAscList1
                            @ Types.ID
                            @ Types.GeneState
                            (GHC.Types.[] @ (Types.ID, Types.GeneState))
                            (World.$wtargetGST ww))
-                        (Data.Map.Base.toAscList1
+                        (Data.Map.Base.toAscList
                            @ Types.ID
                            @ Types.GeneState
-                           (GHC.Types.[] @ (Types.ID, Types.GeneState))
-                           gst) of ww1 { DEFAULT ->
+                           w) of ww1 { DEFAULT ->
                  World.$wf
                    (GHC.Prim.-##
                       1.0##
                       (GHC.Prim./## (GHC.Prim.int2Double# ww1) 20.0##))
-                   10# } }) -}
-038c757ae14258c5789b11f7022a4bb9
+                   10# }) -}
+6b3b402c484b9a84e6286ea35176ca22
   $wgo ::
     [Types.ID]
     -> [Types.GeneState]
@@ -269,10 +264,10 @@ fc01054396067cae6b59462f949a2e62
     -> [(Types.ID, Types.GeneState)]
   {- Arity: 3, HasNoCafRefs, Strictness: <S,1*U><L,1*U><L,1*U>,
      Inline: [0] -}
-87d47da02a2377e99c4922b5a9aeab81
+eae937bd5fa33bef2767ba2001ca9c5d
   $wgo1 :: Types.Agent -> GHC.Prim.Int# -> [Types.Agent]
   {- Arity: 2, Strictness: <L,U><S,1*U>, Inline: [0] -}
-554489c5608da52f3f4c145862922e6f
+6b0c8dddba90375c1e57c4dfee16a022
   $wgo2 ::
     [Control.Monad.Trans.State.Strict.StateT
        System.Random.Mersenne.Pure64.Internal.PureMT
@@ -282,17 +277,17 @@ fc01054396067cae6b59462f949a2e62
     -> (# [[Types.Locus]],
           System.Random.Mersenne.Pure64.Internal.PureMT #)
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U>, Inline: [0] -}
-4c5f4c787f1ee1fdb12ebaa0cc56e36d
+954c207ee1aa8e1f73423ce58e70d5f9
   $wgoodRandomGenome ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (# Types.Genome,
           System.Random.Mersenne.Pure64.Internal.PureMT #)
   {- Arity: 1, Strictness: <L,U(U,U,U(U))>, Inline: [0] -}
-7cb39ef238aa9370fb8633e9bb890ee6
+7830d945789609a5ec540d272b8b4a40
   $whammDist :: GHC.Classes.Eq a => [a] -> [a] -> GHC.Prim.Int#
   {- Arity: 3, HasNoCafRefs,
      Strictness: <L,U(A,C(C1(U)))><S,1*U><L,1*U>, Inline: [0] -}
-6342e91da306690d1ad1f583fbaa0786
+9475decdc479d9c368ce8e9df33676e7
   $whammDistAg :: Types.Env -> Types.Agent -> GHC.Prim.Int#
   {- Arity: 2, Strictness: <L,1*U(U)><S,1*U>, Inline: [0],
      Unfolding: (\ (w :: Types.Env) (w1 :: Types.Agent) ->
@@ -306,37 +301,37 @@ fc01054396067cae6b59462f949a2e62
                            (World.targetGST w))
                         (Data.Map.Base.toAscList @ Types.ID @ Types.GeneState ipv1)
                    Types.NoAgent -> 20# }) -}
-923df229be99e4927850f958d04dda92
+92fb3b85f90e87060035316b6d208651
   $wloop ::
     GHC.Prim.Int#
     -> System.Random.Mersenne.Pure64.Internal.PureMT
     -> (# [Types.Thres],
           System.Random.Mersenne.Pure64.Internal.PureMT #)
-  {- Arity: 2, HasNoCafRefs, Strictness: <S,U><L,U>, Inline: [0] -}
-a6a60b77f25135264bce1be1c40afea8
+  {- Arity: 2, Strictness: <S,U><L,U>, Inline: [0] -}
+979f046d475c8805050433483812b46f
   $wloop1 ::
     GHC.Prim.Int#
     -> System.Random.Mersenne.Pure64.Internal.PureMT
     -> (# [Types.Weight],
           System.Random.Mersenne.Pure64.Internal.PureMT #)
   {- Arity: 2, HasNoCafRefs, Strictness: <S,U><L,U>, Inline: [0] -}
-655051d32af5b2c0e45675203cddd132
-  $wpoly_go1 ::
+33367cc4b9298efa5325b93a02098f86
+  $wpoly_go10 ::
     GHC.Prim.Int# -> Data.Map.Base.Map Types.ID a -> GHC.Base.Maybe a
   {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,1*U>, Inline: [0] -}
-6258ea3a6fdfbae80aab9016cdd8f122
-  $wpoly_go10 ::
+e560bfc73f768dc001ade66dbcce0991
+  $wpoly_go4 ::
     GHC.Prim.Int#
     -> Data.Map.Base.Map Types.ID a
     -> [(Types.ID, a)]
     -> Data.Map.Base.Map Types.ID a
   {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
-06e22d843d23e2add2b0a1b90158ad53
+dc24afab6b1b79100d992c44ea52731f
   $wrandomAgent ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (# Types.Agent, System.Random.Mersenne.Pure64.Internal.PureMT #)
   {- Arity: 1, Strictness: <L,U(U,U,U(U))>, Inline: [0] -}
-1d9fc7797865c58ce6ebb2abbf804438
+9187687787234c526b01f52ac659db2e
   $wrandomChromosome ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (# Types.Chromosome,
@@ -345,10 +340,10 @@ a6a60b77f25135264bce1be1c40afea8
      Unfolding: (\ (w :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
                  case World.$wgo2
                         World.randomChromosome2
-                        (case w of wild1 { System.Random.Mersenne.Pure64.Internal.PureMT dt dt1 nxt ->
+                        (case w of wild { System.Random.Mersenne.Pure64.Internal.PureMT dt dt1 nxt ->
                          case GHC.Prim.tagToEnum#
                                 @ GHC.Types.Bool
-                                (GHC.Prim.<# dt1 311#) of wild2 {
+                                (GHC.Prim.<# dt1 311#) of wild1 {
                            GHC.Types.False
                            -> case nxt of dt2 { System.Random.Mersenne.Pure64.Internal.MTBlock dt3 ->
                               System.Random.Mersenne.Pure64.Internal.PureMT
@@ -382,7 +377,7 @@ a6a60b77f25135264bce1be1c40afea8
                             a1))
                       ww5 } },
                     ww2 #) }) -}
-36b61a80a976100f93b2236ef407fec9
+2dcd755771f6ba552ce0b7b324e32b78
   $wrandomGenes ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (# [Types.Locus],
@@ -418,10 +413,10 @@ a6a60b77f25135264bce1be1c40afea8
                                         ww1))
                                   ww4)))
                          ww4) },
-                    case ww2 of wild1 { System.Random.Mersenne.Pure64.Internal.PureMT dt dt1 nxt ->
+                    case ww2 of wild { System.Random.Mersenne.Pure64.Internal.PureMT dt dt1 nxt ->
                     case GHC.Prim.tagToEnum#
                            @ GHC.Types.Bool
-                           (GHC.Prim.<# dt1 311#) of wild2 {
+                           (GHC.Prim.<# dt1 311#) of wild1 {
                       GHC.Types.False
                       -> case nxt of dt2 { System.Random.Mersenne.Pure64.Internal.MTBlock dt3 ->
                          System.Random.Mersenne.Pure64.Internal.PureMT
@@ -433,7 +428,7 @@ a6a60b77f25135264bce1be1c40afea8
                            dt
                            (GHC.Prim.+# dt1 1#)
                            nxt } } #) }) -}
-fc231e91a17144cba3deb35d99ae23dd
+cde46ca2e174d35a686fc19a097bddea
   $wrandomTfbss ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (# [Types.Locus],
@@ -469,10 +464,10 @@ fc231e91a17144cba3deb35d99ae23dd
                                         ww1))
                                   ww4)))
                          ww4) },
-                    case ww2 of wild1 { System.Random.Mersenne.Pure64.Internal.PureMT dt dt1 nxt ->
+                    case ww2 of wild { System.Random.Mersenne.Pure64.Internal.PureMT dt dt1 nxt ->
                     case GHC.Prim.tagToEnum#
                            @ GHC.Types.Bool
-                           (GHC.Prim.<# dt1 311#) of wild2 {
+                           (GHC.Prim.<# dt1 311#) of wild1 {
                       GHC.Types.False
                       -> case nxt of dt2 { System.Random.Mersenne.Pure64.Internal.MTBlock dt3 ->
                          System.Random.Mersenne.Pure64.Internal.PureMT
@@ -484,12 +479,12 @@ fc231e91a17144cba3deb35d99ae23dd
                            dt
                            (GHC.Prim.+# dt1 1#)
                            nxt } } #) }) -}
-02fe98f437d5cd1a1bb153ad9d001699
+d6a736dc2be323321618f127be346607
   $wtakeWhileInclusive' ::
     (a -> GHC.Types.Bool) -> [a] -> [a] -> (# [a], [a] #)
   {- Arity: 3, HasNoCafRefs, Strictness: <L,C(U)><L,U><S,1*U>,
      Inline: [0] -}
-242b78d7db748ff9b98260f79f1e29d8
+7ab1e5fe0cbeb641a6724a55b2370312
   $wtargetExpression :: Types.Env -> GHC.Prim.Int# -> Types.GeneState
   {- Arity: 2, HasNoCafRefs, Strictness: <L,U(U)><S,U>, Inline: [0],
      Unfolding: (\ (w :: Types.Env) (ww :: GHC.Prim.Int#) ->
@@ -505,7 +500,7 @@ fc231e91a17144cba3deb35d99ae23dd
                         0# -> GHC.Types.True `cast` (Sym (Types.N:GeneState[0])) } }
                    GHC.Types.True
                    -> GHC.Types.True `cast` (Sym (Types.N:GeneState[0])) }) -}
-0ca67096ddef4bca836b8de67d2c9a56
+13ade227f3f6bc7232ee4a182b2967de
   $wtargetGST :: GHC.Prim.Int# -> Types.GeneStateTable
   {- Arity: 1, Strictness: <S,U>, Inline: [0],
      Unfolding: (\ (ww :: GHC.Prim.Int#) ->
@@ -568,7 +563,7 @@ fc231e91a17144cba3deb35d99ae23dd
                         ($wgo5 World.defaultGst2 `cast` ([Sym (Types.N:ID[0])])_R 20#)
                    0# -> World.fitnessGST5
                    1# -> World.fitnessGST1 }) -}
-a4c011ad41a11921055991bc0240d071
+5eafa275741c181150d77ae2ffb286fa
   $wupdateLoc ::
     Types.Weight
     -> Types.GeneStateTable
@@ -609,7 +604,7 @@ a4c011ad41a11921055991bc0240d071
                    Types.CTfbs ds
                    -> case ds of wild1 { Types.Tfbs i w3 ->
                       case i `cast` (Types.N:ID[0]) of ww { GHC.Types.I# ww1 ->
-                      case World.$wpoly_go1 @ Types.GeneState ww1 w1 of wild2 {
+                      case World.$wpoly_go10 @ Types.GeneState ww1 w1 of wild2 {
                         GHC.Base.Nothing -> (# w, wild #)
                         GHC.Base.Just a1
                         -> case a1 `cast` (Types.N:GeneState[0]) of wild3 {
@@ -621,14 +616,14 @@ a4c011ad41a11921055991bc0240d071
                                      `cast`
                                    (Sym (Types.N:Weight[0])),
                                    wild #) } } } } }) -}
-2f1b1873a7323c3a0abff364c9d4b7ee
+923052493fba4ed7e04db7bd80a09ba2
   connected :: Types.Genome -> GHC.Types.Bool
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
      Unfolding: InlineRule (0, True, True)
                 World.connected1
                   `cast`
                 (<[[Types.Locus]]>_R ->_R Data.Monoid.N:All[0]) -}
-96501d932675d0388ab81e9fe830382e
+07422a77542079b68d622b8534fdfb0a
   connected1 :: [[Types.Locus]] -> Data.Monoid.All
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
      Unfolding: (\ (x :: [[Types.Locus]]) ->
@@ -638,38 +633,38 @@ a4c011ad41a11921055991bc0240d071
                       @ GHC.Types.Int
                       (GHC.List.length @ Types.Locus)
                       (World.groupGeneTfbs (World.connected_go x)))) -}
-a4a1b113176aab3569ce706a53cdcb94
+eb8c5c7c395ca67abc9f18750051e0aa
   connected_go :: [[Types.Locus]] -> [Types.Locus]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-e61c4ba5ff671cfc8cc042fe1953f83c
+174de7be6210dd1d93a122a9afe4fa10
   connected_go1 :: [GHC.Types.Int] -> Data.Monoid.All
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-ee6757ec50987f027152d881ab04619f
+b24ba51d05b2fd455fa26d548df348af
   defaultGst :: Types.GeneStateTable
   {- Unfolding: (World.$sfromList
                    @ Types.GeneState
                    World.defaultGst1) -}
-16652d3af909a7b9bc178214bacbbd92
+676b5ed37117337ee9ec86927bc93812
   defaultGst1 :: [(Types.ID, Types.GeneState)]
   {- Unfolding: (World.$wgo
                    World.defaultGst2 `cast` ([Sym (Types.N:ID[0])])_R
                    World.defaultGst_xs
                    20#) -}
-e63d61c22be89d805a4ea9eef6dced5f
+f699b4c294bb9975c3e82bb686c6d805
   defaultGst2 :: [GHC.Types.Int]
   {- Unfolding: (GHC.Enum.eftInt 0# 9223372036854775807#) -}
-df37497cc9e5a529875b715d699e807f
+ef401eef3a524025e33931587a7b5b4e
   defaultGst_xs :: [Types.GeneState]
   {- HasNoCafRefs -}
-4b6b0c9d94d22f75c8e796d1a68b213e
+3c7d87a83b367dd757a782d7b119c6bd
   devAg :: Types.Agent -> Types.Agent
   {- Arity: 1, Strictness: <L,U>,
      Unfolding: (\ (x :: Types.Agent) ->
                  World.devAg_takeUntilSame (World.$wgo1 x 20#)) -}
-13912bc4552dd73f51996ed1fd26588a
+eaf85311d7795c0c54ea25f256e96b85
   devAg_takeUntilSame :: [Types.Agent] -> Types.Agent
   {- Arity: 1, Strictness: <S,1*U> -}
-058741f30c7dee0a8ab3d52aecef8af9
+45c7feb2545c88cffbb51258423943f8
   fitnessAgent :: Types.Env -> Types.Agent -> GHC.Types.Double
   {- Arity: 2, Strictness: <L,1*U(U)><S,1*U>m,
      Unfolding: InlineRule (2, True, False)
@@ -677,33 +672,33 @@ df37497cc9e5a529875b715d699e807f
                  case ds of wild {
                    Types.Agent ds1 gst -> World.fitnessGST e gst
                    Types.NoAgent -> World.fitnessAgent1 }) -}
-e76faaadc5f19e740acd69db723480da
+a7edefbf9b6de369206872699b1afa1a
   fitnessAgent1 :: GHC.Types.Double
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.D# 0.0##) -}
-5fb1341a64409b623468744d10828477
+7c17f00934a58930540995477180b314
   fitnessGST :: Types.Env -> Types.GeneStateTable -> GHC.Types.Double
-  {- Arity: 2, Strictness: <S(S),1*U(U)><S,1*U>m, Inline: INLINE[0],
+  {- Arity: 2, Strictness: <S(S),1*U(U)><L,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (2, True, False)
                 (\ (w :: Types.Env) (w1 :: Types.GeneStateTable) ->
                  case w of ww { GHC.Types.I# ww1 ->
                  case World.$wfitnessGST ww1 w1 of ww2 { DEFAULT ->
                  GHC.Types.D# ww2 } }) -}
-0c0349a17424173be78e38c12222771b
+2182d40ea81c1d96fbbffacd1560ef36
   fitnessGST1 :: Types.GeneStateTable
   {- Unfolding: (World.$sfromList
                    @ Types.GeneState
                    World.fitnessGST2) -}
-b3dc0f0a58d683a21815a97554630bbb
+3534e01fd6a21784d4ba2aa1c4a2668e
   fitnessGST2 :: [(Types.ID, Types.GeneState)]
   {- Unfolding: (GHC.Base.map
                    @ Types.ID
                    @ (Types.ID, Types.GeneState)
                    World.fitnessGST4
                    World.fitnessGST3 `cast` ([Sym (Types.N:ID[0])])_R) -}
-fa1c1ec709a130aa8df179387a3688d6
+8f8d618e11b138f575955ea35888d682
   fitnessGST3 :: [GHC.Types.Int]
   {- Unfolding: (GHC.Enum.eftInt 0# 19#) -}
-0c216f553060d1affd700321a310c282
+59310ce213520d74d2ab39dff9f1dc0d
   fitnessGST4 :: Types.ID -> (Types.ID, Types.GeneState)
   {- Arity: 1, HasNoCafRefs,
      Unfolding: (\ (x :: Types.ID) ->
@@ -720,19 +715,19 @@ fa1c1ec709a130aa8df179387a3688d6
                          0# -> GHC.Types.True `cast` (Sym (Types.N:GeneState[0])) }
                     GHC.Types.True
                     -> GHC.Types.True `cast` (Sym (Types.N:GeneState[0])) } })) -}
-e7181bbd56afa98f6e819df98648415e
+4efbdb74838f53aef0f7a237e0651dfe
   fitnessGST5 :: Types.GeneStateTable
   {- Unfolding: (World.$sfromList
                    @ Types.GeneState
                    World.fitnessGST6) -}
-b9b500452e77c1dd7108f8a99dce17da
+629bee87e62d1e3ec8a5ccc6af9c23c0
   fitnessGST6 :: [(Types.ID, Types.GeneState)]
   {- Unfolding: (GHC.Base.map
                    @ Types.ID
                    @ (Types.ID, Types.GeneState)
                    World.fitnessGST7
                    World.fitnessGST3 `cast` ([Sym (Types.N:ID[0])])_R) -}
-522d606ca8eba49ea87fb32a5948e2fd
+cf6955f9e5237e299dd689969e52a882
   fitnessGST7 :: Types.ID -> (Types.ID, Types.GeneState)
   {- Arity: 1, HasNoCafRefs,
      Unfolding: (\ (x :: Types.ID) ->
@@ -747,19 +742,23 @@ b9b500452e77c1dd7108f8a99dce17da
                          0# -> GHC.Types.True `cast` (Sym (Types.N:GeneState[0])) }
                     GHC.Types.True
                     -> GHC.Types.True `cast` (Sym (Types.N:GeneState[0])) } })) -}
-733a75bbb4e9e111a659144805a69954
+6e4d0dddfad141c74fcff0aea3d82327
   gSTFromGenome :: Types.Genome -> Types.GeneStateTable
   {- Arity: 1, Strictness: <S,1*U>,
-     Unfolding: InlineRule (1, True, False)
-                (\ (genes :: Types.Genome) ->
-                 World.gSTFromGenome_makeGst
-                   (Data.Map.Base.Tip @ Types.ID @ Types.GeneState)
-                   (World.reduceToGenes genes)) -}
-4afe29f8dbf5a18c441d9cdf1c095a8c
-  gSTFromGenome_makeGst ::
-    Types.GeneStateTable -> [Types.Gene] -> Types.GeneStateTable
+     Unfolding: (\ (x :: Types.Genome) ->
+                 World.gSTFromGenome_go1
+                   (World.gSTFromGenome_go x)
+                   (Data.Map.Base.Tip @ Types.ID @ Types.GeneState)) -}
+64c4eeb42ded35a674833d8f1f2d9753
+  gSTFromGenome_go :: [[Types.Locus]] -> [Types.Gene]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
+4d3dbc624a31fde563acda7236d72442
+  gSTFromGenome_go1 ::
+    [Types.Gene]
+    -> Data.Map.Base.Map Types.ID Types.GeneState
+    -> Data.Map.Base.Map Types.ID Types.GeneState
   {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
-86927a1dff2e91aed37d79233aa40fc5
+17f2956682781a662723272509d87bc8
   getGene :: Types.Locus -> GHC.Base.Maybe Types.Gene
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
@@ -767,7 +766,7 @@ b9b500452e77c1dd7108f8a99dce17da
                  case ds of wild {
                    DEFAULT -> GHC.Base.Nothing @ Types.Gene
                    Types.CGene g -> GHC.Base.Just @ Types.Gene g }) -}
-9e8b26fea13efcfc5c13f0495b88f82e
+58cfb3e135c98b58fb00984713e8fdc9
   getTfbs :: Types.Locus -> GHC.Base.Maybe Types.Tfbs
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
@@ -775,7 +774,7 @@ b9b500452e77c1dd7108f8a99dce17da
                  case ds of wild {
                    DEFAULT -> GHC.Base.Nothing @ Types.Tfbs
                    Types.CTfbs t -> GHC.Base.Just @ Types.Tfbs t }) -}
-8ebba4a69b5ee1b1951bf49fbabcf87c
+441c3481f89d8dff597c5e3e36c3ad0d
   goodRandomGenome :: MyRandom.Rand Types.Genome
   {- Arity: 1, Strictness: <L,U(U,U,U(U))>m,
      Unfolding: InlineRule (0, True, True)
@@ -785,7 +784,7 @@ b9b500452e77c1dd7108f8a99dce17da
                           <System.Random.Mersenne.Pure64.Internal.PureMT>_N
                           <Data.Functor.Identity.Identity>_R
                           <Types.Genome>_N)) -}
-34027b28dd4a53e9f3d4832f173b07b2
+92dbb366727f715fac2eee1eca27a24f
   goodRandomGenome1 ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> Data.Functor.Identity.Identity
@@ -799,10 +798,10 @@ b9b500452e77c1dd7108f8a99dce17da
                  (Sym (Data.Functor.Identity.N:Identity[0]
                            <(Types.Genome,
                              System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) }) -}
-549341764583244ff800560b165b91f0
+575727ede210e68aa4837b31459ad867
   groupGeneTfbs :: [Types.Locus] -> [[Types.Locus]]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-cb87ab8ef265d2cfc329e487dad60e37
+b486491740f24bebbdf3fd98380cdef8
   hammDist :: GHC.Classes.Eq a => [a] -> [a] -> GHC.Types.Int
   {- Arity: 3, HasNoCafRefs,
      Strictness: <L,U(A,C(C1(U)))><S,1*U><L,1*U>m, Inline: INLINE[0],
@@ -810,39 +809,28 @@ cb87ab8ef265d2cfc329e487dad60e37
                 (\ @ a (w :: GHC.Classes.Eq a) (w1 :: [a]) (w2 :: [a]) ->
                  case World.$whammDist @ a w w1 w2 of ww { DEFAULT ->
                  GHC.Types.I# ww }) -}
-837f653cab505cf95809969d328ed51c
+7067b2060c4834b04013305ad5363662
   hammDistAg :: Types.Env -> Types.Agent -> GHC.Types.Int
   {- Arity: 2, Strictness: <L,1*U(U)><S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (2, True, False)
                 (\ (w :: Types.Env) (w1 :: Types.Agent) ->
                  case World.$whammDistAg w w1 of ww { DEFAULT ->
                  GHC.Types.I# ww }) -}
-b1025f2df31049738c154febef56490c
-  hammDist_$shammDist ::
-    [(GHC.Types.Int, GHC.Types.Int)]
-    -> [(GHC.Types.Int, GHC.Types.Int)] -> GHC.Types.Int
-  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,1*U>m,
-     Inline: INLINE[0],
-     Unfolding: InlineRule (2, True, False)
-                (\ (w :: [(GHC.Types.Int, GHC.Types.Int)])
-                   (w1 :: [(GHC.Types.Int, GHC.Types.Int)]) ->
-                 case World.$w$shammDist1 w w1 of ww { DEFAULT ->
-                 GHC.Types.I# ww }) -}
-825e35f63cf70318652ae11f937a1551
+1ee697371a5a4ef46b9da4eb21606cc4
   isGene :: Types.Locus -> GHC.Types.Bool
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Types.Locus) ->
                  case ds of wild {
                    DEFAULT -> GHC.Types.False Types.CGene ds1 -> GHC.Types.True }) -}
-f0e9a125aae02d553b04f029ff9c678d
+547a592536186814cb54493c3996f828
   isTfbs :: Types.Locus -> GHC.Types.Bool
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Types.Locus) ->
                  case ds of wild {
                    DEFAULT -> GHC.Types.False Types.CTfbs ds1 -> GHC.Types.True }) -}
-c8f0611ccc5c58cd685fe4758fb7322e
+6da0fcc60e1309a78e269943aac83488
   locusEffect :: Types.Locus -> Types.GeneStateTable -> Types.Weight
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,1*U>,
      Unfolding: (\ (ds :: Types.Locus) (gst :: Types.GeneStateTable) ->
@@ -851,7 +839,7 @@ c8f0611ccc5c58cd685fe4758fb7322e
                    Types.CTfbs ds1
                    -> case ds1 of wild1 { Types.Tfbs i w ->
                       case i `cast` (Types.N:ID[0]) of ww { GHC.Types.I# ww1 ->
-                      case World.$wpoly_go1 @ Types.GeneState ww1 gst of wild2 {
+                      case World.$wpoly_go10 @ Types.GeneState ww1 gst of wild2 {
                         GHC.Base.Nothing
                         -> World.locusEffect1 `cast` (Sym (Types.N:Weight[0]))
                         GHC.Base.Just a1
@@ -859,10 +847,10 @@ c8f0611ccc5c58cd685fe4758fb7322e
                              GHC.Types.False
                              -> World.locusEffect1 `cast` (Sym (Types.N:Weight[0]))
                              GHC.Types.True -> w } } } } }) -}
-c0ab7a40f4158e841479d3f2c3d8880e
+078c56cd7a19d4abcfdf0f19406a7329
   locusEffect1 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0#) -}
-e241046c885b7ecf8f999258e0d8619e
+821e646829c609c27331e0d347fee160
   randomAgent :: MyRandom.Rand Types.Agent
   {- Arity: 1, Strictness: <L,U(U,U,U(U))>m,
      Unfolding: InlineRule (0, True, True)
@@ -872,7 +860,7 @@ e241046c885b7ecf8f999258e0d8619e
                           <System.Random.Mersenne.Pure64.Internal.PureMT>_N
                           <Data.Functor.Identity.Identity>_R
                           <Types.Agent>_N)) -}
-f2eed956906eee977550c755936f47ba
+bec1e981ac7d62458d5751737686beea
   randomAgent1 ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> Data.Functor.Identity.Identity
@@ -886,7 +874,7 @@ f2eed956906eee977550c755936f47ba
                  (Sym (Data.Functor.Identity.N:Identity[0]
                            <(Types.Agent,
                              System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) }) -}
-5d4f637aec83daeab268d1344c5a9988
+9722c0ee3098a659bb7c40d45eb963cb
   randomChromosome :: MyRandom.Rand Types.Chromosome
   {- Arity: 1, Strictness: <L,U(U,U,U(U))>m,
      Unfolding: InlineRule (0, True, True)
@@ -896,7 +884,7 @@ f2eed956906eee977550c755936f47ba
                           <System.Random.Mersenne.Pure64.Internal.PureMT>_N
                           <Data.Functor.Identity.Identity>_R
                           <Types.Chromosome>_N)) -}
-53f43fb567c1d2b85f563e620bef41c8
+ccc6aa829eec15addfb982517406c57f
   randomChromosome1 ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> Data.Functor.Identity.Identity
@@ -910,7 +898,7 @@ f2eed956906eee977550c755936f47ba
                  (Sym (Data.Functor.Identity.N:Identity[0]
                            <(Types.Chromosome,
                              System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) }) -}
-bb805524735256c3651dc4e7766c67ac
+616b7526ca01c7e42fc883c47121cb00
   randomChromosome2 ::
     [Control.Monad.Trans.State.Strict.StateT
        System.Random.Mersenne.Pure64.Internal.PureMT
@@ -929,7 +917,7 @@ bb805524735256c3651dc4e7766c67ac
                              <Data.Functor.Identity.Identity>_R
                              <[Types.Locus]>_N))
                    World.randomChromosome3) -}
-7432aa0fc8d2eec8ae8b32d33ba96061
+5ccb0f0bff8d6456280a3a2930791f63
   randomChromosome3 ::
     [Control.Monad.Trans.State.Strict.StateT
        System.Random.Mersenne.Pure64.Internal.PureMT
@@ -948,7 +936,7 @@ bb805524735256c3651dc4e7766c67ac
                              <Data.Functor.Identity.Identity>_R
                              <[Types.Locus]>_N))
                    World.randomChromosome4) -}
-3a90520d06f5a03121224612a9bea974
+1cb98f6972b204ab5b26862ebfaff04e
   randomChromosome4 ::
     [Control.Monad.Trans.State.Strict.StateT
        System.Random.Mersenne.Pure64.Internal.PureMT
@@ -971,7 +959,7 @@ bb805524735256c3651dc4e7766c67ac
                            System.Random.Mersenne.Pure64.Internal.PureMT
                            Data.Functor.Identity.Identity
                            [Types.Locus]))) -}
-bafc8405f7c1f3659000d701ce6cca97
+dda4d42dfb189ae5f5fbcf1e67c8dde8
   randomChromosome5 ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> Data.Functor.Identity.Identity
@@ -985,7 +973,7 @@ bafc8405f7c1f3659000d701ce6cca97
                  (Sym (Data.Functor.Identity.N:Identity[0]
                            <([Types.Locus],
                              System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) }) -}
-6676aab22f0f6a4952610ff2e8a46f9a
+df4a3d8ced3ae2c3e46e80c36b598a02
   randomChromosome6 ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> Data.Functor.Identity.Identity
@@ -999,20 +987,20 @@ bafc8405f7c1f3659000d701ce6cca97
                  (Sym (Data.Functor.Identity.N:Identity[0]
                            <([Types.Locus],
                              System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) }) -}
-2083cda3956508d64ef0c9273482b737
+936f9813818e44646e673f6fbf399a71
   randomChromosome_go :: [[Types.Locus]] -> [Types.Locus]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-aa943776154960ea0598524a8318282a
+2a2aea75559069ee367de240d491a21a
   randomChromosome_go1 ::
     [Types.ID]
     -> [Types.Thres] -> [System.Random.Shuffle.Tree Types.Gene]
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,1*U> -}
-9806aae286ec12be5a62c9379d256f01
+8f2c7cc1e4772dd6f93d6d38454b8909
   randomChromosome_go2 ::
     [Types.ID]
     -> [Types.Weight] -> [System.Random.Shuffle.Tree Types.Tfbs]
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,1*U> -}
-1f7deff40545cb868abb5c472d83672a
+50ff4f0d193e4a8e96cc7aa3254f6b2d
   randomGenes :: MyRandom.Rand [Types.Locus]
   {- Arity: 1, Strictness: <L,U>m,
      Unfolding: InlineRule (0, True, True)
@@ -1022,7 +1010,7 @@ aa943776154960ea0598524a8318282a
                           <System.Random.Mersenne.Pure64.Internal.PureMT>_N
                           <Data.Functor.Identity.Identity>_R
                           <[Types.Locus]>_N)) -}
-9ddd0a2cddb32a0d788c0ee60551c0a0
+4a171eb2869f309f59a9f56cf894a32b
   randomGenome :: MyRandom.Rand Types.Genome
   {- Arity: 1, Strictness: <L,U(U,U,U(U))>m,
      Unfolding: InlineRule (0, True, True)
@@ -1032,7 +1020,7 @@ aa943776154960ea0598524a8318282a
                           <System.Random.Mersenne.Pure64.Internal.PureMT>_N
                           <Data.Functor.Identity.Identity>_R
                           <[Types.Chromosome]>_N)) -}
-74f763136d6ab4f1597d8f4c8222bc1e
+17c3aa62c907bf714ba6e261d0c96bce
   randomGenome1 ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> Data.Functor.Identity.Identity
@@ -1054,7 +1042,7 @@ aa943776154960ea0598524a8318282a
                  (Sym (Data.Functor.Identity.N:Identity[0]
                            <([Types.Chromosome],
                              System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) }) -}
-c628ee5f575b57e34f12b7f437eeaf0f
+b5febbc7fc3efe864a52e23df8294fae
   randomTfbss :: MyRandom.Rand [Types.Locus]
   {- Arity: 1, Strictness: <L,U>m,
      Unfolding: InlineRule (0, True, True)
@@ -1064,23 +1052,20 @@ c628ee5f575b57e34f12b7f437eeaf0f
                           <System.Random.Mersenne.Pure64.Internal.PureMT>_N
                           <Data.Functor.Identity.Identity>_R
                           <[Types.Locus]>_N)) -}
-6f67f1d24f1fa4558303601aec22313a
+74f4724c43ed1bfcfd021c37442fcc62
   reduceToGenes :: Types.Genome -> [Types.Gene]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
      Unfolding: (\ (x :: [[Types.Locus]]) ->
-                 World.reduceToGenes_go x) -}
-18ffd86dc9f522094d92265b39ae4124
-  reduceToGenes_go :: [[Types.Locus]] -> [Types.Gene]
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-41222c07f689bc60298b001c062aedb5
+                 World.gSTFromGenome_go x) -}
+221a1fe1825d9ddd9986fec2f6b4572d
   reduceToTfbss :: Types.Genome -> [Types.Tfbs]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
      Unfolding: (\ (x :: [[Types.Locus]]) ->
                  World.reduceToTfbss_go x) -}
-a0430360a9ae5f037e99497b0a93830f
+f81f6fb0855e5d93d47ccfa127b8471b
   reduceToTfbss_go :: [[Types.Locus]] -> [Types.Tfbs]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-c16092732cb7fc6c4953ad6786171b44
+032d78008f49e8f691bc4632d1fe72cd
   sameGST :: Types.Agent -> Types.Agent -> GHC.Types.Bool
   {- Arity: 2, Strictness: <S,1*U><L,1*U>,
      Unfolding: InlineRule (2, True, False)
@@ -1098,7 +1083,7 @@ c16092732cb7fc6c4953ad6786171b44
                              ipv3
                         Types.NoAgent -> GHC.Types.False }
                    Types.NoAgent -> GHC.Types.True }) -}
-4f80c503ee5a3ccda6bd35be5c59406a
+5176ac702d7d22b49beba3b5ce043884
   takeWhileInclusive :: (a -> GHC.Types.Bool) -> [a] -> ([a], [a])
   {- Arity: 2, HasNoCafRefs, Strictness: <L,C(U)><S,1*U>m,
      Unfolding: InlineRule (2, True, False)
@@ -1107,7 +1092,7 @@ c16092732cb7fc6c4953ad6786171b44
                    @ a
                    f
                    (GHC.Types.[] @ a, ls)) -}
-85b2a7e06cfa3339b9eb0f7b0bd7a06e
+0450ff9c509d3fbdc4e560561c18ab32
   takeWhileInclusive_takeWhileInclusive' ::
     (a -> GHC.Types.Bool) -> ([a], [a]) -> ([a], [a])
   {- Arity: 2, HasNoCafRefs, Strictness: <L,C(U)><S(LS),1*U(U,1*U)>m,
@@ -1121,7 +1106,7 @@ c16092732cb7fc6c4953ad6786171b44
                         ww1
                         ww2 of ww3 { (#,#) ww4 ww5 ->
                  (ww4, ww5) } }) -}
-2c31300cb724aa584deb7536eebb5d90
+9dffc291ff298a9497b60f5bce81355d
   targetExpression :: Types.Env -> Types.ID -> Types.GeneState
   {- Arity: 2, HasNoCafRefs, Strictness: <L,U(U)><S(S),1*U(U)>,
      Inline: INLINE[0],
@@ -1129,43 +1114,42 @@ c16092732cb7fc6c4953ad6786171b44
                 (\ (w :: Types.Env) (w1 :: Types.ID) ->
                  case w1 `cast` (Types.N:ID[0]) of ww { GHC.Types.I# ww1 ->
                  World.$wtargetExpression w ww1 }) -}
-09a36c70b6a7db8d297f2f3602a525be
+7b142aa46d62bcf01a36ec94334a9c46
   targetGST :: Types.Env -> Types.GeneStateTable
   {- Arity: 1, Strictness: <S(S),1*U(U)>, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
                 (\ (w :: Types.Env) ->
                  case w of ww { GHC.Types.I# ww1 -> World.$wtargetGST ww1 }) -}
-8c2093fab4615cfadeb15c1d72d150c5
+6bfa059d668bc840bf07bb1a3879ef1b
   updateAgent :: Types.Agent -> Types.Agent
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ (ds :: Types.Agent) ->
                  case ds of wild {
                    Types.Agent chroms gst
-                   -> case gst of gst1 { DEFAULT ->
-                      let {
+                   -> let {
                         newGenome :: Types.Genome
                         = GHC.Base.map
                             @ [Types.Locus]
                             @ [Types.Locus]
                             (World.updateChrom
                                World.locusEffect1 `cast` (Sym (Types.N:Weight[0]))
-                               gst1)
+                               gst)
                             chroms
                       } in
-                      case World.gSTFromGenome_makeGst
-                             (Data.Map.Base.Tip @ Types.ID @ Types.GeneState)
-                             (World.reduceToGenes_go newGenome) of wild1 {
+                      case World.gSTFromGenome_go1
+                             (World.gSTFromGenome_go newGenome)
+                             (Data.Map.Base.Tip @ Types.ID @ Types.GeneState) of wild1 {
                         Data.Map.Base.Bin dt ds1 ds2 ds3 ds4
                         -> case dt of wild2 {
                              DEFAULT -> Types.NoAgent 20# -> Types.Agent newGenome wild1 }
-                        Data.Map.Base.Tip -> Types.NoAgent } }
+                        Data.Map.Base.Tip -> Types.NoAgent }
                    Types.NoAgent -> Types.NoAgent }) -}
-49b7794871c4e8def034b5120b3c4f1c
+4d55e7cfdfe928384edd83e4f8ad2e92
   updateChrom ::
     Types.Weight
     -> Types.GeneStateTable -> Types.Chromosome -> Types.Chromosome
   {- Arity: 3, HasNoCafRefs, Strictness: <L,U(U)><L,U><S,1*U> -}
-7a897ada34cd2b2387a3ab085b6e9a44
+939589ced1d3857aa7011cd3a0c8e672
   updateGenome ::
     Types.GeneStateTable -> Types.Genome -> Types.Genome
   {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,1*U>,
@@ -1189,7 +1173,7 @@ c16092732cb7fc6c4953ad6786171b44
                             x))
                       n
                       eta)) -}
-7710fb7041a05eb11cc90b158dc7a15c
+84e9446b8f0872a576fa499d8cec4789
   updateLoc ::
     Types.Weight
     -> Types.GeneStateTable
@@ -1203,13 +1187,10 @@ c16092732cb7fc6c4953ad6786171b44
                    (w2 :: Types.Locus) ->
                  case World.$wupdateLoc w w1 w2 of ww { (#,#) ww1 ww2 ->
                  (ww1, ww2) }) -}
-"SPEC hammDist" [ALWAYS] forall ($dEq :: GHC.Classes.Eq
-                                           (GHC.Types.Int, GHC.Types.Int))
-  World.hammDist @ (GHC.Types.Int, GHC.Types.Int) $dEq
-  = World.hammDist_$shammDist
 "SPEC/World fromList @ ID _" [ALWAYS] forall @ a
                                              ($dOrd :: GHC.Classes.Ord Types.ID)
-  Data.Map.Base.fromList @ Types.ID @ a $dOrd = World.$sfromList @ a
+  Data.Map.Strict.fromList @ Types.ID @ a $dOrd
+  = World.$sfromList @ a
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:
