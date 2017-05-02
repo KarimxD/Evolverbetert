@@ -105,6 +105,13 @@
   (major1) == 0 && (major2) <  6 || \
   (major1) == 0 && (major2) == 6 && (minor) <= 1)
 
+/* package process-1.4.3.0 */
+#define VERSION_process "1.4.3.0"
+#define MIN_VERSION_process(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  4 || \
+  (major1) == 1 && (major2) == 4 && (minor) <= 3)
+
 /* package random-1.1 */
 #define VERSION_random "1.1"
 #define MIN_VERSION_random(major1,major2,minor) (\
@@ -224,7 +231,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF"
+#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-2qIV0obkRX3EsEnp47ihbY"
 
-#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF"
+#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-2qIV0obkRX3EsEnp47ihbY"
 

@@ -30,6 +30,7 @@ import           System.Environment     (getArgs, getEnv)
 import           System.IO              (Handle, IOMode (..), hClose, hFlush,
                                          openFile, stdout)
 import System.Directory
+import System.Process (callCommand)
 import Data.Time.Clock
 
 
@@ -39,7 +40,7 @@ import           Data.Function          (on)
 import           Data.Maybe             (fromMaybe, isJust, isNothing, fromJust)
 
 import           Data.Array.IArray      (array, assocs, elems, (!))
-import           Data.List              (find, maximumBy, genericLength)
+import           Data.List              (find, maximumBy, genericLength, intercalate)
 import           Data.List.Split        (splitEvery, splitOn)
 import qualified Data.Map.Strict               as Map
 
@@ -73,7 +74,13 @@ initialize opts = do
     userName <- getEnv "USER"
     UTCTime date time <- getCurrentTime
     let outputDir =  "/linuxhome/tmp/" ++ userName ++ "/Evolverbetert/" ++ show date ++ "-" ++ takeWhile (/= '.') (show time) ++ "/"
-    when (optOutput opts || optVOutput opts) $ createDirectoryIfMissing True outputDir
+    when (optOutput opts || optVOutput opts) $ do
+        createDirectoryIfMissing True outputDir
+        putStrLn $ "outputDir=" ++ show outputDir
+        callCommand $ "cp -r ./src/ " ++ outputDir ++ "src/"
+        putStrLn "copied source directories"
+
+
     let handles = stdHandles
 
     handles' <- if optOutput opts
@@ -90,12 +97,13 @@ initialize opts = do
                   then return handles'' {hConsole = Just stdout}
                   else return handles'' {hConsole = Nothing}
 
-
+    -- Display some info about the initialization and the header for the output table
     forM_ [hOutput handles''', hConsole handles'''] $ \m -> case m of
-        Just h -> B.hPutStrLn h $ fromString
-                    $  "world-seed="   ++ show (optWorldSeed opts)
-                    ++ "; agent-seed=" ++ show (optAgentSeed opts)
-                    ++ "; initialAgent = " ++ myShow initialAgent
+        Just h -> do B.hPutStrLn h $ fromString
+                        $  "world-seed="   ++ show (optWorldSeed opts)
+                        ++ "; agent-seed=" ++ show (optAgentSeed opts)
+                        ++ "; initialAgent = " ++ myShow initialAgent
+                     B.hPutStrLn h $ fromString $ outputString initialWorld 0 True
         _      -> return ()
     return (w, handles''')
 
@@ -147,7 +155,7 @@ mainLoop worldRef opts hs t = do
     w <- readIORef worldRef
 
     when (P.outputTime t) $ forM_ [hOutput hs, hConsole hs] $ \m -> case m of
-        Just h -> B.hPutStrLn h (fromString $ outputString w t) >> hFlush h
+        Just h -> B.hPutStrLn h (fromString $ outputString w t False) >> hFlush h
         _      -> return ()
 
     when (P.vOutputTime t) $ case hVOutput hs of
@@ -184,25 +192,30 @@ newWorld w = do
         where oldAssocs = assocs $ agents w
               e = env w
 
+
 -- | The string of data that outputs every 'P.outputStep'
-outputString :: World -> P.Time -> String
-outputString w@(World ags env) t =
-    show t
-    ++ " " ++ show env -- current environment
-    ++ " " ++ show minHammDist -- Hamming distance of best agent
-    -- ++ " " ++ show (hammDistAg otherenv bestOtherAgent)
-    ++ " " ++ show maxHammDist -- Hamming distance of worst agent
-    ++ " " ++ show avgHammDist
-    ++ " " ++ show (length bestChrom) -- The length of the genome of best
-    -- ++ " " ++ myShow bestChrom
+-- Needs an input world, time
+-- if True then prints a header for the outputTable
+outputString :: World -> P.Time -> Bool -> String
+outputString w@(World ags env) t r =
+    intercalate ";"
+        [f t',f env',f minHammDist,f maxHammDist,f avgHammDist,f lenBestChrom]
+
+    -- ++ myShow bestChrom
     where
-        bestAgent = maximumBy (compare `on` fitnessAgent env) els
-        bestOtherAgent = maximumBy (compare `on` fitnessAgent otherenv) els
-        bestChrom = head . genome $ bestAgent
-        maxFitness = maximum $ map (fitnessAgent env) els
-        minHammDist = minimum $ map (hammDistAg env) els
-        maxHammDist = maximum $ map (hammDistAg env) els
-        avgHammDist = average $ map (hammDistAg env) els
+        f :: Show a => (a, String) -> String -- | either show the thing or the discription
+        f = if r then snd else show . fst
+
+        t' = (t, "time")
+        env' = (env, "env")
+        bestAgent = (maximumBy (compare `on` fitnessAgent env) els, "bestAgent")
+        bestOtherAgent = (maximumBy (compare `on` fitnessAgent otherenv) els, "bestOtherAgent")
+        bestChrom = (head . genome $ fst bestAgent, "bestChrom")
+        lenBestChrom = (length . fst $ bestChrom, "lenBestChrom")
+        maxFitness = (maximum $ map (fitnessAgent env) els, "maxFitness")
+        minHammDist = (minimum $ map (hammDistAg env) els, "minHammDist")
+        maxHammDist = (maximum $ map (hammDistAg env) els, "maxHammDist")
+        avgHammDist = (average $ map (hammDistAg env) els, "avgHammDist")
         els = filter (/=NoAgent) $ elems ags
         otherenv = 1 + (-1)*env
         average xs = realToFrac (sum xs) / genericLength xs

@@ -67,27 +67,35 @@ instance MyShow Chromosome where
     myShow loci = List.intercalate "," (map myShow loci)
 instance MyRead Chromosome where
     myRead = map myRead . splitOn ","
--- instance Show Thres where
---     show (Thres i) = show i
--- parseThres :: String -> Thres
--- parseThres = Thres . read
---
--- instance Show Weight where
---     show (Weight i) = show i
--- parseWeight :: String -> Weight
--- parseWeight = Weight . read
---
--- instance Show ID where
---     show (ID i) = show i
--- parseID :: String -> ID
--- parseID = ID . read
---
--- instance Show GeneState where
---     show (GS True) = show 1
---     show (GS False)= show 0
--- parseGeneState :: String -> GeneState
--- parseGeneState "1" = GS True
--- parseGeneState _   = GS False
---
--- showAgents :: Agents -> String
--- showAgents = show . Array.assocs
+
+
+-- making dot files
+genomeToDot :: Genome -> String
+genomeToDot g =
+       "digraph geneNetwork {"
+    ++ chromosomeToDot (concat g)
+    ++ "}"
+
+chromosomeToDot :: Chromosome -> String
+chromosomeToDot c =
+    concatMap groupedToDot (groupGeneTfbs c)
+
+groupedToDot :: [Locus] -> String
+groupedToDot loci = tfbssGeneToDot gene tfbss
+ where
+    tfbss = reduceToTfbss [loci]
+    gene = case last loci of
+        CGene g -> g
+        _ -> undefined
+
+sortofmap :: [a] -> b -> (a->b->c) -> [c]
+sortofmap xs y f = map (`f` y) xs
+
+tfbssGeneToDot :: Gene -> [Tfbs] -> String
+tfbssGeneToDot g = concatMap (geneTfbsToDot g)
+
+geneTfbsToDot :: Gene -> Tfbs -> String
+geneTfbsToDot g t = it ++ "->" ++ ig ++ ";"
+    where
+        it = "T" ++ myShow (CTfbs t)
+        ig = myShow (iD g) ++ ".1"

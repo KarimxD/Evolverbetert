@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/home/karim/Evolverbetert/.stack-work/install/x86_64-linux/lts-8.5/8.0.2/bin"
-libdir     = "/home/karim/Evolverbetert/.stack-work/install/x86_64-linux/lts-8.5/8.0.2/lib/x86_64-linux-ghc-8.0.2/Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF"
+libdir     = "/home/karim/Evolverbetert/.stack-work/install/x86_64-linux/lts-8.5/8.0.2/lib/x86_64-linux-ghc-8.0.2/Evolverbetert-0.1.0.0-2qIV0obkRX3EsEnp47ihbY"
 dynlibdir  = "/home/karim/Evolverbetert/.stack-work/install/x86_64-linux/lts-8.5/8.0.2/lib/x86_64-linux-ghc-8.0.2"
 datadir    = "/home/karim/Evolverbetert/.stack-work/install/x86_64-linux/lts-8.5/8.0.2/share/x86_64-linux-ghc-8.0.2/Evolverbetert-0.1.0.0"
 libexecdir = "/home/karim/Evolverbetert/.stack-work/install/x86_64-linux/lts-8.5/8.0.2/libexec"
