@@ -189,19 +189,21 @@ outputString :: World -> P.Time -> String
 outputString w@(World ags env) t =
     show t
     ++ " " ++ show env -- current environment
-    ++ " " ++ show (hammDistAg env bestAgent) -- Hamming distance of best agent
-    ++ " " ++ show (hammDistAg otherenv bestOtherAgent)
+    ++ " " ++ show minHammDist -- Hamming distance of best agent
+    -- ++ " " ++ show (hammDistAg otherenv bestOtherAgent)
+    ++ " " ++ show maxHammDist -- Hamming distance of worst agent
     ++ " " ++ show avgHammDist
     ++ " " ++ show (length bestChrom) -- The length of the genome of best
-    ++ " " ++ myShow bestChrom
+    -- ++ " " ++ myShow bestChrom
     where
         bestAgent = maximumBy (compare `on` fitnessAgent env) els
         bestOtherAgent = maximumBy (compare `on` fitnessAgent otherenv) els
         bestChrom = head . genome $ bestAgent
         maxFitness = maximum $ map (fitnessAgent env) els
         minHammDist = minimum $ map (hammDistAg env) els
+        maxHammDist = maximum $ map (hammDistAg env) els
         avgHammDist = average $ map (hammDistAg env) els
-        els = elems ags
+        els = filter (/=NoAgent) $ elems ags
         otherenv = 1 + (-1)*env
         average xs = realToFrac (sum xs) / genericLength xs
 

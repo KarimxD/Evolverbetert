@@ -1,13 +1,13 @@
 
 ==================== FINAL INTERFACE ====================
-2017-05-01 15:14:55.638897 UTC
+2017-05-02 08:28:15.209375 UTC
 
-interface Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing 8002
-  interface hash: b7a8f11d279ef2163754c02e231b7f20
-  ABI hash: 3ce07fed38dc929c2194d93b60f265f9
-  export-list hash: c53f6fd4706f2be4c1d9cfdc774ad26b
-  orphan hash: 4019ab1efae15e4129c7605a4205bb59
-  flag hash: 0ffea4b86a7d632aec14361a41b8af4a
+interface Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing [hpc] 8002
+  interface hash: 3ca95f39ae1770c95d495e5969d6eda7
+  ABI hash: fbd20c3356739b5f663ee9bd886c4a44
+  export-list hash: c761168281d0d60e20e3466f2bd9fccd
+  orphan hash: 0876115bc4e6d3592ce3a76101f1723f
+  flag hash: b40997aa668764827c305d4f87046bd0
   sig of: Nothing
   used TH splices: False
   where
@@ -46,33 +46,33 @@ family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3
                          containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
                          primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
-import  -/  Types 553fe5882bac7964d9e18ed5fc1899e3
+import  -/  Types 32978543d3e5942c0fca1d899b402377
   exports: f2d3892cae9faa75e4d9e5ce4ff3401f
-  Agent 60b09a4470e22147e56c42e0035f87fe
-  Agent 4db872eec646ad15f031961699453d7d
-  CGene ea527b21dbbed4eaf4515b5bd6300e17
-  CTfbs 6f551280d2a6113da1a228f358db5137
-  Chromosome 24cfb6cfcc1852ed37afecdf0ad745c4
-  GS f27014f9fcd601a90b5d2335c8847a52
-  Gene f6a3f11ab63a627039089add273149ba
-  GeneState 385bd618b8cbce3dec65b0dc93936685
-  GeneStateTable 9e77d0240feb1db03b5609bb787daa5d
-  Genome 31e3370e16839f7422c62e17856b87c5
-  ID 7e0b9a9dfd2784dbee8f381e1c0e5170
-  ID 16d6e25ed95d1e87249ca076165ebe74
-  Locus 657e65e0e08e728d8f24c605538f3349
-  NoAgent 339da968cef368d0f2975264de06a36a
-  Tfbs 66713721bbe5cab4288d866c04987130
-  Thres eff4e38798bfeab4b1859234955c53fa
-  Thres 2ba0a787aa56e3869ddba33deece9cad
-  Transposon 6e61a1b8e09c06aa0573fa7cc5a8f71e
-  Weight a00b9d08ca7f7b471dfbf1a3e4747225
-  Weight fec0f96660f082d9ff826ee5f52d2dd5
-  geneStateTable 6b9ce6667cb6ef0ceb4e5feb484a2261
-  genome caf01e8667618822fcc76af63288dcf0
-import  -/  World fae719142ff1d0cc47926353810ce652
-  exports: 1e87020408db611578f66aeb540278f6
-  gSTFromGenome 6e4d0dddfad141c74fcff0aea3d82327
+  Agent 6e70c078bbe4ade34d62bafca45b69c1
+  Agent 38df965694c57ea8a99df285579eb778
+  CGene 21c05e9ab2bff6a8a7578acd0fe8c328
+  CTfbs 7420e066f811d73e6ba289e5f4e3627e
+  Chromosome b0226af39439d913341efe44e43bfe94
+  GS 22dcfe0740c1ece2628b5fb2a5c57e91
+  Gene 1a54626e2985fb35d77d52576fd30ef5
+  GeneState af1dcb53c958f9cc4cee41e0cdd40f73
+  GeneStateTable 2391f3cee93211cf0ef5eca6d8dee743
+  Genome e49f3db4c7cafe6d5cfe014af10e3dff
+  ID 4b20d6d0265267d2f650e3a662978c2b
+  ID 11cf07ccdff9acbf576dc2c8351e445c
+  Locus 3a1ffa0ff8e7c5056897e544d9829245
+  NoAgent eb2f5928cf741a34cae5c8a97231993d
+  Tfbs 2ae56c392d1e2582f48466147b66b169
+  Thres 0700492c3fcd8b6aca341f7989ea358f
+  Thres c3d818f4b4b9480567dfc64900f5b9f1
+  Transposon f70cdb0d9633ac6f6e6e929bfa97a0c5
+  Weight 1b7c0c35433fa0a6977fda250757f186
+  Weight 62e198601be4cac9703a7878d90fa463
+  geneStateTable fce9fac92fe9c6acd283f4e7544a7e28
+  genome 13618b2dffb223e6f501df03ab5399f2
+import  -/  World b68ee2aa83d202441effdbc7ccdf8d84
+  exports: b3b8d7f652ad50a1ed48dfa408cd2db9
+  gSTFromGenome ddd02c5b25600a85eb4abd1b649d2599
 import  -/  array-0.5.1.1@array-0.5.1.1:Data.Array.IArray 606f8bb830eb2a88c29c91f27c77f304
 import  -/  base-4.9.1.0:Data.Foldable 3e0b6967a1da89945d0e2d47266337a2
 import  -/  base-4.9.1.0:Data.List 07ae2acca6538aa0800bd0a993ac6ac1
@@ -84,139 +84,355 @@ import  -/  base-4.9.1.0:GHC.Num 00bfaa7b2f9d6084913c0697a8a49ec8
 import  -/  base-4.9.1.0:GHC.Show a027f5ac24879eaba752f44aa90fe511
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
 import  -/  base-4.9.1.0:Text.Read 75c59863e882ebaec4532e9465e2ee9b
-import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base d432f6875983131473086af8cb290590
-import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map.Strict 9d0c0962e53270a0a3fb5cb63723a381
+import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base a29df8c78ba14cbcd4d90f97bd8d22e9
+import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map.Strict f8f0196205d496398718e13b2f098e5d
 import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
 import  -/  split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split c60198a427bfd51d9fb4562c059ec1d2
-import  -/  split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals 25dced234ed01c9c803d678763a4d772
-66d79346676cea780e2e08b8dd36f068
+import  -/  split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals 84cef3a4becd62b741fe379ec3b99783
+b4aa992301abc012694fee7c72e70f99
   $fMyReadGeneState :: Parsing.MyRead Types.GeneState
   DFunId
-  {- Arity: 1, Strictness: <L,U>, Inline: INLINE (sat-args=0),
+  {- Inline: INLINE (sat-args=0),
      Unfolding: InlineRule (0, False, True)
                 Parsing.$fMyReadGeneState_$cmyRead
                   `cast`
                 (Sym (Parsing.N:MyRead[0]) <Types.GeneState>_N) -}
-00872b5c275b099c986452a09110dad5
-  $fMyReadGeneState1 :: GHC.Base.String -> GHC.Integer.Type.Integer
-  {- Arity: 1, Strictness: <L,U>,
-     Unfolding: (\ (s :: GHC.Base.String) ->
-                 case Text.Read.readEither6
-                        @ GHC.Integer.Type.Integer
-                        (Text.ParserCombinators.ReadP.run
-                           @ GHC.Integer.Type.Integer
-                           Parsing.$fMyReadGeneState4
-                           s) of wild {
-                   [] -> Parsing.$fMyReadGeneState3
-                   : x ds
-                   -> case ds of wild1 {
-                        [] -> x : ipv ipv1 -> Parsing.$fMyReadGeneState2 } }) -}
+4de64010994aa5f5d9e69a4842478d0c
+  $fMyReadGeneState1 :: GHC.Integer.Type.Integer
+  {- Strictness: x -}
 86be76bed4b54c059372b8cf8ac0cd1c
   $fMyReadGeneState2 :: GHC.Integer.Type.Integer
   {- Strictness: x -}
-82694f38eade9fb2114382ddb2987ce3
-  $fMyReadGeneState3 :: GHC.Integer.Type.Integer
-  {- Strictness: x -}
-98916bfa4558a98dc0d87c2846a79a69
-  $fMyReadGeneState4 ::
+8352ce2702903ad3db8e0ee902b50745
+  $fMyReadGeneState3 ::
     Text.ParserCombinators.ReadP.P GHC.Integer.Type.Integer
-  {- Unfolding: (GHC.Read.$fReadInteger3
-                   GHC.Read.$fReadInteger_$sconvertInt
-                   Text.ParserCombinators.ReadPrec.minPrec
-                   @ GHC.Integer.Type.Integer
-                   (Text.Read.readEither5 @ GHC.Integer.Type.Integer)) -}
-d69b1ae1cbd52a8a960c90d27ce02f0d
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} GHC.Read.$fReadInteger3
+                                                                                                                                                                                   GHC.Read.$fReadInteger_$sconvertInt
+                                                                                                                                                                                   Text.ParserCombinators.ReadPrec.minPrec
+                                                                                                                                                                                   @ GHC.Integer.Type.Integer
+                                                                                                                                                                                   (Text.Read.readEither5
+                                                                                                                                                                                      @ GHC.Integer.Type.Integer)) -}
+7e7314351a147dee535d3bf634640f6f
   $fMyReadGeneState_$cmyRead :: GHC.Base.String -> Types.GeneState
-  {- Arity: 1, Strictness: <L,U>,
-     Unfolding: InlineRule (1, True, False)
-                (\ (x :: GHC.Base.String) ->
-                 case GHC.Integer.Type.gtInteger#
-                        (Parsing.$fMyReadGeneState1 x)
-                        Types.$fNumGeneState_dt of wild { DEFAULT ->
-                 (GHC.Prim.tagToEnum# @ GHC.Types.Bool wild)
-                   `cast`
-                 (Sym (Types.N:GeneState[0])) }) -}
-66d79346676cea780e2e08b8dd36f068
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} True False} \ (x :: GHC.Base.String) ->
+                                                                                                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} let {
+                                                                                                                                                                                   a :: GHC.Integer.Type.Integer
+                                                                                                                                                                                   = {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} case Text.Read.readEither6
+                                                                                                                                                                                                                                                                            @ GHC.Integer.Type.Integer
+                                                                                                                                                                                                                                                                            (Text.ParserCombinators.ReadP.run
+                                                                                                                                                                                                                                                                               @ GHC.Integer.Type.Integer
+                                                                                                                                                                                                                                                                               Parsing.$fMyReadGeneState3
+                                                                                                                                                                                                                                                                               x) of wild {
+                                                                                                                                                                                                                                                                       []
+                                                                                                                                                                                                                                                                       -> Parsing.$fMyReadGeneState2
+                                                                                                                                                                                                                                                                       : x1 ds
+                                                                                                                                                                                                                                                                       -> case ds of wild1 {
+                                                                                                                                                                                                                                                                            []
+                                                                                                                                                                                                                                                                            -> x1
+                                                                                                                                                                                                                                                                            : ipv ipv1
+                                                                                                                                                                                                                                                                            -> Parsing.$fMyReadGeneState1 } }
+                                                                                                                                                                                 } in
+                                                                                                                                                                                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Types.fromInteger} True True} case GHC.Integer.Type.gtInteger#
+                                                                                                                                                                                                                                                                          a
+                                                                                                                                                                                                                                                                          Types.$fNumGeneState2 of wild { DEFAULT ->
+                                                                                                                                                                                                                                                                   (GHC.Prim.tagToEnum#
+                                                                                                                                                                                                                                                                      @ GHC.Types.Bool
+                                                                                                                                                                                                                                                                      wild)
+                                                                                                                                                                                                                                                                     `cast`
+                                                                                                                                                                                                                                                                   (Sym (Types.N:GeneState[0])) }) -}
+b4aa992301abc012694fee7c72e70f99
   $fMyReadID :: Parsing.MyRead Types.ID
   DFunId
-  {- Arity: 1, Strictness: <L,U>, Inline: INLINE (sat-args=0),
+  {- Inline: INLINE (sat-args=0),
      Unfolding: InlineRule (0, False, True)
                 Parsing.$fMyReadID_$cmyRead
                   `cast`
                 (Sym (Parsing.N:MyRead[0]) <Types.ID>_N) -}
-32ef5a28e7d5dc25eec59256a4a1b03b
+eef1e77dbe3cdfc5a01bdd16a11ba097
   $fMyReadID1 :: GHC.Base.String -> GHC.Types.Int
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} True True} Parsing.$fMyReadID2) -}
+69324797b09ad56296718521763939ff
+  $fMyReadID2 :: GHC.Base.String -> GHC.Types.Int
   {- Arity: 1, Strictness: <L,U>,
      Unfolding: (\ (s :: GHC.Base.String) ->
-                 case Text.Read.readEither6
-                        @ GHC.Types.Int
-                        (Text.ParserCombinators.ReadP.run
-                           @ GHC.Types.Int
-                           Parsing.$fMyReadID4
-                           s) of wild {
-                   [] -> Parsing.$fMyReadID3
-                   : x ds
-                   -> case ds of wild1 {
-                        [] -> x : ipv ipv1 -> Parsing.$fMyReadID2 } }) -}
-d8eec2606b711e13de164cb8edab8a36
-  $fMyReadID2 :: GHC.Types.Int
-  {- Strictness: x -}
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} case Text.Read.readEither6
+                                                                                                        @ GHC.Types.Int
+                                                                                                        (Text.ParserCombinators.ReadP.run
+                                                                                                           @ GHC.Types.Int
+                                                                                                           Parsing.$fMyReadID5
+                                                                                                           s) of wild {
+                                                                                                   []
+                                                                                                   -> Parsing.$fMyReadID4
+                                                                                                   : x ds
+                                                                                                   -> case ds of wild1 {
+                                                                                                        []
+                                                                                                        -> x
+                                                                                                        : ipv ipv1
+                                                                                                        -> Parsing.$fMyReadID3 } }) -}
 7ef56a72f2dde1884d2c001702112ad9
   $fMyReadID3 :: GHC.Types.Int
   {- Strictness: x -}
-9b288815cb737c62b2ab76624e7f2303
-  $fMyReadID4 :: Text.ParserCombinators.ReadP.P GHC.Types.Int
-  {- Unfolding: (GHC.Read.$fReadInt3
-                   GHC.Read.$fReadInt_$sconvertInt
-                   Text.ParserCombinators.ReadPrec.minPrec
-                   @ GHC.Types.Int
-                   (Text.Read.readEither5 @ GHC.Types.Int)) -}
-ac02a9d2fd895d42991bd7e879b98be6
+13d58d4231fe8d958d8b136d1b31c7d8
+  $fMyReadID4 :: GHC.Types.Int
+  {- Strictness: x -}
+5a56c2c43bce278179c65d9b27647d26
+  $fMyReadID5 :: Text.ParserCombinators.ReadP.P GHC.Types.Int
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} GHC.Read.$fReadInt3
+                                                                                                   GHC.Read.$fReadInt_$sconvertInt
+                                                                                                   Text.ParserCombinators.ReadPrec.minPrec
+                                                                                                   @ GHC.Types.Int
+                                                                                                   (Text.Read.readEither5
+                                                                                                      @ GHC.Types.Int)) -}
+f0df4aa33a5617e5975f71e4d76e19f0
   $fMyReadID_$cmyRead :: GHC.Base.String -> Types.ID
-  {- Arity: 1, Strictness: <L,U>,
-     Unfolding: InlineRule (0, True, True)
+  {- Unfolding: InlineRule (0, True, True)
                 Parsing.$fMyReadID1
                   `cast`
                 (<GHC.Base.String>_R ->_R Sym (Types.N:ID[0])) -}
-66d79346676cea780e2e08b8dd36f068
+b4aa992301abc012694fee7c72e70f99
   $fMyReadLocus :: Parsing.MyRead Types.Locus
   DFunId
-  {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
+  {- Arity: 1, Strictness: <S,U>, Inline: INLINE (sat-args=0),
      Unfolding: InlineRule (0, False, True)
                 Parsing.$fMyReadLocus_$cmyRead
                   `cast`
                 (Sym (Parsing.N:MyRead[0]) <Types.Locus>_N) -}
-43338294c4c644210c01c36e071c4b8d
+66e1bb856d0fbe32d7189517b1ef287e
+  $fMyReadLocus1 :: GHC.Base.String -> GHC.Types.Int
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} True True} Parsing.$fMyReadLocus2) -}
+77546c4be089223ed792fb6bcc6052bb
+  $fMyReadLocus10 :: Text.ParserCombinators.ReadP.P GHC.Types.Int
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} GHC.Read.$fReadInt3
+                                                                                                   GHC.Read.$fReadInt_$sconvertInt
+                                                                                                   Text.ParserCombinators.ReadPrec.minPrec
+                                                                                                   @ GHC.Types.Int
+                                                                                                   (Text.Read.readEither5
+                                                                                                      @ GHC.Types.Int)) -}
+0479292a83c605f4fd238134d2daed9b
+  $fMyReadLocus11 :: [GHC.Types.Char]
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} GHC.CString.unpackCString#
+                                                                                                   "T"#) -}
+97d3da4262cebf8e36d28a2b44c444ea
+  $fMyReadLocus12 ::
+    Data.List.Split.Internals.Splitter GHC.Types.Char
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead.s} False True} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.splitOn} False True} case Data.List.Split.Internals.defaultSplitter
+                                                                                                                                                                                                                                                                                                    @ GHC.Prim.Any of wild { Data.List.Split.Internals.Splitter ds ds1 ds2 ds3 ds4 ->
+                                                                                                                                                                                                                                                                                             {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.dropDelims} True False} Data.List.Split.Internals.Splitter
+                                                                                                                                                                                                                                                                                                                                                                                                            @ GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                                                                                                            Parsing.$fMyReadLocus13
+                                                                                                                                                                                                                                                                                                                                                                                                              `cast`
+                                                                                                                                                                                                                                                                                                                                                                                                            (Sym (Data.List.Split.Internals.N:Delimiter[0]
+                                                                                                                                                                                                                                                                                                                                                                                                                      <GHC.Types.Char>_R))
+                                                                                                                                                                                                                                                                                                                                                                                                            Data.List.Split.Internals.Drop
+                                                                                                                                                                                                                                                                                                                                                                                                            ds2
+                                                                                                                                                                                                                                                                                                                                                                                                            ds3
+                                                                                                                                                                                                                                                                                                                                                                                                            ds4 }) -}
+a2678584e99e9ea3d22345129dd7bdff
+  $fMyReadLocus13 :: [GHC.Types.Char -> GHC.Types.Bool]
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead.s} False True} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.splitOn} False True} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.onSublist} False True} GHC.Base.map
+                                                                                                                                                                                                                                                                                                                                                                                                           @ GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                                                                                                           @ (GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                                                                                                              -> GHC.Types.Bool)
+                                                                                                                                                                                                                                                                                                                                                                                                           Parsing.$fMyReadLocus_lvl3
+                                                                                                                                                                                                                                                                                                                                                                                                           Parsing.$fMyReadLocus14) -}
+416aeb10baab64658c928b38248568d9
+  $fMyReadLocus14 :: [GHC.Types.Char]
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead.s} False True} GHC.CString.unpackCString#
+                                                                                                                                                                                     ":"#) -}
+3f9f5dc4e32d7c811e903322a581c144
+  $fMyReadLocus2 :: GHC.Base.String -> GHC.Types.Int
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ (s :: GHC.Base.String) ->
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} case Text.Read.readEither6
+                                                                                                        @ GHC.Types.Int
+                                                                                                        (Text.ParserCombinators.ReadP.run
+                                                                                                           @ GHC.Types.Int
+                                                                                                           Parsing.$fMyReadLocus5
+                                                                                                           s) of wild {
+                                                                                                   []
+                                                                                                   -> Parsing.$fMyReadLocus4
+                                                                                                   : x ds
+                                                                                                   -> case ds of wild1 {
+                                                                                                        []
+                                                                                                        -> x
+                                                                                                        : ipv ipv1
+                                                                                                        -> Parsing.$fMyReadLocus3 } }) -}
+414e2b0ceb16cb1337d685fc3cac3a85
+  $fMyReadLocus3 :: GHC.Types.Int
+  {- Strictness: x -}
+d0152422baf452eb5b9620bb8331092a
+  $fMyReadLocus4 :: GHC.Types.Int
+  {- Strictness: x -}
+664340a03c14b71ea2dccd8283c9ee46
+  $fMyReadLocus5 :: Text.ParserCombinators.ReadP.P GHC.Types.Int
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} GHC.Read.$fReadInt3
+                                                                                                   GHC.Read.$fReadInt_$sconvertInt
+                                                                                                   Text.ParserCombinators.ReadPrec.minPrec
+                                                                                                   @ GHC.Types.Int
+                                                                                                   (Text.Read.readEither5
+                                                                                                      @ GHC.Types.Int)) -}
+f404e713014299faf6853e22776cccf6
+  $fMyReadLocus6 :: GHC.Base.String -> GHC.Types.Int
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} True True} Parsing.$fMyReadLocus7) -}
+80a66691b125c9caabe26c77e2337bb9
+  $fMyReadLocus7 :: GHC.Base.String -> GHC.Types.Int
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ (s :: GHC.Base.String) ->
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} case Text.Read.readEither6
+                                                                                                        @ GHC.Types.Int
+                                                                                                        (Text.ParserCombinators.ReadP.run
+                                                                                                           @ GHC.Types.Int
+                                                                                                           Parsing.$fMyReadLocus10
+                                                                                                           s) of wild {
+                                                                                                   []
+                                                                                                   -> Parsing.$fMyReadLocus9
+                                                                                                   : x ds
+                                                                                                   -> case ds of wild1 {
+                                                                                                        []
+                                                                                                        -> x
+                                                                                                        : ipv ipv1
+                                                                                                        -> Parsing.$fMyReadLocus8 } }) -}
+61e220dfff649c476aa669cc4fb0d8a5
+  $fMyReadLocus8 :: GHC.Types.Int
+  {- Strictness: x -}
+7e4dd4961b658523afc9aa144cad754d
+  $fMyReadLocus9 :: GHC.Types.Int
+  {- Strictness: x -}
+461e42ea6b6a98bc9433f5827101e698
   $fMyReadLocus_$cmyRead :: GHC.Base.String -> Types.Locus
-  {- Arity: 1, Strictness: <S,1*U> -}
-66d79346676cea780e2e08b8dd36f068
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: (\ (str :: GHC.Base.String) ->
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} True True} case {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead.h} True True} GHC.List.head
+                                                                                                                                                                                        @ GHC.Types.Char
+                                                                                                                                                                                        str of wild { GHC.Types.C# x ->
+                                                                                                let {
+                                                                                                  s :: [[GHC.Types.Char]]
+                                                                                                  = {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead.s} True True} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.splitOn} True False} ({__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.splitOn} False True} Data.List.Split.Internals.split
+                                                                                                                                                                                                                                                                                                                                                                                                            @ GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                                                                                                            ({__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.onSublist} True False} Parsing.$fMyReadLocus12))
+                                                                                                                                                                                                                                                                                                 str
+                                                                                                } in
+                                                                                                case x of wild1 {
+                                                                                                  DEFAULT
+                                                                                                  -> case GHC.Base.eqString
+                                                                                                            str
+                                                                                                            Parsing.$fMyReadLocus11 of wild2 {
+                                                                                                       GHC.Types.False
+                                                                                                       -> Types.CTfbs
+                                                                                                            (Types.Tfbs
+                                                                                                               (({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} Parsing.$fMyReadID1)
+                                                                                                                  (GHC.List.head
+                                                                                                                     @ [GHC.Types.Char]
+                                                                                                                     s))
+                                                                                                                 `cast`
+                                                                                                               (Sym (Types.N:ID[0]))
+                                                                                                               (({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} Parsing.$fMyReadLocus6)
+                                                                                                                  (GHC.List.$w!!
+                                                                                                                     @ [GHC.Types.Char]
+                                                                                                                     s
+                                                                                                                     1#))
+                                                                                                                 `cast`
+                                                                                                               (Sym (Types.N:Weight[0])))
+                                                                                                       GHC.Types.True
+                                                                                                       -> Types.Transposon }
+                                                                                                  'G'#
+                                                                                                  -> Types.CGene
+                                                                                                       (Types.Gene
+                                                                                                          (({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} Parsing.$fMyReadID1)
+                                                                                                             (case s of wild2 {
+                                                                                                                []
+                                                                                                                -> case GHC.List.badHead
+                                                                                                                   ret_ty GHC.Base.String
+                                                                                                                   of {}
+                                                                                                                : x1 ds1
+                                                                                                                -> case x1 of wild3 {
+                                                                                                                     []
+                                                                                                                     -> GHC.List.scanl2
+                                                                                                                          @ GHC.Types.Char
+                                                                                                                     : ds2 xs
+                                                                                                                     -> xs } }))
+                                                                                                            `cast`
+                                                                                                          (Sym (Types.N:ID[0]))
+                                                                                                          (({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} Parsing.$fMyReadLocus1)
+                                                                                                             (GHC.List.$w!!
+                                                                                                                @ [GHC.Types.Char]
+                                                                                                                s
+                                                                                                                1#))
+                                                                                                            `cast`
+                                                                                                          (Sym (Types.N:Thres[0]))
+                                                                                                          (({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} Parsing.$fMyReadGeneState_$cmyRead)
+                                                                                                             (GHC.List.$w!!
+                                                                                                                @ [GHC.Types.Char]
+                                                                                                                s
+                                                                                                                2#))) } }) -}
+5289a0b452dc713a90c1470b72bb280c
+  $fMyReadLocus_lvl3 ::
+    GHC.Types.Char -> GHC.Types.Char -> GHC.Types.Bool
+  {- Unfolding: ({__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.splitOn} False True} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.onSublist} False True} GHC.Classes.eqChar) -}
+b4aa992301abc012694fee7c72e70f99
   $fMyReadMap :: Parsing.MyRead Types.GeneStateTable
   DFunId
-  {- Arity: 1, Strictness: <L,1*U>, Inline: INLINE (sat-args=0),
+  {- Inline: INLINE (sat-args=0),
      Unfolding: InlineRule (0, False, True)
                 Parsing.$fMyReadMap_$cmyRead
                   `cast`
                 (Sym (Parsing.N:MyRead[0]) <Types.GeneStateTable>_N) -}
-4d22666036decb369d7e48bb05b62018
-  $fMyReadMap1 :: [GHC.Types.Int]
-  {- Unfolding: (GHC.Enum.eftInt 0# 9223372036854775807#) -}
-896c431eb2084a3aedc3dd41bf6987ae
-  $fMyReadMap2 ::
+dcf096aa3e102a0af4c221745105f1de
+  $fMyReadMap1 :: GHC.Types.Char -> GHC.Types.Bool
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: GHC.Types.Char) ->
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} case ds of wild { GHC.Types.C# x ->
+                                                                                                 case x of wild1 {
+                                                                                                   DEFAULT
+                                                                                                   -> GHC.Types.True
+                                                                                                   ' '#
+                                                                                                   -> GHC.Types.False } }) -}
+af6ae97336e528b4b533f0acf34dffd8
+  $fMyReadMap2 :: GHC.Types.Char -> Types.GeneState
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (x :: GHC.Types.Char) ->
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} Parsing.$fMyReadGeneState_$cmyRead)
+                                                                                                   (GHC.Base.$fApplicative[]_$cpure
+                                                                                                      @ GHC.Types.Char
+                                                                                                      x)) -}
+cfbfb45855eb10a12ea27e066173a8fe
+  $fMyReadMap3 :: [GHC.Types.Int]
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} Types.$fEnumID4
+                                                                                                   Parsing.$fMyReadMap4) -}
+5051342c2161914e3ba6602b8ee23557
+  $fMyReadMap4 :: GHC.Types.Int
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} Types.$fNumID1
+                                                                                                   Parsing.$fMyReadMap5) -}
+ff761a81f764df70f58b6978cfa547f7
+  $fMyReadMap5 :: GHC.Integer.Type.Integer
+  {- HasNoCafRefs, Unfolding: (0) -}
+2be1e156267382f5a72a64862c5faf9f
+  $fMyReadMap6 ::
     Data.Map.Base.Map Types.ID a1
     -> [(Types.ID, a1)] -> Data.Map.Base.Map Types.ID a1
   {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
-10273c4de6547b42de6056d96d5f3b05
+e082b5db284b72652bc4c29505db0443
   $fMyReadMap_$cmyRead :: GHC.Base.String -> Types.GeneStateTable
-  {- Arity: 1, Strictness: <L,1*U>,
-     Unfolding: (\ (x :: [GHC.Types.Char]) ->
-                 Parsing.$fMyReadMap_$sfromList
-                   @ Types.GeneState
-                   (GHC.List.zip
-                      @ Types.ID
-                      @ Types.GeneState
-                      Parsing.$fMyReadMap1 `cast` ([Sym (Types.N:ID[0])])_R
-                      (Parsing.$fMyReadMap_go x))) -}
-fb6bff1840bda7d4a8cbc0a62ff59989
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} True False} \ (x :: [GHC.Types.Char]) ->
+                                                                                                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} Parsing.$fMyReadMap_$sfromList
+                                                                                                                                                                                   @ Types.GeneState
+                                                                                                                                                                                   ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} GHC.List.zip
+                                                                                                                                                                                                                                                                                                                                                       @ Types.ID
+                                                                                                                                                                                                                                                                                                                                                       @ Types.GeneState
+                                                                                                                                                                                                                                                                                                                                                       Parsing.$fMyReadMap3
+                                                                                                                                                                                                                                                                                                                                                         `cast`
+                                                                                                                                                                                                                                                                                                                                                       ([Sym (Types.N:ID[0])])_R)
+                                                                                                                                                                                                                                                                      ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} GHC.Base.map
+                                                                                                                                                                                                                                                                                                                                                                                                                                          @ GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                                                                                                                                          @ Types.GeneState
+                                                                                                                                                                                                                                                                                                                                                                                                                                          Parsing.$fMyReadMap2)
+                                                                                                                                                                                                                                                                                                                                                         (({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} GHC.List.filter
+                                                                                                                                                                                                                                                                                                                                                                                                                                             @ GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                                                                                                                                             Parsing.$fMyReadMap1)
+                                                                                                                                                                                                                                                                                                                                                            x)))) -}
+9f7fc258f9f28e997e35579e3c9a70bc
   $fMyReadMap_$sfromList ::
     [(Types.ID, a)] -> Data.Map.Base.Map Types.ID a
   {- Arity: 1, Strictness: <S,1*U>,
@@ -239,13 +455,12 @@ fb6bff1840bda7d4a8cbc0a62ff59989
                              (Data.Map.Base.Tip @ Types.ID @ a) } }
                         : ipv ipv1
                         -> case ipv of wild3 { (,) ky ds3 ->
-                           case kx `cast` (Types.N:ID[0]) of wild4 { GHC.Types.I# x1 ->
-                           case ky `cast` (Types.N:ID[0]) of wild5 { GHC.Types.I# y ->
-                           case GHC.Prim.tagToEnum#
-                                  @ GHC.Types.Bool
-                                  (GHC.Prim.>=# x1 y) of wild6 {
+                           case Types.$fOrdID3
+                                  kx `cast` (Types.N:ID[0])
+                                  ky `cast` (Types.N:ID[0]) of wild4 {
                              GHC.Types.False
                              -> case x of x0 { DEFAULT ->
+                                case kx `cast` (Types.N:ID[0]) of nt { GHC.Types.I# ipv2 ->
                                 Parsing.$wpoly_go4
                                   @ a
                                   1#
@@ -253,96 +468,105 @@ fb6bff1840bda7d4a8cbc0a62ff59989
                                      @ Types.ID
                                      @ a
                                      1#
-                                     (GHC.Types.I# x1) `cast` (Sym (Types.N:ID[0]))
+                                     nt `cast` (Sym (Types.N:ID[0]))
                                      x0
                                      (Data.Map.Base.Tip @ Types.ID @ a)
                                      (Data.Map.Base.Tip @ Types.ID @ a))
-                                  wild2 }
+                                  wild2 } }
                              GHC.Types.True
                              -> case x of x0 { DEFAULT ->
-                                Parsing.$fMyReadMap2
+                                case kx `cast` (Types.N:ID[0]) of nt { GHC.Types.I# ipv2 ->
+                                Parsing.$fMyReadMap6
                                   @ a
                                   (Data.Map.Base.Bin
                                      @ Types.ID
                                      @ a
                                      1#
-                                     (GHC.Types.I# x1) `cast` (Sym (Types.N:ID[0]))
+                                     nt `cast` (Sym (Types.N:ID[0]))
                                      x0
                                      (Data.Map.Base.Tip @ Types.ID @ a)
                                      (Data.Map.Base.Tip @ Types.ID @ a))
-                                  wild2 } } } } } } } }) -}
-23a4d3b72242570db7b3494f9dad1f66
-  $fMyReadMap_go :: [GHC.Types.Char] -> [Types.GeneState]
-  {- Arity: 1, Strictness: <S,1*U> -}
-66d79346676cea780e2e08b8dd36f068
+                                  wild2 } } } } } } }) -}
+b4aa992301abc012694fee7c72e70f99
   $fMyReadThres :: Parsing.MyRead Types.Thres
   DFunId
-  {- Arity: 1, Strictness: <L,U>, Inline: INLINE (sat-args=0),
+  {- Inline: INLINE (sat-args=0),
      Unfolding: InlineRule (0, False, True)
                 Parsing.$fMyReadThres_$cmyRead
                   `cast`
                 (Sym (Parsing.N:MyRead[0]) <Types.Thres>_N) -}
-39f9da8d90f52f51f3fb13caeb81d0e7
+825693d37b2ac1e523a9e20240668dcf
   $fMyReadThres_$cmyRead :: GHC.Base.String -> Types.Thres
-  {- Arity: 1, Strictness: <L,U>,
-     Unfolding: InlineRule (0, True, True)
-                Parsing.$fMyReadID1
+  {- Unfolding: InlineRule (0, True, True)
+                Parsing.$fMyReadLocus1
                   `cast`
                 (<GHC.Base.String>_R ->_R Sym (Types.N:Thres[0])) -}
-66d79346676cea780e2e08b8dd36f068
+b4aa992301abc012694fee7c72e70f99
   $fMyReadWeight :: Parsing.MyRead Types.Weight
   DFunId
-  {- Arity: 1, Strictness: <L,U>, Inline: INLINE (sat-args=0),
+  {- Inline: INLINE (sat-args=0),
      Unfolding: InlineRule (0, False, True)
                 Parsing.$fMyReadWeight_$cmyRead
                   `cast`
                 (Sym (Parsing.N:MyRead[0]) <Types.Weight>_N) -}
-ed693e6d2c98fdc6bbc9da653f730118
+c1efba258e66d5fc0b64d00f52379a17
   $fMyReadWeight_$cmyRead :: GHC.Base.String -> Types.Weight
-  {- Arity: 1, Strictness: <L,U>,
-     Unfolding: InlineRule (0, True, True)
-                Parsing.$fMyReadID1
+  {- Unfolding: InlineRule (0, True, True)
+                Parsing.$fMyReadLocus6
                   `cast`
                 (<GHC.Base.String>_R ->_R Sym (Types.N:Weight[0])) -}
-66d79346676cea780e2e08b8dd36f068
+b4aa992301abc012694fee7c72e70f99
   $fMyRead[] :: Parsing.MyRead Types.Chromosome
   DFunId
-  {- Arity: 1, Strictness: <L,U>, Inline: INLINE (sat-args=0),
+  {- Inline: INLINE (sat-args=0),
      Unfolding: InlineRule (0, False, True)
                 Parsing.$fMyRead[]_$cmyRead
                   `cast`
                 (Sym (Parsing.N:MyRead[0]) <Types.Chromosome>_N) -}
-7b24760d182095d179e20342f24697fe
+b3da162f076a49f299728b869ca19048
   $fMyRead[]1 :: [GHC.Types.Char] -> [[GHC.Types.Char]]
-  {- Unfolding: (Data.List.Split.Internals.splitOn
-                   @ GHC.Types.Char
-                   GHC.Classes.$fEqChar
-                   Parsing.$fMyRead[]2) -}
-315263a0920182b71039a28e7b1ca446
-  $fMyRead[]2 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# ","#) -}
-c934c4f9e76df8c6221bf03b1a6a5a8b
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.splitOn} True False} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.splitOn} False True} Data.List.Split.Internals.split
+                                                                                                                                                                                                                                                                                                                       @ GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                       ({__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.onSublist} True False} Parsing.$fMyRead[]2)) -}
+71c5d3000347253caf1b3449976d29fa
+  $fMyRead[]2 :: Data.List.Split.Internals.Splitter GHC.Types.Char
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.splitOn} False True} case Data.List.Split.Internals.defaultSplitter
+                                                                                                                                                                                                                  @ GHC.Prim.Any of wild { Data.List.Split.Internals.Splitter ds ds1 ds2 ds3 ds4 ->
+                                                                                                                                                                                                           {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.dropDelims} True False} Data.List.Split.Internals.Splitter
+                                                                                                                                                                                                                                                                                                                          @ GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                          Parsing.$fMyRead[]3
+                                                                                                                                                                                                                                                                                                                            `cast`
+                                                                                                                                                                                                                                                                                                                          (Sym (Data.List.Split.Internals.N:Delimiter[0]
+                                                                                                                                                                                                                                                                                                                                    <GHC.Types.Char>_R))
+                                                                                                                                                                                                                                                                                                                          Data.List.Split.Internals.Drop
+                                                                                                                                                                                                                                                                                                                          ds2
+                                                                                                                                                                                                                                                                                                                          ds3
+                                                                                                                                                                                                                                                                                                                          ds4 }) -}
+766cdd35c42142309ffe70e32c25d6f4
+  $fMyRead[]3 :: [GHC.Types.Char -> GHC.Types.Bool]
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.splitOn} False True} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.onSublist} False True} GHC.Base.map
+                                                                                                                                                                                                                                                                                                                         @ GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                         @ (GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                            -> GHC.Types.Bool)
+                                                                                                                                                                                                                                                                                                                         Parsing.$fMyReadLocus_lvl3
+                                                                                                                                                                                                                                                                                                                         Parsing.$fMyRead[]4) -}
+3f68072f17b6bdff9a1a8998d81cc812
+  $fMyRead[]4 :: [GHC.Types.Char]
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} GHC.CString.unpackCString#
+                                                                                                   ","#) -}
+2cf7ece02ba8309dd26e183bd7989689
+  $fMyRead[]5 :: GHC.Base.String -> Types.Locus
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} Parsing.$fMyReadLocus_$cmyRead) -}
+ba415c15287b50d844a69fbf7f1ac2be
   $fMyRead[]_$cmyRead :: GHC.Base.String -> Types.Chromosome
-  {- Arity: 1, Strictness: <L,U>,
-     Unfolding: InlineRule (1, True, False)
-                (\ (x :: [GHC.Types.Char]) ->
-                 GHC.Base.build
-                   @ Types.Locus
-                   (\ @ b1
-                      (c :: Types.Locus -> b1 -> b1)[OneShot]
-                      (n :: b1)[OneShot] ->
-                    GHC.Base.foldr
-                      @ [GHC.Types.Char]
-                      @ b1
-                      (GHC.Base.mapFB
-                         @ Types.Locus
-                         @ b1
-                         @ [GHC.Types.Char]
-                         c
-                         Parsing.$fMyReadLocus_$cmyRead)
-                      n
-                      (Parsing.$fMyRead[]1 x))) -}
-af3e16990469639999cf6ec1c12ceb98
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} True False} \ (x :: [GHC.Types.Char]) ->
+                                                                                                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myRead} False True} GHC.Base.map
+                                                                                                                                                                                                                                                                    @ GHC.Base.String
+                                                                                                                                                                                                                                                                    @ Types.Locus
+                                                                                                                                                                                                                                                                    Parsing.$fMyRead[]5)
+                                                                                                                                                                                   (Parsing.$fMyRead[]1
+                                                                                                                                                                                      x)) -}
+29f07e6c1c85d39bdbf9a6272700102d
   $fMyShowAgent :: Parsing.MyShow Types.Agent
   DFunId
   {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
@@ -350,102 +574,163 @@ af3e16990469639999cf6ec1c12ceb98
                 Parsing.$fMyShowAgent_$cmyShow
                   `cast`
                 (Sym (Parsing.N:MyShow[0] <Types.Agent>_N)) -}
-cd1d82002c544cd57e9d205a6e5f6ee7
+9a8505fcacbdc032278f38e6c9f82563
   $fMyShowAgent1 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "NoAgent"#) -}
-915bbcd00ad00cb5ad6843aa22a96118
-  $fMyShowAgent2 :: [GHC.Types.Char]
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} False True} GHC.CString.unpackCString#
+                                                                                                   "NoAgent"#) -}
+b025a86ed3fb606040031570e808f0f0
+  $fMyShowAgent2 :: GHC.Types.Char
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# ' '#) -}
+69196655a43741598186de3e0e230a26
+  $fMyShowAgent3 :: (Types.ID, Types.GeneState) -> GHC.Base.String
+  {- Arity: 1, Strictness: <S(LS),1*U(A,1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (x :: (Types.ID, Types.GeneState)) ->
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} False True} ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} False True} Parsing.$fMyShowAgent_$cmyShow2)
+                                                                                                   (Data.Tuple.snd
+                                                                                                      @ Types.ID
+                                                                                                      @ Types.GeneState
+                                                                                                      x)) -}
+de11d8cd5df44c3a67f3f0231fef19a6
+  $fMyShowAgent4 :: GHC.Base.String
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} False True} case GHC.Show.$wshowSignedInt
+                                                                                                        0#
+                                                                                                        1#
+                                                                                                        (GHC.Types.[]
+                                                                                                           @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
+                                                                                                 GHC.Types.:
+                                                                                                   @ GHC.Types.Char
+                                                                                                   ww5
+                                                                                                   ww6 }) -}
+77912429174f1e6a5b52104370ddb0e9
+  $fMyShowAgent5 :: GHC.Base.String
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} False True} case GHC.Show.$wshowSignedInt
+                                                                                                        0#
+                                                                                                        0#
+                                                                                                        (GHC.Types.[]
+                                                                                                           @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
+                                                                                                 GHC.Types.:
+                                                                                                   @ GHC.Types.Char
+                                                                                                   ww5
+                                                                                                   ww6 }) -}
+b9423d2c778ce0dcc480e50254f9d7da
+  $fMyShowAgent6 :: [GHC.Types.Char]
   {- HasNoCafRefs,
      Unfolding: (GHC.Types.:
                    @ GHC.Types.Char
                    GHC.Show.shows4
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-531951bf9da44b632ce422b79796d39d
-  $fMyShowAgent3 :: GHC.Types.Char
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# ' '#) -}
-faa65c48d6cb6d4352a8b483c0f09ddf
+8fc7fd0d4e5a875aed0b10f89aebc227
   $fMyShowAgent_$cmyShow :: Types.Agent -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ (ds :: Types.Agent) ->
-                 case ds of wild {
-                   Types.Agent ipv ipv1
-                   -> GHC.Types.:
-                        @ GHC.Types.Char
-                        GHC.Show.shows7
-                        (GHC.Types.:
-                           @ GHC.Types.Char
-                           GHC.Show.shows6
-                           (case ipv of wild1 {
-                              [] -> case GHC.List.badHead ret_ty [GHC.Types.Char] of {}
-                              : x ds1
-                              -> GHC.Show.showLitString
-                                   (Parsing.$fMyShowAgent_go x)
-                                   (GHC.Types.:
-                                      @ GHC.Types.Char
-                                      GHC.Show.shows6
-                                      (GHC.Types.:
-                                         @ GHC.Types.Char
-                                         GHC.Show.shows5
-                                         (let {
-                                            ww2 :: [GHC.Types.Char]
-                                            = case Parsing.$fMyShowAgent_go10
-                                                     (GHC.Types.[] @ GHC.Types.Char)
-                                                     ipv1 of wild2 {
-                                                [] -> GHC.Types.[] @ GHC.Types.Char
-                                                : x1 xs
-                                                -> GHC.Types.:
-                                                     @ GHC.Types.Char
-                                                     x1
-                                                     (Data.OldList.prependToAll
-                                                        @ GHC.Types.Char
-                                                        Parsing.$fMyShowAgent3
-                                                        xs) }
-                                          } in
-                                          GHC.Show.$fShow(,)_$sgo
-                                            Parsing.$fMyShowAgent2
-                                            (\ (eta1 :: GHC.Base.String) ->
-                                             GHC.Show.shows_$cshowList1 ww2 eta1)
-                                            (GHC.Types.[] @ GHC.Show.ShowS)))) }))
-                   Types.NoAgent -> Parsing.$fMyShowAgent1 }) -}
-b8c5df7ab4bee1a3ac8e024b00d32f84
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} True True} case ds of wild {
+                                                                                                  Types.Agent ipv ipv1
+                                                                                                  -> GHC.Types.:
+                                                                                                       @ GHC.Types.Char
+                                                                                                       GHC.Show.shows7
+                                                                                                       (GHC.Types.:
+                                                                                                          @ GHC.Types.Char
+                                                                                                          GHC.Show.shows6
+                                                                                                          ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Types.genome} True False} case ipv of wild1 {
+                                                                                                                                                                                           []
+                                                                                                                                                                                           -> case GHC.List.badHead
+                                                                                                                                                                                              ret_ty [GHC.Types.Char]
+                                                                                                                                                                                              of {}
+                                                                                                                                                                                           : x ds1
+                                                                                                                                                                                           -> GHC.Show.showLitString
+                                                                                                                                                                                                (Parsing.$fMyShowAgent_go
+                                                                                                                                                                                                   x)
+                                                                                                                                                                                                (GHC.Types.:
+                                                                                                                                                                                                   @ GHC.Types.Char
+                                                                                                                                                                                                   GHC.Show.shows6
+                                                                                                                                                                                                   (GHC.Types.:
+                                                                                                                                                                                                      @ GHC.Types.Char
+                                                                                                                                                                                                      GHC.Show.shows5
+                                                                                                                                                                                                      (GHC.Show.$fShow(,)_$sgo
+                                                                                                                                                                                                         Parsing.$fMyShowAgent6
+                                                                                                                                                                                                         (let {
+                                                                                                                                                                                                            eta :: [GHC.Types.Char]
+                                                                                                                                                                                                            = ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} False True} Parsing.$fMyShowAgent_$cmyShow1)
+                                                                                                                                                                                                                ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Types.geneStateTable} True False} ipv1)
+                                                                                                                                                                                                          } in
+                                                                                                                                                                                                          \ (eta1 :: GHC.Base.String) ->
+                                                                                                                                                                                                          GHC.Show.shows_$cshowList1
+                                                                                                                                                                                                            eta
+                                                                                                                                                                                                            eta1)
+                                                                                                                                                                                                         (GHC.Types.[]
+                                                                                                                                                                                                            @ GHC.Show.ShowS)))) }))
+                                                                                                  Types.NoAgent
+                                                                                                  -> Parsing.$fMyShowAgent1 }) -}
+b45343d27c0f8711948bff24979749e2
+  $fMyShowAgent_$cmyShow1 :: Types.GeneStateTable -> GHC.Base.String
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} True False} \ (x :: Data.Map.Base.Map
+                                                                                                           Types.ID
+                                                                                                           Types.GeneState) ->
+                                                                                                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} False True} let {
+                                                                                                                                                                                   ds1 :: [GHC.Types.Char]
+                                                                                                                                                                                   = {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} False True} ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} False True} Parsing.$fMyShowAgent_$sconcatMap
+                                                                                                                                                                                                                                                                                                                                                        @ (Types.ID,
+                                                                                                                                                                                                                                                                                                                                                           Types.GeneState)
+                                                                                                                                                                                                                                                                                                                                                        @ GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                                                        Parsing.$fMyShowAgent3)
+                                                                                                                                                                                                                                                                       (Data.Map.Base.toAscList
+                                                                                                                                                                                                                                                                          @ Types.ID
+                                                                                                                                                                                                                                                                          @ Types.GeneState
+                                                                                                                                                                                                                                                                          x)
+                                                                                                                                                                                 } in
+                                                                                                                                                                                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} False True} case ds1 of wild {
+                                                                                                                                                                                                                                                                   []
+                                                                                                                                                                                                                                                                   -> GHC.Types.[]
+                                                                                                                                                                                                                                                                        @ GHC.Types.Char
+                                                                                                                                                                                                                                                                   : x1 xs
+                                                                                                                                                                                                                                                                   -> GHC.Types.:
+                                                                                                                                                                                                                                                                        @ GHC.Types.Char
+                                                                                                                                                                                                                                                                        x1
+                                                                                                                                                                                                                                                                        (Data.OldList.prependToAll
+                                                                                                                                                                                                                                                                           @ GHC.Types.Char
+                                                                                                                                                                                                                                                                           Parsing.$fMyShowAgent2
+                                                                                                                                                                                                                                                                           xs) }) -}
+18788d9d36bd8e326faa52b5bb68e707
+  $fMyShowAgent_$cmyShow2 :: Types.GeneState -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Types.GeneState) ->
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} True True} case ds
+                                                                                                       `cast`
+                                                                                                     (Types.N:GeneState[0]) of wild {
+                                                                                                  GHC.Types.False
+                                                                                                  -> Parsing.$fMyShowAgent5
+                                                                                                  GHC.Types.True
+                                                                                                  -> Parsing.$fMyShowAgent4 }) -}
+4bd89cff6a3621198f42dbb7712817ee
+  $fMyShowAgent_$sconcatMap :: (a -> [b]) -> [a] -> [b]
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,C(U)><S,1*U>,
+     Inline: INLINE (sat-args=2),
+     Unfolding: InlineRule (2, False, False)
+                (\ @ a @ b (f :: a -> [b]) (xs :: [a]) ->
+                 GHC.Base.build
+                   @ b
+                   (\ @ b1 (c :: b -> b1 -> b1)[OneShot] (n :: b1)[OneShot] ->
+                    GHC.Base.foldr
+                      @ a
+                      @ b1
+                      (\ (x :: a) (b2 :: b1)[OneShot] ->
+                       GHC.Base.foldr @ b @ b1 c b2 (f x))
+                      n
+                      xs)) -}
+629e3247283c8f2e867bad3afd74facc
   $fMyShowAgent_go :: [Types.Locus] -> [GHC.Types.Char]
   {- Arity: 1, Strictness: <S,1*U> -}
-ea600b6840d4eabe9e00bddd518bf379
-  $fMyShowAgent_go10 ::
-    [GHC.Types.Char]
-    -> Data.Map.Base.Map Types.ID Types.GeneState -> [GHC.Types.Char]
-  {- Arity: 2, Strictness: <L,1*U><S,1*U> -}
-af3e16990469639999cf6ec1c12ceb98
+29f07e6c1c85d39bdbf9a6272700102d
   $fMyShowGeneState :: Parsing.MyShow Types.GeneState
   DFunId
   {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
      Unfolding: InlineRule (0, False, True)
-                Parsing.$fMyShowGeneState_$cmyShow
+                Parsing.$fMyShowAgent_$cmyShow2
                   `cast`
                 (Sym (Parsing.N:MyShow[0] <Types.GeneState>_N)) -}
-390cc040c9b32baa728b8b3454221ffa
-  $fMyShowGeneState1 :: GHC.Base.String
-  {- Unfolding: (case GHC.Show.$wshowSignedInt
-                        0#
-                        1#
-                        (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
-                 GHC.Types.: @ GHC.Types.Char ww5 ww6 }) -}
-a8ca5346c2948455870dbfcbe77bc3cd
-  $fMyShowGeneState2 :: GHC.Base.String
-  {- Unfolding: (case GHC.Show.$wshowSignedInt
-                        0#
-                        0#
-                        (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
-                 GHC.Types.: @ GHC.Types.Char ww5 ww6 }) -}
-489396b210fa67bdaf1927c9680dfec4
-  $fMyShowGeneState_$cmyShow :: Types.GeneState -> GHC.Base.String
-  {- Arity: 1, Strictness: <S,1*U>,
-     Unfolding: InlineRule (1, True, False)
-                (\ (ds :: Types.GeneState) ->
-                 case ds `cast` (Types.N:GeneState[0]) of wild {
-                   GHC.Types.False -> Parsing.$fMyShowGeneState2
-                   GHC.Types.True -> Parsing.$fMyShowGeneState1 }) -}
-af3e16990469639999cf6ec1c12ceb98
+29f07e6c1c85d39bdbf9a6272700102d
   $fMyShowID :: Parsing.MyShow Types.ID
   DFunId
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m2,
@@ -454,14 +739,16 @@ af3e16990469639999cf6ec1c12ceb98
                 Parsing.$fMyShowID_$cmyShow
                   `cast`
                 (Sym (Parsing.N:MyShow[0] <Types.ID>_N)) -}
-3f704cea5bdf1a5774eeebfd647cf5d9
+1f38d8e577be35d05d03bb8136f6e33b
   $fMyShowID_$cmyShow :: Types.ID -> GHC.Base.String
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m2,
-     Unfolding: InlineRule (0, True, True)
-                GHC.Show.$fShowInt_$cshow
-                  `cast`
-                (Sym (Types.N:ID[0]) ->_R <GHC.Base.String>_R) -}
-af3e16990469639999cf6ec1c12ceb98
+     Unfolding: InlineRule (1, True, True)
+                (\ (ds :: Types.ID) ->
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} True True} GHC.Show.$fShowInt_$cshow
+                                                                                                  ds
+                                                                                                    `cast`
+                                                                                                  (Types.N:ID[0])) -}
+29f07e6c1c85d39bdbf9a6272700102d
   $fMyShowLocus :: Parsing.MyShow Types.Locus
   DFunId
   {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
@@ -469,90 +756,63 @@ af3e16990469639999cf6ec1c12ceb98
                 Parsing.$fMyShowLocus_$cmyShow
                   `cast`
                 (Sym (Parsing.N:MyShow[0] <Types.Locus>_N)) -}
-073b4ff96e9f17aa85bec348514e5931
+1ebdd1a7e900ce6bcc1c237b0d2cf353
   $fMyShowLocus1 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "T"#) -}
-99dccc93f34f73dc5d0ac4e9c77627f9
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} False True} GHC.CString.unpackCString#
+                                                                                                   "T"#) -}
+b6dac1cab6690d1873783769c2bcb38c
   $fMyShowLocus_$cmyShow :: Types.Locus -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ (ds :: Types.Locus) ->
-                 case ds of wild {
-                   Types.Transposon -> Parsing.$fMyShowLocus1
-                   Types.CGene ds1
-                   -> case ds1 of wild1 { Types.Gene i t gs ->
-                      GHC.CString.unpackAppendCString#
-                        "G"#
-                        (case i `cast` (Types.N:ID[0]) of ww2 { GHC.Types.I# ww3 ->
-                         case GHC.Show.$wshowSignedInt
-                                0#
-                                ww3
-                                (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
-                         GHC.Base.++
-                           @ GHC.Types.Char
-                           (GHC.Types.: @ GHC.Types.Char ww5 ww6)
-                           (GHC.CString.unpackAppendCString#
-                              ":"#
-                              (case t `cast` (Types.N:Thres[0]) of ww1 { GHC.Types.I# ww8 ->
-                               case GHC.Show.$wshowSignedInt
-                                      0#
-                                      ww8
-                                      (GHC.Types.[] @ GHC.Types.Char) of ww9 { (#,#) ww10 ww11 ->
-                               GHC.Base.++
-                                 @ GHC.Types.Char
-                                 (GHC.Types.: @ GHC.Types.Char ww10 ww11)
-                                 (GHC.CString.unpackAppendCString#
-                                    ":"#
-                                    (case gs `cast` (Types.N:GeneState[0]) of wild2 {
-                                       GHC.Types.False -> Parsing.$fMyShowGeneState2
-                                       GHC.Types.True -> Parsing.$fMyShowGeneState1 })) } })) } }) }
-                   Types.CTfbs ds1
-                   -> case ds1 of wild1 { Types.Tfbs i w ->
-                      case i `cast` (Types.N:ID[0]) of ww2 { GHC.Types.I# ww3 ->
-                      case GHC.Show.$wshowSignedInt
-                             0#
-                             ww3
-                             (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
-                      GHC.Base.++
-                        @ GHC.Types.Char
-                        (GHC.Types.: @ GHC.Types.Char ww5 ww6)
-                        (GHC.CString.unpackAppendCString#
-                           ":"#
-                           (case w `cast` (Types.N:Weight[0]) of ww1 { GHC.Types.I# ww8 ->
-                            case GHC.Show.$wshowSignedInt
-                                   0#
-                                   ww8
-                                   (GHC.Types.[] @ GHC.Types.Char) of ww9 { (#,#) ww10 ww11 ->
-                            GHC.Types.: @ GHC.Types.Char ww10 ww11 } })) } } } }) -}
-af3e16990469639999cf6ec1c12ceb98
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} True True} case ds of wild {
+                                                                                                  Types.Transposon
+                                                                                                  -> Parsing.$fMyShowLocus1
+                                                                                                  Types.CGene ds1
+                                                                                                  -> case ds1 of wild1 { Types.Gene i t gs ->
+                                                                                                     GHC.CString.unpackAppendCString#
+                                                                                                       "G"#
+                                                                                                       (GHC.Base.++
+                                                                                                          @ GHC.Types.Char
+                                                                                                          ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} True True} GHC.Show.$fShowInt_$cshow
+                                                                                                                                                                                            i `cast`
+                                                                                                                                                                                            (Types.N:ID[0]))
+                                                                                                          (GHC.CString.unpackAppendCString#
+                                                                                                             ":"#
+                                                                                                             (GHC.Base.++
+                                                                                                                @ GHC.Types.Char
+                                                                                                                ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} True True} GHC.Show.$fShowInt_$cshow
+                                                                                                                                                                                                  t `cast`
+                                                                                                                                                                                                  (Types.N:Thres[0]))
+                                                                                                                (GHC.CString.unpackAppendCString#
+                                                                                                                   ":"#
+                                                                                                                   ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} True True} case gs
+                                                                                                                                                                                                          `cast`
+                                                                                                                                                                                                        (Types.N:GeneState[0]) of wild2 {
+                                                                                                                                                                                                     GHC.Types.False
+                                                                                                                                                                                                     -> Parsing.$fMyShowAgent5
+                                                                                                                                                                                                     GHC.Types.True
+                                                                                                                                                                                                     -> Parsing.$fMyShowAgent4 }))))) }
+                                                                                                  Types.CTfbs ds1
+                                                                                                  -> case ds1 of wild1 { Types.Tfbs i w ->
+                                                                                                     GHC.Base.++
+                                                                                                       @ GHC.Types.Char
+                                                                                                       ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} True True} GHC.Show.$fShowInt_$cshow
+                                                                                                                                                                                         i `cast`
+                                                                                                                                                                                         (Types.N:ID[0]))
+                                                                                                       (GHC.CString.unpackAppendCString#
+                                                                                                          ":"#
+                                                                                                          ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} True True} GHC.Show.$fShowInt_$cshow
+                                                                                                                                                                                            w `cast`
+                                                                                                                                                                                            (Types.N:Weight[0]))) } }) -}
+29f07e6c1c85d39bdbf9a6272700102d
   $fMyShowMap :: Parsing.MyShow Types.GeneStateTable
   DFunId
-  {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
+  {- Inline: INLINE (sat-args=0),
      Unfolding: InlineRule (0, False, True)
-                Parsing.$fMyShowMap_$cmyShow
+                Parsing.$fMyShowAgent_$cmyShow1
                   `cast`
                 (Sym (Parsing.N:MyShow[0] <Types.GeneStateTable>_N)) -}
-17245d5a0d73a1c0d1edb0ce3b7ff12e
-  $fMyShowMap1 ::
-    Data.Map.Base.Map Types.ID Types.GeneState -> [GHC.Types.Char]
-  {- Arity: 1, Strictness: <S,1*U>,
-     Unfolding: (\ (x :: Data.Map.Base.Map Types.ID Types.GeneState) ->
-                 Parsing.$fMyShowAgent_go10 (GHC.Types.[] @ GHC.Types.Char) x) -}
-6590dd9a083e7a31897504b1b85449cf
-  $fMyShowMap_$cmyShow :: Types.GeneStateTable -> GHC.Base.String
-  {- Arity: 1, Strictness: <S,1*U>,
-     Unfolding: InlineRule (1, True, False)
-                (\ (x :: Data.Map.Base.Map Types.ID Types.GeneState) ->
-                 case Parsing.$fMyShowMap1 x of wild {
-                   [] -> GHC.Types.[] @ GHC.Types.Char
-                   : x1 xs
-                   -> GHC.Types.:
-                        @ GHC.Types.Char
-                        x1
-                        (Data.OldList.prependToAll
-                           @ GHC.Types.Char
-                           Parsing.$fMyShowAgent3
-                           xs) }) -}
-af3e16990469639999cf6ec1c12ceb98
+29f07e6c1c85d39bdbf9a6272700102d
   $fMyShowThres :: Parsing.MyShow Types.Thres
   DFunId
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m2,
@@ -561,14 +821,16 @@ af3e16990469639999cf6ec1c12ceb98
                 Parsing.$fMyShowThres_$cmyShow
                   `cast`
                 (Sym (Parsing.N:MyShow[0] <Types.Thres>_N)) -}
-7564cc03a606a2c85c869680a568874c
+8c529f421fcdc2f7a09b9e8ceeeab2cc
   $fMyShowThres_$cmyShow :: Types.Thres -> GHC.Base.String
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m2,
-     Unfolding: InlineRule (0, True, True)
-                GHC.Show.$fShowInt_$cshow
-                  `cast`
-                (Sym (Types.N:Thres[0]) ->_R <GHC.Base.String>_R) -}
-af3e16990469639999cf6ec1c12ceb98
+     Unfolding: InlineRule (1, True, True)
+                (\ (ds :: Types.Thres) ->
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} True True} GHC.Show.$fShowInt_$cshow
+                                                                                                  ds
+                                                                                                    `cast`
+                                                                                                  (Types.N:Thres[0])) -}
+29f07e6c1c85d39bdbf9a6272700102d
   $fMyShowWeight :: Parsing.MyShow Types.Weight
   DFunId
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m2,
@@ -577,14 +839,16 @@ af3e16990469639999cf6ec1c12ceb98
                 Parsing.$fMyShowWeight_$cmyShow
                   `cast`
                 (Sym (Parsing.N:MyShow[0] <Types.Weight>_N)) -}
-d4449f916f7d2924c55ee691e1727ae2
+1c65d16b042eee1a53953b1d6403b8b7
   $fMyShowWeight_$cmyShow :: Types.Weight -> GHC.Base.String
   {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(U)>m2,
-     Unfolding: InlineRule (0, True, True)
-                GHC.Show.$fShowInt_$cshow
-                  `cast`
-                (Sym (Types.N:Weight[0]) ->_R <GHC.Base.String>_R) -}
-af3e16990469639999cf6ec1c12ceb98
+     Unfolding: InlineRule (1, True, True)
+                (\ (ds :: Types.Weight) ->
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} True True} GHC.Show.$fShowInt_$cshow
+                                                                                                  ds
+                                                                                                    `cast`
+                                                                                                  (Types.N:Weight[0])) -}
+29f07e6c1c85d39bdbf9a6272700102d
   $fMyShow[] :: Parsing.MyShow Types.Chromosome
   DFunId
   {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
@@ -592,24 +856,33 @@ af3e16990469639999cf6ec1c12ceb98
                 Parsing.$fMyShow[]_$cmyShow
                   `cast`
                 (Sym (Parsing.N:MyShow[0] <Types.Chromosome>_N)) -}
-659b4e0c53f0849ed719ecbe579f704a
+f7b3eb078a86d2b640c28e48a13c69e2
+  $fMyShow[]1 :: [GHC.Types.Char]
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} False True} GHC.CString.unpackCString#
+                                                                                                   ","#) -}
+2e21c12be4efdd4ac3085ea67f5e2cd0
+  $fMyShow[]2 :: Types.Locus -> GHC.Base.String
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} False True} Parsing.$fMyShowLocus_$cmyShow) -}
+d56fc748c8100da68427d6855e4a61b4
   $fMyShow[]_$cmyShow :: Types.Chromosome -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ (loci :: Types.Chromosome) ->
-                 case GHC.Base.map
-                        @ Types.Locus
-                        @ [GHC.Types.Char]
-                        Parsing.$fMyShowLocus_$cmyShow
-                        loci of wild {
-                   [] -> GHC.Types.[] @ GHC.Types.Char
-                   : x xs1
-                   -> Data.OldList.intercalate_$spoly_go
-                        @ GHC.Types.Char
-                        x
-                        (Data.OldList.prependToAll
-                           @ [GHC.Types.Char]
-                           Parsing.$fMyRead[]2
-                           xs1) }) -}
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.myShow} True True} case GHC.Base.map
+                                                                                                       @ Types.Locus
+                                                                                                       @ [GHC.Types.Char]
+                                                                                                       Parsing.$fMyShow[]2
+                                                                                                       loci of wild {
+                                                                                                  []
+                                                                                                  -> GHC.Types.[]
+                                                                                                       @ GHC.Types.Char
+                                                                                                  : x xs1
+                                                                                                  -> Data.OldList.intercalate_$spoly_go
+                                                                                                       @ GHC.Types.Char
+                                                                                                       x
+                                                                                                       (Data.OldList.prependToAll
+                                                                                                          @ [GHC.Types.Char]
+                                                                                                          Parsing.$fMyShow[]1
+                                                                                                          xs1) }) -}
 302996b3e6a70a4be84cdf3fcbd557e2
   $tc'C:MyRead :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
@@ -673,55 +946,94 @@ ecc55bc0bf06b32d56b22956c81ba11f
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
                    "Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF"#) -}
-7c4ba03963211fdb781f9a12cb56199b
+e170eeb5073d8ab0725c4aa736e46072
   $w$sgo4 ::
     GHC.Prim.Int#
     -> a1
     -> Data.Map.Base.Map Types.ID a1
     -> Data.Map.Base.Map Types.ID a1
   {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
-68cd4f41d29431dfcdc6069777f9eb44
+fff7493a33dd4d48ec370fead57e0b68
   $wpoly_go4 ::
     GHC.Prim.Int#
     -> Data.Map.Base.Map Types.ID a
     -> [(Types.ID, a)]
     -> Data.Map.Base.Map Types.ID a
   {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
-66d79346676cea780e2e08b8dd36f068
+b4aa992301abc012694fee7c72e70f99
   class MyRead a where
     myRead :: GHC.Base.String -> a
     {-# MINIMAL myRead #-}
-af3e16990469639999cf6ec1c12ceb98
+29f07e6c1c85d39bdbf9a6272700102d
   class MyShow a where
     myShow :: a -> GHC.Base.String
     {-# MINIMAL myShow #-}
-ca7345f64f44f597a83f71f2caf7bf5c
+15d11c1caf00e62f7a5290f8e77612ad
   parseAgent :: [GHC.Types.Char] -> Types.Agent
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: (\ (ds :: [GHC.Types.Char]) ->
-                 case GHC.Base.eqString ds Parsing.$fMyShowAgent1 of wild {
-                   GHC.Types.False
-                   -> let {
-                        genome :: [Types.Locus]
-                        = GHC.Base.map
-                            @ [GHC.Types.Char]
-                            @ Types.Locus
-                            Parsing.$fMyReadLocus_$cmyRead
-                            (Parsing.$fMyRead[]1 ds)
-                      } in
-                      let {
-                        genome1 :: Types.Genome
-                        = GHC.Types.:
-                            @ Types.Chromosome
-                            genome
-                            (GHC.Types.[] @ Types.Chromosome)
-                      } in
-                      Types.Agent
-                        genome1
-                        (World.gSTFromGenome_go1
-                           (World.gSTFromGenome_go genome1)
-                           (Data.Map.Base.Tip @ Types.ID @ Types.GeneState))
-                   GHC.Types.True -> Types.NoAgent }) -}
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent} True True} case GHC.Base.eqString
+                                                                                                           ds
+                                                                                                           Parsing.parseAgent5 of wild {
+                                                                                                      GHC.Types.False
+                                                                                                      -> let {
+                                                                                                           genome :: Types.Genome
+                                                                                                           = {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent.genome} True False} GHC.Types.:
+                                                                                                                                                                                                          @ Types.Chromosome
+                                                                                                                                                                                                          (let {
+                                                                                                                                                                                                             loci :: [GHC.Base.String]
+                                                                                                                                                                                                             = {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent.loci} True True} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.splitOn} True False} ({__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.splitOn} False True} Data.List.Split.Internals.split
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @ GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ({__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.onSublist} True False} Parsing.parseAgent2))
+                                                                                                                                                                                                                                                                                                                                                                                                                   ds
+                                                                                                                                                                                                           } in
+                                                                                                                                                                                                           {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent.genome} False True} GHC.Base.map
+                                                                                                                                                                                                                                                                                                        @ [GHC.Types.Char]
+                                                                                                                                                                                                                                                                                                        @ Types.Locus
+                                                                                                                                                                                                                                                                                                        Parsing.parseAgent1
+                                                                                                                                                                                                                                                                                                        loci)
+                                                                                                                                                                                                          (GHC.Types.[]
+                                                                                                                                                                                                             @ Types.Chromosome)
+                                                                                                         } in
+                                                                                                         Types.Agent
+                                                                                                           genome
+                                                                                                           ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent.gst} True True} World.gSTFromGenome
+                                                                                                                                                                                                     genome)
+                                                                                                      GHC.Types.True
+                                                                                                      -> Types.NoAgent }) -}
+770c372e42eb8c58edae71c330303ef9
+  parseAgent1 :: GHC.Base.String -> Types.Locus
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent} False True} {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent.genome} False True} Parsing.$fMyReadLocus_$cmyRead) -}
+8e5ad9cc588eef3bea7085e28c0bfe12
+  parseAgent2 :: Data.List.Split.Internals.Splitter GHC.Types.Char
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent} False True} {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent.loci} False True} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.splitOn} False True} case Data.List.Split.Internals.defaultSplitter
+                                                                                                                                                                                                                                                                                                               @ GHC.Prim.Any of wild { Data.List.Split.Internals.Splitter ds ds1 ds2 ds3 ds4 ->
+                                                                                                                                                                                                                                                                                                        {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.dropDelims} True False} Data.List.Split.Internals.Splitter
+                                                                                                                                                                                                                                                                                                                                                                                                                       @ GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                                                                                                                       Parsing.parseAgent3
+                                                                                                                                                                                                                                                                                                                                                                                                                         `cast`
+                                                                                                                                                                                                                                                                                                                                                                                                                       (Sym (Data.List.Split.Internals.N:Delimiter[0]
+                                                                                                                                                                                                                                                                                                                                                                                                                                 <GHC.Types.Char>_R))
+                                                                                                                                                                                                                                                                                                                                                                                                                       Data.List.Split.Internals.Drop
+                                                                                                                                                                                                                                                                                                                                                                                                                       ds2
+                                                                                                                                                                                                                                                                                                                                                                                                                       ds3
+                                                                                                                                                                                                                                                                                                                                                                                                                       ds4 }) -}
+fe790e300c5bbf51efba0b2d16df8667
+  parseAgent3 :: [GHC.Types.Char -> GHC.Types.Bool]
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent} False True} {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent.loci} False True} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.splitOn} False True} {__scc {split-0.2.3.1@split-0.2.3.1-FWyXC6nhV0H3AfM8IzrEFk:Data.List.Split.Internals.onSublist} False True} GHC.Base.map
+                                                                                                                                                                                                                                                                                                                                                                                                                      @ GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                                                                                                                      @ (GHC.Types.Char
+                                                                                                                                                                                                                                                                                                                                                                                                                         -> GHC.Types.Bool)
+                                                                                                                                                                                                                                                                                                                                                                                                                      Parsing.$fMyReadLocus_lvl3
+                                                                                                                                                                                                                                                                                                                                                                                                                      Parsing.parseAgent4) -}
+12595dfb3a6d1b6a7b0ac7f9234e6f8c
+  parseAgent4 :: [GHC.Types.Char]
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent} False True} {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent.loci} False True} GHC.CString.unpackCString#
+                                                                                                                                                                                                ","#) -}
+823bbf0dc9e217b34e20a1f2b3bfea7c
+  parseAgent5 :: [GHC.Types.Char]
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Parsing.parseAgent} False True} GHC.CString.unpackCString#
+                                                                                                       "NoAgent"#) -}
 instance Parsing.MyRead [Types.GeneState]
   = Parsing.$fMyReadGeneState
 instance Parsing.MyRead [Types.ID] = Parsing.$fMyReadID
@@ -739,6 +1051,11 @@ instance Parsing.MyShow [Data.Map.Base.Map] = Parsing.$fMyShowMap
 instance Parsing.MyShow [Types.Thres] = Parsing.$fMyShowThres
 instance Parsing.MyShow [Types.Weight] = Parsing.$fMyShowWeight
 instance Parsing.MyShow [[]] = Parsing.$fMyShow[]
+"SPEC/Parsing concatMap @ [] _ _" [ALWAYS] forall @ a
+                                                  @ b
+                                                  ($dFoldable :: Data.Foldable.Foldable [])
+  Data.Foldable.concatMap @ [] @ a @ b $dFoldable
+  = Parsing.$fMyShowAgent_$sconcatMap @ a @ b
 "SPEC/Parsing fromList @ ID _" [ALWAYS] forall @ a
                                                ($dOrd :: GHC.Classes.Ord Types.ID)
   Data.Map.Strict.fromList @ Types.ID @ a $dOrd

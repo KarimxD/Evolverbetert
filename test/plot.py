@@ -22,8 +22,8 @@ def main(argv):
     doplot(inputfile)
 
 def doplot(f):
-    data = np.loadtxt(f, delimiter=' ', usecols=(0,1,2,3), skiprows = 2)
-    t, env, hammdist, gen_length = data.T
+    data = np.loadtxt(f, delimiter=' ', usecols=(0,1,2,3,4,5), skiprows = 1)
+    t, env, hammdist, otherhammdist, avghammdist, gen_length = data.T
 
     fig, ax1 = plt.subplots()
     ax1.plot(t,env,'b-')
@@ -31,10 +31,13 @@ def doplot(f):
     ax1.set_ylabel('env', color='b')
 
     ax2 = ax1.twinx()
+    ax2.plot(t,avghammdist, c='red', linestyle='dashed', alpha=0.5)
+    ax2.plot(t,otherhammdist, c='purple', linestyle='dotted')
     ax2.plot(t,hammdist, 'r')
     ax2.set_ylabel('hamm', color='r')
     ax2.set_ybound(0,1)
     ax1.set_ybound(0,12)
+
 
     plt.title(f)
     plt.plot((0, 350000), (3, 3), 'g-')

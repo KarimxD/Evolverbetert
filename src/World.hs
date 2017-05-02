@@ -9,6 +9,9 @@ import Control.Monad
 import qualified Data.List         as List
 import qualified Data.Map.Strict          as Map
 import           Data.Array.IArray
+import Data.Foldable as F (foldr')
+import Data.Maybe (isJust, isNothing, mapMaybe)
+
 import           Misc
 import qualified Parameters        as P
 import MyRandom
@@ -17,7 +20,6 @@ import Types
 import System.Random.Shuffle (shuffle')
 import System.Random (getStdGen)
 import Control.Monad.State (state)
-import Data.Maybe (mapMaybe)
 import           Data.List.Split     (splitOn)
 
 
@@ -93,10 +95,8 @@ updateLoc a _ loc = (a, loc)
 
 -- | Check whether a locus is a Gene
 isGene, isTfbs :: Locus -> Bool
-isGene (CGene _) = True
-isGene _         = False
-isTfbs (CTfbs _) = True
-isTfbs _         = False
+isGene = isJust . getGene
+isTfbs = isJust . getTfbs
 
 -- | Returns Just Gene if Locus is a Gene else Nothing
 getGene :: Locus -> Maybe Gene
@@ -136,8 +136,8 @@ gSTFromGenome :: Genome -> GeneStateTable
 gSTFromGenome = makeGST . reduceToGenes --makeGst Map.empty $ reduceToGenes genes
     where
     makeGST :: [Gene] -> GeneStateTable
-    makeGST = List.foldl'
-        (\acc x -> Map.insertWith max (iD x) (genSt x) acc)
+    makeGST = F.foldr'
+        (\ !x !acc -> Map.insertWith max (iD x) (genSt x) acc)
         Map.empty
 
 -- | Reduce a genome to a list of its transcription factor binding sites

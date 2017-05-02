@@ -1,13 +1,13 @@
 
 ==================== FINAL INTERFACE ====================
-2017-05-01 15:14:53.685726 UTC
+2017-05-02 08:28:14.694504 UTC
 
-interface Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Mutations 8002
-  interface hash: ba681b6f8d92a3583c033aada8c6192c
-  ABI hash: a6cc818de23f6dd599ccc739e3c76bd1
-  export-list hash: abb0dea61ea03ef57e98d0edb44e921a
-  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
-  flag hash: ab396f11155bd696ab63895436e6f1df
+interface Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Mutations [hpc] 8002
+  interface hash: 9646c644a21288e6926e09047786efec
+  ABI hash: 4f24482d924ed7731ffffdcdbe41f518
+  export-list hash: 34643337f6a8d0bae52b1537e30740f5
+  orphan hash: eff3823c214c88bde40d44932e61b8f7
+  flag hash: 566c261facb1547c57528108f6948d9c
   sig of: Nothing
   used TH splices: False
   where
@@ -44,50 +44,50 @@ family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-IY6HiWu00vQLARukQW3
                          containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
                          primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
-import  -/  Misc 26966a5460f11b18001e088f70cf76ac
-  exports: 28ae6ccada868e7efb3c96f7ae6d68f9
-  maybeCh b7e06c2b1d262fd0b4aef1f7150dcfb3
-  repeatCollect a0b5a8ba5bec036d177f04f5a573fe5e
-import  -/  MyRandom 6dee9bd9efb866e95f63ee556ef06dbe
-  exports: ac39067651296e54e6af2d56bdaa576b
-  Rand 06a931c974819790dbc40b2dccffa196
-  getBool 9b8cc6d67d9cde7e83cb4d8883224863
-  getDouble 4584580bb6279fc885c128afdd8c35df
-  getRange bc5d1e4299975812df90bffc86867575
-import  -/  Parameters 60ff55bcb82c2c83af83a8d2acb246b2
+import  -/  Misc 2a73154b77cca82acd707da299a4eae7
+  exports: 6e476ec0cb13f7693c20e9797b9ba3fd
+  maybeCh 89bd4b18e9943e3fdd7296ef77a24437
+  repeatCollect d118d187e2d0ee1d44043e2f82a7f251
+import  -/  MyRandom 0dcc6c91c6e70d06c08b5b82a04f1337
+  exports: 7821f15d6cc2cc02e9e8abba923ea43b
+  Rand 0b4ec93ad64459693414d10d5fef2098
+  getBool 785f01b937b6781166fcdd69af059cbd
+  getDouble 612c32438a8ddd95508bbe0c732fad78
+  getRange bf86d5d1dcbef991a4fc47a8b9797b1f
+import  -/  Parameters 03aa3ef78a378dc6bdbf28d3e0f800f1
   exports: fea0ab185fab0b15ba191f9d3ea960f0
   Prob 3bbcc3c1c0cc1ac7688633422406105c
-  maxThres 070125156499cd32e01cfe8969701866
-  minThres 1a19d768572f7ec4c8adf7fe42721496
-  nrGeneTypes' e011fbf7decacd58a182c66cc18ab0b2
-  pGenDel 9fec5245d728028f81b36d9e7a2637ad
-  pGenDup f65c68082265fbd379869cae77d02d4d
-  pGenThresCh 61960a492bce1c33246c445966f15fc7
-  pTfbsDel 9bd253951e18d142559115a3e09a9295
-  pTfbsDup d32465ee37cb419f75ba7716c0e65686
-  pTfbsInnov eeda2f961f7e18989670a4f0f72bd0f0
-  pTfbsPrefCh e3cb89c09e08cae7add432bad1d93907
-  pTfbsWtCh 2ac2788d80b4de1c8077782b4d485f99
-import  -/  Types 553fe5882bac7964d9e18ed5fc1899e3
+  maxThres facfa0cb78148d75e4a0cd2fcce8d21e
+  minThres 82676fc9c8eb6085dc8d5221afdb5c2f
+  nrGeneTypes' 8780f97d6be39bdfa67a5f4114fd994f
+  pGenDel 6b1a2657b01f84e5a044b0d15e0b04c7
+  pGenDup 3b2a85bc10d444993607ac46df614231
+  pGenThresCh edb4a725fe16d83f563920f8b1461ee8
+  pTfbsDel b098ab9c11ff03d4a9b04642228fb605
+  pTfbsDup ed341fff5a698c99db1eab1cf1e67f2c
+  pTfbsInnov 46d3b456bda01d8e0b2055ec551dee02
+  pTfbsPrefCh f47ccb32d074d8439f1fd00b506e7aae
+  pTfbsWtCh 53c9a0d58b8fa8c26be3621b6bde6fd9
+import  -/  Types 32978543d3e5942c0fca1d899b402377
   exports: f2d3892cae9faa75e4d9e5ce4ff3401f
-  Agent 60b09a4470e22147e56c42e0035f87fe
-  Agent 4db872eec646ad15f031961699453d7d
-  CGene ea527b21dbbed4eaf4515b5bd6300e17
-  CTfbs 6f551280d2a6113da1a228f358db5137
-  Chromosome 24cfb6cfcc1852ed37afecdf0ad745c4
-  Gene f6a3f11ab63a627039089add273149ba
-  Gene db7e187ff2495a3aa6d4abf4d6c779bf
-  ID 7e0b9a9dfd2784dbee8f381e1c0e5170
-  ID 16d6e25ed95d1e87249ca076165ebe74
-  Locus 657e65e0e08e728d8f24c605538f3349
-  NoAgent 339da968cef368d0f2975264de06a36a
-  Tfbs 66713721bbe5cab4288d866c04987130
-  Tfbs 9347ef28f2413ea8f008f31ac5268aa5
-import  -/  World fae719142ff1d0cc47926353810ce652
-  exports: 1e87020408db611578f66aeb540278f6
-  gSTFromGenome 6e4d0dddfad141c74fcff0aea3d82327
-  groupGeneTfbs 575727ede210e68aa4837b31459ad867
-  reduceToTfbss 221a1fe1825d9ddd9986fec2f6b4572d
+  Agent 6e70c078bbe4ade34d62bafca45b69c1
+  Agent 38df965694c57ea8a99df285579eb778
+  CGene 21c05e9ab2bff6a8a7578acd0fe8c328
+  CTfbs 7420e066f811d73e6ba289e5f4e3627e
+  Chromosome b0226af39439d913341efe44e43bfe94
+  Gene 1a54626e2985fb35d77d52576fd30ef5
+  Gene a072f6d238ac5e449aeaa2a33683da36
+  ID 4b20d6d0265267d2f650e3a662978c2b
+  ID 11cf07ccdff9acbf576dc2c8351e445c
+  Locus 3a1ffa0ff8e7c5056897e544d9829245
+  NoAgent eb2f5928cf741a34cae5c8a97231993d
+  Tfbs 2ae56c392d1e2582f48466147b66b169
+  Tfbs 1dea3bc58315922227e05d4377f1eea5
+import  -/  World b68ee2aa83d202441effdbc7ccdf8d84
+  exports: b3b8d7f652ad50a1ed48dfa408cd2db9
+  gSTFromGenome ddd02c5b25600a85eb4abd1b649d2599
+  groupGeneTfbs f0dacebfc5dcb096d7639d5a4baeddda
+  reduceToTfbss f800a3b2e969aba9d9f6add26ca5ced2
 import  -/  base-4.9.1.0:Control.Monad a6784c5dab0d75c63dabec5a37843f98
 import  -/  base-4.9.1.0:Data.Foldable 3e0b6967a1da89945d0e2d47266337a2
 import  -/  base-4.9.1.0:Data.Functor 5ab1dc703df5b482e77efb697833ca3c
@@ -100,6 +100,316 @@ import  -/  base-4.9.1.0:GHC.Num 00bfaa7b2f9d6084913c0697a8a49ec8
 import  -/  base-4.9.1.0:GHC.Real 82e4e59051a13dba1da63e1e970a69e6
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
 import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
+7fec0aae0cace03f7e99b52ff1cf44ac
+  $s$fApplicativeStateT ::
+    GHC.Base.Applicative
+      (Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity)
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun: @ s.
+                  @ (Control.Monad.Trans.State.Strict.StateT
+                       s Data.Functor.Identity.Identity)
+                  (Mutations.$s$fApplicativeStateT_$s$fApplicativeStateT_$cp1Applicative
+                     @ s)
+                  (Mutations.$s$fApplicativeStateT_$s$fApplicativeStateT_$cpure @ s)
+                  (Mutations.$s$fApplicativeStateT_$s$fApplicativeStateT_$c<*> @ s)
+                  (Control.Monad.Trans.State.Strict.$fApplicativeStateT_$c*>
+                     @ Data.Functor.Identity.Identity
+                     @ s
+                     Mutations.$s$fApplicativeStateT_$dFunctor
+                     Data.Functor.Identity.$fMonadIdentity)
+                  (Control.Monad.Trans.State.Strict.$fApplicativeStateT_$c<*
+                     @ Data.Functor.Identity.Identity
+                     @ s
+                     Mutations.$s$fApplicativeStateT_$dFunctor
+                     Data.Functor.Identity.$fMonadIdentity) -}
+2bcc75dcf027da9835668dc214a3cb17
+  $s$fApplicativeStateT_$dFunctor ::
+    GHC.Base.Functor Data.Functor.Identity.Identity
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                Data.Functor.Identity.$fFunctorIdentity -}
+2750c9bd67d85f5775f954267d302b32
+  $s$fApplicativeStateT_$s$fApplicativeStateT_$c<*> ::
+    Control.Monad.Trans.State.Strict.StateT
+      s Data.Functor.Identity.Identity (a -> b)
+    -> Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity a
+    -> Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity b
+  {- Arity: 3, HasNoCafRefs,
+     Strictness: <C(S),1*C1(U(1*C1(U),U))><C(S),1*C1(U(U,U))><L,U>m,
+     Inline: INLINE (sat-args=2),
+     Unfolding: InlineRule (2, False, False)
+                (\ @ s
+                   @ a
+                   @ b
+                   (ds :: Control.Monad.Trans.State.Strict.StateT
+                            s Data.Functor.Identity.Identity (a -> b))
+                   (ds1 :: Control.Monad.Trans.State.Strict.StateT
+                             s Data.Functor.Identity.Identity a) ->
+                 GHC.Base.$
+                   @ 'GHC.Types.PtrRepLifted
+                   @ (s -> Data.Functor.Identity.Identity (b, s))
+                   @ (Control.Monad.Trans.State.Strict.StateT
+                        s Data.Functor.Identity.Identity b)
+                   (\ (tpl :: s -> Data.Functor.Identity.Identity (b, s)) -> tpl)
+                     `cast`
+                   (<s -> Data.Functor.Identity.Identity (b, s)>_R
+                    ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                                  <s>_N <Data.Functor.Identity.Identity>_R <b>_N))
+                   (\ (s1 :: s) ->
+                    Data.Functor.Identity.$fMonadIdentity_$c>>=
+                      @ (a -> b, s)
+                      @ (b, s)
+                      (ds
+                         `cast`
+                       (Control.Monad.Trans.State.Strict.N:StateT[0]
+                            <s>_N <Data.Functor.Identity.Identity>_R <a -> b>_N)
+                         s1)
+                      (\ (ds2 :: (a -> b, s))[OneShot] ->
+                       case ds2 of wild { (,) f s' ->
+                       Data.Functor.Identity.$fMonadIdentity_$c>>=
+                         @ (a, s)
+                         @ (b, s)
+                         (ds1
+                            `cast`
+                          (Control.Monad.Trans.State.Strict.N:StateT[0]
+                               <s>_N <Data.Functor.Identity.Identity>_R <a>_N)
+                            s')
+                         (\ (ds3 :: (a, s))[OneShot] ->
+                          case ds3 of wild1 { (,) x s'' ->
+                          Data.Functor.Identity.$fApplicativeIdentity_$cpure
+                            @ (b, s)
+                            (f x, s'') }) }))) -}
+dc6bea3ab4703a3eb7796e1c442b6805
+  $s$fApplicativeStateT_$s$fApplicativeStateT_$cp1Applicative ::
+    GHC.Base.Functor
+      (Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity)
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                Mutations.$s$fApplicativeStateT_$s$fFunctorStateT -}
+dd32abec61006963348a0802f92dad63
+  $s$fApplicativeStateT_$s$fApplicativeStateT_$cpure ::
+    a
+    -> Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity a
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U><L,U>m,
+     Inline: INLINE (sat-args=1),
+     Unfolding: InlineRule (1, False, False)
+                (\ @ s @ a (a1 :: a) ->
+                 GHC.Base.$
+                   @ 'GHC.Types.PtrRepLifted
+                   @ (s -> Data.Functor.Identity.Identity (a, s))
+                   @ (Control.Monad.Trans.State.Strict.StateT
+                        s Data.Functor.Identity.Identity a)
+                   (\ (tpl :: s -> Data.Functor.Identity.Identity (a, s)) -> tpl)
+                     `cast`
+                   (<s -> Data.Functor.Identity.Identity (a, s)>_R
+                    ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                                  <s>_N <Data.Functor.Identity.Identity>_R <a>_N))
+                   (\ (s1 :: s) ->
+                    Data.Functor.Identity.$fApplicativeIdentity_$cpure
+                      @ (a, s)
+                      (a1, s1))) -}
+fb2c5ba344bb93c9ff7e2a049b906b3c
+  $s$fApplicativeStateT_$s$fFunctorStateT ::
+    GHC.Base.Functor
+      (Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity)
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun: @ s.
+                  @ (Control.Monad.Trans.State.Strict.StateT
+                       s Data.Functor.Identity.Identity)
+                  (Mutations.$s$fApplicativeStateT_$s$fFunctorStateT_$cfmap @ s)
+                  (Control.Monad.Trans.State.Strict.$fFunctorStateT_$c<$
+                     @ Data.Functor.Identity.Identity
+                     @ s
+                     Data.Functor.Identity.$fFunctorIdentity) -}
+6cacc671bdc149083264281798628634
+  $s$fApplicativeStateT_$s$fFunctorStateT_$cfmap ::
+    (a -> b)
+    -> Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity a
+    -> Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity b
+  {- Arity: 3, HasNoCafRefs,
+     Strictness: <L,1*C1(U)><C(S),1*C1(U(U,U))><L,U>m,
+     Inline: INLINE (sat-args=2),
+     Unfolding: InlineRule (2, False, False)
+                (\ @ s
+                   @ a
+                   @ b
+                   (f :: a -> b)
+                   (m1 :: Control.Monad.Trans.State.Strict.StateT
+                            s Data.Functor.Identity.Identity a) ->
+                 GHC.Base.$
+                   @ 'GHC.Types.PtrRepLifted
+                   @ (s -> Data.Functor.Identity.Identity (b, s))
+                   @ (Control.Monad.Trans.State.Strict.StateT
+                        s Data.Functor.Identity.Identity b)
+                   (\ (tpl :: s -> Data.Functor.Identity.Identity (b, s)) -> tpl)
+                     `cast`
+                   (<s -> Data.Functor.Identity.Identity (b, s)>_R
+                    ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                                  <s>_N <Data.Functor.Identity.Identity>_R <b>_N))
+                   (\ (s1 :: s) ->
+                    GHC.Base.$
+                      @ 'GHC.Types.PtrRepLifted
+                      @ (Data.Functor.Identity.Identity (a, s))
+                      @ (Data.Functor.Identity.Identity (b, s))
+                      (Data.Functor.Identity.$fFunctorIdentity_$cfmap
+                         @ (a, s)
+                         @ (b, s)
+                         (\ (ds :: (a, s)) -> case ds of wild { (,) a1 s' -> (f a1, s') }))
+                      (Control.Monad.Trans.State.Strict.runStateT
+                         @ s
+                         @ Data.Functor.Identity.Identity
+                         @ a
+                         m1
+                         s1))) -}
+d0fa82990c39f4f7c7da2ef794493019
+  $s$fMonadStateT ::
+    GHC.Base.Monad
+      (Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity)
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun: @ s.
+                  @ (Control.Monad.Trans.State.Strict.StateT
+                       s Data.Functor.Identity.Identity)
+                  (Mutations.$s$fMonadStateT_$s$fMonadStateT_$cp1Monad @ s)
+                  (Mutations.$s$fMonadStateT_$s$fMonadStateT_$c>>= @ s)
+                  (Mutations.$s$fMonadStateT_$s$fMonadStateT_$c>> @ s)
+                  (Control.Monad.Trans.State.Strict.$fMonadStateT_$creturn
+                     @ Data.Functor.Identity.Identity
+                     @ s
+                     Data.Functor.Identity.$fMonadIdentity)
+                  (Mutations.$s$fMonadStateT_$s$fMonadStateT_$cfail @ s) -}
+2513b9eb3c069bcbe3906e2952a6bda6
+  $s$fMonadStateT_$s$fMonadStateT_$c>> ::
+    Control.Monad.Trans.State.Strict.StateT
+      s Data.Functor.Identity.Identity a
+    -> Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity b
+    -> Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity b
+  {- Arity: 3, HasNoCafRefs,
+     Strictness: <C(S),1*C1(U(A,U))><C(S),1*C1(U(U,U))><L,U>,
+     Inline: INLINE (sat-args=2),
+     Unfolding: InlineRule (2, False, False)
+                (\ @ s
+                   @ a
+                   @ b
+                   (m1 :: Control.Monad.Trans.State.Strict.StateT
+                            s Data.Functor.Identity.Identity a)
+                   (k :: Control.Monad.Trans.State.Strict.StateT
+                           s Data.Functor.Identity.Identity b) ->
+                 GHC.Base.$
+                   @ 'GHC.Types.PtrRepLifted
+                   @ (s -> Data.Functor.Identity.Identity (b, s))
+                   @ (Control.Monad.Trans.State.Strict.StateT
+                        s Data.Functor.Identity.Identity b)
+                   (\ (tpl :: s -> Data.Functor.Identity.Identity (b, s)) -> tpl)
+                     `cast`
+                   (<s -> Data.Functor.Identity.Identity (b, s)>_R
+                    ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                                  <s>_N <Data.Functor.Identity.Identity>_R <b>_N))
+                   (\ (s1 :: s) ->
+                    Data.Functor.Identity.$fMonadIdentity_$c>>=
+                      @ (a, s)
+                      @ (b, s)
+                      (Control.Monad.Trans.State.Strict.runStateT
+                         @ s
+                         @ Data.Functor.Identity.Identity
+                         @ a
+                         m1
+                         s1)
+                      (\ (ds :: (a, s))[OneShot] ->
+                       case ds of wild { (,) a1 s' ->
+                       Control.Monad.Trans.State.Strict.runStateT
+                         @ s
+                         @ Data.Functor.Identity.Identity
+                         @ b
+                         k
+                         s' }))) -}
+f5bfcfe622a9c0c3189c993f807f6c7e
+  $s$fMonadStateT_$s$fMonadStateT_$c>>= ::
+    Control.Monad.Trans.State.Strict.StateT
+      s Data.Functor.Identity.Identity a
+    -> (a
+        -> Control.Monad.Trans.State.Strict.StateT
+             s Data.Functor.Identity.Identity b)
+    -> Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity b
+  {- Arity: 3, HasNoCafRefs,
+     Strictness: <C(S),1*C1(U(U,U))><C(C(S)),1*C1(C1(U(U,U)))><L,U>,
+     Inline: INLINE (sat-args=2),
+     Unfolding: InlineRule (2, False, False)
+                (\ @ s
+                   @ a
+                   @ b
+                   (m1 :: Control.Monad.Trans.State.Strict.StateT
+                            s Data.Functor.Identity.Identity a)
+                   (k :: a
+                         -> Control.Monad.Trans.State.Strict.StateT
+                              s Data.Functor.Identity.Identity b) ->
+                 GHC.Base.$
+                   @ 'GHC.Types.PtrRepLifted
+                   @ (s -> Data.Functor.Identity.Identity (b, s))
+                   @ (Control.Monad.Trans.State.Strict.StateT
+                        s Data.Functor.Identity.Identity b)
+                   (\ (tpl :: s -> Data.Functor.Identity.Identity (b, s)) -> tpl)
+                     `cast`
+                   (<s -> Data.Functor.Identity.Identity (b, s)>_R
+                    ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                                  <s>_N <Data.Functor.Identity.Identity>_R <b>_N))
+                   (\ (s1 :: s) ->
+                    Data.Functor.Identity.$fMonadIdentity_$c>>=
+                      @ (a, s)
+                      @ (b, s)
+                      (Control.Monad.Trans.State.Strict.runStateT
+                         @ s
+                         @ Data.Functor.Identity.Identity
+                         @ a
+                         m1
+                         s1)
+                      (\ (ds :: (a, s))[OneShot] ->
+                       case ds of wild { (,) a1 s' ->
+                       Control.Monad.Trans.State.Strict.runStateT
+                         @ s
+                         @ Data.Functor.Identity.Identity
+                         @ b
+                         (k a1)
+                         s' }))) -}
+17c2fd80007fad270cf865907cce456d
+  $s$fMonadStateT_$s$fMonadStateT_$cfail ::
+    GHC.Base.String
+    -> Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity a
+  {- Arity: 2, Strictness: <B,U><B,A>x, Inline: INLINE (sat-args=1),
+     Unfolding: InlineRule (1, False, False)
+                (\ @ s @ a (str :: GHC.Base.String) ->
+                 GHC.Base.$
+                   @ 'GHC.Types.PtrRepLifted
+                   @ (s -> Data.Functor.Identity.Identity (a, s))
+                   @ (Control.Monad.Trans.State.Strict.StateT
+                        s Data.Functor.Identity.Identity a)
+                   (\ (tpl :: s -> Data.Functor.Identity.Identity (a, s)) -> tpl)
+                     `cast`
+                   (<s -> Data.Functor.Identity.Identity (a, s)>_R
+                    ->_R Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                                  <s>_N <Data.Functor.Identity.Identity>_R <a>_N))
+                   (\ (ds :: s) ->
+                    Data.Functor.Identity.$fMonadIdentity_$s$dmfail @ (a, s) str)) -}
+2d33027fdfb59bfca3ef2d35a7bf0312
+  $s$fMonadStateT_$s$fMonadStateT_$cp1Monad ::
+    GHC.Base.Applicative
+      (Control.Monad.Trans.State.Strict.StateT
+         s Data.Functor.Identity.Identity)
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                Mutations.$s$fApplicativeStateT -}
 fb73bfccd6a5f00d2afe151da982c87a
   $s^1 :: Parameters.Prob
   {- Strictness: x -}
@@ -148,59 +458,61 @@ f4a178101c480cec99003064ce2989db
   $wf ::
     GHC.Prim.Double# -> GHC.Integer.Type.Integer -> GHC.Prim.Double#
   {- Arity: 2, Strictness: <L,U><S,U>, Inline: [0] -}
-e2dd087fb7799b2ded1dc8d8a4f22d8e
+5f9012004d6fc73433095d57c81e5c18
+  dupChr :: Types.Chromosome -> MyRandom.Rand Types.Chromosome
+6e6b0f307f92d76b9ff4d623d9bef0e7
   mutAg :: Types.Agent -> MyRandom.Rand Types.Agent
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ (ds :: Types.Agent) ->
-                 case ds of wild {
-                   Types.Agent genome gst
-                   -> let {
-                        m2 :: Control.Monad.Trans.State.Strict.StateT
-                                System.Random.Mersenne.Pure64.Internal.PureMT
-                                Data.Functor.Identity.Identity
-                                [Types.Chromosome]
-                        = Mutations.mutAg_go genome
-                      } in
-                      (\ (s1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
-                       case (m2
-                               `cast`
-                             (Control.Monad.Trans.State.Strict.N:StateT[0]
-                                  <System.Random.Mersenne.Pure64.Internal.PureMT>_N
-                                  <Data.Functor.Identity.Identity>_R
-                                  <[Types.Chromosome]>_N)
-                               s1)
-                              `cast`
-                            (Data.Functor.Identity.N:Identity[0]
-                                 <([Types.Chromosome],
-                                   System.Random.Mersenne.Pure64.Internal.PureMT)>_R) of wild1 { (,) a1 s' ->
-                       (Types.Agent
-                          a1
-                          (World.gSTFromGenome_go1
-                             (World.gSTFromGenome_go a1)
-                             (Data.Map.Base.Tip @ Types.ID @ Types.GeneState)),
-                        s')
-                         `cast`
-                       (Sym (Data.Functor.Identity.N:Identity[0]
-                                 <(Types.Agent,
-                                   System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) })
-                        `cast`
-                      (Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
-                                <System.Random.Mersenne.Pure64.Internal.PureMT>_N
-                                <Data.Functor.Identity.Identity>_R
-                                <Types.Agent>_N))
-                   Types.NoAgent
-                   -> Mutations.mutAg1
-                        `cast`
-                      (Trans
-                           (<System.Random.Mersenne.Pure64.Internal.PureMT>_R
-                            ->_R Sym (Data.Functor.Identity.N:Identity[0]
-                                          <(Types.Agent,
-                                            System.Random.Mersenne.Pure64.Internal.PureMT)>_R))
-                           (Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
-                                     <System.Random.Mersenne.Pure64.Internal.PureMT>_N
-                                     <Data.Functor.Identity.Identity>_R
-                                     <Types.Agent>_N))) }) -}
-0e66ac976834ca94b7db2f2864ef7259
+                 {__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Mutations.mutAg} True True} case ds of wild {
+                                                                                                   Types.Agent genome gst
+                                                                                                   -> let {
+                                                                                                        m1 :: Control.Monad.Trans.State.Strict.StateT
+                                                                                                                System.Random.Mersenne.Pure64.Internal.PureMT
+                                                                                                                Data.Functor.Identity.Identity
+                                                                                                                [Types.Chromosome]
+                                                                                                        = Mutations.mutAg2
+                                                                                                            genome
+                                                                                                      } in
+                                                                                                      (\ (s1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
+                                                                                                       case (m1
+                                                                                                               `cast`
+                                                                                                             (Control.Monad.Trans.State.Strict.N:StateT[0]
+                                                                                                                  <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                                                                                                                  <Data.Functor.Identity.Identity>_R
+                                                                                                                  <[Types.Chromosome]>_N)
+                                                                                                               s1)
+                                                                                                              `cast`
+                                                                                                            (Data.Functor.Identity.N:Identity[0]
+                                                                                                                 <([Types.Chromosome],
+                                                                                                                   System.Random.Mersenne.Pure64.Internal.PureMT)>_R) of wild1 { (,) a1 s' ->
+                                                                                                       (Types.Agent
+                                                                                                          a1
+                                                                                                          ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Mutations.mutAg.gst'} True True} World.gSTFromGenome
+                                                                                                                                                                                                  a1),
+                                                                                                        s')
+                                                                                                         `cast`
+                                                                                                       (Sym (Data.Functor.Identity.N:Identity[0]
+                                                                                                                 <(Types.Agent,
+                                                                                                                   System.Random.Mersenne.Pure64.Internal.PureMT)>_R)) })
+                                                                                                        `cast`
+                                                                                                      (Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                                                                                                                <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                                                                                                                <Data.Functor.Identity.Identity>_R
+                                                                                                                <Types.Agent>_N))
+                                                                                                   Types.NoAgent
+                                                                                                   -> Mutations.mutAg1
+                                                                                                        `cast`
+                                                                                                      (Trans
+                                                                                                           (<System.Random.Mersenne.Pure64.Internal.PureMT>_R
+                                                                                                            ->_R Sym (Data.Functor.Identity.N:Identity[0]
+                                                                                                                          <(Types.Agent,
+                                                                                                                            System.Random.Mersenne.Pure64.Internal.PureMT)>_R))
+                                                                                                           (Sym (Control.Monad.Trans.State.Strict.N:StateT[0]
+                                                                                                                     <System.Random.Mersenne.Pure64.Internal.PureMT>_N
+                                                                                                                     <Data.Functor.Identity.Identity>_R
+                                                                                                                     <Types.Agent>_N))) }) -}
+883e00169ad1c1b1590aa8606d8812a6
   mutAg1 ::
     System.Random.Mersenne.Pure64.Internal.PureMT
     -> (Types.Agent, System.Random.Mersenne.Pure64.Internal.PureMT)
@@ -208,14 +520,112 @@ e2dd087fb7799b2ded1dc8d8a4f22d8e
      Unfolding: InlineRule (1, True, False)
                 (\ (eta1 :: System.Random.Mersenne.Pure64.Internal.PureMT) ->
                  (Types.NoAgent, eta1)) -}
-b0301e909b4c2f40424491c6f91de58b
-  mutAg_go ::
+a63cc131196cb2c78af289449585bd36
+  mutAg2 ::
     [Types.Chromosome]
     -> Control.Monad.Trans.State.Strict.StateT
          System.Random.Mersenne.Pure64.Internal.PureMT
          Data.Functor.Identity.Identity
          [Types.Chromosome]
-  {- Arity: 1, Strictness: <S,1*U> -}
+  {- Unfolding: ({__scc {Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Mutations.mutAg} False True} Data.Traversable.$fTraversable[]_$cmapM
+                                                                                                    @ (Control.Monad.Trans.State.Strict.StateT
+                                                                                                         System.Random.Mersenne.Pure64.Internal.PureMT
+                                                                                                         Data.Functor.Identity.Identity)
+                                                                                                    @ Types.Chromosome
+                                                                                                    @ Types.Chromosome
+                                                                                                    (Mutations.$s$fMonadStateT
+                                                                                                       @ System.Random.Mersenne.Pure64.Internal.PureMT)
+                                                                                                    Mutations.dupChr) -}
+"SPEC/Mutations $fApplicativeStateT @ Identity _" [ALWAYS] forall @ s
+                                                                  ($dMonad :: GHC.Base.Monad
+                                                                                Data.Functor.Identity.Identity)
+                                                                  ($dFunctor :: GHC.Base.Functor
+                                                                                  Data.Functor.Identity.Identity)
+  Control.Monad.Trans.State.Strict.$fApplicativeStateT @ Data.Functor.Identity.Identity
+                                                       @ s
+                                                       $dFunctor
+                                                       $dMonad
+  = Mutations.$s$fApplicativeStateT @ s
+"SPEC/Mutations $fApplicativeStateT_$c<*> @ Identity _" [ALWAYS] forall @ s
+                                                                        ($dMonad :: GHC.Base.Monad
+                                                                                      Data.Functor.Identity.Identity)
+                                                                        ($dFunctor :: GHC.Base.Functor
+                                                                                        Data.Functor.Identity.Identity)
+  Control.Monad.Trans.State.Strict.$fApplicativeStateT_$c<*> @ Data.Functor.Identity.Identity
+                                                             @ s
+                                                             $dFunctor
+                                                             $dMonad
+  = Mutations.$s$fApplicativeStateT_$s$fApplicativeStateT_$c<*> @ s
+"SPEC/Mutations $fApplicativeStateT_$cp1Applicative @ Identity _" [ALWAYS] forall @ s
+                                                                                  ($dMonad :: GHC.Base.Monad
+                                                                                                Data.Functor.Identity.Identity)
+                                                                                  ($dFunctor :: GHC.Base.Functor
+                                                                                                  Data.Functor.Identity.Identity)
+  Control.Monad.Trans.State.Strict.$fApplicativeStateT_$cp1Applicative @ Data.Functor.Identity.Identity
+                                                                       @ s
+                                                                       $dFunctor
+                                                                       $dMonad
+  = Mutations.$s$fApplicativeStateT_$s$fApplicativeStateT_$cp1Applicative
+      @ s
+"SPEC/Mutations $fApplicativeStateT_$cpure @ Identity _" [ALWAYS] forall @ s
+                                                                         ($dMonad :: GHC.Base.Monad
+                                                                                       Data.Functor.Identity.Identity)
+                                                                         ($dFunctor :: GHC.Base.Functor
+                                                                                         Data.Functor.Identity.Identity)
+  Control.Monad.Trans.State.Strict.$fApplicativeStateT_$cpure @ Data.Functor.Identity.Identity
+                                                              @ s
+                                                              $dFunctor
+                                                              $dMonad
+  = Mutations.$s$fApplicativeStateT_$s$fApplicativeStateT_$cpure @ s
+"SPEC/Mutations $fFunctorStateT @ Identity _" [ALWAYS] forall @ s
+                                                              ($dFunctor :: GHC.Base.Functor
+                                                                              Data.Functor.Identity.Identity)
+  Control.Monad.Trans.State.Strict.$fFunctorStateT @ Data.Functor.Identity.Identity
+                                                   @ s
+                                                   $dFunctor
+  = Mutations.$s$fApplicativeStateT_$s$fFunctorStateT @ s
+"SPEC/Mutations $fFunctorStateT_$cfmap @ Identity _" [ALWAYS] forall @ s
+                                                                     ($dFunctor :: GHC.Base.Functor
+                                                                                     Data.Functor.Identity.Identity)
+  Control.Monad.Trans.State.Strict.$fFunctorStateT_$cfmap @ Data.Functor.Identity.Identity
+                                                          @ s
+                                                          $dFunctor
+  = Mutations.$s$fApplicativeStateT_$s$fFunctorStateT_$cfmap @ s
+"SPEC/Mutations $fMonadStateT @ Identity _" [ALWAYS] forall @ s
+                                                            ($dMonad :: GHC.Base.Monad
+                                                                          Data.Functor.Identity.Identity)
+  Control.Monad.Trans.State.Strict.$fMonadStateT @ Data.Functor.Identity.Identity
+                                                 @ s
+                                                 $dMonad
+  = Mutations.$s$fMonadStateT @ s
+"SPEC/Mutations $fMonadStateT_$c>> @ Identity _" [ALWAYS] forall @ s
+                                                                 ($dMonad :: GHC.Base.Monad
+                                                                               Data.Functor.Identity.Identity)
+  Control.Monad.Trans.State.Strict.$fMonadStateT_$c>> @ Data.Functor.Identity.Identity
+                                                      @ s
+                                                      $dMonad
+  = Mutations.$s$fMonadStateT_$s$fMonadStateT_$c>> @ s
+"SPEC/Mutations $fMonadStateT_$c>>= @ Identity _" [ALWAYS] forall @ s
+                                                                  ($dMonad :: GHC.Base.Monad
+                                                                                Data.Functor.Identity.Identity)
+  Control.Monad.Trans.State.Strict.$fMonadStateT_$c>>= @ Data.Functor.Identity.Identity
+                                                       @ s
+                                                       $dMonad
+  = Mutations.$s$fMonadStateT_$s$fMonadStateT_$c>>= @ s
+"SPEC/Mutations $fMonadStateT_$cfail @ Identity _" [ALWAYS] forall @ s
+                                                                   ($dMonad :: GHC.Base.Monad
+                                                                                 Data.Functor.Identity.Identity)
+  Control.Monad.Trans.State.Strict.$fMonadStateT_$cfail @ Data.Functor.Identity.Identity
+                                                        @ s
+                                                        $dMonad
+  = Mutations.$s$fMonadStateT_$s$fMonadStateT_$cfail @ s
+"SPEC/Mutations $fMonadStateT_$cp1Monad @ Identity _" [ALWAYS] forall @ s
+                                                                      ($dMonad :: GHC.Base.Monad
+                                                                                    Data.Functor.Identity.Identity)
+  Control.Monad.Trans.State.Strict.$fMonadStateT_$cp1Monad @ Data.Functor.Identity.Identity
+                                                           @ s
+                                                           $dMonad
+  = Mutations.$s$fMonadStateT_$s$fMonadStateT_$cp1Monad @ s
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

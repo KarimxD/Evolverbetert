@@ -9,7 +9,10 @@ import Types
 
 import           Control.Monad
 import           Data.List
-import qualified Parameters    as P
+import qualified Parameters   as P (
+      pTfbsDup, pTfbsDel, pTfbsWtCh, pTfbsInnov, pTfbsPrefCh
+    , pGenDup, pGenDel, pGenThresCh
+    )
 import           World
 
 
@@ -69,6 +72,7 @@ delGenes c = do
         l = length gs
 
 
+
 -- | A poisson distribution would be more accurate, but this is a (very) good approximation
 binomial :: Int -> Prob -> Rand Int
 binomial n''' p = do
@@ -81,7 +85,8 @@ binomial n''' p = do
         cumDist = scanl1 (+) dist
         dist = map binom [0..n]
         binom k = fromIntegral (n `choose` k) * p^k * (1-p)^(n-k)
-        choose n' k' = product [k'+1..n'] `quot` product [1..n'-k']
+        choose n' k' = foldl (\z i -> (z * (n'-i+1)) `div` i) 1 [1..k']
+        -- choose n' k' = product [k'+1..n'] `quot` product [1..n'-k']
 
 -- binomial' n p = cumDist
 --     where

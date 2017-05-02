@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2017-05-01 15:21:25.860977 UTC
+2017-05-02 08:56:44.624424 UTC
 
 interface Evolverbetert-0.1.0.0-oxgjcqyO3h9h1Y3DYcTQF:Evolverbetert 8002
-  interface hash: 7b2014491c133bd5730d6f57156c3b85
+  interface hash: 6e6fb568d20aa917eafa7841f756a79d
   ABI hash: 231e5af9624630b6ba3d219dbcb1acf7
   export-list hash: f73ce21b7edc4bec69798ad2ae86031a
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -92,9 +92,9 @@ import  -/  Misc 26966a5460f11b18001e088f70cf76ac
   exports: 28ae6ccada868e7efb3c96f7ae6d68f9
   maybeCh b7e06c2b1d262fd0b4aef1f7150dcfb3
   moore8 610363e082046b81ec379113dadabd09
-import  -/  Mutations a6cc818de23f6dd599ccc739e3c76bd1
+import  -/  Mutations 753fbf616404ff367040369d7ca1ab25
   exports: abb0dea61ea03ef57e98d0edb44e921a
-  mutAg e2dd087fb7799b2ded1dc8d8a4f22d8e
+  mutAg e132887f3d97d93f5dc99cc83cf02239
 import  -/  MyGraphics 9d83cfd30d0fc7698149b2474c7b5972
   exports: 97d0333b14588eeefaee8442dfd1870c
   showWorld 2a24f2c623c2878a8f65ff8863c9d1ad
@@ -122,7 +122,7 @@ import  -/  Parameters 60ff55bcb82c2c83af83a8d2acb246b2
   width 4470d3b90c978bea5dc808f6c800a600
   worldBounds 7f0019d5ab3318acf1f3f95937808a9f
   worldCoods 2ae336931cd4b0460b72c8bec2e6cd2c
-import  -/  Parsing 3ce07fed38dc929c2194d93b60f265f9
+import  -/  Parsing 4705a777ccc4ad0800a1829f40651380
   exports: c53f6fd4706f2be4c1d9cfdc774ad26b
   myRead 353d719dd4426285986305dc561d70f3
   myShow 97d483d08c590cc1deb571af85b00942
@@ -138,7 +138,7 @@ import  -/  Types 553fe5882bac7964d9e18ed5fc1899e3
   agents d8e257b5a9ba3766bd9c42c43fa03eb6
   env b2fc631954cb3156687f173510503a02
   genome caf01e8667618822fcc76af63288dcf0
-import  -/  World fae719142ff1d0cc47926353810ce652
+import  -/  World 3282e25bd7fc0fb0ef2bc63386585f4d
   exports: 1e87020408db611578f66aeb540278f6
   defaultGst b24ba51d05b2fd455fa26d548df348af
   devAg 3c7d87a83b367dd757a782d7b119c6bd
