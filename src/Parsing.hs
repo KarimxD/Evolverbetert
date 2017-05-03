@@ -68,34 +68,7 @@ instance MyShow Chromosome where
 instance MyRead Chromosome where
     myRead = map myRead . splitOn ","
 
-
--- making dot files
-genomeToDot :: Genome -> String
-genomeToDot g =
-       "digraph geneNetwork {"
-    ++ chromosomeToDot (concat g)
-    ++ "}"
-
-chromosomeToDot :: Chromosome -> String
-chromosomeToDot c =
-    concatMap groupedToDot (groupGeneTfbs c)
-
-groupedToDot :: [Locus] -> String
-groupedToDot loci = tfbssGeneToDot gene tfbss
- where
-    tfbss = reduceToTfbss [loci]
-    gene = case last loci of
-        CGene g -> g
-        _ -> undefined
-
-sortofmap :: [a] -> b -> (a->b->c) -> [c]
-sortofmap xs y f = map (`f` y) xs
-
-tfbssGeneToDot :: Gene -> [Tfbs] -> String
-tfbssGeneToDot g = concatMap (geneTfbsToDot g)
-
-geneTfbsToDot :: Gene -> Tfbs -> String
-geneTfbsToDot g t = it ++ "->" ++ ig ++ ";"
-    where
-        it = "T" ++ myShow (CTfbs t)
-        ig = myShow (iD g) ++ ".1"
+instance MyShow Genome where
+    myShow = myShow . concat
+instance MyRead Genome where
+    myRead s = [myRead s]
