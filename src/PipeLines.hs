@@ -6,12 +6,12 @@ module PipeLines (
     where
 import qualified Data.Map as Map
 import Types
-import World (groupGeneTfbs, reduceToGenes, getTfbs)
+import World (groupGeneTfbs, reduceToGenes, reduceToTfbss, getTfbs)
 import Data.Maybe (fromMaybe, mapMaybe)
 import Parsing (myShow, myRead)
 
 import           System.Environment     (getArgs, getEnv)
-import System.IO (openFile, IOMode (..), hGetLine)
+import System.IO (openFile, IOMode (..), hGetLine, hGetContents, hClose)
 
 main :: IO ()
 main = do
@@ -22,7 +22,29 @@ main = do
         "dot" -> do
             l <- hGetLine h
             putStrLn $ genomeToDot $ myRead l
+        "net" -> do
+            c <- hGetContents h
+            putStrLn $ networkproperties (timeGenome c)
         _ -> putStrLn "y u no put action"
+    hClose h
+
+-- | Displays time and avg_indegree
+networkproperties :: [(Int,Genome)] -> String
+networkproperties = unlines . map props
+    where
+        props (i,g) = unwords [
+              show i
+            , show $ fromIntegral (length (reduceToTfbss g))
+                   / fromIntegral (length (reduceToGenes g))
+            ]
+        -- average xs = realToFrac (sum xs) / genericLength xs
+
+
+-- | Chromosome has to be last, and time first
+timeGenome :: String -> [(Int, Genome)]
+timeGenome = map (readfstnlst . words) . drop 1 . lines
+    where
+        readfstnlst ws = (read (head ws), myRead (last ws))
 
 -- | Make a dotfile from a genome (concatinates genome and calls 'chromosomeToDot')
 genomeToDot :: Genome -> String
@@ -52,7 +74,7 @@ tfbssGeneToDot g counts = concatMap (geneTfbsToDot g counts)
 geneTfbsToDot :: NumberedGene -> Counts -> Tfbs -> String
 geneTfbsToDot g counts t =
     style ++
-    (concat $ zipWith
+    concat ( zipWith
         (\i r -> "    " ++ i ++ r ++ color t ++ ";\n")
         its (repeat ("->" ++ ig)))
 
@@ -61,7 +83,7 @@ geneTfbsToDot g counts t =
                   [ 0 .. ( fromMaybe 0 (Map.lookup (iD t) counts) ) ]
         ig = "G" ++ myShow (iD (fst g)) ++ "x" ++ show (snd g)
         color t = case wt t of
-            (1) -> " [color=blue]"
+            (1) -> " [color=green]"
             _    -> " [color=red]"
         style = case genSt (fst g) of
             GS True -> "    " ++ ig ++ " [style = filled];\n"
