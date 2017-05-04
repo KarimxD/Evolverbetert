@@ -6,7 +6,6 @@ module Misc (
     where
 
 import           Control.Monad
-import           Data.Array.IO
 import           MyRandom
 import           Parameters    as P
 

@@ -1,4 +1,4 @@
-{-# LANGUAGE BangPatterns #-}
+{-# OPTIONS_GHC -w #-}
 
 module MyRandom
 (

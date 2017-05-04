@@ -27,24 +27,20 @@ import           Data.String            (fromString)
 import           Graphics.UI.GLUT       hiding (Help, initialize, mainLoop)
 import           System.Console.GetOpt
 import           System.Environment     (getArgs, getEnv)
-import           System.IO              (Handle, IOMode (..), hClose, hFlush,
+import           System.IO              (Handle, IOMode (..), hFlush,
                                          openFile, stdout)
 import System.Directory
 import System.Process (callCommand)
 import Data.Time.Clock
 
 
-import           Control.Monad          (when, unless, forM, forM_)
+import           Control.Monad          (when, unless, forM_)
 import           Data.Fixed             (mod')
 import           Data.Function          (on)
-import           Data.Maybe             (fromMaybe, isJust, isNothing, fromJust)
 
 import           Data.Array.IArray      (array, assocs, elems, (!))
 import           Data.List              (find, maximumBy, genericLength, intercalate)
-import           Data.List.Split        (splitEvery, splitOn)
-import qualified Data.Map.Strict               as Map
-
-import qualified Control.Monad.Parallel as Par (mapM)
+import           Data.List.Split        (splitOn)
 
 data Handles = Handles {
       hOutput      :: Maybe Handle
@@ -114,13 +110,13 @@ initialize opts = do
 main :: IO ()
 main = do
     args <- getArgs
-    (opts, strings) <- compilerOpts args
+    (opts, _) <- compilerOpts args
     (worldRef, hs) <- initialize opts
 
 
     -- All GLUT related stuff
     when (optGraphics opts) $ do
-        getArgsAndInitialize
+        _ <- getArgsAndInitialize
         let pixelsPerUnit = 10
             w = pixelsPerUnit * fromIntegral P.width
             h = pixelsPerUnit * fromIntegral P.height
@@ -131,7 +127,7 @@ main = do
                 (fromIntegral (screenSizeX - w) `div` 2)
                 (fromIntegral (screenSizeY - h) `div` 2)
         initialWindowPosition $= initialPos
-        createWindow "Evolverbetert v1"
+        _ <- createWindow "Evolverbetert v1"
         matrixMode $= Projection
         loadIdentity
         ortho2D 0 (fromIntegral w / fromIntegral pixelsPerUnit)
@@ -143,14 +139,13 @@ main = do
     -- B.hPutStrLn (fromMaybe stdout $ hOutput hs) $ fromString "Hello, World!"
     mainLoop worldRef opts hs 0
     -- B.hPutStrLn (fromMaybe stdout $ hOutput hs) $ fromString "Goodbye World!"
-    -- forM_ hs hClose
 
 -- | Recursive function that reads the IORef of the world, changes it with
 -- 'newWorld' and writes to world back.
 -- Also writes output if 'P.outputTime'
 -- Might display graphical output using mainLoopEvent from "MyGraphics"
-mainLoop :: IORef World -> Options -> Handles -> P.Time -> IO ()
-mainLoop worldRef opts hs t | t == P.maxTime = return ()
+mainLoop :: IORef World -> Options -> Handles -> Time -> IO ()
+mainLoop _ _ _ t | t == P.maxTime = return ()
 mainLoop worldRef opts hs t = do
     w <- readIORef worldRef
 
@@ -196,10 +191,10 @@ newWorld w = do
 -- | The string of data that outputs every 'P.outputStep'
 -- Needs an input world, time
 -- if True then prints a header for the outputTable
-outputString :: World -> P.Time -> Bool -> String
-outputString w@(World ags env) t r =
+outputString :: World -> Time -> Bool -> String
+outputString (World ags e) t r =
     intercalate ";"
-        [f t',f env',f minHammDist,f maxHammDist,f avgHammDist,f lenBestChrom]
+        [f t',f e',f minHammDist,f maxHammDist,f avgHammDist,f lenBestChrom]
 
     -- ++ myShow bestChrom
     where
@@ -207,29 +202,30 @@ outputString w@(World ags env) t r =
         f = if r then snd else show . fst
 
         t' = (t, "time")
-        env' = (env, "env")
-        bestAgent = (maximumBy (compare `on` fitnessAgent env) els, "bestAgent")
-        bestOtherAgent = (maximumBy (compare `on` fitnessAgent otherenv) els, "bestOtherAgent")
+        e' = (e, "env")
+        bestAgent = (maximumBy (compare `on` fitnessAgent e) els, "bestAgent")
+        -- bestOtherAgent = (maximumBy (compare `on` fitnessAgent otherenv) els, "bestOtherAgent")
         bestChrom = (head . genome $ fst bestAgent, "bestChrom")
         lenBestChrom = (length . fst $ bestChrom, "lenBestChrom")
-        maxFitness = (maximum $ map (fitnessAgent env) els, "maxFitness")
-        minHammDist = (minimum $ map (hammDistAg env) els, "minHammDist")
-        maxHammDist = (maximum $ map (hammDistAg env) els, "maxHammDist")
-        avgHammDist = (average $ map (hammDistAg env) els, "avgHammDist")
+        -- maxFitness = (maximum $ map (fitnessAgent e) els, "maxFitness")
+        minHammDist = (minimum $ map (hammDistAg e) els, "minHammDist")
+        maxHammDist = (maximum $ map (hammDistAg e) els, "maxHammDist")
+        avgHammDist = (average $ map (hammDistAg e) els, "avgHammDist")
         els = filter (/=NoAgent) $ elems ags
-        otherenv = 1 + (-1)*env
+        -- otherenv = 1 + (-1)*e
+        average :: (Real a) => [a] -> Double
         average xs = realToFrac (sum xs) / genericLength xs
 
 
 -- | uses 'reproduceAgent' to make a new coordinate-Agent association
 newAssoc :: World -> ((Int, Int), Agent) -> Rand ((Int, Int), Agent)
-newAssoc w (ix, ag) = do
+newAssoc w (ix, _) = do
     ag' <- reproduceAgent w ix
     return (ix, ag')
 
 -- | The NSF
 reproduceAgent :: World -> (Int, Int) -> Rand Agent
-reproduceAgent (World ags env) ix = do
+reproduceAgent (World ags e) ix = do
     temp1 <- getDouble
     if temp1 > P.deathRate --if you survive
     then
@@ -238,7 +234,7 @@ reproduceAgent (World ags env) ix = do
             temp2 <- getDouble
             let Just (_, iChooseYou) = find ((>=r) . fst) cumFitAg
                 neighbours = map (ags !) (moore8 ix) ++ [NoAgent] --list of the neighbours
-                fitnesses = map (fitnessAgent env) (init neighbours)
+                fitnesses = map (fitnessAgent e) (init neighbours)
                             ++ [0.4^P.selectionPressure]  --list of fitnesses
                 cumFitnesses = scanl1 (+) fitnesses --cumulative list of fitnesses
                 cumFitAg = zip cumFitnesses neighbours --list of (cumfit, agent) pairs
@@ -262,6 +258,7 @@ data Options = Options
     , optGraphics    :: Bool
     } deriving Show
 
+defaultOptions :: Options
 defaultOptions = Options
     { optHelp        = False
     , optWorldSeed   = 420

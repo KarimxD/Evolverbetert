@@ -9,10 +9,6 @@ import Types
 
 import           Control.Monad
 import           Data.List
-import qualified Parameters   as P (
-      pTfbsDup, pTfbsDel, pTfbsWtCh, pTfbsInnov, pTfbsPrefCh
-    , pGenDup, pGenDel, pGenThresCh
-    )
 import           World
 
 
@@ -29,7 +25,7 @@ _dupChr = dupGenes >=>
 
 dupTfbss :: Chromosome -> Rand Chromosome
 dupTfbss c = do
-    n <- binomial (length c) P.pTfbsDup
+    n <- binomial (length c) pTfbsDup
     repeatCollect n dupATfbs c
 
 dupATfbs :: Chromosome -> Rand Chromosome
@@ -56,7 +52,7 @@ dupATfbs c = do
 
 dupGenes :: Chromosome -> Rand Chromosome
 dupGenes c = do
-    n <- binomial l P.pGenDup
+    n <- binomial l pGenDup
     concat <$> repeatCollect n dupAGen gs
     where
         gs = groupGeneTfbs c
@@ -65,7 +61,7 @@ dupGenes c = do
 
 delGenes :: Chromosome -> Rand Chromosome
 delGenes c = do
-    n <- binomial l P.pGenDel
+    n <- binomial l pGenDel
     concat <$> repeatCollect n delAnElem gs
     where
         gs = groupGeneTfbs c
@@ -102,9 +98,9 @@ mutNet c = do
         len = length genes'
 
     genes'' <- maybeCh genes'
-        delAnElem (P.pGenDel * fromIntegral len)
+        delAnElem (pGenDel * fromIntegral len)
     genes''' <- maybeCh genes''
-        dupAGen (P.pGenDup * fromIntegral len)
+        dupAGen (pGenDup * fromIntegral len)
     return $ concat genes'''
 
 -- fix: Maybe doesn't ch
@@ -171,6 +167,7 @@ chTfbsPref t = do
     r <- randGeneType
     return $ t { tfbsID = r }
 
+-- | mutates agent according to 'Parameters'
 mutAg :: Agent -> Rand Agent
 mutAg NoAgent = return NoAgent
 mutAg ag = do

@@ -3,9 +3,9 @@
 module Types where
 import Data.Map.Strict as Map
 import Data.Array.IArray
+
 type Time = Int
 type Prob = Double
-
 
 data World = World {    agents :: Agents
                     ,   env :: Env} deriving (Show, Read, Eq)
@@ -23,9 +23,6 @@ data Locus
     = Transposon
     | CGene     Gene
     | CTfbs     Tfbs     deriving (Show, Read, Eq, Ord)
-
-
-
 
 data Gene = Gene {      geneID :: ID
                     ,   thres :: Thres
@@ -50,13 +47,6 @@ newtype Thres     = Thres Int      deriving  (Show, Read, Eq, Ord, Real, Num, En
 
 newtype Weight    = Weight Int     deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded)
 
---
--- newtype Thres = Thres Int         deriving (Show, Read, Eq, Ord)
--- newtype GeneState = GeneState Bool deriving (Show, Read, Eq, Ord)--deriving (Show, Read, Eq, Ord)
--- newtype Weight = Weight Int       deriving (Show, Read, Eq, Ord)
-
-
-
 newtype GeneState = GS Bool deriving  (Show, Read, Eq, Ord, Enum, Bounded)
 instance Real GeneState where
     toRational (GS True)  = 1
@@ -68,17 +58,4 @@ instance Num GeneState where
     negate (GS a) = GS $ not a
     fromInteger a = if a > 0 then GS True else GS False
 
-
 newtype ID = ID Int deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded)
--- instance Enum ID where toEnum = ID; fromEnum (ID a) = a
--- instance Real ID where toRational (ID a) = toRational a
--- instance Integral ID where
---     quotRem (ID a) (ID b) = (\(x,y) -> (ID x,ID y)) $ quotRem a b
---     toInteger (ID a) = toInteger a
--- instance Num ID where
---     ID a + ID b     = ID $ a + b
---     ID a * ID b     = ID $ a * b
---     abs (ID a)      = ID $ abs a
---     signum (ID a)   = ID $ signum a
---     fromInteger a   = ID $ fromInteger a
---     negate (ID a)   = ID $ negate a

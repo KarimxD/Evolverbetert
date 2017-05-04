@@ -6,7 +6,6 @@ import           Data.List.Split     (splitOn)
 
 import qualified Data.Map.Strict as Map
 import qualified Data.List as List
-import qualified Data.Array.IArray as Array
 
 class MyShow a where
     myShow :: a -> String
@@ -18,12 +17,13 @@ class MyRead a where
 instance MyShow Agent where
     myShow NoAgent = "NoAgent"
     myShow ag = show (concatMap myShow $ head $ genome ag, myShow $ geneStateTable ag) --Only works on agents with 1 chromosome
+parseAgent :: String -> Agent
 parseAgent "NoAgent" = NoAgent
 parseAgent str =  --Only works on agents with 1 chromosome
-    Agent genome gst
+    Agent genes gst
     where
-        gst = gSTFromGenome genome
-        genome = [map myRead loci] :: Genome
+        gst = gSTFromGenome genes
+        genes = [map myRead loci] :: Genome
         loci = splitOn "," str :: [String]
 
 instance MyShow GeneStateTable where

@@ -6,11 +6,9 @@ module World
     -- , devAg, agent0, groupGeneTfbs, gSTFromGenome, fitnessAgent, showGST, hammDist, targetGST, hammDistAg)
     where
 import Control.Monad
-import qualified Data.List         as List
 import qualified Data.Map.Strict          as Map
-import           Data.Array.IArray
 import Data.Foldable as F (foldr')
-import Data.Maybe (isJust, isNothing, mapMaybe)
+import Data.Maybe (isJust, mapMaybe)
 
 import           Misc
 import qualified Parameters        as P
@@ -18,9 +16,7 @@ import MyRandom
 import Types
 
 import System.Random.Shuffle (shuffle')
-import System.Random (getStdGen)
 import Control.Monad.State (state)
-import           Data.List.Split     (splitOn)
 
 
 
@@ -31,7 +27,7 @@ import           Data.List.Split     (splitOn)
 devAg :: Agent -> Agent
 devAg = takeUntilSame . take P.devTime . iterate updateAgent
     where
-    takeUntilSame [a,b] = NoAgent
+    takeUntilSame [_,_] = NoAgent; takeUntilSame [_] = NoAgent; takeUntilSame [] = NoAgent
     takeUntilSame (a:b:rest) =
         if sameGST a b
          then   a
@@ -86,11 +82,11 @@ updateLoc :: Weight -> GeneStateTable -> Locus -> (Weight, Locus)
 updateLoc a gst loc@(CTfbs (Tfbs i w))
         | Map.lookup i gst == Just 1 = (a + w, loc)
         | otherwise                  = (a, loc)
-updateLoc a _ loc@(CGene gen@(Gene i t st)) =
+updateLoc a _ (CGene (Gene i t st)) =
     (0, CGene (Gene i t newState)) where
-        newState    | fromIntegral a <  fromIntegral t = GS False
-                    | fromIntegral a == fromIntegral t = st
-                    | otherwise                        = GS True
+        newState    | fromIntegral a <  t = GS False
+                    | fromIntegral a == t = st
+                    | otherwise           = GS True
 updateLoc a _ loc = (a, loc)
 
 -- | Check whether a locus is a Gene
@@ -118,14 +114,13 @@ groupGeneTfbs loci = h: groupGeneTfbs t
 -- | takes a predicate and returns a pair of lists with the first ending with
 -- the element that satisfies the predicate
 takeWhileInclusive :: (a -> Bool) -> [a] -> ([a],[a])
-takeWhileInclusive f ls = takeWhileInclusive' f ([], ls)
+takeWhileInclusive f ls = takeWhileInclusive' ([], ls)
     where
-    takeWhileInclusive' :: (a -> Bool) -> ([a],[a]) -> ([a],[a])
-    takeWhileInclusive' _ (a,[]) = (a,[])
-    takeWhileInclusive' f (a,x:xs) =
+    takeWhileInclusive' (a,[]) = (a,[])
+    takeWhileInclusive' (a,x:xs) =
         if f x
             then (henk, xs)
-            else takeWhileInclusive' f (henk,xs)
+            else takeWhileInclusive' (henk,xs)
                 where henk = a ++ [x]
                 --
                 -- > foldr f z []     = z
@@ -151,16 +146,16 @@ reduceToGenes = mapMaybe getGene . concat
 -- | The fitness of an Agent in an Environment (stub for 'fitnessGST')
 fitnessAgent :: Env -> Agent -> Double
 fitnessAgent e (Agent _ gst) = fitnessGST e gst
-fitnessAgent e  NoAgent      = 0
+fitnessAgent _  NoAgent      = 0
 
 -- | Uses targetGST to check fitness of passed GST
 fitnessGST :: Env -> GeneStateTable -> Double
-fitnessGST env gst = (1 - d / dmax)^p
+fitnessGST e gst = (1 - d / dmax)^p
     where
         p = P.selectionPressure
         dmax = fromIntegral P.nrGeneTypes
         d = fromIntegral $ hammDist target this
-            where target = Map.toList (targetGST env)
+            where target = Map.toList (targetGST e)
                   this = Map.toList gst
 
 -- | Calculate Hamming distance between two lists. For lists with unequal
@@ -174,17 +169,18 @@ hammDist (a:as) (b:bs) = if a /= b then 1 + hammDist as bs else hammDist as bs
 
 hammDistAg :: Env -> Agent -> Int
 hammDistAg _ NoAgent = fromIntegral P.nrGeneTypes
-hammDistAg env ag = hammDist (Map.toList (targetGST env)) (Map.toList $ geneStateTable ag)
+hammDistAg e ag = hammDist (Map.toList (targetGST e)) (Map.toList $ geneStateTable ag)
 
 -- | Generate GeneStateTable based on targetExpression
 targetGST :: Env -> GeneStateTable
 targetGST 0 = Map.fromList $ valueResultPairs (targetExpression 0) [0..P.nrGeneTypes-1]
 targetGST 1 = Map.fromList $ valueResultPairs (targetExpression 1) [0..P.nrGeneTypes-1]
-targetGST env = Map.fromList $
-    take P.nrGeneTypes' $ valueResultPairs (targetExpression env) [0..]
+targetGST e = Map.fromList $
+    take P.nrGeneTypes' $ valueResultPairs (targetExpression e) [0..]
 
 {- | the targetExpression of a Gene in an Environment
-example for nrEnv = 4 and nrHouseHold = 4, nrOverlap = 3, nrUnique = 5
+Considers all genes as Specific when the ID is bigger then nrHouseHold + nrOverlap
+example for nrEnv = 4 and nrHouseHold = 4, nrOverlap = 3, nrSpecific = 5
 Env\Gene    0   1   2   3   4   5   6   7   8   9   10  11
 0           1   1   1   1   0   1   1   1   0   0   0   1
 1           1   1   1   1   1   0   1   0   1   0   0   0
@@ -192,17 +188,17 @@ Env\Gene    0   1   2   3   4   5   6   7   8   9   10  11
 3           1   1   1   1   0   1   1   0   0   0   1   0
 -}
 targetExpression :: Env -> ID -> GeneState
-targetExpression env i'
-    | i <  hh                                   = 1 -- household
+targetExpression e i'
+    | i <  hh                              = 1 -- household
 
     | i < hh + ov &&
-        (i - hh - env) `mod` P.nrEnv == 0       = 0
+        (i - hh - e) `mod` P.nrEnv == 0    = 0
     | i < hh + ov &&
-        (i - hh - env) `mod` P.nrEnv /= 0       = 1 -- overlapping
+        (i - hh - e) `mod` P.nrEnv /= 0    = 1 -- overlapping
 
-    | (i - hh - ov - env) `mod` P.nrEnv == 0    = 1
-    | otherwise                                 = 0 -- specific
-    where hh = P.nrHouseHold; ov = P.nrOverlap; sp = P.nrSpecific; i = (\(ID a) -> a) i'
+    | (i - hh - ov - e) `mod` P.nrEnv == 0 = 1
+    | otherwise                            = 0 -- specific
+    where hh = P.nrHouseHold; ov = P.nrOverlap; i = (\(ID a) -> a) i'
 
 
 
@@ -210,22 +206,23 @@ targetExpression env i'
 -- | Generate a random Agent using 'goodRandomGenome'
 randomAgent :: Rand Agent
 randomAgent = do
-    genome <- goodRandomGenome
-    let  agent = devAg $ Agent genome defaultGst
+    randGenome <- goodRandomGenome
+    let  agent = devAg $ Agent randGenome defaultGst
     if   agent == NoAgent
         then randomAgent
         else return agent
 
--- | Does every gene in genome have an associated transcription factor?
+-- | Answers the question: Does every gene of this genome have at least one associated transcription factor?
 connected :: Genome -> Bool
 connected = all (>1) . map length . groupGeneTfbs . concat
 
 -- | Generate a random genome that is 'connected'
+-- loops until it finds one
 goodRandomGenome :: Rand Genome
 goodRandomGenome = do
-    genome <- randomGenome
-    if      connected genome
-       then return genome
+    randGenome <- randomGenome
+    if      connected randGenome
+       then return randGenome
        else goodRandomGenome
 
 -- | Just a 'randomChromosome'
@@ -258,7 +255,7 @@ randomTfbss = do
 -- and state 0
 randomGenes :: Rand [Locus]
 randomGenes = do
-    randomThresholds <- replicateM n' $ fromIntegral <$> getRange (P.minThres, P.maxThres)
+    randomThresholds <- replicateM n' $ getRange (P.minThres, P.maxThres)
     r <- getModifyRand
     let shuffled = shuffle' randomThresholds n' r
     return $ map CGene $ shuffle' (zipWith makeGene [0..n-1] shuffled) n' r
