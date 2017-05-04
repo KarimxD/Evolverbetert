@@ -24,21 +24,27 @@ main = do
             putStrLn $ genomeToDot $ myRead l
         "net" -> do
             c <- hGetContents h
+            putStrLn $ lastToAvgIndegree c
+        "onlynet" -> do
+            c <- hGetContents h
             putStrLn $ networkproperties (timeGenome c)
+
         _ -> putStrLn "y u no put action"
     hClose h
 
+lastToAvgIndegree :: String -> String
+lastToAvgIndegree = unlines . map (
+    unwords .
+    (\ws -> init ws ++ [show . avgIndegree . myRead . last $ ws] ) . words)
+    . lines
+
 -- | Displays time and avg_indegree
 networkproperties :: [(Int,Genome)] -> String
-networkproperties = unlines . map props
-    where
-        props (i,g) = unwords [
-              show i
-            , show $ fromIntegral (length (reduceToTfbss g))
-                   / fromIntegral (length (reduceToGenes g))
-            ]
-        -- average xs = realToFrac (sum xs) / genericLength xs
+networkproperties = unlines . map (\(i,g) -> unwords [show i, show (avgIndegree g)])
 
+avgIndegree :: Genome -> Double
+avgIndegree g = fromIntegral (length (reduceToTfbss g))
+       / fromIntegral (length (reduceToGenes g))
 
 -- | Chromosome has to be last, and time first
 timeGenome :: String -> [(Int, Genome)]

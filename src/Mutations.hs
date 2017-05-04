@@ -144,7 +144,7 @@ mutateLoci (h:rest) = case h of
                 t' <- maybeCh t' chTfbsPref pTfbsPrefCh
                 let list' = [t']
                 list' <- maybeCh list' delAnElem pTfbsDel
-                list' <- maybeCh list' innovateTfbs pTfbsInnov
+                -- list' <- maybeCh list' innovateTfbs pTfbsInnov -- Fix for scaling to # of genes
                 return $ map CTfbs list' ++ rest'
     _       -> do
                 rest' <- mutateLoci rest

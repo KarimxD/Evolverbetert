@@ -58,6 +58,7 @@ pGenThresCh = 5e-6 :: Prob
 
 pTfbsWtCh   = 2e-5 :: Prob
 pTfbsPrefCh = 2e-5 :: Prob
+
 pTfbsDel    = 3e-5 :: Prob
-pTfbsInnov  = 1e-5 :: Prob -- scales with number of loci in genome
+pTfbsInnov  = 1e-5 :: Prob -- scales with number of loci in genome FIX: scale with genes
 pTfbsDup    = 2e-5 :: Prob
