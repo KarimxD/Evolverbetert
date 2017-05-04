@@ -1,6 +1,5 @@
 module PipeLines (
-      genomeToDot
-    , chromosomeToDot
+    main
 )
 
     where
@@ -10,7 +9,7 @@ import World (groupGeneTfbs, reduceToGenes, reduceToTfbss, getTfbs)
 import Data.Maybe (fromMaybe, mapMaybe)
 import Parsing (myShow, myRead)
 
-import           System.Environment     (getArgs, getEnv)
+import           System.Environment     (getArgs)
 import System.IO (openFile, IOMode (..), hGetLine, hGetContents, hClose)
 
 main :: IO ()
@@ -66,7 +65,7 @@ chromosomeToDot c = "digraph geneNetwork {\n" ++
         counts = constructCounter (reduceToGenes [c]) Map.empty
 
 groupedToDot :: Counter -> [[Locus]] -> Counts -> [String]
-groupedToDot counter [] counts = []
+groupedToDot _ [] _ = []
 groupedToDot counter (loci:locis) counts = s : groupedToDot newcounter locis counts
     where
         ([CGene g], tfbss) = splitAt 1 $ reverse loci
@@ -81,14 +80,14 @@ geneTfbsToDot :: NumberedGene -> Counts -> Tfbs -> String
 geneTfbsToDot g counts t =
     style ++
     concat ( zipWith
-        (\i r -> "    " ++ i ++ r ++ color t ++ ";\n")
+        (\i r -> "    " ++ i ++ r ++ color ++ ";\n")
         its (repeat ("->" ++ ig)))
 
     where
         its = map ( (++) ("G" ++ myShow (iD t) ++ "x") . show)
                   [ 0 .. ( fromMaybe 0 (Map.lookup (iD t) counts) ) ]
         ig = "G" ++ myShow (iD (fst g)) ++ "x" ++ show (snd g)
-        color t = case wt t of
+        color = case wt t of
             (1) -> " [color=green]"
             _    -> " [color=red]"
         style = case genSt (fst g) of

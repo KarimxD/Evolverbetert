@@ -231,7 +231,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-2qIV0obkRX3EsEnp47ihbY"
+#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0"
 
-#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-2qIV0obkRX3EsEnp47ihbY"
+#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0"
 

@@ -1,8 +1,7 @@
 module Parameters where
-import           GHC.Word
 import Types
-type Time = Int
-type Prob = Double
+
+
 
 
 
@@ -25,7 +24,7 @@ vOutputStep = 10000 :: Time
 vOutputTime = (0 ==) . flip rem vOutputStep
 outputStep = 50 :: Time
 outputTime t = t `mod` outputStep == 0
-dumpStep = 1000
+dumpStep = 1000 :: Time
 dumpTime t = t `mod` dumpStep == 0
 maxTime = -1 --round 1e6 -- 500000
      :: Int

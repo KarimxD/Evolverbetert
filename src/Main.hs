@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------
 -- |
--- Module      :  Evolverbetert
+-- Module      :  Main
 -- Copyright   :  (c) Karim Hajji 2018
 -- License     :  see LICENSE
 --
@@ -11,7 +11,7 @@
 -- The program
 --
 -----------------------------------------------------------------------------
-module Evolverbetert where
+module Main where
 import           Misc                   (maybeCh, moore8)
 import           Mutations              (mutAg)
 import           MyGraphics             (showWorld)

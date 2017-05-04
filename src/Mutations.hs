@@ -20,8 +20,8 @@ import           World
 dupChr :: Chromosome -> Rand Chromosome
 dupChr = mutNet >=> mutateLoci >=> dupTfbss
 
-dupChr' :: Chromosome -> Rand Chromosome
-dupChr' = dupGenes >=>
+_dupChr :: Chromosome -> Rand Chromosome
+_dupChr = dupGenes >=>
           delGenes >=>
           dupTfbss
 
@@ -81,7 +81,7 @@ binomial n''' p = do
         Just a  -> return a
         Nothing -> return 0
     where
-        n = fromIntegral n'''
+        n = fromIntegral n''' :: Int
         cumDist = scanl1 (+) dist
         dist = map binom [0..n]
         binom k = fromIntegral (n `choose` k) * p^k * (1-p)^(n-k)
@@ -101,17 +101,17 @@ mutNet c = do
     let genes'   = groupGeneTfbs c
         len = length genes'
 
-    genes' <- maybeCh genes'
+    genes'' <- maybeCh genes'
         delAnElem (P.pGenDel * fromIntegral len)
-    genes' <- maybeCh genes'
+    genes''' <- maybeCh genes''
         dupAGen (P.pGenDup * fromIntegral len)
-    return $ concat genes'
+    return $ concat genes'''
 
 -- fix: Maybe doesn't ch
 chGenThres :: Gene -> Rand Gene
-chGenThres gene@(Gene i t s) = do
+chGenThres g = do
     r <- getRange (minThres, maxThres)
-    return $ Gene i r s
+    return $ g {thres = r}
 
 dupAGen :: [[Locus]] -> Rand [[Locus]]
 dupAGen [] = return []
@@ -141,11 +141,11 @@ mutateLoci (h:rest) = case h of
     CTfbs t -> do
                 rest' <- mutateLoci rest
                 t' <- maybeCh t chTfbsWt pTfbsWtCh
-                t' <- maybeCh t' chTfbsPref pTfbsPrefCh
-                let list' = [t']
-                list' <- maybeCh list' delAnElem pTfbsDel
+                t'' <- maybeCh t' chTfbsPref pTfbsPrefCh
+                let list' = [t'']
+                list'' <- maybeCh list' delAnElem pTfbsDel
                 -- list' <- maybeCh list' innovateTfbs pTfbsInnov -- Fix for scaling to # of genes
-                return $ map CTfbs list' ++ rest'
+                return $ map CTfbs list'' ++ rest'
     _       -> do
                 rest' <- mutateLoci rest
                 return $ h:rest'
@@ -162,18 +162,19 @@ innovateTfbs list = do
     return $ tfbs:list
 
 chTfbsWt :: Tfbs -> Rand Tfbs
-chTfbsWt (Tfbs i w) = return $ Tfbs i (w*(-1))
+chTfbsWt t = return t { wt = newwt }
+    where newwt = (-1) * wt t
 
 -- fix: maybe doesn't ch
 chTfbsPref :: Tfbs -> Rand Tfbs
-chTfbsPref (Tfbs i w) = do
+chTfbsPref t = do
     r <- randGeneType
-    return $ Tfbs r w
+    return $ t { tfbsID = r }
 
 mutAg :: Agent -> Rand Agent
 mutAg NoAgent = return NoAgent
-mutAg ag@(Agent genome gst) = do
-    genome' <- mapM dupChr genome
+mutAg ag = do
+    genome' <- mapM dupChr (genome ag)
     let gst' = gSTFromGenome genome'
     return (Agent genome' gst')
 

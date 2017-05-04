@@ -2,8 +2,10 @@
 
 module Types where
 import Data.Map.Strict as Map
-import Data.List as List
 import Data.Array.IArray
+type Time = Int
+type Prob = Double
+
 
 data World = World {    agents :: Agents
                     ,   env :: Env} deriving (Show, Read, Eq)

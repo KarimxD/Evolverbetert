@@ -109,9 +109,9 @@ pureMT = mkPureMT . seedBlock . fromIntegral
 --     round (1000 * 1000 * 1000 * 1000 * d)
 -- #endif
 
--- | Create a new PureMT generator, using the clocktime as the base for the seed.
-newPureMT :: IO PureMT
-newPureMT = return $ pureMT 42
+-- -- | Create a new PureMT generator, using the clocktime as the base for the seed.
+-- newPureMT :: IO PureMT
+-- newPureMT = return $ pureMT 42
  -- do
  --    ct <- getCPUTime
  --    t  <- getCurrentTime
