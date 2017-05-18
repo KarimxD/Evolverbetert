@@ -8,37 +8,99 @@ import Types
 import World (groupGeneTfbs, reduceToGenes, reduceToTfbss, getTfbs)
 import Data.Maybe (fromMaybe, mapMaybe)
 import Parsing (myShow, myRead)
+-- import qualified Data.Text as T
+import Text.Read (readMaybe)
+import Data.List (isPrefixOf)
 
 import           System.Environment     (getArgs)
-import System.IO (openFile, IOMode (..), hGetLine, hGetContents, hClose)
 
 main :: IO ()
 main = do
     args <- getArgs
-    let action:file:_ = args
-    h <- openFile file ReadMode
+    let action:args' = args
     case action of
         "dot" -> do
-            l <- hGetLine h
-            putStrLn $ genomeToDot $ myRead l
+            c <- getContents
+            let time:_ = args'
+                line = head $ filter (time `isPrefixOf`) $ lines c
+                chrom = head $ mapMaybe readMaybe (lewords ';' line) :: Chromosome
+            putStrLn $ genomeToDot [chrom]
         "net" -> do
-            c <- hGetContents h
-            putStrLn $ lastToAvgIndegree c
+            c <- getContents
+            putStrLn $ unlines $ lastToAvgIndegree (lines c)
+        "twonet" -> do
+            c <- getContents
+            putStrLn . skiplines 2 lastTwoToAvgIndegree $ c
+            -- putStrLn . T.unpack . T.unlines . skip 2 lastTwoToAvgIndegree . T.lines $ T.pack c
         "onlynet" -> do
-            c <- hGetContents h
+            c <- getContents
             putStrLn $ networkproperties (timeGenome c)
 
         _ -> putStrLn "y u no put action"
-    hClose h
+--
+-- -- | Takes a function applies it on sublist not containing first n elements
+-- -- skip :: Int -> ([a]->[a]) -> [a] -> [a]
+-- -- skip n f = (\(a,b) -> a ++ f b) . splitAt n
+--
+-- | Takes a function applies it on sublist not containing first n elements
+skiplines :: Int -> (SplittedLine -> SplittedLine) -> String -> String
+skiplines n f = unlines . (\(a,b) -> a ++ map f2 b) . splitAt n . lines
+    where f2 = leunwords ';' . f . lewords ';'
+-- skiplines n f t = undefined --T.unlines $ take n ls ++ unsplinter $ drop n (map f splittedls)
+--     where ls = T.lines t
+--           splittedls = map splinter ls
+--
+--
+--
+--
+type Line = String
+type SplittedLine = [String]
+--
+-- -- type Lines = [T.Text]
+-- -- type SplittedLines = [[T.Text]]
+--
+-- lastTwoToAvgIndegree :: SplittedLine -> SplittedLine
+-- lastTwoToAvgIndegree = undefined
+--
+-- unsplinter :: SplittedLine -> Line
+-- unsplinter = T.intercalate (T.pack ";")
+--
+-- splinter :: Line -> SplittedLine
+-- splinter = T.split (==';')
 
-lastToAvgIndegree :: String -> String
-lastToAvgIndegree = unlines . map (
+
+
+lewords                   :: Char -> String -> [String]
+lewords c s               =  case dropWhile (==c) s of
+                                "" -> []
+                                s' -> w : lewords c s''
+                                      where (w, s'') =
+                                             break (==c) s'
+
+leunwords                 :: Char -> [String] -> String
+leunwords _ []              =  ""
+leunwords c ws              =  foldr1 (\w s -> w ++ c:s) ws
+
+lastTwoToAvgIndegree :: SplittedLine -> SplittedLine
+lastTwoToAvgIndegree = reverse .
+    (\(x:y:r) -> (show . avgIndegree $ read $ f x) : (show . avgIndegree $ read $ f y) : r)
+    . reverse
+        where f a = "[" ++ a ++ "]" :: String
+--
+-- lastTwoToAvgIndegree =
+--
+-- type Lines = [T.Text]
+-- type Splitted = [[T.Text]]
+--
+
+lastToAvgIndegree :: [String] -> [String]
+lastToAvgIndegree = map (
     unwords .
     (\ws -> init ws ++ [show . avgIndegree . myRead . last $ ws] ) . words)
-    . lines
+
 
 -- | Displays time and avg_indegree
-networkproperties :: [(Int,Genome)] -> String
+networkproperties :: [(Time,Genome)] -> String
 networkproperties = unlines . map (\(i,g) -> unwords [show i, show (avgIndegree g)])
 
 avgIndegree :: Genome -> Double
@@ -46,7 +108,7 @@ avgIndegree g = fromIntegral (length (reduceToTfbss g))
        / fromIntegral (length (reduceToGenes g))
 
 -- | Chromosome has to be last, and time first
-timeGenome :: String -> [(Int, Genome)]
+timeGenome :: String -> [(Time, Genome)]
 timeGenome = map (readfstnlst . words) . drop 1 . lines
     where
         readfstnlst ws = (read (head ws), myRead (last ws))

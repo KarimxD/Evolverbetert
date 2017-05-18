@@ -161,11 +161,18 @@ fitnessGST e gst = (1 - d / dmax)^p
 -- | Calculate Hamming distance between two lists. For lists with unequal
 -- lengths compares only the initial overlap
 hammDist :: (Eq a) => [a] -> [a] -> Int
--- hammDist = ((length . filter (True ==)) .) . zipWith (/=)
-hammDist [] _ = 0
-hammDist _ [] = 0
-hammDist (a:as) (b:bs) = if a /= b then 1 + hammDist as bs else hammDist as bs
+hammDist = ((length . filter (True ==)) .) . zipWith (/=)
+-- hammDist [] _ = 0
+-- hammDist _ [] = 0
+-- hammDist (a:as) (b:bs) = if a /= b then 1 + hammDist as bs else hammDist as bs
 -- {-# SPECIALIZE hammDist :: [(Int,Int)] -> [(Int,Int)] -> Int #-}
+
+-- hammdist :: Eq a => [a] -> [a] -> Int
+-- -- hammdist :: (Eq a) => [a] -> [a] -> Int
+-- -- hammdist xs ys = length $ filter (==True) $ zipWith (==) xs ys
+-- -- hammdist = ((length . filter (True ==)) .) . zipWith (/=)
+-- hammdist xs ys = foldl ((+) . f) 0 $ zipWith (/=) xs ys
+
 
 hammDistAg :: Env -> Agent -> Int
 hammDistAg _ NoAgent = fromIntegral P.nrGeneTypes

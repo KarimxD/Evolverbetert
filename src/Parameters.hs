@@ -44,7 +44,7 @@ deathRate = 0.3 :: Prob
  NrOverlap and NrSpecific contribute to the same
  (namely genes expressed in A, and not in B, and vice versa)
 -}
-nrGeneTypes' = (\(ID a) -> a) nrGeneTypes
+nrGeneTypes' = (\(ID a) -> a) nrGeneTypes :: Int
 nrGeneTypes = ID $ nrHouseHold + nrOverlap + nrSpecific -- usually 20
 nrHouseHold = 8 :: Int; nrOverlap = 0 :: Int; nrSpecific = 12 :: Int
 minThres = -2 :: Int; maxThres = 2 :: Int

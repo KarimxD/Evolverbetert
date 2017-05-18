@@ -37,9 +37,10 @@ import Data.Time.Clock
 import           Control.Monad          (when, unless, forM_)
 import           Data.Fixed             (mod')
 import           Data.Function          (on)
+import Data.Maybe (fromJust, isJust, isNothing)
 
 import           Data.Array.IArray      (array, assocs, elems, (!))
-import           Data.List              (find, maximumBy, genericLength, intercalate)
+import           Data.List              (find, maximumBy, minimumBy, genericLength, intercalate)
 import           Data.List.Split        (splitOn)
 
 data Handles = Handles {
@@ -57,7 +58,7 @@ stdHandles = Handles Nothing Nothing Nothing
 initialize :: Options -> IO (IORef World, Handles)
 initialize opts = do
     when (optHelp opts) $ helpError []
-    unless (optOutput opts || optConsole opts || optVOutput opts || optGraphics opts)
+    unless (isJust (optOutput opts) || optConsole opts || optVOutput opts || optGraphics opts)
         $ helpError ["\ny u no want output?!\n"]
 
     let initialAgent = evalRand randomAgent $ pureMT $ optAgentSeed opts
@@ -69,9 +70,10 @@ initialize opts = do
 
     userName <- getEnv "USER"
     UTCTime date time <- getCurrentTime
-    let outputDir =  "/linuxhome/tmp/" ++ userName ++ "/Evolverbetert/" ++ show date ++ "-" ++ takeWhile (/= '.') (show time) ++ "/"
-    when (optOutput opts || optVOutput opts) $ do
-        createDirectoryIfMissing True outputDir
+    let outputDir = "/linuxhome/tmp/" ++ userName ++ "/Evolverbetert/" ++ show date ++ "_" ++ fromJust (optOutput opts) ++ "/"-- takeWhile (/= '.') (show time) ++ "/"
+        -- opts = opts {optOutput = Just outputDir}
+    when (isJust (optOutput opts) || optVOutput opts) $ do
+        createDirectory outputDir
         putStrLn $ "outputDir=" ++ show outputDir
         callCommand $ "cp -r ./src/ " ++ outputDir ++ "src/"
         putStrLn "copied source directories"
@@ -79,7 +81,7 @@ initialize opts = do
 
     let handles = stdHandles
 
-    handles' <- if optOutput opts
+    handles' <- if isJust $ optOutput opts
                 then do file <- openFile (outputDir++"output.txt") ReadWriteMode
                         return handles {hOutput = Just file}
                 else return handles {hOutput = Nothing}
@@ -134,7 +136,7 @@ main = do
                 0 (fromIntegral h / fromIntegral pixelsPerUnit)
 
         displayCallback $= showWorld worldRef
-
+        actionOnWindowClose $= MainLoopReturns
     -- Where the magic happens... Recursive function that ends on P.maxTime
     -- B.hPutStrLn (fromMaybe stdout $ hOutput hs) $ fromString "Hello, World!"
     mainLoop worldRef opts hs 0
@@ -164,7 +166,7 @@ mainLoop worldRef opts hs t = do
 
     writeIORef worldRef w'
 
-    when (optGraphics opts) $    mainLoopEvent >> postRedisplay Nothing
+    when (optGraphics opts) $ mainLoopEvent >> postRedisplay Nothing
 
     mainLoop worldRef opts hs (t+1)
 
@@ -194,25 +196,45 @@ newWorld w = do
 outputString :: World -> Time -> Bool -> String
 outputString (World ags e) t r =
     intercalate ";"
-        [f t',f e',f minHammDist,f maxHammDist,f avgHammDist,f lenBestChrom]
+        [f _t', f _e', f _minHammDist, f _minOtherHammDist, f _maxHammDist, f _avgHammDist, f _minOtherHammDist, f _lenBestChrom, f _bestChrom, f _bestOtherChrom]
 
     -- ++ myShow bestChrom
     where
         f :: Show a => (a, String) -> String -- | either show the thing or the discription
         f = if r then snd else show . fst
 
-        t' = (t, "time")
-        e' = (e, "env")
-        bestAgent = (maximumBy (compare `on` fitnessAgent e) els, "bestAgent")
-        -- bestOtherAgent = (maximumBy (compare `on` fitnessAgent otherenv) els, "bestOtherAgent")
-        bestChrom = (head . genome $ fst bestAgent, "bestChrom")
-        lenBestChrom = (length . fst $ bestChrom, "lenBestChrom")
-        -- maxFitness = (maximum $ map (fitnessAgent e) els, "maxFitness")
-        minHammDist = (minimum $ map (hammDistAg e) els, "minHammDist")
-        maxHammDist = (maximum $ map (hammDistAg e) els, "maxHammDist")
-        avgHammDist = (average $ map (hammDistAg e) els, "avgHammDist")
+        _t' = (t, "time")
+        _e' = (e, "env")
+
+        _bestAgent         = (maximumBy (compare `on` fitnessAgent e) els,        "bestAgent")
+        _bestOtherAgent    = (maximumBy (compare `on` fitnessAgent otherenv) els, "bestOtherAgent")
+
+        _worstAgent        = (minimumBy (compare `on` fitnessAgent e) els,        "worstAgent")
+        _worstOtherAgent   = (minimumBy (compare `on` fitnessAgent otherenv) els, "worstOtherAgent")
+
+        _bestChrom         = (concat . genome $ fst _bestAgent,       "bestChrom")
+        _bestOtherChrom    = (concat . genome $ fst _bestOtherAgent,  "bestOtherChrom")
+        _worstChrom        = (concat . genome $ fst _worstAgent,      "worstChrom")
+        _worstOtherChrom   = (concat . genome $ fst _worstOtherAgent, "worstOtherChrom")
+
+        _lenBestChrom      = (length $ fst _bestChrom,      "lenBestChrom")
+        _lenBestOtherChrom = (length $ fst _bestOtherChrom, "lenBestOtherChrom")
+        _lenWorstChrom     = (length $ fst _worstChrom,     "lenWorstChrom")
+        _lenWorstOtherCrom = (length $ fst _bestOtherChrom, "lenWorstOtherChrom")
+
+        _maxFitness        = (fitnessAgent e $ fst _bestAgent,  "maxFitness")
+        _minFitness        = (fitnessAgent e $ fst _worstAgent, "minFitness")
+
+        _minHammDist       = (hammDistAg e $ fst _bestAgent,              "minHammDist")
+        _minOtherHammDist  = (hammDistAg otherenv $ fst _bestOtherAgent,  "minOtherHammDist")
+        _maxHammDist       = (hammDistAg e $ fst _worstAgent,             "maxHammDist")
+        _maxOtherHammDist  = (hammDistAg otherenv $ fst _worstOtherAgent, "maxOtherHammDist")
+
+        _avgHammDist       = (average $ map (hammDistAg e) els,        "avgHammDist")
+        _avgOtherHammDist  = (average $ map (hammDistAg otherenv) els, "avgHammDist")
+
         els = filter (/=NoAgent) $ elems ags
-        -- otherenv = 1 + (-1)*e
+        otherenv = 1 + (-1)*e
         average :: (Real a) => [a] -> Double
         average xs = realToFrac (sum xs) / genericLength xs
 
@@ -252,7 +274,7 @@ data Options = Options
     { optHelp        :: Bool
     , optWorldSeed   :: Int
     , optAgentSeed   :: Int
-    , optOutput      :: Bool
+    , optOutput      :: Maybe FilePath
     , optVOutput     :: Bool
     , optConsole     :: Bool
     , optGraphics    :: Bool
@@ -263,7 +285,7 @@ defaultOptions = Options
     { optHelp        = False
     , optWorldSeed   = 420
     , optAgentSeed   = 420
-    , optOutput      = False
+    , optOutput      = Nothing
     , optVOutput     = False
     , optConsole     = False
     , optGraphics    = False
@@ -275,7 +297,7 @@ options =
         (NoArg (\opts -> opts { optHelp = True }))
         "Display this help info"
     , Option ['o']     ["output"]
-        (NoArg (\opts -> opts { optOutput = True }))
+        (ReqArg (\s opts -> opts { optOutput = Just s }) "name")
         "Direcory for output"
     , Option ['v']     ["verbose"]
         (NoArg (\opts -> opts { optVOutput = True }))
