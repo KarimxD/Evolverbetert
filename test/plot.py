@@ -59,8 +59,8 @@ def otherotherdoplot(f):
     # data = np.loadtxt(f, delimiter=';', usecols=(0,1,2,3,4,5,6,7), skiprows = 2)
     # t, env, hammdist, otherhammdist, maxhammdist, avghammdist, henk, gen_length = data.T
 
-    data = np.loadtxt(f, delimiter=';', usecols=(range(9)), skiprows = 2)
-    t, env, minhammdist, minotherhammdist, maxhammdist, avghammdist, foutje, gen_length, avg_indegree = data.T #, avg_indegree = data.T
+    data = np.loadtxt(f, delimiter=';', usecols=(range(8)), skiprows = 2)
+    t, env, minhammdist, minotherhammdist, maxhammdist, avghammdist, foutje, gen_length = data.T #, avg_indegree = data.T
 
     fig = plt.figure()
     gs = gridspec.GridSpec(2, 1, height_ratios=[4, 1])
@@ -76,9 +76,9 @@ def otherotherdoplot(f):
     ax1.plot(t,env,'g')
     ax1.set_ybound(-.5,1.5)
 
-    ax2 = ax1.twinx()
-    ax2.set_ylabel('avg_indegree', color='r')
-    ax2.plot(t,avg_indegree,'r-')
+    # ax2 = ax1.twinx()
+    # ax2.set_ylabel('avg_indegree', color='r')
+    # ax2.plot(t,avg_indegree,'r-')
     ax3 = ax1.twinx()
     ax3.set_ylabel('gen_length', color='b')
     ax3.plot(t,gen_length,'b-')
