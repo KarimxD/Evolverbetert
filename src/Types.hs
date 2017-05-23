@@ -8,12 +8,15 @@ type Time = Int
 type Prob = Double
 
 data World = World {    agents :: Agents
-                    ,   env :: Env} deriving (Show, Read, Eq)
+                    ,   env :: Env
+                   } deriving (Show, Read, Eq)
 
 type Env = Int
 type Agents = Array (Int, Int) Agent
 data Agent = Agent {    genome         :: Genome
-                    ,   geneStateTable :: GeneStateTable}
+                    ,   geneStateTable :: GeneStateTable
+                    ,   parent         :: (Agent, Time)
+                   }
            | NoAgent deriving (Show, Read, Eq, Ord)
 
 type Genome = [Chromosome]

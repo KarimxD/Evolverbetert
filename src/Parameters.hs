@@ -15,7 +15,7 @@ display = False :: Bool
 
 -- * World Parameters
 
-width  = 50 :: Int
+width  = 150 :: Int
 height = 50 :: Int
 worldBounds = ((0::Int, 0::Int), (width-1, height-1))
 worldCoods = [(x, y) | x <- [0..width-1], y <- [0..height-1]]
@@ -28,6 +28,9 @@ outputStep = 50 :: Time
 outputTime t = t `mod` outputStep == 0
 dumpStep = 1000 :: Time
 dumpTime t = t `mod` dumpStep == 0
+lineageStep = 5000 :: Time
+lineageTime t = t `mod` lineageStep == 0
+
 maxTime = -1 --round 1e6 -- 500000
      :: Int
 -- * Fitness Parameters

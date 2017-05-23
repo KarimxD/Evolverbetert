@@ -57,11 +57,11 @@ locusEffect _ _ = 0
 -- Kills the agent if it doesn't have all genes (when length gst /= 'P.nrGeneTypes')
 updateAgent :: Agent -> Agent
 updateAgent NoAgent = NoAgent
-updateAgent (Agent chroms gst) =
+updateAgent ag =
     if length newGST == P.nrGeneTypes'
-        then Agent newGenome newGST
+        then ag { genome = newGenome, geneStateTable = newGST}
         else NoAgent
-    where newGenome = updateGenome gst chroms
+    where newGenome = updateGenome (geneStateTable ag) (genome ag)
           newGST = gSTFromGenome newGenome
 
 -- | Updates every Chromosome in Genome with updateChrom
@@ -145,7 +145,7 @@ reduceToGenes = mapMaybe getGene . concat
 
 -- | The fitness of an Agent in an Environment (stub for 'fitnessGST')
 fitnessAgent :: Env -> Agent -> Double
-fitnessAgent e (Agent _ gst) = fitnessGST e gst
+fitnessAgent e (Agent _ gst _) = fitnessGST e gst
 fitnessAgent _  NoAgent      = 0
 
 -- | Uses targetGST to check fitness of passed GST
@@ -176,7 +176,18 @@ hammDist = ((length . filter (True ==)) .) . zipWith (/=)
 
 hammDistAg :: Env -> Agent -> Int
 hammDistAg _ NoAgent = fromIntegral P.nrGeneTypes
-hammDistAg e ag = hammDist (Map.toList (targetGST e)) (Map.toList $ geneStateTable ag)
+hammDistAg e ag = hammDistGST e (geneStateTable ag)
+
+
+hammDistGenome :: Env -> Genome -> Int
+hammDistGenome e g = hammDistGST e (gSTFromGenome g)
+
+
+hammDistChrom :: Env -> Chromosome -> Int
+hammDistChrom e c = hammDistGenome e [c]
+
+hammDistGST :: Env -> GeneStateTable -> Int
+hammDistGST e = hammDist (Map.toList $ targetGST e) . Map.toList
 
 -- | Generate GeneStateTable based on targetExpression
 targetGST :: Env -> GeneStateTable
@@ -214,7 +225,7 @@ targetExpression e i'
 randomAgent :: Rand Agent
 randomAgent = do
     randGenome <- goodRandomGenome
-    let  agent = devAg $ Agent randGenome defaultGst
+    let  agent = devAg $ Agent randGenome defaultGst (NoAgent, 0)
     if   agent == NoAgent
         then randomAgent
         else return agent

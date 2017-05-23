@@ -173,7 +173,7 @@ mutAg NoAgent = return NoAgent
 mutAg ag = do
     genome' <- mapM dupChr (genome ag)
     let gst' = gSTFromGenome genome'
-    return (Agent genome' gst')
+    return $ ag {genome = genome', geneStateTable = gst'}
 
 randGeneType :: Rand ID
 randGeneType = ID <$> getRange (0, nrGeneTypes'-1)

@@ -37,9 +37,9 @@ import Data.Time.Clock
 import           Control.Monad          (when, unless, forM_)
 import           Data.Fixed             (mod')
 import           Data.Function          (on)
-import Data.Maybe (fromJust, isJust, isNothing)
+import Data.Maybe (fromJust, isJust)
 
-import           Data.Array.IArray      (array, assocs, elems, (!))
+import           Data.Array.IArray      (array, assocs, elems, (!), amap)
 import           Data.List              (find, maximumBy, minimumBy, genericLength, intercalate)
 import           Data.List.Split        (splitOn)
 
@@ -47,9 +47,10 @@ data Handles = Handles {
       hOutput      :: Maybe Handle
     , hVOutput     :: Maybe Handle
     , hConsole     :: Maybe Handle
+    , hLineage     :: Maybe Handle
 }
 stdHandles :: Handles
-stdHandles = Handles Nothing Nothing Nothing
+stdHandles = Handles Nothing Nothing Nothing Nothing
 
 -- | Uses a list of flags to initialize a IORef to a world and a handle for
 -- output.
@@ -69,7 +70,7 @@ initialize opts = do
     setMyStdGen $ pureMT $ optWorldSeed opts
 
     userName <- getEnv "USER"
-    UTCTime date time <- getCurrentTime
+    UTCTime date _ <- getCurrentTime
     let outputDir = "/linuxhome/tmp/" ++ userName ++ "/Evolverbetert/" ++ show date ++ "_" ++ fromJust (optOutput opts) ++ "/"-- takeWhile (/= '.') (show time) ++ "/"
         -- opts = opts {optOutput = Just outputDir}
     when (isJust (optOutput opts) || optVOutput opts) $ do
@@ -82,18 +83,23 @@ initialize opts = do
     let handles = stdHandles
 
     handles' <- if isJust $ optOutput opts
-                then do file <- openFile (outputDir++"output.txt") ReadWriteMode
+                then do file <- openFile (outputDir++"output") ReadWriteMode
                         return handles {hOutput = Just file}
                 else return handles {hOutput = Nothing}
 
     handles'' <- if optVOutput opts
-                 then do file <- openFile (outputDir++"voutput.txt") ReadWriteMode
+                 then do file <- openFile (outputDir++"voutput") ReadWriteMode
                          return handles' {hVOutput = Just file}
                  else return handles' {hVOutput = Nothing}
 
     handles''' <- if optConsole opts
                   then return handles'' {hConsole = Just stdout}
                   else return handles'' {hConsole = Nothing}
+
+    handles''''<- if optLineage opts
+                  then do file <- openFile (outputDir++"lineage") ReadWriteMode
+                          return handles''' {hLineage= Just file}
+                  else return handles''' {hLineage = Nothing}
 
     -- Display some info about the initialization and the header for the output table
     forM_ [hOutput handles''', hConsole handles'''] $ \m -> case m of
@@ -103,7 +109,7 @@ initialize opts = do
                         ++ "; initialAgent = " ++ myShow initialAgent
                      B.hPutStrLn h $ fromString $ outputString initialWorld 0 True
         _      -> return ()
-    return (w, handles''')
+    return (w, handles'''')
 
 
 -- | Maybe initializes graphical display dependent on 'P.display' in "Parameters"
@@ -156,12 +162,16 @@ mainLoop worldRef opts hs t = do
         _      -> return ()
 
     when (P.vOutputTime t) $ case hVOutput hs of
-        Just h -> B.hPutStrLn h (fromString $ show t ++ " ; " ++ show w)
+        Just h -> B.hPutStrLn h (fromString $ show t ++ " ; " ++ show (cleanTrace w))
         _      -> return ()
 
+    when (P.lineageTime t) $ case hLineage hs of
+        Just h -> let b = maximumBy (compare `on` fitnessAgent (env w)) (agents w)
+                   in B.hPutStrLn h (fromString $ show t ++ ";" ++ show b)
+        _      -> return ()
 
     std <- getMyStdGen
-    let (w',std') = runRand (newWorld w) std
+    let (w',std') = runRand (newWorld t w) std
     setMyStdGen std'
 
     writeIORef worldRef w'
@@ -178,11 +188,11 @@ chEnv e = do
 
 -- | Changes the environment dependent on 'P.envSwitchProb' with 'chEnv'
 -- Makes new agents with 'newAssoc'
-newWorld :: World -> Rand World
-newWorld w = do
+newWorld :: Time -> World -> Rand World
+newWorld t w = do
     e' <- maybeCh e chEnv P.envSwitchProb
 
-    newAssocs <- mapM (newAssoc w) oldAssocs -- makes new association list
+    newAssocs <- mapM (newAssoc t w) oldAssocs -- makes new association list
     let ags' = array P.worldBounds newAssocs
         w' = World {agents = ags', env = e'}
     return w'
@@ -196,15 +206,17 @@ newWorld w = do
 outputString :: World -> Time -> Bool -> String
 outputString (World ags e) t r =
     intercalate ";"
-        [f _t', f _e', f _minHammDist, f _minOtherHammDist, f _maxHammDist, f _avgHammDist, f _minOtherHammDist, f _lenBestChrom, f _bestChrom, f _bestOtherChrom]
+        [f _t, f _e, f _minHammDist, f _minOtherHammDist, f _maxHammDist, f _avgHammDist, f _minOtherHammDist, f _lenBestChrom, f' _bestChrom, f' _bestOtherChrom]
 
     -- ++ myShow bestChrom
     where
         f :: Show a => (a, String) -> String -- | either show the thing or the discription
         f = if r then snd else show . fst
+        f' :: MyShow a => (a, String) -> String
+        f'= if r then snd else myShow . fst
 
-        _t' = (t, "time")
-        _e' = (e, "env")
+        _t = (t, "time")
+        _e = (e, "env")
 
         _bestAgent         = (maximumBy (compare `on` fitnessAgent e) els,        "bestAgent")
         _bestOtherAgent    = (maximumBy (compare `on` fitnessAgent otherenv) els, "bestOtherAgent")
@@ -240,14 +252,14 @@ outputString (World ags e) t r =
 
 
 -- | uses 'reproduceAgent' to make a new coordinate-Agent association
-newAssoc :: World -> ((Int, Int), Agent) -> Rand ((Int, Int), Agent)
-newAssoc w (ix, _) = do
-    ag' <- reproduceAgent w ix
+newAssoc :: Time -> World -> ((Int, Int), Agent) -> Rand ((Int, Int), Agent)
+newAssoc t w (ix, _) = do
+    ag' <- reproduceAgent t w ix
     return (ix, ag')
 
 -- | The NSF
-reproduceAgent :: World -> (Int, Int) -> Rand Agent
-reproduceAgent (World ags e) ix = do
+reproduceAgent :: Time -> World -> (Int, Int) -> Rand Agent
+reproduceAgent t (World ags e) ix = do
     temp1 <- getDouble
     if temp1 > P.deathRate --if you survive
     then
@@ -264,7 +276,9 @@ reproduceAgent (World ags e) ix = do
 
             iMutU <- mutAg iChooseYou
             if    iMutU /= iChooseYou
-            then return $ devAg iMutU
+            then return $ let devved = devAg iMutU in
+                            if devved == NoAgent then NoAgent
+                                                 else devved {parent = (iChooseYou, t)}
             else return iMutU
         else return $ ags!ix
     else return NoAgent -- if you die
@@ -276,6 +290,7 @@ data Options = Options
     , optAgentSeed   :: Int
     , optOutput      :: Maybe FilePath
     , optVOutput     :: Bool
+    , optLineage     :: Bool
     , optConsole     :: Bool
     , optGraphics    :: Bool
     } deriving Show
@@ -287,6 +302,7 @@ defaultOptions = Options
     , optAgentSeed   = 420
     , optOutput      = Nothing
     , optVOutput     = False
+    , optLineage     = False
     , optConsole     = False
     , optGraphics    = False
     }
@@ -301,7 +317,10 @@ options =
         "Direcory for output"
     , Option ['v']     ["verbose"]
         (NoArg (\opts -> opts { optVOutput = True }))
-        "Create a file to sometimes output whole world"
+        "Create a file to sometimes output whole world -- only works in combination with -o"
+    , Option ['l']     ["lineage-trace"]
+        (NoArg (\opts -> opts { optLineage = True }))
+        "Output lineage trace in file -- only works in combination with -o"
     , Option ['c']     []
         (NoArg (\opts -> opts { optConsole = True }))
         "Write output to console"
@@ -334,4 +353,7 @@ genome1 = [map myRead $ splitOn "," "14:-1,9:-1,G17:0,16:-1,G12:0,G19:-1,6:-1,4:
 genome0 = [map myRead $ splitOn "," "18:6,15:-2,G1:-1:0,0:-4,G5:-1:0,G12:-1:0,T,G10:-2:0,5:-2,15:3,G15:-1:0,G7:-3:0,T,T,7:4,6:2,G14:-1:0,15:-6,10:5,G19:-1:0,10:-2,3:-6,17:2,G11:-2:0,G6:-1:0,T,18:-5,3:-1,G9:-3:0,G3:-3:0,13:-5,8:4,G2:-1:0,11:-5,7:4,G16:-1:0,T,13:3,6:5,1:-6,G18:-1:0,G17:-1:0,6:0,2:5,G0:-3:0,17:4,6:-1,G8:-1:0,8:5,16:-4,G4:-3:0,G13:-1:1"]
 
 agent0 :: Agent
-agent0 = devAg $ Agent genome0 defaultGst
+agent0 = devAg $ Agent genome0 defaultGst (NoAgent, 0)
+
+cleanTrace :: World -> World
+cleanTrace w = w { agents = amap (\a -> a {parent = (NoAgent,0)}) $ agents w }

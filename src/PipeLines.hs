@@ -5,7 +5,7 @@ module PipeLines (
     where
 import qualified Data.Map as Map
 import Types
-import World (groupGeneTfbs, reduceToGenes, reduceToTfbss, getTfbs)
+import World (groupGeneTfbs, reduceToGenes, reduceToTfbss, getTfbs, hammDistChrom)
 import Data.Maybe (fromMaybe, mapMaybe)
 import Parsing (myShow, myRead)
 -- import qualified Data.Text as T
@@ -35,6 +35,11 @@ main = do
         "onlynet" -> do
             c <- getContents
             putStrLn $ networkproperties (timeGenome c)
+        "lineage" -> do
+            c <- getContents
+            let line = last $ lines c
+                ag = read $ last $ lewords ';' line
+            putStrLn $ lineageToString ag
 
         _ -> putStrLn "y u no put action"
 --
@@ -68,7 +73,21 @@ type SplittedLine = [String]
 -- splinter :: Line -> SplittedLine
 -- splinter = T.split (==';')
 
+lineageToString :: Agent -> String
+lineageToString = timeHammToStr . timeChromToTimeHamm . lineageToTimeChrom
 
+timeHammToStr :: [(Time, Int, Int)] -> String
+timeHammToStr xs = (++)
+    "time;hammdist0;hammdist1\n" $
+    unlines $ reverse $ map (\(t, h0, h1) -> show t ++ ";" ++ show h0 ++ ";" ++ show h1) xs
+
+timeChromToTimeHamm :: [(Time, Chromosome)] -> [(Time, Int, Int)]
+timeChromToTimeHamm = map (\(t, c) -> (t,hammDistChrom 0 c, hammDistChrom 1 c))
+
+lineageToTimeChrom :: Agent -> [(Time, Chromosome)]
+lineageToTimeChrom NoAgent = [(0,[])]
+lineageToTimeChrom ag = (t, concat.genome$ag) : lineageToTimeChrom par
+    where (par, t) = parent ag
 
 lewords                   :: Char -> String -> [String]
 lewords c s               =  case dropWhile (==c) s of
