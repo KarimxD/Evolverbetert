@@ -31,7 +31,7 @@ dumpTime t = t `mod` dumpStep == 0
 lineageStep = 5000 :: Time
 lineageTime t = t `mod` lineageStep == 0
 
-maxTime = -1 --round 1e6 -- 500000
+maxTime = 400 --round 1e6 -- 500000
      :: Int
 -- * Fitness Parameters
 

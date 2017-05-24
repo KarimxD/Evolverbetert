@@ -1,3 +1,5 @@
+{-# LANGUAGE BangPatterns #-}
+
 module Mutations (
 mutAg) where
 
@@ -105,7 +107,7 @@ mutNet c = do
 
 -- fix: Maybe doesn't ch
 chGenThres :: Gene -> Rand Gene
-chGenThres g = do
+chGenThres !g = do
     r <- getRange (minThres, maxThres)
     return $ g {thres = r}
 
@@ -129,12 +131,12 @@ delAnElem gs = do
 mutateLoci :: [Locus] -> Rand [Locus]
 mutateLoci [] = return []
 mutateLoci (h:rest) = case h of
-    CGene g -> do
+    CGene !g -> do
                 rest' <- mutateLoci rest
                 g' <- maybeCh g chGenThres pGenThresCh
                 maybeTfbsList <- maybeCh [] innovateTfbs pTfbsInnov
                 return $ map CTfbs maybeTfbsList ++ CGene g' : rest'
-    CTfbs t -> do
+    CTfbs !t -> do
                 rest' <- mutateLoci rest
                 t' <- maybeCh t chTfbsWt pTfbsWtCh
                 t'' <- maybeCh t' chTfbsPref pTfbsPrefCh
@@ -158,19 +160,19 @@ innovateTfbs list = do
     return $ tfbs:list
 
 chTfbsWt :: Tfbs -> Rand Tfbs
-chTfbsWt t = return t { wt = newwt }
+chTfbsWt !t = return t { wt = newwt }
     where newwt = (-1) * wt t
 
 -- fix: maybe doesn't ch
 chTfbsPref :: Tfbs -> Rand Tfbs
-chTfbsPref t = do
+chTfbsPref !t = do
     r <- randGeneType
     return $ t { tfbsID = r }
 
 -- | mutates agent according to 'Parameters'
 mutAg :: Agent -> Rand Agent
 mutAg NoAgent = return NoAgent
-mutAg ag = do
+mutAg !ag = do
     genome' <- mapM dupChr (genome ag)
     let gst' = gSTFromGenome genome'
     return $ ag {genome = genome', geneStateTable = gst'}
