@@ -275,11 +275,13 @@ reproduceAgent t (World ags e) ix = do
                 r = temp2 * sum fitnesses
 
             iMutU <- mutAg iChooseYou
-            if    iMutU /= iChooseYou
-            then return $ let devved = devAg iMutU in
-                            if devved == NoAgent then NoAgent
-                                                 else devved {parent = (iChooseYou, t)}
-            else return iMutU
+            return $ devAg $ iMutU {parent = (iChooseYou, t)}
+
+--             if    iMutU /= iChooseYou
+--             then return $ let devved = devAg iMutU in
+--                             if devved == NoAgent then NoAgent
+--                                                  else devved {parent = (iChooseYou, t)}
+--             else return iMutU
         else return $ ags!ix
     else return NoAgent -- if you die
 
