@@ -167,7 +167,7 @@ mainLoop worldRef opts hs t = do
 
     when (P.lineageTime t) $ case hLineage hs of
         Just h -> let b = maximumBy (compare `on` fitnessAgent (env w)) (agents w)
-                   in B.hPutStrLn h (fromString $ show t ++ ";" ++ show b)
+                   in B.hPutStrLn h (fromString $ show t ++ ";" ++ show (env w) ++ ";" ++ show b)
         _      -> return ()
 
     std <- getMyStdGen
@@ -275,7 +275,7 @@ reproduceAgent t (World ags e) ix = do
                 r = temp2 * sum fitnesses
 
             iMutU <- mutAg iChooseYou
-            if (iMutU == NoAgent) then return NoAgent
+            if iMutU == NoAgent then return NoAgent
               else return $ devAg $ iMutU {parent = (iChooseYou, t)}
 
 --             if    iMutU /= iChooseYou
@@ -359,4 +359,7 @@ agent0 :: Agent
 agent0 = devAg $ Agent genome0 defaultGst (NoAgent, 0)
 
 cleanTrace :: World -> World
-cleanTrace w = w { agents = amap (\a -> a {parent = (NoAgent,0)}) $ agents w }
+cleanTrace w =
+    w { agents = amap cleanParent $ agents w }
+    where cleanParent NoAgent = NoAgent
+          cleanParent a       = a {parent = (NoAgent,0)}
