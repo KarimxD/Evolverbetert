@@ -17,7 +17,9 @@ data Agent = Agent {    genome         :: Genome
                     ,   geneStateTable :: GeneStateTable
                     ,   parent         :: (Agent, Time)
                    }
-           | NoAgent deriving (Show, Read, Eq, Ord)
+           | NoAgent deriving (Show, Read, Ord)
+instance Eq Agent where
+    a == b = genome a == genome b
 
 type Genome = [Chromosome]
 type Chromosome = [Locus]

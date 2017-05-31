@@ -48,8 +48,10 @@ deathRate = 0.3 :: Prob
  (namely genes expressed in A, and not in B, and vice versa)
 -}
 nrGeneTypes' = (\(ID a) -> a) nrGeneTypes :: Int
-nrGeneTypes = ID $ nrHouseHold + nrOverlap + nrSpecific -- usually 20
-nrHouseHold = 8 :: Int; nrOverlap = 0 :: Int; nrSpecific = 12 :: Int
+nrGeneTypes = ID $ nrHouseHold + nrOverlap + nrSpecific + nrNoEffect -- usually 20
+nrFitEffect = ID $ nrHouseHold + nrOverlap + nrSpecific
+nrFitEffect' = (\(ID a) -> a) nrFitEffect :: Int
+nrHouseHold = 8 :: Int; nrOverlap = 0 :: Int; nrSpecific = 12 :: Int; nrNoEffect = 5 :: Int
 minThres = -2 :: Int; maxThres = 2 :: Int
 
 -- * Probabilities for mutation and environmental change

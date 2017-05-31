@@ -2,7 +2,8 @@ module Misc (
       valueResultPairs
     , maybeCh
     , moore8
-    , repeatCollect)
+    , repeatCollect
+    , roundToNearest)
     where
 
 import           Control.Monad
@@ -38,3 +39,6 @@ maybeCh x f p = do
 -- | Repeats a monadic operation n times collecting the results
 repeatCollect :: Monad m => Int -> (a -> m a) -> a -> m a
 repeatCollect n f = foldr (<=<) return $ replicate n f
+
+roundToNearest :: Integral a => a -> a -> a
+roundToNearest i n = n - n `rem` i

@@ -206,7 +206,7 @@ newWorld t w = do
 outputString :: World -> Time -> Bool -> String
 outputString (World ags e) t r =
     intercalate ";"
-        [f _t, f _e, f _minHammDist, f _minOtherHammDist, f _maxHammDist, f _avgHammDist, f _minOtherHammDist, f _lenBestChrom, f' _bestChrom, f' _bestOtherChrom]
+        [f _t, f _e, f _minHammDist, f _minOtherHammDist, f _maxHammDist, f _avgHammDist, f _lenBestChrom, f' _bestChrom, f' _bestOtherChrom]
 
     -- ++ myShow bestChrom
     where
@@ -275,14 +275,12 @@ reproduceAgent t (World ags e) ix = do
                 r = temp2 * sum fitnesses
 
             iMutU <- mutAg iChooseYou
-            if iMutU == NoAgent then return NoAgent
-              else return $ devAg $ iMutU {parent = (iChooseYou, t)}
-
---             if    iMutU /= iChooseYou
---             then return $ let devved = devAg iMutU in
---                             if devved == NoAgent then NoAgent
---                                                  else devved {parent = (iChooseYou, t)}
---             else return iMutU
+            if iMutU == NoAgent
+            then return NoAgent
+            else --return $ devAg $ iMutU {parent = (iChooseYou, t)}
+                if   iMutU == iChooseYou
+                then return         iMutU
+                else return $ devAg iMutU { parent = (iChooseYou, t) }
         else return $ ags!ix
     else return NoAgent -- if you die
 

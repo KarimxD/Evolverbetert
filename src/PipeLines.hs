@@ -5,12 +5,13 @@ module PipeLines (
     where
 import qualified Data.Map as Map
 import Types
-import World (groupGeneTfbs, reduceToGenes, reduceToTfbss, getTfbs, hammDistChrom)
+import Misc
+import World (groupGeneTfbs, reduceToGenes, reduceToTfbss, getTfbs, hammDistChrom, fitnessAgent)
 import Data.Maybe (fromMaybe, mapMaybe)
 import Parsing (myShow, myRead)
 -- import qualified Data.Text as T
 import Text.Read (readMaybe)
-import Data.List (isPrefixOf)
+import Data.List (isPrefixOf, group)
 
 import           System.Environment     (getArgs)
 
@@ -36,10 +37,17 @@ main = do
             c <- getContents
             putStrLn $ networkproperties (timeGenome c)
         "lineage" -> do
+            let output:_ = args'
             c <- getContents
-            let line = last $ lines c
+            o <- readFile output
+            let line = lines c !! 1
                 ag = read $ last $ lewords ';' line
-            putStrLn $ lineageToString ag
+                lineage = reverse $ agentToLineage ag
+                timeEnvs = outputToTimeEnv o
+            -- putStrLn $ show $ fitnessAgent 0 ag
+            -- print lineage
+            putStrLn $ unlines $ compress $ lines $ henk timeEnvs lineage
+
 
         _ -> putStrLn "y u no put action"
 --
@@ -47,47 +55,63 @@ main = do
 -- -- skip :: Int -> ([a]->[a]) -> [a] -> [a]
 -- -- skip n f = (\(a,b) -> a ++ f b) . splitAt n
 --
+compress :: Eq a => [a] -> [a]
+compress = map head . group
+
 -- | Takes a function applies it on sublist not containing first n elements
 skiplines :: Int -> (SplittedLine -> SplittedLine) -> String -> String
 skiplines n f = unlines . (\(a,b) -> a ++ map f2 b) . splitAt n . lines
     where f2 = leunwords ';' . f . lewords ';'
--- skiplines n f t = undefined --T.unlines $ take n ls ++ unsplinter $ drop n (map f splittedls)
---     where ls = T.lines t
---           splittedls = map splinter ls
---
---
---
---
+
 type Line = String
 type SplittedLine = [String]
---
--- -- type Lines = [T.Text]
--- -- type SplittedLines = [[T.Text]]
---
--- lastTwoToAvgIndegree :: SplittedLine -> SplittedLine
--- lastTwoToAvgIndegree = undefined
---
--- unsplinter :: SplittedLine -> Line
--- unsplinter = T.intercalate (T.pack ";")
---
--- splinter :: Line -> SplittedLine
--- splinter = T.split (==';')
 
-lineageToString :: Agent -> String
-lineageToString = timeHammToStr . timeChromToTimeHamm . lineageToTimeChrom
+-- | envs -> lineage -> output
+henk :: [(Time,Env)] -> [(Time,Chromosome)] -> String
+henk [] _ = ""
+henk _ [] = ""
+henk envs@((te,e):restenvs) chroms@((tc,c):restchroms) =
+        if tc > te
+        then henk restenvs chroms
+        else show te ++ ";" ++ show e ++ ";" ++ myShow c ++ "\n" ++ henk envs restchroms 
 
-timeHammToStr :: [(Time, Int, Int)] -> String
-timeHammToStr xs = (++)
-    "time;hammdist0;hammdist1\n" $
-    unlines $ reverse $ map (\(t, h0, h1) -> show t ++ ";" ++ show h0 ++ ";" ++ show h1) xs
+outputToTimeEnv :: String -> [(Time,Env)]
+outputToTimeEnv c = map (lineToTimeEnv . lewords ';') ls
+    where ls = drop 2 $ lines c
+          lineToTimeEnv (t:e:_) = (read t, read e) :: (Time, Env)
 
-timeChromToTimeHamm :: [(Time, Chromosome)] -> [(Time, Int, Int)]
-timeChromToTimeHamm = map (\(t, c) -> (t,hammDistChrom 0 c, hammDistChrom 1 c))
-
-lineageToTimeChrom :: Agent -> [(Time, Chromosome)]
-lineageToTimeChrom NoAgent = [(0,[])]
-lineageToTimeChrom ag = (t, concat.genome$ag) : lineageToTimeChrom par
+agentToLineage :: Agent -> [(Time,Chromosome)]
+agentToLineage NoAgent = []
+agentToLineage ag = (t, concat $ genome ag) : agentToLineage par
     where (par, t) = parent ag
+
+roundTimes :: Int -> [(Time, a)] -> [(Time, a)]
+roundTimes _ []         = []
+roundTimes i ((t, a):xs) = (roundToNearest i t, a) : roundTimes i xs
+
+
+
+-- lineageToTrail :: Agent ->
+
+-- lineageToString :: Agent -> String
+-- lineageToString = timeHammToStr . timeChromToTimeHamm . lineageToTimeChrom
+
+-- timeHammToStr :: [(Time, Int, Int)] -> String
+-- timeHammToStr xs = (++)
+--     "time;hammdist0;hammdist1;agent\n" $
+--     unlines $ reverse $ map (\(t, h0, h1) -> show t ++ ";" ++ show h0 ++ ";" ++ show h1) xs
+
+-- timeChromToTimeHamm :: [(Time, Chromosome)] -> String
+-- timeChromToTimeHamm xs = (++)
+--     "time;hammdist0;hammdist1;chrom\n" $
+--     unlines $ map (\(t,c) -> show t ++ ";" ++ chromToStr c) xs
+--         where   chromToStr :: Chromosome -> String
+--                 chromToStr c = show (hammDistChrom 0 c) ++ ";" ++ show (hammDistChrom 1 c) ++ ";" ++ myShow c
+--
+-- lineageToTimeChrom :: Agent -> [(Time, Chromosome)]
+-- lineageToTimeChrom NoAgent = [(0,[])]
+-- lineageToTimeChrom ag = (t, concat.genome$ag) : lineageToTimeChrom par
+--     where (par, t) = parent ag
 
 lewords                   :: Char -> String -> [String]
 lewords c s               =  case dropWhile (==c) s of

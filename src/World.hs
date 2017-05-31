@@ -161,21 +161,21 @@ fitnessGST e gst = (1 - d / dmax)^p
 -- | Calculate Hamming distance between two lists. For lists with unequal
 -- lengths compares only the initial overlap
 hammDist :: (Eq a) => [a] -> [a] -> Int
-hammDist = ((length . filter (True ==)) .) . zipWith (/=)
+hammDist xs ys = length $ filter (==True) $ zipWith (==) xs (take (P.nrHouseHold + P.nrOverlap + P.nrSpecific) ys)
+-- hammDist = ((length . filter (True ==)) .) . zipWith (/=)
 -- hammDist [] _ = 0
 -- hammDist _ [] = 0
 -- hammDist (a:as) (b:bs) = if a /= b then 1 + hammDist as bs else hammDist as bs
 -- {-# SPECIALIZE hammDist :: [(Int,Int)] -> [(Int,Int)] -> Int #-}
 
 -- hammdist :: Eq a => [a] -> [a] -> Int
--- -- hammdist :: (Eq a) => [a] -> [a] -> Int
--- -- hammdist xs ys = length $ filter (==True) $ zipWith (==) xs ys
+-- hammdist :: (Eq a) => [a] -> [a] -> Int
 -- -- hammdist = ((length . filter (True ==)) .) . zipWith (/=)
 -- hammdist xs ys = foldl ((+) . f) 0 $ zipWith (/=) xs ys
 
 
 hammDistAg :: Env -> Agent -> Int
-hammDistAg _ NoAgent = fromIntegral P.nrGeneTypes
+hammDistAg _ NoAgent = fromIntegral P.nrFitEffect
 hammDistAg e ag = hammDistGST e (geneStateTable ag)
 
 
@@ -191,10 +191,10 @@ hammDistGST e = hammDist (Map.toList $ targetGST e) . Map.toList
 
 -- | Generate GeneStateTable based on targetExpression
 targetGST :: Env -> GeneStateTable
-targetGST 0 = Map.fromList $ valueResultPairs (targetExpression 0) [0..P.nrGeneTypes-1]
-targetGST 1 = Map.fromList $ valueResultPairs (targetExpression 1) [0..P.nrGeneTypes-1]
+targetGST 0 = Map.fromList $ valueResultPairs (targetExpression 0) [0..P.nrFitEffect-1]
+targetGST 1 = Map.fromList $ valueResultPairs (targetExpression 1) [0..P.nrFitEffect-1]
 targetGST e = Map.fromList $
-    take P.nrGeneTypes' $ valueResultPairs (targetExpression e) [0..]
+    take P.nrFitEffect' $ valueResultPairs (targetExpression e) [0..]
 
 {- | the targetExpression of a Gene in an Environment
 Considers all genes as Specific when the ID is bigger then nrHouseHold + nrOverlap
