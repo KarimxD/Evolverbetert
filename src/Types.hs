@@ -19,6 +19,9 @@ data Agent = Agent {    genome         :: Genome
                    }
            | NoAgent deriving (Show, Read, Ord)
 instance Eq Agent where
+    NoAgent == NoAgent = True
+    NoAgent == _ = False
+    _ == NoAgent = False
     a == b = genome a == genome b
 
 type Genome = [Chromosome]
