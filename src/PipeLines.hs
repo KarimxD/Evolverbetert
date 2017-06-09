@@ -5,10 +5,10 @@ module PipeLines (
     where
 import qualified Data.Map as Map
 import Types
-import Misc
+-- import Misc
 import World (groupGeneTfbs, reduceToGenes, reduceToTfbss, getTfbs, hammDistChrom, fitnessAgent)
 import Data.Maybe (fromMaybe, mapMaybe)
-import Parsing (myShow, myRead)
+import Parsing (myShow, myRead, agentToLineageFile)
 -- import qualified Data.Text as T
 import Text.Read (readMaybe)
 import Data.List (isPrefixOf, group)
@@ -37,17 +37,18 @@ main = do
             c <- getContents
             putStrLn $ networkproperties (timeGenome c)
         "lineage" -> do
-            let output:_ = args'
+            -- let output:_ = args'
             c <- getContents
-            o <- readFile output
-            let line = lines c !! 1
+            -- o <- readFile output
+            let line = last $ lines c
                 ag = read $ last $ lewords ';' line
-                lineage = reverse $ agentToLineage ag
-                timeEnvs = outputToTimeEnv o
+                -- lineage = reverse $ agentToLineage ag
+                -- timeEnvs = outputToTimeEnv o
+
             -- putStrLn $ show $ fitnessAgent 0 ag
             -- print lineage
-            putStrLn $ unlines $ compress $ lines $ henk timeEnvs lineage
-
+            -- putStrLn $ unlines $ compress $ lines $ henk timeEnvs lineage
+            putStrLn . agentToLineageFile $ ag
 
         _ -> putStrLn "y u no put action"
 --
@@ -66,28 +67,27 @@ skiplines n f = unlines . (\(a,b) -> a ++ map f2 b) . splitAt n . lines
 type Line = String
 type SplittedLine = [String]
 
+
+
 -- | envs -> lineage -> output
-henk :: [(Time,Env)] -> [(Time,Chromosome)] -> String
-henk [] _ = ""
-henk _ [] = ""
-henk envs@((te,e):restenvs) chroms@((tc,c):restchroms) =
-        if tc > te
-        then henk restenvs chroms
-        else show te ++ ";" ++ show e ++ ";" ++ myShow c ++ "\n" ++ henk envs restchroms 
+-- henk :: [(Time,Env)] -> [(Time,Chromosome)] -> String
+-- henk [] _ = ""
+-- henk _ [] = ""
+-- henk envs@((te,e):restenvs) chroms@((tc,c):restchroms) =
+--         if tc > te
+--         then henk restenvs chroms
+--         else show te ++ ";" ++ show e ++ ";" ++ myShow c ++ "\n" ++ henk envs restchroms
 
-outputToTimeEnv :: String -> [(Time,Env)]
-outputToTimeEnv c = map (lineToTimeEnv . lewords ';') ls
-    where ls = drop 2 $ lines c
-          lineToTimeEnv (t:e:_) = (read t, read e) :: (Time, Env)
+-- outputToTimeEnv :: String -> [(Time,Env)]
+-- outputToTimeEnv c = map (lineToTimeEnv . lewords ';') ls
+--     where ls = drop 2 $ lines c
+--           lineToTimeEnv (t:e:_) = (read t, read e) :: (Time, Env)
 
-agentToLineage :: Agent -> [(Time,Chromosome)]
-agentToLineage NoAgent = []
-agentToLineage ag = (t, concat $ genome ag) : agentToLineage par
-    where (par, t) = parent ag
 
-roundTimes :: Int -> [(Time, a)] -> [(Time, a)]
-roundTimes _ []         = []
-roundTimes i ((t, a):xs) = (roundToNearest i t, a) : roundTimes i xs
+
+-- roundTimes :: Int -> [(Time, a)] -> [(Time, a)]
+-- roundTimes _ []         = []
+-- roundTimes i ((t, a):xs) = (roundToNearest i t, a) : roundTimes i xs
 
 
 

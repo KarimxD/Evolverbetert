@@ -15,7 +15,8 @@ type Env = Int
 type Agents = Array (Int, Int) Agent
 data Agent = Agent {    genome         :: Genome
                     ,   geneStateTable :: GeneStateTable
-                    ,   parent         :: (Agent, Time)
+                    ,   born           :: (Env, Time)
+                    ,   parent         :: Agent
                    }
            | NoAgent deriving (Show, Read, Ord)
 instance Eq Agent where

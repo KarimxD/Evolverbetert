@@ -145,7 +145,7 @@ reduceToGenes = mapMaybe getGene . concat
 
 -- | The fitness of an Agent in an Environment (stub for 'fitnessGST')
 fitnessAgent :: Env -> Agent -> Double
-fitnessAgent e (Agent _ gst _) = fitnessGST e gst
+fitnessAgent e (Agent _ gst _ _) = fitnessGST e gst
 fitnessAgent _  NoAgent      = 0
 
 -- | Uses targetGST to check fitness of passed GST
@@ -225,7 +225,7 @@ targetExpression e i'
 randomAgent :: Rand Agent
 randomAgent = do
     randGenome <- goodRandomGenome
-    let  agent = devAg $ Agent randGenome defaultGst (NoAgent, 0)
+    let  agent = devAg $ Agent randGenome defaultGst (0,0) NoAgent
     if   agent == NoAgent
         then randomAgent
         else return agent

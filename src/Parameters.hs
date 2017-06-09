@@ -1,6 +1,7 @@
 {-# OPTIONS_GHC -w #-}
 
-module Parameters where
+module Parameters
+    where
 import Types
 
 
@@ -22,16 +23,16 @@ worldCoods = [(x, y) | x <- [0..width-1], y <- [0..height-1]]
 nrEnv = 2 :: Int
 
 -- * Time Parameters
-vOutputStep = 10000 :: Time
-vOutputTime = (0 ==) . flip rem vOutputStep
-outputStep = 50 :: Time
-outputTime t = t `mod` outputStep == 0
-dumpStep = 1000 :: Time
-dumpTime t = t `mod` dumpStep == 0
-lineageStep = 5000 :: Time
-lineageTime t = t `mod` lineageStep == 0
+vOutputStep = 50000 :: Time
+outputStep  = 50    :: Time
+dumpStep    = 1000  :: Time
+lineageStep = 50000 :: Time
+dumpTime t   =  (0 ==) . (`mod` dumpStep)    :: Time -> Bool
+outputTime t =  (0 ==) . (`mod` outputStep)  :: Time -> Bool
+vOutputTime  =  (0 ==) . (`mod` vOutputStep) :: Time -> Bool
+lineageTime  =  (0 ==) . (`mod` lineageStep) :: Time -> Bool
 
-maxTime = -1 --round 1e6 -- 500000
+maxTime = 2000 --round 1e6 -- 500000
      :: Int
 -- * Fitness Parameters
 
