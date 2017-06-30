@@ -55,7 +55,7 @@ nrFitEffect = ID $ nrHouseHold + nrOverlap + nrSpecific
 nrFitEffect' = (\(ID a) -> a) nrFitEffect :: Int
 nrHouseHold = 8 :: Int; nrOverlap = 0 :: Int; nrSpecific = 12 :: Int; nrNoEffect = 0 :: Int
 -- nrHouseHold = 4 :: Int; nrOverlap = 3 :: Int; nrSpecific = 5 :: Int; nrNoEffect = 0 :: Int
-minThres = -2 :: Int; maxThres = 2 :: Int
+minThres = -1 :: Int; maxThres = 2 :: Int
 
 -- * Probabilities for mutation and environmental change
 

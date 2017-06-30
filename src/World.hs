@@ -95,8 +95,8 @@ updateLoc a gst loc@(CTfbs (Tfbs i w))
         | otherwise                  = (a, loc)
 updateLoc a _ (CGene (Gene i t st)) =
     (0, CGene (Gene i t newState)) where
-        newState    | fromIntegral a <  t = GS False
-                    | fromIntegral a == t = st
+        newState    | fromIntegral a <=  t = GS False
+                    -- | fromIntegral a == t = st
                     | otherwise           = GS True
 updateLoc a _ loc = (a, loc)
 
