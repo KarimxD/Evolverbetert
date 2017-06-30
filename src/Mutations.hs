@@ -32,7 +32,7 @@ dupTfbss c = do
 
 dupATfbs :: Chromosome -> Rand Chromosome
 dupATfbs c = do
-    let tfbss = reduceToTfbss [c]
+    let tfbss = reduceChromToTfbss c
 
     i1 <- getRange (0, length tfbss - 1)
     i2 <- getRange (0, length c     - 1)

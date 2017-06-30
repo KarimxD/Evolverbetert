@@ -6,7 +6,8 @@ import Types
 
 
 
-
+-- * Mode Parameters
+resetGeneStatesOnBirth = False :: Bool
 
 
 -- defaultWorldSeed = 420 :: Int
@@ -16,7 +17,7 @@ display = False :: Bool
 
 -- * World Parameters
 
-width  = 150 :: Int
+width  = 50 :: Int
 height = 50 :: Int
 worldBounds = ((0::Int, 0::Int), (width-1, height-1))
 worldCoods = [(x, y) | x <- [0..width-1], y <- [0..height-1]]
@@ -27,12 +28,12 @@ vOutputStep = 50000 :: Time
 outputStep  = 50    :: Time
 dumpStep    = 1000  :: Time
 lineageStep = 50000 :: Time
-dumpTime t   =  (0 ==) . (`mod` dumpStep)    :: Time -> Bool
-outputTime t =  (0 ==) . (`mod` outputStep)  :: Time -> Bool
-vOutputTime  =  (0 ==) . (`mod` vOutputStep) :: Time -> Bool
-lineageTime  =  (0 ==) . (`mod` lineageStep) :: Time -> Bool
+dumpTime    = (0 ==) . (`mod` dumpStep)    :: Time -> Bool
+outputTime  = (0 ==) . (`mod` outputStep)  :: Time -> Bool
+vOutputTime = (0 ==) . (`mod` vOutputStep) :: Time -> Bool
+lineageTime = (0 ==) . (`mod` lineageStep) :: Time -> Bool
 
-maxTime = 2000 --round 1e6 -- 500000
+maxTime = 200 --round 1e6 -- 500000
      :: Int
 -- * Fitness Parameters
 
@@ -52,7 +53,8 @@ nrGeneTypes' = (\(ID a) -> a) nrGeneTypes :: Int
 nrGeneTypes = ID $ nrHouseHold + nrOverlap + nrSpecific + nrNoEffect -- usually 20
 nrFitEffect = ID $ nrHouseHold + nrOverlap + nrSpecific
 nrFitEffect' = (\(ID a) -> a) nrFitEffect :: Int
-nrHouseHold = 8 :: Int; nrOverlap = 0 :: Int; nrSpecific = 12 :: Int; nrNoEffect = 5 :: Int
+nrHouseHold = 8 :: Int; nrOverlap = 0 :: Int; nrSpecific = 12 :: Int; nrNoEffect = 0 :: Int
+-- nrHouseHold = 4 :: Int; nrOverlap = 3 :: Int; nrSpecific = 5 :: Int; nrNoEffect = 0 :: Int
 minThres = -2 :: Int; maxThres = 2 :: Int
 
 -- * Probabilities for mutation and environmental change

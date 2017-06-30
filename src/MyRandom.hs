@@ -2,9 +2,11 @@
 
 module MyRandom
 (
-    Rand
+    Rand (..)
+    -- , R (..)
     , PureMT
     , runRand
+    -- , runRandom
     , getModifyRand
     , evalRand
     , getBool
@@ -18,10 +20,10 @@ module MyRandom
 )   where
 
 import           Control.Monad.State.Strict
-
+import           Control.Monad (liftM, ap)
 import           Data.Int
 import           Data.Word
-import           System.Random                          (RandomGen, next, split)
+import           System.Random                          (RandomGen, next, split, random, getStdRandom)
 import           System.Random.Mersenne.Pure64.Internal
 import           System.Random.Mersenne.Pure64.MTBlock
 -- import Data.Time.Clock
@@ -36,6 +38,86 @@ import           System.IO.Unsafe                       (unsafePerformIO)
 
 
 type Rand = State PureMT
+
+-- data R a = R !a {-# UNPACK #-}!PureMT
+{-
+-- | A basic random monad, for generating random numbers from pure mersenne twisters.
+newtype Rand a = Rand { runRand :: PureMT -> R a }
+
+instance Functor Rand where
+    fmap = liftM
+
+instance Applicative Rand where
+    {-# INLINE pure #-}
+    pure a = Rand $ \s -> R a s
+    (<*>) = ap
+
+instance Monad Rand where
+    {-# INLINE return #-}
+    return = pure
+    {-# INLINE (>>=) #-}
+    m >>= k  = Rand $ \s -> case runRand m s of
+                                R a s' -> runRand (k a) s'
+    {-# INLINE (>>) #-}
+    m >>  k  = Rand $ \s -> case runRand m s of
+                                R _ s' -> runRand k s'
+
+-- | Run a random computation using the generator @g@, returning the result
+-- and the updated generator.
+runRandom  :: Rand a -> PureMT -> (a, PureMT)
+runRandom r g = case runRand r g of R x g -> (x, g)
+
+-- | Evaluate a random computation using the mersenne generator @g@.  Note that the
+-- generator @g@ is not returned, so there's no way to recover the
+-- updated version of @g@.
+evalRand :: Rand a -> PureMT -> a
+evalRand r g = case runRand r g of R x _ -> x
+
+getModifyRand :: Rand PureMT
+getModifyRand = Rand $ \s -> case randomWord64 s of (w,s') -> R s s'
+
+getRange :: Integral a => (Int,Int) -> Rand a
+getRange range = Rand $ \s -> case randomR range s of (w,s') -> R (fromIntegral w) s'
+
+-- {-# INLINE getRange #-}
+
+    -- _ <- getDouble
+    -- it <- get
+    -- let (_,new) = next it
+    -- put new
+    -- return it
+
+------------------------------------------------------------------------
+-- Efficient 'get' functions.
+
+
+getBool     :: Rand Bool
+getBool     = Rand $ \s -> case randomInt s of (w,s') -> R (w < 0) s'
+
+-- | Yield a new 'Int' value from the generator.
+getInt      :: Rand Int
+getInt      = Rand $ \s -> case randomInt s of (w,s') -> R w s'
+
+-- | Yield a new 'Word' value from the generator.
+getWord     :: Rand Word
+getWord     = Rand $ \s -> case randomWord s of (w,s') -> R w s'
+
+-- | Yield a new 'Int64' value from the generator.
+getInt64    :: Rand Int64
+getInt64    = Rand $ \s -> case randomInt64 s of (w,s') -> R w s'
+
+-- | Yield a new 53-bit precise 'Double' value from the generator.
+getDouble   :: Rand Double
+getDouble   = Rand $ \s -> case randomDouble s of (w,s') -> R w s'
+
+-- | Yield a new 'Word64' value from the generator.
+getWord64   :: Rand Word64
+getWord64   = Rand $ \s -> case randomWord64 s of (w,s') -> R w s'
+
+
+-}
+
+--old monad
 
 runRand :: State PureMT a -> PureMT -> (a, PureMT)
 runRand = runState
@@ -58,6 +140,7 @@ getBool = state randomBool
 -- {-# INLINE getBool #-}
 
 getDouble :: Rand Double
+-- getDouble = return $ unsafePerformIO $ getStdRandom random
 getDouble = state randomDouble
 -- {-# INLINE getDouble #-}
 
@@ -65,8 +148,6 @@ getRange :: Integral a => (Int,Int) -> Rand a
 getRange = fmap fromIntegral . state . randomR
 -- {-# INLINE getRange #-}
 
-
--- Rand2
 
 
 -- Edited by Karim Hajji for ease of use

@@ -36,12 +36,12 @@ drawSquares world = renderPrimitive Quads $ mapM_ drawQuad P.worldCoods
 colorHammDist :: Agent -> Env -> Color4 Float
 colorHammDist NoAgent _ = Color4 0 0 0 0
 colorHammDist ag e = myHSV (1 - relHammDist) 0.5 1
-    where relHammDist = fromIntegral (hammDistAg e ag) / fromIntegral P.nrGeneTypes
+    where relHammDist = fromIntegral (hammDist e ag) / fromIntegral P.nrGeneTypes
 
 _colorFit :: Agent -> Env -> Color4 Float
 _colorFit NoAgent _ = Color4 0 0 0 0
 _colorFit ag e = myHSV (realToFrac fit) 0.7 1
-        where fit = fitnessAgent e ag
+        where fit = fitness e ag
 
 myHSV :: Float -> Float -> Float -> Color4 Float
 myHSV h s v

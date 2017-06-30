@@ -147,6 +147,13 @@
   (major1) == 1 && (major2) <  6 || \
   (major1) == 1 && (major2) == 6 && (minor) <= 0)
 
+/* package pcg-random-0.1.3.4 */
+#define VERSION_pcg_random "0.1.3.4"
+#define MIN_VERSION_pcg_random(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  1 || \
+  (major1) == 0 && (major2) == 1 && (minor) <= 3)
+
 /* tool alex-3.1.6 */
 #define TOOL_VERSION_alex "3.1.6"
 #define MIN_TOOL_VERSION_alex(major1,major2,minor) (\

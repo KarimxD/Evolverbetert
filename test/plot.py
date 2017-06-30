@@ -107,7 +107,7 @@ def lineage2(f0,f1):
     data = np.loadtxt(f0, delimiter=';', usecols=(range(7)), skiprows = 2)
     t, env, minhammdist, minotherhammdist, maxhammdist, avghammdist, gen_length = data.T #, avg_indegree = data.T
 
-    data2 = np.loadtxt(f1,delimiter=';',usecols=(range(2)),skiprows=1)
+    data2 = np.loadtxt(f1,delimiter=';',usecols=(range(2)))
     t2,hD0 = data2.T
 
     fig = plt.figure()

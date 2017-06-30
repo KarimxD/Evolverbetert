@@ -168,7 +168,7 @@ mainLoop worldRef opts cwd hs t = do
         _      -> return ()
 
     when (P.lineageTime t && optLineage opts) $ do
-        let b = maximumBy (compare `on` fitnessAgent (env w)) (agents w)
+        let b = maximumBy (compare `on` fitness (env w)) (agents w)
         writeFile (cwd ++ "lineage") (agentToLineageFile b)
 
         -- Just h -> let b = maximumBy (compare `on` fitnessAgent (env w)) (agents w)
@@ -224,11 +224,11 @@ outputString (World ags e) t r =
         _t = (t, "time")
         _e = (e, "env")
 
-        _bestAgent         = (maximumBy (compare `on` fitnessAgent e) els,        "bestAgent")
-        _bestOtherAgent    = (maximumBy (compare `on` fitnessAgent otherenv) els, "bestOtherAgent")
+        _bestAgent         = (maximumBy (compare `on` fitness e) els,        "bestAgent")
+        _bestOtherAgent    = (maximumBy (compare `on` fitness otherenv) els, "bestOtherAgent")
 
-        _worstAgent        = (minimumBy (compare `on` fitnessAgent e) els,        "worstAgent")
-        _worstOtherAgent   = (minimumBy (compare `on` fitnessAgent otherenv) els, "worstOtherAgent")
+        _worstAgent        = (minimumBy (compare `on` fitness e) els,        "worstAgent")
+        _worstOtherAgent   = (minimumBy (compare `on` fitness otherenv) els, "worstOtherAgent")
 
         _bestChrom         = (concat . genome $ fst _bestAgent,       "bestChrom")
         _bestOtherChrom    = (concat . genome $ fst _bestOtherAgent,  "bestOtherChrom")
@@ -240,16 +240,16 @@ outputString (World ags e) t r =
         _lenWorstChrom     = (length $ fst _worstChrom,     "lenWorstChrom")
         _lenWorstOtherCrom = (length $ fst _bestOtherChrom, "lenWorstOtherChrom")
 
-        _maxFitness        = (fitnessAgent e $ fst _bestAgent,  "maxFitness")
-        _minFitness        = (fitnessAgent e $ fst _worstAgent, "minFitness")
+        _maxFitness        = (fitness e $ fst _bestAgent,  "maxFitness")
+        _minFitness        = (fitness e $ fst _worstAgent, "minFitness")
 
-        _minHammDist       = (hammDistAg e $ fst _bestAgent,              "minHammDist")
-        _minOtherHammDist  = (hammDistAg otherenv $ fst _bestOtherAgent,  "minOtherHammDist")
-        _maxHammDist       = (hammDistAg e $ fst _worstAgent,             "maxHammDist")
-        _maxOtherHammDist  = (hammDistAg otherenv $ fst _worstOtherAgent, "maxOtherHammDist")
+        _minHammDist       = (hammDist e $ fst _bestAgent,              "minHammDist")
+        _minOtherHammDist  = (hammDist otherenv $ fst _bestOtherAgent,  "minOtherHammDist")
+        _maxHammDist       = (hammDist e $ fst _worstAgent,             "maxHammDist")
+        _maxOtherHammDist  = (hammDist otherenv $ fst _worstOtherAgent, "maxOtherHammDist")
 
-        _avgHammDist       = (average $ map (hammDistAg e) els,        "avgHammDist")
-        _avgOtherHammDist  = (average $ map (hammDistAg otherenv) els, "avgHammDist")
+        _avgHammDist       = (average $ map (hammDist e) els,        "avgHammDist")
+        _avgOtherHammDist  = (average $ map (hammDist otherenv) els, "avgHammDist")
 
         els = filter (/=NoAgent) $ elems ags
         otherenv = 1 + (-1)*e
@@ -274,7 +274,7 @@ reproduceAgent t (World ags e) ix = do
             temp2 <- getDouble
             let Just (_, iChooseYou) = find ((>=r) . fst) cumFitAg
                 neighbours = map (ags !) (moore8 ix) ++ [NoAgent] --list of the neighbours
-                fitnesses = map (fitnessAgent e) (init neighbours)
+                fitnesses = map (fitness e) (init neighbours)
                             ++ [0.4^P.selectionPressure]  --list of fitnesses
                 cumFitnesses = scanl1 (+) fitnesses --cumulative list of fitnesses
                 cumFitAg = zip cumFitnesses neighbours --list of (cumfit, agent) pairs

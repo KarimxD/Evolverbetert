@@ -3,12 +3,24 @@ module Misc (
     , maybeCh
     , moore8
     , repeatCollect
-    , roundToNearest)
+    , roundToNearest
+    , rmdups)
     where
 
 import           Control.Monad
 import           MyRandom
 import           Parameters    as P
+import qualified Data.Set as Set
+
+
+rmdups :: Ord a => [a] -> [a]
+rmdups = Set.toList . Set.fromList
+-- rmdups = rmdups' Set.empty where
+--   rmdups' _ [] = []
+--   rmdups' a (b : c) = if Set.member b a
+--     then rmdups' a c
+--     else b : rmdups' (Set.insert b a) c
+
 
 
 moore8 :: (Int, Int) -> [(Int, Int)]
