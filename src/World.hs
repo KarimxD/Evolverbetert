@@ -301,9 +301,9 @@ randomTfbss = do
             -- randomW = Rand $ \s -> case randomBool s of (w,s') -> R (f w) s'
             --     where f x = if x then -1 else 1
 
-            randomW :: PureMT -> (Weight, PureMT)
-            randomW g = let (d, g') = randomBool g
-                        in if d then (-1, g') else (1, g')
+            randomW :: (PureMT, [Mutation]) -> (Weight, (PureMT,[Mutation]))
+            randomW (g,ls) = let (d, g') = randomBool g
+                        in if d then (-1, (g',ls)) else (1, (g',ls))
 
 -- | Generate all possible genes (0..nrGeneTypes) with each random threshold
 -- and state 0

@@ -2,7 +2,8 @@
 
 module MyRandom
 (
-    Rand (..)
+    Rand (..),
+    Mutation (..)
     -- , R (..)
     , PureMT
     , runRand
@@ -122,12 +123,12 @@ getWord64   = Rand $ \s -> case randomWord64 s of (w,s') -> R w s'
 
 --old monad
 
-runRand :: State PureMT a -> PureMT -> (a, PureMT)
+-- runRand :: Rand a -> PureMT -> (a, PureMT)
 runRand = runState
 -- {-# INLINE runRand #-}
 
-evalRand :: State PureMT a -> PureMT -> a
-evalRand = evalState
+-- evalRand :: Rand a -> (PureMT,[Mutation]) -> a
+evalRand rr = evalState rr []
 -- {-# INLINE evalRand #-}
 
 getModifyRand :: Rand PureMT
