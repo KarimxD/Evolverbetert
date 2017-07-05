@@ -36,8 +36,11 @@ import           Data.IORef                             (IORef,
                                                          writeIORef)
 import           System.IO.Unsafe                       (unsafePerformIO)
 
+data Mutation = GenDup | GenDel | GenThresCh
+                | TfbsWtCh | TfbsPrefCh
+                | TfbsDel | TfbsInnov | TfbsDup
 
-type Rand = State PureMT
+type Rand = State (PureMT, [Mutation])
 
 -- data R a = R !a {-# UNPACK #-}!PureMT
 {-
@@ -129,25 +132,34 @@ evalRand = evalState
 
 getModifyRand :: Rand PureMT
 getModifyRand = do
-    it <- get
-    let (_,new) = next it
-    put new
-    return it
+    (pmt,ls) <- get
+    let (_,new) = next pmt
+    put (new,ls)
+    return pmt
 -- {-# INLINE getModifyRand #-}
 
 getBool :: Rand Bool
-getBool = state randomBool
+getBool = state randomBool'
+    where
+        randomBool' (pmt,lst) =
+            (\(d,p)->(d,(p,lst))) $ randomBool pmt
 -- {-# INLINE getBool #-}
+
 
 getDouble :: Rand Double
 -- getDouble = return $ unsafePerformIO $ getStdRandom random
-getDouble = state randomDouble
+getDouble = state randomDouble'
+    where
+        randomDouble' (pmt,lst) =
+            (\(d,p)->(d,(p,lst))) $ randomDouble pmt
 -- {-# INLINE getDouble #-}
 
 getRange :: Integral a => (Int,Int) -> Rand a
-getRange = fmap fromIntegral . state . randomR
+getRange = fmap fromIntegral . state . randomR'
+    where
+        randomR' (i1,i2) (pmt,lst) =
+            (\(i,p) -> (i,(p,lst))) $ randomR (i1,i2) pmt
 -- {-# INLINE getRange #-}
-
 
 
 -- Edited by Karim Hajji for ease of use

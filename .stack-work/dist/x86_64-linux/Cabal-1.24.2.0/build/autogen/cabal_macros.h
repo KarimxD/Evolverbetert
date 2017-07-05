@@ -147,6 +147,13 @@
   (major1) == 1 && (major2) <  6 || \
   (major1) == 1 && (major2) == 6 && (minor) <= 0)
 
+/* package vector-0.11.0.0 */
+#define VERSION_vector "0.11.0.0"
+#define MIN_VERSION_vector(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  11 || \
+  (major1) == 0 && (major2) == 11 && (minor) <= 0)
+
 /* package pcg-random-0.1.3.4 */
 #define VERSION_pcg_random "0.1.3.4"
 #define MIN_VERSION_pcg_random(major1,major2,minor) (\
@@ -238,7 +245,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-2qIV0obkRX3EsEnp47ihbY"
+#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-DwIkHcGf4431Ass7c1Avtq"
 
-#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-2qIV0obkRX3EsEnp47ihbY"
+#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-DwIkHcGf4431Ass7c1Avtq"
 

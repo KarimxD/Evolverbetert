@@ -5,6 +5,8 @@ import sys, getopt
 
 import argparse
 
+import plotly.tools as tls
+import plotly.plotly as py
 
 def main(argv):
     parser = argparse.ArgumentParser()
@@ -29,8 +31,12 @@ def main(argv):
     #     elif opt in ("-l", "--lfile"):
     #         lineagefile = arg
 
-    lineage2(args.ifile, args.lfile)
-    # otherotherdoplot(args.ifile)
+    # lineage2(args.ifile, args.lfile)
+
+    otherotherdoplot(args.ifile)
+    # plt.show()
+
+
 def originaldoplot(f):
     data = np.loadtxt(f, delimiter=' ', usecols=(range(7)), skiprows = 2)
     t, env, hammdist, otherhammdist, avghammdist, gen_length, avg_indegree = data.T #, avg_indegree = data.T
@@ -62,7 +68,7 @@ def originaldoplot(f):
 
     # plt.tight_layout()
     gs.tight_layout(fig,h_pad=-1)
-    plt.show()
+
 
 def otherotherdoplot(f):
     # data = np.loadtxt(f, delimiter=';', usecols=(0,1,2,3,4,5,6,7), skiprows = 2)
@@ -101,7 +107,10 @@ def otherotherdoplot(f):
 
     # plt.tight_layout()
     gs.tight_layout(fig,h_pad=-1)
-    plt.show()
+
+    plotly_fig = tls.mpl_to_plotly(fig)
+
+    unique_url = py.plot(plotly_fig)
 
 def lineage2(f0,f1):
     data = np.loadtxt(f0, delimiter=';', usecols=(range(7)), skiprows = 2)
@@ -142,7 +151,7 @@ def lineage2(f0,f1):
 
     # plt.tight_layout()
     gs.tight_layout(fig,h_pad=-1)
-    plt.show()
+
 
 
 def lineage(f0,f1):
@@ -187,7 +196,7 @@ def lineage(f0,f1):
 
     # plt.tight_layout()
     gs.tight_layout(fig,h_pad=-1)
-    plt.show()
+
 
 
 def otherdoplot(f): #runs of may the 4th be with you
@@ -221,7 +230,7 @@ def otherdoplot(f): #runs of may the 4th be with you
 
     # plt.tight_layout()
     gs.tight_layout(fig,h_pad=-1)
-    plt.show()
+
 
 def doplot(f):
     data = np.loadtxt(f, delimiter=' ', usecols=(0,1,2,3,4,5), skiprows = 1)
@@ -243,7 +252,7 @@ def doplot(f):
 
     plt.title(f)
     plt.plot((0, 350000), (3, 3), 'g-')
-    plt.show()
+
 
 if __name__ == "__main__":
    main(sys.argv[1:])
@@ -258,7 +267,7 @@ if __name__ == "__main__":
 # plt.xlabel('time')
 # plt.ylabel('hammdist')
 #
-# plt.show()
+#
 
 # fig = plt.figure()
 #
@@ -272,4 +281,4 @@ if __name__ == "__main__":
 #
 # leg = ax1.legend()
 #
-# plt.show()
+#
