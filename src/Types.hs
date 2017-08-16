@@ -17,7 +17,7 @@ data Agent = Agent {    genome         :: Genome
                     ,   geneStateTable :: GeneStateTable
                     ,   born           :: (Env, Time)
                     ,   parent         :: Agent
-                    ,   mutationssincelast :: [Mutation]
+                    ,   diff :: [Mutation]
                    }
            | NoAgent deriving (Show, Read, Ord)
 instance Eq Agent where

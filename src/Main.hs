@@ -212,7 +212,7 @@ newWorld t w = do
 outputString :: World -> Time -> Bool -> String
 outputString (World ags e) t r =
     intercalate ";"
-        [f _t, f _e, f _minHammDist, f _minOtherHammDist, f _maxHammDist, f _avgHammDist, f _lenBestChrom, f' _bestChrom, f' _bestOtherChrom]
+        [f _t, f _e, f _minHammDist, f _minOtherHammDist, f _maxHammDist, f _avgHammDist, f _lenBestChrom, f' _bestChrom, f' _bestOtherChrom, show $ diff $ fst _bestAgent]
 
     -- ++ myShow bestChrom
     where

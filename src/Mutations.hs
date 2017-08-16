@@ -16,27 +16,27 @@ import           World
 
 
 
-dupChr :: Chromosome -> Rand Chromosome
+dupChr :: Chromosome -> Mut Chromosome
 dupChr = mutNet >=> mutateLoci >=> dupTfbss
 
-_dupChr :: Chromosome -> Rand Chromosome
-_dupChr = dupGenes >=>
-          delGenes >=>
-          dupTfbss
+-- _dupChr :: Chromosome -> Rand Chromosome
+-- _dupChr = dupGenes >=>
+--           delGenes >=>
+--           dupTfbss
 
 -- chGenThress :: Chromosome
 
-dupTfbss :: Chromosome -> Rand Chromosome
+dupTfbss :: Chromosome -> Mut Chromosome
 dupTfbss c = do
-    n <- binomial (length c) pTfbsDup
+    n <- lift $ binomial (length c) pTfbsDup
     repeatCollect n dupATfbs c
 
-dupATfbs :: Chromosome -> Rand Chromosome
+dupATfbs :: Chromosome -> Mut Chromosome
 dupATfbs c = do
     let tfbss = reduceChromToTfbss c
 
-    i1 <- getRange (0, length tfbss - 1)
-    i2 <- getRange (0, length c     - 1)
+    i1 <- lift $ getRange (0, length tfbss - 1)
+    i2 <- lift $ getRange (0, length c     - 1)
     return $ let (h, t) = splitAt i2 c
               in  h ++ [CTfbs $ tfbss!!i1] ++ t
 
@@ -53,22 +53,22 @@ dupATfbs c = do
 --               in  h ++ [gs!!r2] ++ t
 
 
-dupGenes :: Chromosome -> Rand Chromosome
-dupGenes c = do
-    n <- binomial l pGenDup
-    concat <$> repeatCollect n dupAGen gs
-    where
-        gs = groupGeneTfbs c
-        l = length gs
+-- dupGenes :: Chromosome -> Rand Chromosome
+-- dupGenes c = do
+--     n <- binomial l pGenDup
+--     concat <$> repeatCollect n dupAGen gs
+--     where
+--         gs = groupGeneTfbs c
+--         l = length gs
 
 
-delGenes :: Chromosome -> Rand Chromosome
-delGenes c = do
-    n <- binomial l pGenDel
-    concat <$> repeatCollect n delAnElem gs
-    where
-        gs = groupGeneTfbs c
-        l = length gs
+-- delGenes :: Chromosome -> Rand Chromosome
+-- delGenes c = do
+--     n <- binomial l pGenDel
+--     concat <$> repeatCollect n delAnElem gs
+--     where
+--         gs = groupGeneTfbs c
+--         l = length gs
 
 
 
@@ -94,16 +94,16 @@ binomial n''' p = do
 --         binom k = fromIntegral (n `choose` k) * p^k * (1-p)^(n-k)
 --         choose n' k' = product [k'+1..n'] `quot` product [1..n'-k']
 
--- Original Work from here:
-mutNet :: [Locus] -> Rand [Locus]
+
+mutNet :: [Locus] -> Mut [Locus]
 mutNet c = do
     let genes'   = groupGeneTfbs c
         len = length genes'
 
-    genes'' <- maybeCh genes'
-        delAnElem (pGenDel * fromIntegral len)
-    genes''' <- maybeCh genes''
-        dupAGen (pGenDup * fromIntegral len)
+    genes'' <- maybeChLog genes'
+        delAnElem (pGenDel * fromIntegral len) GenDel
+    genes''' <- maybeChLog genes''
+        dupAGen (pGenDup * fromIntegral len) GenDup
     return $ concat genes'''
 
 -- fix: Maybe doesn't ch
@@ -129,22 +129,24 @@ delAnElem gs = do
     return $ let (h, _:t) = splitAt r gs
               in  h ++ t
 
-mutateLoci :: [Locus] -> Rand [Locus]
+mutateLoci :: [Locus] -> Mut [Locus]
 mutateLoci [] = return []
 mutateLoci (h:rest) = case h of
     CGene !g -> do
                 rest' <- mutateLoci rest
-                g' <- maybeCh g chGenThres pGenThresCh
-                maybeTfbsList <- maybeCh [] innovateTfbs pTfbsInnov
+                g' <- maybeChLog g chGenThres pGenThresCh GenThresCh
+                maybeTfbsList <- maybeChLog [] innovateTfbs pTfbsInnov TfbsInnov
                 return $ map CTfbs maybeTfbsList ++ CGene g' : rest'
+
     CTfbs !t -> do
                 rest' <- mutateLoci rest
-                t' <- maybeCh t chTfbsWt pTfbsWtCh
-                t'' <- maybeCh t' chTfbsPref pTfbsPrefCh
+                t' <- maybeChLog t chTfbsWt pTfbsWtCh TfbsWtCh
+                t'' <- maybeChLog t' chTfbsPref pTfbsPrefCh TfbsPrefCh
                 let list' = [t'']
-                list'' <- maybeCh list' delAnElem pTfbsDel
+                list'' <- maybeChLog list' delAnElem pTfbsDel TfbsDel
                 -- list' <- maybeCh list' innovateTfbs pTfbsInnov -- Fix for scaling to # of genes
                 return $ map CTfbs list'' ++ rest'
+
     _       -> do
                 rest' <- mutateLoci rest
                 return $ h:rest'
@@ -165,31 +167,36 @@ chTfbsWt !t = return t { wt = newwt }
     where newwt = (-1) * wt t
 
 -- fix: maybe doesn't ch
-chTfbsPref :: Tfbs -> Rand Tfbs
-chTfbsPref !t = do
-    r <- randGeneType
-    return $ t { tfbsID = r }
+
 
 -- | mutates agent according to 'Parameters'
 mutAg :: Agent -> Rand Agent
 mutAg NoAgent = return NoAgent
 mutAg !ag = do
-    genome' <- mapM dupChr (genome ag)
+    (genome', mutations) <- runWriterT $ mapM dupChr (genome ag)
     let gst' = gSTFromGenome genome'
-    return $ ag {genome = genome', geneStateTable = gst'}
+    return $ ag { genome = genome',
+                  geneStateTable = gst',
+                  diff = mutations }
 
 randGeneType :: Rand ID
 randGeneType = ID <$> getRange (0, nrGeneTypes'-1)
 
 -- type Mut a = Writer [Mutation] (Rand a)
---
--- wChTfbsPref :: Tfbs -> Mut Tfbs
--- wChTfbsPref !t = do
---     tell [TfbsPrefCh]
---     return $ chTfbsPref t
-    -- r <- randGeneType
-    -- return $ t { tfbsID = r }
+type Mut a = WriterT [Mutation] Rand a
 
+chTfbsPref :: Tfbs -> Rand Tfbs
+chTfbsPref !t = do
+    r <- randGeneType
+    return $ t { tfbsID = r }
+
+maybeChLog :: a -> (a -> Rand a) -> Double -> Mutation -> Mut a
+maybeChLog x f p m = do
+    r <- lift getDouble
+    if r < p
+        then do tell [m]
+                lift $ f x
+        else return x
 
 
     --ID <$> getRange (0, nrGeneTypes'-1)
