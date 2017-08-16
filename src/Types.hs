@@ -17,6 +17,7 @@ data Agent = Agent {    genome         :: Genome
                     ,   geneStateTable :: GeneStateTable
                     ,   born           :: (Env, Time)
                     ,   parent         :: Agent
+                    ,   mutationssincelast :: [Mutation]
                    }
            | NoAgent deriving (Show, Read, Ord)
 instance Eq Agent where
@@ -68,3 +69,8 @@ instance Num GeneState where
     fromInteger a = if a > 0 then GS True else GS False
 
 newtype ID = ID Int deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded)
+
+data Mutation = GenDup   | GenDel     | GenThresCh |
+                TfbsDup  | TfbsDel    | TfbsInnov  |
+                TfbsWtCh | TfbsPrefCh
+                deriving (Show, Eq, Read, Ord)

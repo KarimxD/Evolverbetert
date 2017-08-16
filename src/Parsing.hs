@@ -20,7 +20,7 @@ instance MyShow Agent where
 parseAgent :: String -> Agent
 parseAgent "NoAgent" = NoAgent
 parseAgent str =  --Only works on agents with 1 chromosome
-    Agent genes gst (0,0) NoAgent
+    Agent genes gst (0,0) NoAgent []
     where
         gst = gSTFromGenome genes
         genes = [map myRead loci] :: Genome
@@ -78,5 +78,5 @@ agentToLineageFile = unlines . map (\(t,e,c) -> show t ++ ";" ++ show e ++ ";" +
     . reverse . agentToLineage
 
 agentToLineage :: Agent -> [(Time, Env, Chromosome)]
-agentToLineage (Agent (chrom:_) _ (t,e) par) = (t, e, chrom) : agentToLineage par
+agentToLineage (Agent (chrom:_) _ (t,e) par _) = (t, e, chrom) : agentToLineage par
 agentToLineage _ = []

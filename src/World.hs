@@ -95,8 +95,8 @@ updateLoc a gst loc@(CTfbs (Tfbs i w))
         | otherwise                  = (a, loc)
 updateLoc a _ (CGene (Gene i t st)) =
     (0, CGene (Gene i t newState)) where
-        newState    | fromIntegral a <=  t = GS False
-                    -- | fromIntegral a == t = st
+        newState    | fromIntegral a <  t = GS False
+                    | fromIntegral a == t = st
                     | otherwise           = GS True
 updateLoc a _ loc = (a, loc)
 
@@ -169,7 +169,7 @@ class HasFitness a where
 
 instance HasFitness Agent where
     -- | The fitness of an Agent in an Environment (stub for 'fitnessGST')
-    fitness e (Agent _ gst _ _) = fitness e gst
+    fitness e (Agent _ gst _ _ _) = fitness e gst
     fitness _  NoAgent      = 0
 instance HasFitness Genome where
     fitness e = fitness e . concat
@@ -258,7 +258,7 @@ connected = all (>1) . map length . groupGeneTfbs . concat
 randomAgent :: Rand Agent
 randomAgent = do
     randGenome <- goodRandomGenome
-    let  agent = devAg $ Agent randGenome defaultGst (0,0) NoAgent
+    let  agent = devAg $ Agent randGenome defaultGst (0,0) NoAgent []
     if   agent == NoAgent
         then randomAgent
         else return agent
@@ -301,9 +301,9 @@ randomTfbss = do
             -- randomW = Rand $ \s -> case randomBool s of (w,s') -> R (f w) s'
             --     where f x = if x then -1 else 1
 
-            randomW :: (PureMT, [Mutation]) -> (Weight, (PureMT,[Mutation]))
-            randomW (g,ls) = let (d, g') = randomBool g
-                        in if d then (-1, (g',ls)) else (1, (g',ls))
+            randomW :: PureMT -> (Weight, PureMT)
+            randomW g = let (d, g') = randomBool g
+                        in if d then (-1, g') else (1, g')
 
 -- | Generate all possible genes (0..nrGeneTypes) with each random threshold
 -- and state 0

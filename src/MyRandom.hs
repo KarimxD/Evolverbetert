@@ -2,8 +2,7 @@
 
 module MyRandom
 (
-    Rand (..),
-    Mutation (..)
+    Rand (..)
     -- , R (..)
     , PureMT
     , runRand
@@ -37,11 +36,8 @@ import           Data.IORef                             (IORef,
                                                          writeIORef)
 import           System.IO.Unsafe                       (unsafePerformIO)
 
-data Mutation = GenDup | GenDel | GenThresCh
-                | TfbsWtCh | TfbsPrefCh
-                | TfbsDel | TfbsInnov | TfbsDup
 
-type Rand = State (PureMT, [Mutation])
+type Rand = State PureMT
 
 -- data R a = R !a {-# UNPACK #-}!PureMT
 {-
@@ -123,45 +119,35 @@ getWord64   = Rand $ \s -> case randomWord64 s of (w,s') -> R w s'
 
 --old monad
 
--- runRand :: Rand a -> PureMT -> (a, PureMT)
+runRand :: State PureMT a -> PureMT -> (a, PureMT)
 runRand = runState
 -- {-# INLINE runRand #-}
 
--- evalRand :: Rand a -> (PureMT,[Mutation]) -> a
-
-evalRand rr = evalState rr []
+evalRand :: State PureMT a -> PureMT -> a
+evalRand = evalState
 -- {-# INLINE evalRand #-}
 
 getModifyRand :: Rand PureMT
 getModifyRand = do
-    (pmt,ls) <- get
-    let (_,new) = next pmt
-    put (new,ls)
-    return pmt
+    it <- get
+    let (_,new) = next it
+    put new
+    return it
 -- {-# INLINE getModifyRand #-}
 
 getBool :: Rand Bool
-getBool = state randomBool'
-    where
-        randomBool' (pmt,lst) =
-            (\(d,p)->(d,(p,lst))) $ randomBool pmt
+getBool = state randomBool
 -- {-# INLINE getBool #-}
-
 
 getDouble :: Rand Double
 -- getDouble = return $ unsafePerformIO $ getStdRandom random
-getDouble = state randomDouble'
-    where
-        randomDouble' (pmt,lst) =
-            (\(d,p)->(d,(p,lst))) $ randomDouble pmt
+getDouble = state randomDouble
 -- {-# INLINE getDouble #-}
 
 getRange :: Integral a => (Int,Int) -> Rand a
-getRange = fmap fromIntegral . state . randomR'
-    where
-        randomR' (i1,i2) (pmt,lst) =
-            (\(i,p) -> (i,(p,lst))) $ randomR (i1,i2) pmt
+getRange = fmap fromIntegral . state . randomR
 -- {-# INLINE getRange #-}
+
 
 
 -- Edited by Karim Hajji for ease of use

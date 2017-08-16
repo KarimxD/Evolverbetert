@@ -10,6 +10,7 @@ import           MyRandom
 import Types
 
 import           Control.Monad
+import           Control.Monad.Writer
 import           Data.List
 import           World
 
@@ -179,3 +180,16 @@ mutAg !ag = do
 
 randGeneType :: Rand ID
 randGeneType = ID <$> getRange (0, nrGeneTypes'-1)
+
+-- type Mut a = Writer [Mutation] (Rand a)
+--
+-- wChTfbsPref :: Tfbs -> Mut Tfbs
+-- wChTfbsPref !t = do
+--     tell [TfbsPrefCh]
+--     return $ chTfbsPref t
+    -- r <- randGeneType
+    -- return $ t { tfbsID = r }
+
+
+
+    --ID <$> getRange (0, nrGeneTypes'-1)
