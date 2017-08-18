@@ -212,7 +212,7 @@ newWorld t w = do
 outputString :: World -> Time -> Bool -> String
 outputString (World ags e) t r =
     intercalate ";"
-        [f _t, f _e, f _minHammDist, f _minOtherHammDist, f _maxHammDist, f _avgHammDist, f _lenBestChrom, f' _bestChrom, f' _bestOtherChrom, show $ diff $ fst _bestAgent]
+        [f _t, f _e, f _minHammDist, f _minOtherHammDist, f _maxHammDist, f _avgHammDist, f _lenBestChrom, f' _bestChrom, f' _bestOtherChrom]
 
     -- ++ myShow bestChrom
     where
@@ -251,7 +251,7 @@ outputString (World ags e) t r =
         _avgHammDist       = (average $ map (hammDist e) els,        "avgHammDist")
         _avgOtherHammDist  = (average $ map (hammDist otherenv) els, "avgHammDist")
 
-        els = filter (/=NoAgent) $ elems ags
+        els = filter living $ elems ags
         otherenv = 1 + (-1)*e
         average :: (Real a) => [a] -> Double
         average xs = realToFrac (sum xs) / genericLength xs
@@ -284,10 +284,9 @@ reproduceAgent t (World ags e) ix = do
             if iMutU == NoAgent
             then return NoAgent
             else --return $ devAg $ iMutU {parent = (iChooseYou, t)}
-                if   iMutU == iChooseYou
-                then return         iMutU
-                else return $ devAg iMutU { parent = iChooseYou, born = (t,e) }
-        else return $ ags!ix
+                if   null $ diff iMutU
+                then return         iMutU {diff = diff iChooseYou}
+                else return $ devAg iMutU { parent = iChooseYou, bornTime = t, bornEnv = e }        else return $ ags!ix
     else return NoAgent -- if you die
 
 
@@ -367,3 +366,6 @@ cleanTrace w =
     w { agents = amap cleanParent $ agents w }
     where cleanParent NoAgent = NoAgent
           cleanParent a       = a {parent = NoAgent}
+
+agent42 :: Agent
+agent42 = read "Agent {genome = [[CTfbs (Tfbs {tfbsID = ID 18, wt = Weight 1}),CGene (Gene {geneID = ID 14, thres = Thres (-1), genSt = GS True}),CTfbs (Tfbs {tfbsID = ID 14, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 12, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 21, wt = Weight (-1)}),CGene (Gene {geneID = ID 19, thres = Thres (-1), genSt = GS False}),CTfbs (Tfbs {tfbsID = ID 0, wt = Weight (-1)}),CGene (Gene {geneID = ID 20, thres = Thres 1, genSt = GS False}),CTfbs (Tfbs {tfbsID = ID 13, wt = Weight (-1)}),CGene (Gene {geneID = ID 3, thres = Thres 1, genSt = GS False}),CTfbs (Tfbs {tfbsID = ID 19, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 20, wt = Weight (-1)}),CGene (Gene {geneID = ID 4, thres = Thres 1, genSt = GS False}),CTfbs (Tfbs {tfbsID = ID 21, wt = Weight 1}),CGene (Gene {geneID = ID 16, thres = Thres (-1), genSt = GS True}),CTfbs (Tfbs {tfbsID = ID 7, wt = Weight 1}),CGene (Gene {geneID = ID 24, thres = Thres 0, genSt = GS True}),CTfbs (Tfbs {tfbsID = ID 1, wt = Weight 1}),CGene (Gene {geneID = ID 13, thres = Thres (-1), genSt = GS True}),CTfbs (Tfbs {tfbsID = ID 24, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 22, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 10, wt = Weight (-1)}),CGene (Gene {geneID = ID 22, thres = Thres 1, genSt = GS False}),CTfbs (Tfbs {tfbsID = ID 11, wt = Weight 1}),CTfbs (Tfbs {tfbsID = ID 4, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 8, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 13, wt = Weight 1}),CTfbs (Tfbs {tfbsID = ID 9, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 4, wt = Weight (-1)}),CGene (Gene {geneID = ID 6, thres = Thres 0, genSt = GS True}),CTfbs (Tfbs {tfbsID = ID 0, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 19, wt = Weight 1}),CGene (Gene {geneID = ID 10, thres = Thres (-1), genSt = GS True}),CTfbs (Tfbs {tfbsID = ID 3, wt = Weight (-1)}),CGene (Gene {geneID = ID 5, thres = Thres (-1), genSt = GS True}),CTfbs (Tfbs {tfbsID = ID 2, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 8, wt = Weight 1}),CGene (Gene {geneID = ID 9, thres = Thres 2, genSt = GS False}),CTfbs (Tfbs {tfbsID = ID 17, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 20, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 18, wt = Weight (-1)}),CGene (Gene {geneID = ID 1, thres = Thres 2, genSt = GS False}),CTfbs (Tfbs {tfbsID = ID 1, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 23, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 16, wt = Weight 1}),CTfbs (Tfbs {tfbsID = ID 22, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 3, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 11, wt = Weight (-1)}),CGene (Gene {geneID = ID 0, thres = Thres 1, genSt = GS False}),CTfbs (Tfbs {tfbsID = ID 15, wt = Weight 1}),CGene (Gene {geneID = ID 23, thres = Thres 2, genSt = GS False}),CTfbs (Tfbs {tfbsID = ID 7, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 6, wt = Weight 1}),CGene (Gene {geneID = ID 17, thres = Thres 0, genSt = GS False}),CTfbs (Tfbs {tfbsID = ID 6, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 2, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 5, wt = Weight 1}),CGene (Gene {geneID = ID 2, thres = Thres 1, genSt = GS False}),CTfbs (Tfbs {tfbsID = ID 15, wt = Weight (-1)}),CTfbs (Tfbs {tfbsID = ID 10, wt = Weight 1}),CGene (Gene {geneID = ID 21, thres = Thres (-1), genSt = GS True}),CTfbs (Tfbs {tfbsID = ID 14, wt = Weight 1}),CGene (Gene {geneID = ID 18, thres = Thres 0, genSt = GS True}),CTfbs (Tfbs {tfbsID = ID 24, wt = Weight 1}),CTfbs (Tfbs {tfbsID = ID 5, wt = Weight (-1)}),CGene (Gene {geneID = ID 8, thres = Thres 2, genSt = GS False}),CTfbs (Tfbs {tfbsID = ID 17, wt = Weight 1}),CGene (Gene {geneID = ID 7, thres = Thres (-1), genSt = GS True}),CTfbs (Tfbs {tfbsID = ID 16, wt = Weight 1}),CGene (Gene {geneID = ID 12, thres = Thres 2, genSt = GS False}),CTfbs (Tfbs {tfbsID = ID 9, wt = Weight 1}),CGene (Gene {geneID = ID 15, thres = Thres (-1), genSt = GS True}),CTfbs (Tfbs {tfbsID = ID 12, wt = Weight 1}),CTfbs (Tfbs {tfbsID = ID 23, wt = Weight 1}),CGene (Gene {geneID = ID 11, thres = Thres (-1), genSt = GS True})]], geneStateTable = fromList [(ID 0,GS False),(ID 1,GS False),(ID 2,GS False),(ID 3,GS False),(ID 4,GS False),(ID 5,GS True),(ID 6,GS True),(ID 7,GS True),(ID 8,GS False),(ID 9,GS False),(ID 10,GS True),(ID 11,GS True),(ID 12,GS False),(ID 13,GS True),(ID 14,GS True),(ID 15,GS True),(ID 16,GS True),(ID 17,GS False),(ID 18,GS True),(ID 19,GS False),(ID 20,GS False),(ID 21,GS True),(ID 22,GS False),(ID 23,GS False),(ID 24,GS True)], bornTime = 0, bornEnv = 0, parent = NoAgent, diff = []}"

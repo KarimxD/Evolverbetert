@@ -3,7 +3,7 @@
 module Mutations (
 mutAg) where
 
-import           Misc
+import           Misc (repeatCollect)
 import           Parameters
 -- import Control.Monad.Random (getRandom, getRange, MonadRandom)
 import           MyRandom
@@ -37,8 +37,10 @@ dupATfbs c = do
 
     i1 <- lift $ getRange (0, length tfbss - 1)
     i2 <- lift $ getRange (0, length c     - 1)
-    return $ let (h, t) = splitAt i2 c
-              in  h ++ [CTfbs $ tfbss!!i1] ++ t
+    let (h, t) = splitAt i2 c
+        loc = CTfbs $ tfbss!!i1
+    tell [TfbsDup $ iD loc]
+    return $ h ++ [loc] ++ t
 
 
 --
@@ -97,53 +99,74 @@ binomial n''' p = do
 
 mutNet :: [Locus] -> Mut [Locus]
 mutNet c = do
-    let genes'   = groupGeneTfbs c
-        len = length genes'
+    let genes   = groupGeneTfbs c
+        len = length genes
 
+    genes' <- maybeChLog genes
+        delAGen (pGenDel * fromIntegral len)
     genes'' <- maybeChLog genes'
-        delAnElem (pGenDel * fromIntegral len) GenDel
-    genes''' <- maybeChLog genes''
-        dupAGen (pGenDup * fromIntegral len) GenDup
-    return $ concat genes'''
+        dupAGen (pGenDup * fromIntegral len)
+    return $ concat genes''
 
 -- fix: Maybe doesn't ch
-chGenThres :: Gene -> Rand Gene
+chGenThres :: Gene -> Mut Gene
 chGenThres !g = do
-    r <- getRange (minThres, maxThres)
+    r <- lift $ getRange (minThres, maxThres)
+    tell [GenThresCh $ geneID g]
     return $ g {thres = r}
 
-dupAGen :: [[Locus]] -> Rand [[Locus]]
+dupAGen :: [[Locus]] -> Mut [[Locus]]
 dupAGen [] = return []
 dupAGen gs = do
     let len = length gs
-    r1 <- getRange (0, len-1)
-    r2 <- getRange (0, len-1)
-    return $ let (h, t) = splitAt r1 gs
-              in  h ++ [gs!!r2] ++ t
+    r1 <- lift $ getRange (0, len-1)
+    r2 <- lift $ getRange (0, len-1)
+    let (h, t) = splitAt r1 gs
+        duplicated = gs!!r2
+    tell [GenDup $ iD $ last duplicated]
+    return $ h ++ [duplicated] ++ t
+--
+-- delAnElem :: [a] -> Mut [a]
+-- delAnElem [] = return []
+-- delAnElem gs = do
+--     let len = length gs
+--     r <- lift $ getRange (0, len-1)
+--     return $ let (h, _:t) = splitAt r gs
+--               in  h ++ t
 
-delAnElem :: [a] -> Rand [a]
-delAnElem [] = return []
-delAnElem gs = do
+delATfbs :: [Tfbs] -> Mut [Tfbs]
+delATfbs [] = return []
+delATfbs gs = do
     let len = length gs
-    r <- getRange (0, len-1)
-    return $ let (h, _:t) = splitAt r gs
-              in  h ++ t
+    r <- lift $ getRange (0, len-1)
+    let (h, deleted:t) = splitAt r gs
+    tell [TfbsDel $ iD deleted]
+    return $ h ++ t
+
+delAGen :: [[Locus]] -> Mut [[Locus]]
+delAGen [] = return []
+delAGen gs = do
+    let len = length gs
+    r <- lift $ getRange (0, len-1)
+    let (h, deleted:t) = splitAt r gs
+    tell [GenDel $ iD $ last deleted]
+    return $ h ++ t
 
 mutateLoci :: [Locus] -> Mut [Locus]
 mutateLoci [] = return []
 mutateLoci (h:rest) = case h of
     CGene !g -> do
                 rest' <- mutateLoci rest
-                g' <- maybeChLog g chGenThres pGenThresCh GenThresCh
-                maybeTfbsList <- maybeChLog [] innovateTfbs pTfbsInnov TfbsInnov
+                g' <- maybeChLog g chGenThres pGenThresCh
+                maybeTfbsList <- maybeChLog [] innovateTfbs pTfbsInnov
                 return $ map CTfbs maybeTfbsList ++ CGene g' : rest'
 
     CTfbs !t -> do
                 rest' <- mutateLoci rest
-                t' <- maybeChLog t chTfbsWt pTfbsWtCh TfbsWtCh
-                t'' <- maybeChLog t' chTfbsPref pTfbsPrefCh TfbsPrefCh
+                t' <- maybeChLog t chTfbsWt pTfbsWtCh
+                t'' <- maybeChLog t' chTfbsPref pTfbsPrefCh
                 let list' = [t'']
-                list'' <- maybeChLog list' delAnElem pTfbsDel TfbsDel
+                list'' <- maybeChLog list' delATfbs pTfbsDel
                 -- list' <- maybeCh list' innovateTfbs pTfbsInnov -- Fix for scaling to # of genes
                 return $ map CTfbs list'' ++ rest'
 
@@ -154,20 +177,29 @@ mutateLoci (h:rest) = case h of
 
 
 
-innovateTfbs :: [Tfbs] -> Rand [Tfbs]
+innovateTfbs :: [Tfbs] -> Mut [Tfbs]
 innovateTfbs list = do
-    b       <- getBool
+    b       <- lift getBool
     let weight = if b then 1 else (-1)
-    pref    <- randGeneType
+    pref    <- lift randGeneType
     let tfbs = Tfbs pref weight
+
+    tell [TfbsInnov $ iD tfbs]
     return $ tfbs:list
 
-chTfbsWt :: Tfbs -> Rand Tfbs
-chTfbsWt !t = return t { wt = newwt }
-    where newwt = (-1) * wt t
+chTfbsWt :: Tfbs -> Mut Tfbs
+chTfbsWt !t = do
+    tell [TfbsWtCh $ iD t]
+    return t { wt = newwt }
+        where newwt = (-1) * wt t
+
 
 -- fix: maybe doesn't ch
-
+chTfbsPref :: Tfbs -> Mut Tfbs
+chTfbsPref !t = do
+    r <- lift randGeneType
+    tell [TfbsPrefCh r]
+    return $ t { tfbsID = r }
 
 -- | mutates agent according to 'Parameters'
 mutAg :: Agent -> Rand Agent
@@ -185,17 +217,12 @@ randGeneType = ID <$> getRange (0, nrGeneTypes'-1)
 -- type Mut a = Writer [Mutation] (Rand a)
 type Mut a = WriterT [Mutation] Rand a
 
-chTfbsPref :: Tfbs -> Rand Tfbs
-chTfbsPref !t = do
-    r <- randGeneType
-    return $ t { tfbsID = r }
 
-maybeChLog :: a -> (a -> Rand a) -> Double -> Mutation -> Mut a
-maybeChLog x f p m = do
+maybeChLog :: a -> (a -> Mut a) -> Double -> Mut a
+maybeChLog x f p = do
     r <- lift getDouble
     if r < p
-        then do tell [m]
-                lift $ f x
+        then f x
         else return x
 
 

@@ -15,7 +15,8 @@ type Env = Int
 type Agents = Array (Int, Int) Agent
 data Agent = Agent {    genome         :: Genome
                     ,   geneStateTable :: GeneStateTable
-                    ,   born           :: (Env, Time)
+                    ,   bornTime       :: Time
+                    ,   bornEnv        :: Env
                     ,   parent         :: Agent
                     ,   diff :: [Mutation]
                    }
@@ -33,6 +34,10 @@ data Locus
     = Transposon
     | CGene     Gene
     | CTfbs     Tfbs     deriving (Show, Read, Eq, Ord)
+instance GeneType Locus where
+    iD (CGene g) = iD g
+    iD (CTfbs t) = iD t
+    iD Transposon = -1
 
 data Gene = Gene {      geneID :: ID
                     ,   thres :: Thres
@@ -57,20 +62,35 @@ newtype Thres     = Thres Int      deriving  (Show, Read, Eq, Ord, Real, Num, En
 
 newtype Weight    = Weight Int     deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded)
 
-newtype GeneState = GS Bool deriving  (Show, Read, Eq, Ord, Enum, Bounded)
+-- newtype GeneState = GS Bool deriving  (Show, Read, Eq, Ord, Enum, Bounded)
+-- instance Real GeneState where
+--     toRational (GS True)  = 1
+--     toRational (GS False) = 0
+-- instance Num GeneState where
+--     GS a + GS b = GS $ a || b
+--     GS a * GS b = GS $ not $ a || b
+--     abs = id; signum = id;
+--     negate (GS a) = GS $ not a
+--     fromInteger a = if a > 0 then GS True else GS False
+
+newtype GeneState = GS Int deriving  (Show, Read, Ord, Enum, Bounded)
+instance Eq GeneState where
+    GS 0 == GS 0 = True
+    GS 0 == GS _ = False
+    GS _ == GS 0 = False
+    GS _ == GS _ = True
 instance Real GeneState where
-    toRational (GS True)  = 1
-    toRational (GS False) = 0
+    toRational (GS a)  = toRational a
 instance Num GeneState where
-    GS a + GS b = GS $ a || b
-    GS a * GS b = GS $ not $ a || b
+    GS a + GS b = GS $ a + b
+    GS a * GS b = GS $ a * b
     abs = id; signum = id;
-    negate (GS a) = GS $ not a
-    fromInteger a = if a > 0 then GS True else GS False
+    negate (GS a) = GS $ -a
+    fromInteger a = GS $ fromInteger a
 
 newtype ID = ID Int deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded)
 
-data Mutation = GenDup   | GenDel     | GenThresCh |
-                TfbsDup  | TfbsDel    | TfbsInnov  |
-                TfbsWtCh | TfbsPrefCh
+data Mutation = GenDup ID   | GenDel ID    | GenThresCh ID |
+                TfbsDup ID  | TfbsDel ID   | TfbsInnov ID  |
+                TfbsWtCh ID | TfbsPrefCh ID
                 deriving (Show, Eq, Read, Ord)

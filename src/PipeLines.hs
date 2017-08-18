@@ -159,8 +159,8 @@ geneTfbsToDot g counts t =
             (1) -> " [color=green]"
             _   -> " [color=red]"
         style = case genSt (fst g) of
-            GS True -> "    " ++ ig ++ " [style = filled];\n"
-            _       -> ""
+            GS 0       -> ""
+            GS _       -> "    " ++ ig ++ " [style = filled];\n"
 
 type NumberedGene = (Gene, Int)
 type Counter = Map.Map ID Int

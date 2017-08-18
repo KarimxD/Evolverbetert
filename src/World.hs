@@ -95,9 +95,9 @@ updateLoc a gst loc@(CTfbs (Tfbs i w))
         | otherwise                  = (a, loc)
 updateLoc a _ (CGene (Gene i t st)) =
     (0, CGene (Gene i t newState)) where
-        newState    | fromIntegral a <  t = GS False
-                    | fromIntegral a == t = st
-                    | otherwise           = GS True
+        newState    | fromIntegral a <= t = GS 0 --Gene never stays the same: fix change <= to < uncomment next line
+                    -- | fromIntegral a == t = st
+                    | otherwise           = GS 1
 updateLoc a _ loc = (a, loc)
 
 -- | Check whether a locus is a Gene or Tfbs
@@ -142,8 +142,10 @@ gSTFromChrom = makeGST . reduceChromToGenes
     where
         makeGST :: [Gene] -> GeneStateTable
         makeGST = F.foldr'
-            (\ !x !acc -> Map.insertWith max (iD x) (genSt x) acc)
-            Map.empty
+            (\ !x !acc -> Map.insertWith
+                (if P.dosiseffect then (+) else max)
+                (iD x) (genSt x) acc)
+                    Map.empty
 
 
 -- | Generate GST from a genome
@@ -169,7 +171,7 @@ class HasFitness a where
 
 instance HasFitness Agent where
     -- | The fitness of an Agent in an Environment (stub for 'fitnessGST')
-    fitness e (Agent _ gst _ _ _) = fitness e gst
+    fitness e (Agent _ gst _ _ _ _) = fitness e gst
     fitness _  NoAgent      = 0
 instance HasFitness Genome where
     fitness e = fitness e . concat
@@ -200,11 +202,12 @@ instance HammDist GeneStateTable where
 -- | Calculate Hamming distance between two lists. For lists with unequal
 -- lengths compares only the initial overlap
 hammingDistance :: (Eq a) => [a] -> [a] -> Int
-hammingDistance xs ys = length $ filter (==True) $ zipWith (==) xs (take (P.nrHouseHold + P.nrOverlap + P.nrSpecific) ys)
+hammingDistance xs ys = length $ filter (==True) $ zipWith (/=) xs (take (P.nrHouseHold + P.nrOverlap + P.nrSpecific) ys)
 
 -- | Generate GeneStateTable based on targetExpression
 targetGST :: Env -> GeneStateTable
 targetGST 0 = Map.fromList $ valueResultPairs (targetExpression 0) [0..P.nrFitEffect-1]
+
 targetGST 1 = Map.fromList $ valueResultPairs (targetExpression 1) [0..P.nrFitEffect-1]
 targetGST e = Map.fromList $
     take P.nrFitEffect' $ valueResultPairs (targetExpression e) [0..]
@@ -258,7 +261,7 @@ connected = all (>1) . map length . groupGeneTfbs . concat
 randomAgent :: Rand Agent
 randomAgent = do
     randGenome <- goodRandomGenome
-    let  agent = devAg $ Agent randGenome defaultGst (0,0) NoAgent []
+    let  agent = devAg $ Agent randGenome defaultGst 0 0 NoAgent []
     if   agent == NoAgent
         then randomAgent
         else return agent
@@ -315,3 +318,9 @@ randomGenes = do
     return $ map CGene $ shuffle' (zipWith makeGene [0..n-1] shuffled) n' r
         where n' = P.nrGeneTypes'; n = P.nrGeneTypes
               makeGene i t = Gene i t 0
+
+dead :: Agent -> Bool
+dead = not . living
+
+living :: Agent -> Bool
+living = (/=) NoAgent

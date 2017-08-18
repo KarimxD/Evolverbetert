@@ -8,7 +8,8 @@ import Types
 
 -- * Mode Parameters
 resetGeneStatesOnBirth = False :: Bool
-
+dosiseffect = True :: Bool
+nrNoEffect = 0 :: Int
 
 -- defaultWorldSeed = 420 :: Int
 -- defaultInitialAgentSeed = 420 :: Int
@@ -27,7 +28,7 @@ nrEnv = 2 :: Int
 vOutputStep = 50000 :: Time
 outputStep  = 50    :: Time
 dumpStep    = 1000  :: Time
-lineageStep = 50000 :: Time
+lineageStep = 200 :: Time
 dumpTime    = (0 ==) . (`mod` dumpStep)    :: Time -> Bool
 outputTime  = (0 ==) . (`mod` outputStep)  :: Time -> Bool
 vOutputTime = (0 ==) . (`mod` vOutputStep) :: Time -> Bool
@@ -53,7 +54,7 @@ nrGeneTypes' = (\(ID a) -> a) nrGeneTypes :: Int
 nrGeneTypes = ID $ nrHouseHold + nrOverlap + nrSpecific + nrNoEffect -- usually 20
 nrFitEffect = ID $ nrHouseHold + nrOverlap + nrSpecific
 nrFitEffect' = (\(ID a) -> a) nrFitEffect :: Int
-nrHouseHold = 8 :: Int; nrOverlap = 0 :: Int; nrSpecific = 12 :: Int; nrNoEffect = 5 :: Int
+nrHouseHold = 8 :: Int; nrOverlap = 0 :: Int; nrSpecific = 12 :: Int;
 -- nrHouseHold = 4 :: Int; nrOverlap = 3 :: Int; nrSpecific = 5 :: Int; nrNoEffect = 0 :: Int
 minThres = -1 :: Int; maxThres = 2 :: Int
 

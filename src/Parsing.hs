@@ -20,7 +20,7 @@ instance MyShow Agent where
 parseAgent :: String -> Agent
 parseAgent "NoAgent" = NoAgent
 parseAgent str =  --Only works on agents with 1 chromosome
-    Agent genes gst (0,0) NoAgent []
+    Agent genes gst 0 0 NoAgent []
     where
         gst = gSTFromGenome genes
         genes = [map myRead loci] :: Genome
@@ -47,8 +47,9 @@ instance MyRead Weight where
     myRead = Weight . read
 
 instance MyShow GeneState where
-    myShow (GS True) = show (1 :: Int)
-    myShow _         = show (0 :: Int)
+    myShow (GS a) = show a
+    -- myShow (GS True) = show (1 :: Int)
+    -- myShow _         = show (0 :: Int)
 instance MyRead GeneState where
     myRead = fromInteger . read
 
@@ -74,9 +75,17 @@ instance MyRead Genome where
     myRead s = [myRead s]
 
 agentToLineageFile :: Agent -> String
-agentToLineageFile = unlines . map (\(t,e,c) -> show t ++ ";" ++ show e ++ ";" ++ myShow c)
+agentToLineageFile = unlines . map (\(t,e,c,ms) -> List.intercalate ";" [show t, show e, myShow c, show ms])
     . reverse . agentToLineage
 
-agentToLineage :: Agent -> [(Time, Env, Chromosome)]
-agentToLineage (Agent (chrom:_) _ (t,e) par _) = (t, e, chrom) : agentToLineage par
-agentToLineage _ = []
+-- agentToLineage (Agent (chrom:_) _ (t,e) par _) = (t, e, chrom) : agentToLineage par
+-- agentToLineage _ = []
+
+agentToLineage :: Agent -> [(Time, Env, Chromosome, [Mutation])]
+agentToLineage = map relevents . agentToLineageList
+    where   relevents NoAgent = (0,0,[],[])
+            relevents a = (bornTime a, bornEnv a, head (genome a), diff a)
+
+agentToLineageList :: Agent -> [Agent]
+agentToLineageList NoAgent = []
+agentToLineageList a = a : agentToLineageList (parent a)
