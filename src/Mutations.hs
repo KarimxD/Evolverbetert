@@ -7,7 +7,7 @@ import           Misc (repeatCollect)
 import           Parameters
 -- import Control.Monad.Random (getRandom, getRange, MonadRandom)
 import           MyRandom
-import Types
+import           Types
 
 import           Control.Monad
 import           Control.Monad.Writer
@@ -43,7 +43,7 @@ dupATfbs c = do
     return $ h ++ [loc] ++ t
 
 
---
+
 -- dupATfbs :: [Locus] -> Rand [Locus]
 --
 -- dupAGen [] = return []
@@ -226,4 +226,4 @@ maybeChLog x f p = do
         else return x
 
 
-    --ID <$> getRange (0, nrGeneTypes'-1)
+--ID <$> getRange (0, nrGeneTypes'-1)

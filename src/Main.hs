@@ -119,6 +119,7 @@ initialize opts = do
 -- starts 'mainLoop'
 main :: IO ()
 main = do
+
     args <- getArgs
     (opts, _) <- compilerOpts args
     (worldRef, cwd, hs) <- initialize opts
@@ -212,7 +213,7 @@ newWorld t w = do
 outputString :: World -> Time -> Bool -> String
 outputString (World ags e) t r =
     intercalate ";"
-        [f _t, f _e, f _minHammDist, f _minOtherHammDist, f _maxHammDist, f _avgHammDist, f _lenBestChrom, f' _bestChrom, f' _bestOtherChrom]
+        [f _t, f _e, f _minHammDist, f _minOtherHammDist, f _maxHammDist, f _avgHammDist, f _lenBestChrom, f' _bestChrom, f' _bestOtherChrom, myShow $ geneStateTable $ fst _bestAgent]
 
     -- ++ myShow bestChrom
     where
@@ -253,6 +254,7 @@ outputString (World ags e) t r =
 
         els = filter living $ elems ags
         otherenv = 1 + (-1)*e
+
         average :: (Real a) => [a] -> Double
         average xs = realToFrac (sum xs) / genericLength xs
 

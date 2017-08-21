@@ -20,10 +20,6 @@ import System.Random.Shuffle (shuffle')
 import Control.Monad.State (state)
 
 
-
-
-
-
 -- | Develops agents according to 'P.devTime' and 'updateAgent'
 devAg :: Agent -> Agent
 devAg = if   P.resetGeneStatesOnBirth
@@ -146,7 +142,6 @@ gSTFromChrom = makeGST . reduceChromToGenes
                 (if P.dosiseffect then (+) else max)
                 (iD x) (genSt x) acc)
                     Map.empty
-
 
 -- | Generate GST from a genome
 gSTFromGenome :: Genome -> GeneStateTable

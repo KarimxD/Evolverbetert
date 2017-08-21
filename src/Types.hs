@@ -11,6 +11,8 @@ data World = World {    agents :: Agents
                     ,   env :: Env
                    } deriving (Show, Read, Eq)
 
+
+
 type Env = Int
 type Agents = Array (Int, Int) Agent
 data Agent = Agent {    genome         :: Genome

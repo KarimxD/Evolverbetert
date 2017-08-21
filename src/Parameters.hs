@@ -8,7 +8,7 @@ import Types
 
 -- * Mode Parameters
 resetGeneStatesOnBirth = False :: Bool
-dosiseffect = True :: Bool
+dosiseffect = False :: Bool
 nrNoEffect = 0 :: Int
 
 -- defaultWorldSeed = 420 :: Int
