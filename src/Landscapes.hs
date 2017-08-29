@@ -3,11 +3,10 @@ module Landscapes
 
 import Types
 import qualified Parameters as P
-import Misc (rmdups)
-import World (defaultGst, updateAgent, devAg')
+import Misc (rmdups, mapIfPred)
+import World (devAg', updateChrom)
 -- import Data.Vector.Mutable as V
 import qualified Data.Map as M
-
 -- defaultAgent :: Agent
 -- defaultAgent = Agent [] defaultGst undefined undefined
 --
@@ -21,60 +20,43 @@ import qualified Data.Map as M
 --         newGst gst = geneStateTable $ updateAgent $ a {geneStateTable = gst}
 --         states = map dec2gst [0..2^n-1]
 --         n = P.nrGeneTypes'
+
+
+nsf :: Chromosome -> GeneStateTable -> GeneStateTable
+nsf c = toGST . flip updateChrom c
+
 --
+-- developpedGST :: GeneStateTable -> Agent -> GeneStateTable
+-- developpedGST gst ag = geneStateTable $ devAg' $ setAgent gst ag
 --
--- bin2dec :: [Integer] -> Integer
--- bin2dec = sum . zipWith (*) [2^n | n <- [0..]] . reverse
---
--- dec2bin :: Integer -> [Integer]
--- dec2bin = reverse . dec2bin'
---   where
---     dec2bin' 0 = []
---     dec2bin' y = let (a,b) = quotRem y 2 in b : dec2bin' a
---
--- gst2dec :: GeneStateTable -> Integer
--- gst2dec = bin2dec . gst2bin
---
--- dec2gst :: Integer -> GeneStateTable
--- dec2gst = bin2gst . dec2bin
---
--- gst2bin :: GeneStateTable -> [Integer]
--- gst2bin = map fromIntegral . M.keys
---
--- bin2gst :: [Integer] -> GeneStateTable
--- bin2gst = M.fromList . zip [0..] . map fromInteger
+-- setAgent :: GeneStateTable -> Agent -> Agent
+-- setAgent gst ag = ag { geneStateTable = gst }
+
+turnLocusOn :: Locus -> Locus
+turnLocusOn (CTfbs t) = CTfbs $ t {tfbsSt = GS 1}
+turnLocusOn (CGene g) = CGene $ g {genSt  = GS 1}
+turnLocusOn        x  = x
 
 
+fullGST :: Chromosome -> GeneStateTable
+fullGST = toGST . mapIfPred isGene turnLocusOn
 
 
-attractorLandscape :: Agent -> [GeneStateTable]
-attractorLandscape ag = rmdups $ map (`developpedGST` ag) possibleGeneStateTables
+allGST :: GST gst => gst -> [GeneStateTable]
+allGST = map toGST . allCombinations . toGSL
 
-developpedGST :: GeneStateTable -> Agent -> GeneStateTable
-developpedGST gst ag = geneStateTable $ devAg' $ setAgent gst ag
 
-setAgent :: GeneStateTable -> Agent -> Agent
-setAgent gst ag = ag { geneStateTable = gst }
+allGSTofChrom :: Chromosome -> [GeneStateTable]
+allGSTofChrom = allGST . fullGST
 
-possibleGeneStateTables :: [GeneStateTable]
-possibleGeneStateTables =
-    map (listToGST . num2bin) [0..2^n-1]
-    where
-        n = fromIntegral P.nrGeneTypes'
+prependAll :: [a] -> [[a]] -> [[a]]
+prependAll [] _ = []
+prependAll (x:xs) ls = map (x:) ls ++ prependAll xs ls
+-- prependAll = fix ((`ap` tail) . (. head) . flip ((.) . ap . ((++) .) . map . (:)))
 
-listToGST :: [Int] -> GeneStateTable
-listToGST ls = M.fromList $ zip [0..] $ map fromIntegral $ myZip ls defaultList
-    where
-        defaultList = replicate 0 n
-        n = fromIntegral P.nrGeneTypes
+allCombinations :: Integral a => [a] -> [[a]]
+allCombinations = foldr (\ n -> prependAll [0 .. n]) [[]]
 
--- | conserves first list and adds second
-myZip :: [a] -> [a] -> [a]
-myZip (x:xs) (_:ys) = x : myZip xs ys
-myZip [] [] = []
-myZip (x:xs) [] = x : myZip xs []
-myZip [] (y:ys) = y : myZip ys []
 
-num2bin :: Integral a => a -> [a]
-num2bin 0 = []
-num2bin n = num2bin (n `div` 2) ++ [n `mod` 2]
+agent42 :: Agent
+agent42 = read "Agent {genome = [[CTfbs (Tfbs {tfbsID = ID 19, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 3, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 15, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 2, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 0, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 16, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 5, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 8, thres = Thres 0, genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 19, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 18, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 0, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 9, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 7, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 7, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 17, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 16, thres = Thres 2, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 14, wt = Weight 1, tfbsSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 15, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 8, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 5, thres = Thres (-1), genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 12, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 10, thres = Thres 2, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 16, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 6, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 13, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 4, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 10, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 5, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 14, thres = Thres 0, genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 2, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 11, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 6, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 18, thres = Thres (-1), genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 8, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 9, thres = Thres (-1), genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 18, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 17, thres = Thres 2, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 0, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 19, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 2, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 3, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 4, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 14, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 11, thres = Thres 0, genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 13, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 7, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 9, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 12, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 13, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 15, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 10, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 11, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 1, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 12, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 1, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 4, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 17, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 3, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 1, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 6, thres = Thres 0, genSt = GS 0})]], geneStateTable = fromList [(ID 0,GS 0),(ID 1,GS 0),(ID 2,GS 0),(ID 3,GS 0),(ID 4,GS 0),(ID 5,GS 1),(ID 6,GS 0),(ID 7,GS 0),(ID 8,GS 1),(ID 9,GS 1),(ID 10,GS 0),(ID 11,GS 1),(ID 12,GS 0),(ID 13,GS 0),(ID 14,GS 1),(ID 15,GS 0),(ID 16,GS 0),(ID 17,GS 0),(ID 18,GS 1),(ID 19,GS 0)], bornTime = 0, bornEnv = 0, parent = NoAgent, diff = []}"

@@ -29,8 +29,8 @@ dupChr = mutNet >=> mutateLoci >=> dupTfbss
 dupTfbss :: Chromosome -> Mut Chromosome
 dupTfbss c = do
     n <- lift $ binomial (length c) pTfbsDup
-    repeatCollect n dupATfbs c
 
+    repeatCollect n dupATfbs c
 dupATfbs :: Chromosome -> Mut Chromosome
 dupATfbs c = do
     let tfbss = reduceChromToTfbss c
@@ -182,7 +182,7 @@ innovateTfbs list = do
     b       <- lift getBool
     let weight = if b then 1 else (-1)
     pref    <- lift randGeneType
-    let tfbs = Tfbs pref weight
+    let tfbs = Tfbs pref weight 0
 
     tell [TfbsInnov $ iD tfbs]
     return $ tfbs:list
@@ -206,7 +206,7 @@ mutAg :: Agent -> Rand Agent
 mutAg NoAgent = return NoAgent
 mutAg !ag = do
     (genome', mutations) <- runWriterT $ mapM dupChr (genome ag)
-    let gst' = gSTFromGenome genome'
+    let gst' = toGST genome'
     return $ ag { genome = genome',
                   geneStateTable = gst',
                   diff = mutations }

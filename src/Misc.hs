@@ -4,13 +4,26 @@ module Misc (
     , moore8
     , repeatCollect
     , roundToNearest
-    , rmdups)
+    , rmdups
+    , histogram
+    , count
+    , counts
+    , rotate
+    , rectangulate
+    , horizontalHistogram
+    , verticalHistogram
+    , mapIfPred
+    , takeEvery
+    )
+
     where
 
 import           Control.Monad
 import           MyRandom
 import           Parameters    as P
 import qualified Data.Set as Set
+import           Data.List (transpose)
+
 
 
 rmdups :: Ord a => [a] -> [a]
@@ -54,3 +67,46 @@ repeatCollect n f = foldr (<=<) return $ replicate n f
 
 roundToNearest :: Integral a => a -> a -> a
 roundToNearest i n = n - n `rem` i
+
+
+-- Histogram stuff
+
+verticalHistogram :: (Show a, Ord a) => [a] -> String
+verticalHistogram = unlines . rotate .
+    rectangulate ' ' . lines . horizontalHistogram
+
+horizontalHistogram :: (Show a, Ord a) => [a] -> String
+horizontalHistogram = unlines . map (\(a,n) -> show a ++ "═" ++ replicate n '▮')
+    . histogram
+
+histogram :: (Ord a) => [a] -> [(a,Int)]
+histogram xs = counts (rmdups xs) xs
+
+count :: Eq a => a -> [a] -> Int
+count x = length . filter (==x)
+
+-- | counts "abc" "aacccb" = [('a',2),('b',1),('c',3)]
+counts :: Eq a => [a] -> [a] -> [(a, Int)]
+counts = flip (valueResultPairs . flip count)
+
+rotate :: [[a]] -> [[a]]
+rotate =  reverse . transpose
+
+rectangulate :: a -> [[a]] -> [[a]]
+rectangulate pad rows = newrows
+    where
+        width = maximum $ map length rows
+        infiniterows = map (++ repeat pad) rows
+        newrows = map (take width) infiniterows
+
+mapIfPred :: Functor f => (a -> Bool) -> (a -> a) -> f a -> f a
+mapIfPred p f = fmap f'
+    where f' x = if p x then f x else x
+
+takeEvery :: Int -> [a] -> [a]
+takeEvery _ [] = []
+takeEvery n xs = lehead ys ++ takeEvery n zs where (ys,zs) = splitAt n xs
+
+lehead :: [a] -> [a]
+lehead [] = []
+lehead (x:_) = [x]

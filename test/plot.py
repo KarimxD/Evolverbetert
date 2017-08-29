@@ -11,7 +11,7 @@ import plotly.plotly as py
 def main(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--ifile", required=False, default = "output")
-    parser.add_argument("-l", "--lfile", required=False, default = "trail")
+    parser.add_argument("-l", "--lfile", required=False, default = "lineage")
     args = parser.parse_args()
     print(args)
 
@@ -31,10 +31,10 @@ def main(argv):
     #     elif opt in ("-l", "--lfile"):
     #         lineagefile = arg
 
-    # lineage2(args.ifile, args.lfile)
+    lineage2(args.ifile, args.lfile)
 
-    otherotherdoplot(args.ifile)
-    # plt.show()
+    # otherotherdoplot(args.ifile)
+    plt.show()
 
 
 def originaldoplot(f):

@@ -8,8 +8,8 @@ import Types
 
 -- * Mode Parameters
 resetGeneStatesOnBirth = False :: Bool
-dosiseffect = False :: Bool
-nrNoEffect = 0 :: Int
+dosiseffect = True :: Bool
+nrNoEffect = 5 :: Int
 
 -- defaultWorldSeed = 420 :: Int
 -- defaultInitialAgentSeed = 420 :: Int
@@ -56,7 +56,7 @@ nrFitEffect = ID $ nrHouseHold + nrOverlap + nrSpecific
 nrFitEffect' = (\(ID a) -> a) nrFitEffect :: Int
 nrHouseHold = 8 :: Int; nrOverlap = 0 :: Int; nrSpecific = 12 :: Int;
 -- nrHouseHold = 4 :: Int; nrOverlap = 3 :: Int; nrSpecific = 5 :: Int; nrNoEffect = 0 :: Int
-minThres = -1 :: Int; maxThres = 2 :: Int
+minThres = -1 :: Int; maxThres = 2 :: Int -- -1 and 0 turn off, 1 and 2 turn on
 
 -- * Probabilities for mutation and environmental change
 

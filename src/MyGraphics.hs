@@ -4,7 +4,7 @@ import           Data.Fixed        (mod')
 import           Data.IORef
 import           Graphics.UI.GLUT
 import qualified Parameters        as P
-import           World
+import           Fitness
 import Types
 
 showWorld :: IORef World -> IO ()

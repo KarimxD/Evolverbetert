@@ -1,6 +1,3 @@
-{-# LANGUAGE BangPatterns #-}
-{-# LANGUAGE TypeSynonymInstances #-}
-{-# LANGUAGE FlexibleInstances #-}
 module World
 -- (
     -- World, Env, Agents, Agent(..), Genome, Chromosome, GeneStateTable, Locus(..), Gene(..), Tfbs(..), ID, Thres, GeneState
@@ -8,11 +5,8 @@ module World
     where
 import Control.Monad
 import qualified Data.Map.Strict          as Map
-import Data.Foldable as F (foldr')
-import Data.Maybe (isJust, mapMaybe)
-
-import           Misc
 import qualified Parameters        as P
+
 import MyRandom
 import Types
 
@@ -46,13 +40,13 @@ defaultGst :: GeneStateTable
 defaultGst = Map.fromList defaultStates
     where defaultStates = take P.nrGeneTypes' $ zip [0..] (repeat 0) :: [(ID,GeneState)]
 
--- | Check if locus is effected by expressed transcription factors
--- Return the effect it has. 0 is no effect.
-locusEffect :: Locus -> GeneStateTable -> Weight
-locusEffect (CTfbs (Tfbs i w)) gst
-    | Map.lookup i gst == Just 1 = w
-    | otherwise                  = 0
-locusEffect _ _ = 0
+-- -- | Check if locus is effected by expressed transcription factors
+-- -- Return the effect it has. 0 is no effect.
+-- locusEffect :: Locus -> GeneStateTable -> Weight
+-- locusEffect (CTfbs (Tfbs i w st)) gst
+--     | Map.lookup i gst == Just 1 = w
+--     | otherwise                  = 0
+-- locusEffect _ _ = 0
 
 setToStart :: Agent -> Agent
 setToStart ag = ag { genome = updateGenome startingGST $ genome ag
@@ -69,46 +63,70 @@ updateAgent ag =
         else NoAgent
     where
           newGenome = updateGenome (geneStateTable ag) (genome ag)
-          newGST = gSTFromGenome newGenome
+          newGST = toGST newGenome
 
 -- | Updates every Chromosome in Genome with updateChrom
 updateGenome :: GeneStateTable -> Genome -> Genome
-updateGenome = map . updateChrom 0
+updateGenome = map . updateChrom --0
 
--- | Updates each gene in Chromosome using 'updateLoc'
--- Initial argument is an accumulator that counts the effects of binding sites.
-updateChrom :: Weight -> GeneStateTable -> Chromosome -> Chromosome
-updateChrom a gst (l:ls) = l' : updateChrom a' gst ls
-    where (a', l') = updateLoc a gst l
-updateChrom _ _ _ = []
+(↞) :: (b -> c) -> (a1 -> a -> b) -> a1 -> a -> c
+(↞) = (.).(.)
 
--- | if Tfbs, increment accumulater with effect
--- if Gene, change the expression according to accumulater and set accumulater to 0
--- returns a (accumulator, changed Locus) pair
-updateLoc :: Weight -> GeneStateTable -> Locus -> (Weight, Locus)
-updateLoc a gst loc@(CTfbs (Tfbs i w))
-        | Map.lookup i gst == Just 1 = (a + w, loc)
-        | otherwise                  = (a, loc)
-updateLoc a _ (CGene (Gene i t st)) =
-    (0, CGene (Gene i t newState)) where
-        newState    | fromIntegral a <= t = GS 0 --Gene never stays the same: fix change <= to < uncomment next line
-                    -- | fromIntegral a == t = st
-                    | otherwise           = GS 1
-updateLoc a _ loc = (a, loc)
 
--- | Check whether a locus is a Gene or Tfbs
-isGene, isTfbs :: Locus -> Bool
-isGene = isJust . getGene
-isTfbs = isJust . getTfbs
+updateChrom :: GeneStateTable -> Chromosome -> Chromosome
+updateChrom = updateGenes ↞ updateTfbss
 
--- | Returns Just Gene if Locus is a Gene else Nothing
-getGene :: Locus -> Maybe Gene
-getGene (CGene g) = Just g
-getGene _         = Nothing
--- | Returns Just Tfbs if Locus is a Tfbs else Nothing
-getTfbs :: Locus -> Maybe Tfbs
-getTfbs (CTfbs t) = Just t
-getTfbs _         = Nothing
+updateTfbss :: GeneStateTable -> Chromosome -> Chromosome
+updateTfbss gst =
+    map (\l -> case l of
+                CTfbs (Tfbs i t _)
+                  -> if P.dosiseffect
+                      then CTfbs $ Tfbs i t (gst Map.! i)
+                      else CTfbs $ Tfbs i t $ bottom s
+                     where
+                         s = gst Map.! i
+                         bottom gs | gs == GS 0 = GS 0
+                                   | gs >  GS 0 = GS 1
+                                   | otherwise  = error "negative GeneState"
+                x -> x )
+updateGenes :: Chromosome -> Chromosome
+updateGenes = updateGenes' 0
+    where updateGenes' :: Integer -> Chromosome -> Chromosome
+          updateGenes' _ []     = []
+          updateGenes' a (l:ls) = case l of
+              CTfbs t -> l : updateGenes' (a + s * w) ls
+                where w = toInteger $ wt t; s = toInteger $ tfbsSt t
+              CGene g -> (CGene $ updateGene a g ) : updateGenes' 0 ls
+              x       -> x : updateGenes' a ls
+
+updateGene :: Integer -> Gene -> Gene
+updateGene a g = g {genSt = newState} where
+    newState    | a <= t    = GS 0 --Gene never stays the same: fix change <= to < uncomment next line
+                        -- | a == t = st
+                | otherwise = GS 1
+        where t = toInteger $ thres g
+
+-- -- | Updates each gene in Chromosome using 'updateLoc'
+-- -- Initial argument is an accumulator that counts the effects of binding sites.
+-- updateChrom :: Weight -> GeneStateTable -> Chromosome -> Chromosome
+-- updateChrom a gst (l:ls) = l' : updateChrom a' gst ls
+--     where (a', l') = updateLoc a gst l
+-- updateChrom _ _ _ = []
+--
+-- -- | if Tfbs, increment accumulater with effect
+-- -- if Gene, change the expression according to accumulater and set accumulater to 0
+-- -- returns a (accumulator, changed Locus) pair
+-- updateLoc :: Weight -> GeneStateTable -> Locus -> (Weight, Locus)
+-- updateLoc a gst loc@(CTfbs (Tfbs i w))
+--         | Map.lookup i gst == Just 1 = (a + w, loc)
+--         | otherwise                  = (a, loc)
+-- updateLoc a _ (CGene (Gene i t st)) =
+--     (0, CGene (Gene i t newState)) where
+--         newState    | fromIntegral a <= t = GS 0 --Gene never stays the same: fix change <= to < uncomment next line
+--                     -- | fromIntegral a == t = st
+--                     | otherwise           = GS 1
+-- updateLoc a _ loc = (a, loc)
+
 
 
 -- | Groups genes and preceding transcription factors together
@@ -133,79 +151,10 @@ takeWhileInclusive f ls = takeWhileInclusive' ([], ls)
                 -- > foldr f z []     = z
                 -- > foldr f z (x:xs) = x `f` foldr f z xs
 
-gSTFromChrom :: Chromosome -> GeneStateTable
-gSTFromChrom = makeGST . reduceChromToGenes
-    where
-        makeGST :: [Gene] -> GeneStateTable
-        makeGST = F.foldr'
-            (\ !x !acc -> Map.insertWith
-                (if P.dosiseffect then (+) else max)
-                (iD x) (genSt x) acc)
-                    Map.empty
 
--- | Generate GST from a genome
-gSTFromGenome :: Genome -> GeneStateTable
-gSTFromGenome = gSTFromChrom . concat --makeGst Map.empty $ reduceToGenes genes
 
-reduceChromToTfbss :: Chromosome -> [Tfbs]
-reduceChromToTfbss = mapMaybe getTfbs
 
--- | Reduce a genome to a list of its transcription factor binding sites
-reduceGenomeToTfbss :: Genome -> [Tfbs]
-reduceGenomeToTfbss = reduceChromToTfbss . concat
 
-reduceChromToGenes :: Chromosome -> [Gene]
-reduceChromToGenes = mapMaybe getGene
-
--- | Reduce a genome to a list of its genes
-reduceGenomeToGenes :: Genome -> [Gene]
-reduceGenomeToGenes = reduceChromToGenes . concat
-
-class HasFitness a where
-    fitness :: Env -> a -> Double
-
-instance HasFitness Agent where
-    -- | The fitness of an Agent in an Environment (stub for 'fitnessGST')
-    fitness e (Agent _ gst _ _ _ _) = fitness e gst
-    fitness _  NoAgent      = 0
-instance HasFitness Genome where
-    fitness e = fitness e . concat
-instance HasFitness Chromosome where
-    fitness e = fitness e . gSTFromChrom
-instance HasFitness GeneStateTable where
-    -- | Uses targetGST to check fitness of passed GST
-    fitness e gst = (1 - d / dmax)^p
-            where
-                p = P.selectionPressure
-                dmax = fromIntegral P.nrGeneTypes
-                d = fromIntegral $ hammingDistance target this
-                    where target = Map.toList (targetGST e)
-                          this = Map.toList gst
-
-class HammDist a where
-    hammDist :: Env -> a -> Int
-instance HammDist Agent where
-    hammDist _ NoAgent = fromIntegral P.nrFitEffect
-    hammDist e ag = hammDist e $ geneStateTable ag
-instance HammDist Genome where
-    hammDist e = hammDist e . concat
-instance HammDist Chromosome where
-    hammDist e = hammDist e . gSTFromChrom
-instance HammDist GeneStateTable where
-    hammDist e = hammingDistance (Map.toList $ targetGST e) . Map.toList
-
--- | Calculate Hamming distance between two lists. For lists with unequal
--- lengths compares only the initial overlap
-hammingDistance :: (Eq a) => [a] -> [a] -> Int
-hammingDistance xs ys = length $ filter (==True) $ zipWith (/=) xs (take (P.nrHouseHold + P.nrOverlap + P.nrSpecific) ys)
-
--- | Generate GeneStateTable based on targetExpression
-targetGST :: Env -> GeneStateTable
-targetGST 0 = Map.fromList $ valueResultPairs (targetExpression 0) [0..P.nrFitEffect-1]
-
-targetGST 1 = Map.fromList $ valueResultPairs (targetExpression 1) [0..P.nrFitEffect-1]
-targetGST e = Map.fromList $
-    take P.nrFitEffect' $ valueResultPairs (targetExpression e) [0..]
 
 {- | startingGST lays in between the attractors of targetExpression.
     For instance nrEnv = 4 and nrHouseHold = 4, nrOverlap = 3, nrSpecific = 5
@@ -222,29 +171,6 @@ startingGST = Map.fromList $ zip [0..] $ fhsh hh ++ fhsh ov ++ fhsh sp ++ fhsh n
             | even x    = replicate (x `div` 2    ) 1 ++ replicate (x `div` 2) 0
             | otherwise = replicate (x `div` 2 + 1) 1 ++ replicate (x `div` 2) 0
           hh = P.nrHouseHold; ov = P.nrOverlap; sp = P.nrSpecific; ne = P.nrNoEffect
-
-
-{- | the targetExpression of a Gene in an Environment
-Considers all genes as Specific when the ID is bigger then nrHouseHold + nrOverlap
-example for nrEnv = 4 and nrHouseHold = 4, nrOverlap = 3, nrSpecific = 5
-Env\Gene    0   1   2   3   4   5   6   7   8   9   10  11
-0           1   1   1   1   0   1   1   1   0   0   0   1
-1           1   1   1   1   1   0   1   0   1   0   0   0
-2           1   1   1   1   1   1   0   0   0   1   0   0
-3           1   1   1   1   0   1   1   0   0   0   1   0
--}
-targetExpression :: Env -> ID -> GeneState
-targetExpression e i'
-    | i <  hh                              = 1 -- household
-
-    | i < hh + ov &&
-        (i - hh - e) `mod` P.nrEnv == 0    = 0
-    | i < hh + ov &&
-        (i - hh - e) `mod` P.nrEnv /= 0    = 1 -- overlapping
-
-    | (i - hh - ov - e) `mod` P.nrEnv == 0 = 1
-    | otherwise                            = 0 -- specific
-    where hh = P.nrHouseHold; ov = P.nrOverlap; i = (\(ID a) -> a) i'
 
 
 
@@ -291,7 +217,7 @@ randomTfbss = do
 
     r <- getModifyRand
     let shuffled = shuffle' randomWeights n' r
-    return $ map CTfbs $ shuffle' (zipWith Tfbs [0..n-1] shuffled) n' r
+    return $ map CTfbs $ shuffle' (zipWith3 Tfbs [0..n-1] shuffled (repeat 0)) n' r
         where
             n' = P.nrGeneTypes'; n = P.nrGeneTypes
 

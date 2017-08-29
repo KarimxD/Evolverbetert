@@ -3,16 +3,18 @@ module PipeLines
     where
 import qualified Data.Map           as Map
 import           Types
+import           Fitness
 -- import Misc
 import           Data.Maybe         (fromMaybe, mapMaybe)
 import           Parsing            (agentToLineageFile, myRead, myShow)
-import           World              (getTfbs, groupGeneTfbs, reduceChromToGenes,
-                                     isGene)
+import World (groupGeneTfbs)
+import           Misc (verticalHistogram)
 -- import qualified Data.Text as T
 import           Data.List          (isPrefixOf, find)
 import           Text.Read          (readMaybe)
 
 import           System.Environment (getArgs)
+import qualified Data.ByteString.Char8 as C
 
 main :: IO ()
 main = do
@@ -25,9 +27,8 @@ main = do
                 line = head $ filter (time `isPrefixOf`) $ lines c
                 chrom = head $ mapMaybe readMaybe (lewords ';' line) :: Chromosome
             putStrLn $ chromosomeToDot chrom
-        "net" -> do
-            c <- getContents
-            putStrLn $ unlines $ lastToAvgIndegree (lines c)
+        "net" ->
+            interact $ unlines . lastToAvgIndegree . lines
         "twonet" -> do
             c <- getContents
             putStrLn . skiplines 2 lastTwoToAvgIndegree $ c
@@ -48,8 +49,23 @@ main = do
             -- print lineage
             -- putStrLn $ unlines $ compress $ lines $ henk timeEnvs lineage
             putStrLn . agentToLineageFile $ ag
+        "lineagetohd" -> C.interact lineagelineToHd
 
+        "dupdels" -> do --feed it the lineagefile
+            c <- getContents
+            let parsedls = parseLineageFile c
+                mutations = concatMap (\(_,_,_,muts) -> muts) parsedls
+                dupdels = filter (
+                    \x -> case x of
+                           GenDup _ -> True
+                           GenDel _ -> True
+                           _        -> False
+                    ) mutations
+                ids = map iD dupdels
+                printthis = verticalHistogram ids
+            putStr printthis
         _ -> putStrLn "y u no put action"
+
 --
 -- -- | Takes a function applies it on sublist not containing first n elements
 -- -- skip :: Int -> ([a]->[a]) -> [a] -> [a]
@@ -57,6 +73,20 @@ main = do
 --
 -- compress :: Eq a => [a] -> [a]
 -- compress = map head . group
+
+lineagelineToHd :: C.ByteString -> C.ByteString
+lineagelineToHd = C.unlines . map
+    (C.intercalate (C.pack ";") .
+       (\(t : e : c : _) -> [t, C.pack $ show $
+             hammDist (read $ C.unpack e) (myRead $ C.unpack c :: Chromosome)])
+    . C.split ';') . C.lines
+
+parseLineageFile :: String -> [(Time,Env,Chromosome,[Mutation])]
+parseLineageFile content = parsedls
+    where
+        ls = lines content
+        splittedls = map (lewords ';') ls
+        parsedls = map (\(t:e:c:m:_) -> (read t, read e, myRead c, read m)) splittedls
 
 -- | Takes a function applies it on sublist not containing first n elements
 skiplines :: Int -> (SplittedLine -> SplittedLine) -> String -> String

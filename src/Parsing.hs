@@ -1,6 +1,5 @@
 {-# LANGUAGE FlexibleInstances #-}
 module Parsing  where
-import World
 import Types
 import           Data.List.Split     (splitOn)
 
@@ -22,7 +21,7 @@ parseAgent "NoAgent" = NoAgent
 parseAgent str =  --Only works on agents with 1 chromosome
     Agent genes gst 0 0 NoAgent []
     where
-        gst = gSTFromGenome genes
+        gst = toGST genes
         genes = [map myRead loci] :: Genome
         loci = splitOn "," str :: [String]
 
@@ -32,7 +31,9 @@ instance MyRead GeneStateTable where
     myRead = Map.fromList . zip [0..] . map (myRead . pure) . filter (/= ' ')
 
 instance MyShow ID where
-    myShow (ID i) = show i
+    myShow (ID i) = if i < 10
+                  then '0' : show i
+                  else show i
 instance MyRead ID where
     myRead = ID . read
 
@@ -56,12 +57,12 @@ instance MyRead GeneState where
 instance MyShow Locus where
     myShow Transposon = "T"
     myShow (CGene (Gene i t gs)) = "G" ++ myShow i ++ ":" ++ myShow t ++ ":" ++ myShow gs
-    myShow (CTfbs (Tfbs i w)) = myShow i ++ ":" ++ myShow w
+    myShow (CTfbs (Tfbs i w _)) = myShow i ++ ":" ++ myShow w
 instance MyRead Locus where
     myRead str
         | h == 'G'   = CGene $ Gene (myRead $ tail $ head s) (myRead $ s!!1) (myRead $ s!!2)
         | str == "T" = Transposon
-        | otherwise  = CTfbs $ Tfbs (myRead $ head s) (myRead $ s!!1)
+        | otherwise  = CTfbs $ Tfbs (myRead $ head s) (myRead $ s!!1) 0
              where h = head str; s = splitOn ":" str
 
 instance MyShow Chromosome where
