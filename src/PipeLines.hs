@@ -6,7 +6,7 @@ import           Types
 import           Fitness
 -- import Misc
 import           Data.Maybe         (fromMaybe, mapMaybe)
-import           Parsing            (agentToLineageFile, myRead, myShow)
+import           Parsing            (agentToLineageFile, myRead, myShow, cRead, cMyRead, cMyShow, cShow)
 import World (groupGeneTfbs)
 import           Misc (verticalHistogram)
 -- import qualified Data.Text as T
@@ -16,10 +16,15 @@ import           Text.Read          (readMaybe)
 import           System.Environment (getArgs)
 import qualified Data.ByteString.Char8 as C
 
+
+import System.Directory
+
 main :: IO ()
 main = do
     args <- getArgs
     let action:args' = args
+    let cwd:_ = args'
+    setCurrentDirectory cwd
     case action of
         "dot" -> do
             c <- getContents
@@ -64,7 +69,21 @@ main = do
                 ids = map iD dupdels
                 printthis = verticalHistogram ids
             putStr printthis
-        _ -> putStrLn "y u no put action"
+        "splitlineage" -> do
+            c <- C.readFile "lineage"
+                -- [t,e,chrom,[muts]]
+            let parsedls = cParseLineageFile c
+                envs      = C.unlines $ map (\(t,e,_,_)  -> cUnWords [cShow t, cShow e])               parsedls
+                hammdists = C.unlines $ map (\(t,e,ch,_) -> cUnWords [cShow t, cShow $ hammDist e ch]) parsedls
+                genlength = C.unlines $ map (\(t,_,ch,_) -> cUnWords [cShow t, cShow $ length ch]) parsedls
+
+            createDirectoryIfMissing False $ cwd ++ "lineagedir"
+            let cwd' = "lineagedir/"
+            C.writeFile (cwd' ++ "envs"     ) envs
+            C.writeFile (cwd' ++ "hammdists") hammdists
+            C.writeFile (cwd' ++ "genlength") genlength
+
+        _ -> putStrLn "y u no put good action"
 
 --
 -- -- | Takes a function applies it on sublist not containing first n elements
@@ -76,10 +95,17 @@ main = do
 
 lineagelineToHd :: C.ByteString -> C.ByteString
 lineagelineToHd = C.unlines . map
-    (C.intercalate (C.pack ";") .
+    (cUnWords .
        (\(t : e : c : _) -> [t, C.pack $ show $
              hammDist (read $ C.unpack e) (myRead $ C.unpack c :: Chromosome)])
-    . C.split ';') . C.lines
+    . cWords) . C.lines
+
+cParseLineageFile :: C.ByteString -> [(Time,Env,Chromosome,[Mutation])]
+cParseLineageFile content = parsedls
+    where
+        ls = C.lines content
+        splittedls = map (C.split ';') ls
+        parsedls = map (\(t:e:c:m:_) -> (cRead t, cRead e, cMyRead c, cRead m)) splittedls
 
 parseLineageFile :: String -> [(Time,Env,Chromosome,[Mutation])]
 parseLineageFile content = parsedls
@@ -101,6 +127,12 @@ loadLineage = map loadLine . lines
     where
         -- loadLine :: Line -> (Time, Env, Chromosome)
         loadLine = (\(a:b:c:_) -> (read a, read b, myRead c)) . lewords ';'
+
+cWords :: C.ByteString -> [C.ByteString]
+cWords = C.split ';'
+
+cUnWords :: [C.ByteString] -> C.ByteString
+cUnWords = C.intercalate (C.pack ";")
 
 lewords                   :: Char -> String -> [String]
 lewords c s               =  case dropWhile (==c) s of

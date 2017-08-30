@@ -6,6 +6,8 @@ import           Data.List.Split     (splitOn)
 import qualified Data.Map.Strict as Map
 import qualified Data.List as List
 
+import qualified Data.ByteString.Char8 as C
+
 class MyShow a where
     myShow :: a -> String
 
@@ -90,3 +92,15 @@ agentToLineage = map relevents . agentToLineageList
 agentToLineageList :: Agent -> [Agent]
 agentToLineageList NoAgent = []
 agentToLineageList a = a : agentToLineageList (parent a)
+
+cRead :: Read a => C.ByteString -> a
+cRead = read . C.unpack
+
+cMyRead :: MyRead a => C.ByteString -> a
+cMyRead = myRead . C.unpack
+
+cShow :: Show a => a -> C.ByteString
+cShow = C.pack . show
+
+cMyShow :: MyShow a => a -> C.ByteString
+cMyShow = C.pack . myShow

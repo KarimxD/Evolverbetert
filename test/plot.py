@@ -2,39 +2,40 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import sys, getopt
-
+import os
 import argparse
+import subprocess
 
 import plotly.tools as tls
 import plotly.plotly as py
 
 def main(argv):
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--ifile", required=False, default = "output")
-    parser.add_argument("-l", "--lfile", required=False, default = "lineage")
-    args = parser.parse_args()
-    print(args)
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument("-i", "--ifile", required=False, default = "output")
+    # parser.add_argument("-l", "--lfile", required=False, default = "lineage")
+    # args = parser.parse_args()
 
-    # inputfile = ''
-    # try:
-    #     opts,args = getopt.getopt(argv, "hi:hl", ["ifile=","lfile="])
-    # except getopt.GetOptError:
-    #     print 'plot.py -i <inputfile>'
-    #     sys.exit(2)
-    #
-    # for opt, arg in opts:
-    #     if opt == '-h':
-    #         print 'test.py -i <inputfile>'
-    #         sys.exit()
-    #     elif opt in ("-i", "--ifile"):
-    #         inputfile = arg
-    #     elif opt in ("-l", "--lfile"):
-    #         lineagefile = arg
+    if os.path.isdir("./lineagedir"):
+        print("found dir!")
+        return
+    else:
+        print("not found dir!")
+        subprocess.call(['/bin/bash', '-i', '-c', 'pipeline splitlineage'])
+        print("done")
+        return
 
-    lineage2(args.ifile, args.lfile)
+    # if not argv:
+    #     ifile, lfile = "output", "trail"
+    #     lineage2(ifile, lfile)
+    # else:
+    #     arg1 = argv[0]
+
+
+
+
 
     # otherotherdoplot(args.ifile)
-    plt.show()
+    # plt.show()
 
 
 def originaldoplot(f):
