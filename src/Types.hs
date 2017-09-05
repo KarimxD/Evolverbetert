@@ -36,6 +36,9 @@ instance Eq Agent where
 type Genome = [Chromosome]
 type Chromosome = [Locus]
 type GeneStateTable = Map.Map ID GeneState
+
+
+
 data Locus
     = Transposon
     | CGene     Gene

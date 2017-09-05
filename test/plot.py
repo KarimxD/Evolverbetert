@@ -17,26 +17,101 @@ def main(argv):
 
     if os.path.isdir("./lineagedir"):
         print("found dir!")
-        return
     else:
         print("not found dir!")
-        subprocess.call(['/bin/bash', '-i', '-c', 'pipeline splitlineage'])
-        print("done")
-        return
+        subprocess.call(['/bin/bash', '-i', '-c' ,'pipeline splitlineage'])
 
-    # if not argv:
     #     ifile, lfile = "output", "trail"
+    # if not argv:
     #     lineage2(ifile, lfile)
     # else:
     #     arg1 = argv[0]
 
 
-
-
+    myplot()
+    # lineage2("output", "lineagedir/hammdists")
 
     # otherotherdoplot(args.ifile)
-    # plt.show()
+    plt.show()
 
+def myplot():
+
+    fig = plt.figure()
+    gs = gridspec.GridSpec(2, 1, height_ratios=[4, 1])
+    ax0 = fig.add_subplot(gs[0])
+    ax1 = fig.add_subplot(gs[1], sharex=ax0)
+
+
+    if os.path.isfile("output"):
+        data = np.loadtxt("output", delimiter=';', usecols=(range(7)), skiprows = 2)
+        t, env, minhammdist, minotherhammdist, maxhammdist, avghammdist, gen_length = data.T #, avg_indegree = data.T
+        ax0.set_ylabel('hamm_dist', color='r')
+
+        ax0.plot(t,minotherhammdist, c='pink')
+        ax0.plot(t,avghammdist, c='grey', linestyle='dashed', alpha=0.5)
+        ax0.plot(t,minhammdist, 'red')
+
+    if os.path.isdir("lineagedir"):
+        os.chdir("lineagedir") 
+
+    if os.path.isfile("envs"):
+        t, env = np.loadtxt("envs", delimiter=';').T
+        ax1.set_xlabel('time')
+        ax1.set_ylabel('env', color='g')
+        ax1.plot(t, env, 'g')
+        ax1.set_ybound(-.5,1.5)
+
+    if os.path.isfile("hammdists"):
+        t, hD = np.loadtxt("hammdists", delimiter=';').T
+        ax0.plot(t,hD,c='blue')
+
+    if os.path.isfile("genlength"):
+        t, genlength = np.loadtxt("genlength", delimiter=';').T
+        ax2 = ax1.twinx()
+        ax2.set_ylabel('genlength', color='b')
+        ax2.plot(t,genlength,'b-')
+
+
+
+def lineage2(f0,f1):
+    data = np.loadtxt(f0, delimiter=';', usecols=(range(7)), skiprows = 2)
+    t, env, minhammdist, minotherhammdist, maxhammdist, avghammdist, gen_length = data.T #, avg_indegree = data.T
+
+    data2 = np.loadtxt(f1,delimiter=';',usecols=(range(2)))
+    t2,hD0 = data2.T
+
+    fig = plt.figure()
+    gs = gridspec.GridSpec(2, 1, height_ratios=[4, 1])
+    ax0 = fig.add_subplot(gs[0])
+    ax1 = fig.add_subplot(gs[1], sharex=ax0)
+
+
+    fig.suptitle(f0)
+
+    # fig, (ax0, ax1) = plt.subplots(nrows=2, sharex=True)
+    ax1.set_xlabel('time')
+    ax1.set_ylabel('env', color='g')
+    ax1.plot(t,env,'g')
+    ax1.set_ybound(-.5,1.5)
+
+    # ax2 = ax1.twinx()
+    # ax2.set_ylabel('avg_indegree', color='r')
+    # ax2.plot(t,avg_indegree,'r-')
+    ax3 = ax1.twinx()
+    ax3.set_ylabel('gen_length', color='b')
+    ax3.plot(t,gen_length,'b-')
+
+    ax0.set_ylabel('hamm_dist', color='r')
+
+    ax0.plot(t,minotherhammdist, c='pink')
+    ax0.plot(t,avghammdist, c='grey', linestyle='dashed', alpha=0.5)
+    ax0.plot(t,minhammdist, 'red')
+    ax0.plot(t2,hD0,c='blue')
+    # ax0.plot(t2,hD1,c='blue')
+
+
+    # plt.tight_layout()
+    gs.tight_layout(fig,h_pad=-1)
 
 def originaldoplot(f):
     data = np.loadtxt(f, delimiter=' ', usecols=(range(7)), skiprows = 2)

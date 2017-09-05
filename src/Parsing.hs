@@ -3,8 +3,11 @@ module Parsing  where
 import Types
 import           Data.List.Split     (splitOn)
 
+import Safe
+
 import qualified Data.Map.Strict as Map
 import qualified Data.List as List
+import Data.Maybe (fromJust)
 
 import qualified Data.ByteString.Char8 as C
 
@@ -13,6 +16,8 @@ class MyShow a where
 
 class MyRead a where
     myRead :: String -> a
+    myRead = fromJust . readMaybe
+    readMaybe :: String -> Maybe a
 
 
 instance MyShow Agent where
@@ -32,50 +37,54 @@ instance MyShow GeneStateTable where
 instance MyRead GeneStateTable where
     myRead = Map.fromList . zip [0..] . map (myRead . pure) . filter (/= ' ')
 
+
 instance MyShow ID where
     myShow (ID i) = if i < 10
                   then '0' : show i
                   else show i
 instance MyRead ID where
-    myRead = ID . read
+    readMaybe = fmap ID . readMay
 
 instance MyShow Thres where
     myShow (Thres i) = show i
 instance MyRead Thres where
-    myRead = Thres . read
+    readMaybe = fmap Thres . readMay
 
 instance MyShow Weight where
     myShow (Weight i) = show i
 instance MyRead Weight where
-    myRead = Weight . read
+    readMaybe = fmap Weight . readMay
 
 instance MyShow GeneState where
     myShow (GS a) = show a
     -- myShow (GS True) = show (1 :: Int)
     -- myShow _         = show (0 :: Int)
 instance MyRead GeneState where
-    myRead = fromInteger . read
+    readMaybe = fmap fromInteger . readMay
 
 instance MyShow Locus where
     myShow Transposon = "T"
     myShow (CGene (Gene i t gs)) = "G" ++ myShow i ++ ":" ++ myShow t ++ ":" ++ myShow gs
     myShow (CTfbs (Tfbs i w _)) = myShow i ++ ":" ++ myShow w
 instance MyRead Locus where
-    myRead str
-        | h == 'G'   = CGene $ Gene (myRead $ tail $ head s) (myRead $ s!!1) (myRead $ s!!2)
-        | str == "T" = Transposon
-        | otherwise  = CTfbs $ Tfbs (myRead $ head s) (myRead $ s!!1) 0
+    readMaybe str
+        | h == 'G'   = CGene <$> (Gene <$> (readMaybe =<< tailMay =<< headMay s) <*> (readMaybe =<< s `atMay` 1) <*> (readMaybe =<< s `atMay` 2)
+                                    )
+        | str == "T" = Just Transposon
+        | otherwise  = fmap CTfbs $ Tfbs <$> (readMaybe =<< headMay s)
+                                         <*> (readMaybe =<< s `atMay` 1)
+                                         <*> Just 0
              where h = head str; s = splitOn ":" str
 
 instance MyShow Chromosome where
     myShow loci = List.intercalate "," (map myShow loci)
 instance MyRead Chromosome where
-    myRead = map myRead . splitOn ","
+    readMaybe = parseList . map readMaybe . splitOn ","
 
 instance MyShow Genome where
     myShow = myShow . concat
 instance MyRead Genome where
-    myRead s = [myRead s]
+    readMaybe s = parseList [readMaybe s]
 
 agentToLineageFile :: Agent -> String
 agentToLineageFile = unlines . map (\(t,e,c,ms) -> List.intercalate ";" [show t, show e, myShow c, show ms])
@@ -104,3 +113,12 @@ cShow = C.pack . show
 
 cMyShow :: MyShow a => a -> C.ByteString
 cMyShow = C.pack . myShow
+
+parseList :: [Maybe a] -> Maybe [a]
+parseList [] = Just []
+parseList (Nothing:_)    = Nothing
+parseList (x:xs) = x `maybeAppend` parseList xs
+
+maybeAppend :: Maybe a -> Maybe [a] -> Maybe [a]
+maybeAppend (Just x) (Just xs) = Just $ x : xs
+maybeAppend _ _ = Nothing

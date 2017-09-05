@@ -6,12 +6,12 @@ import           Types
 import           Fitness
 -- import Misc
 import           Data.Maybe         (fromMaybe, mapMaybe)
-import           Parsing            (agentToLineageFile, myRead, myShow, cRead, cMyRead, cMyShow, cShow)
+import           Parsing            (agentToLineageFile, myRead, myShow, cRead, cMyRead, cMyShow, cShow, readMaybe)
 import World (groupGeneTfbs)
 import           Misc (verticalHistogram)
 -- import qualified Data.Text as T
 import           Data.List          (isPrefixOf, find)
-import           Text.Read          (readMaybe)
+
 
 import           System.Environment (getArgs)
 import qualified Data.ByteString.Char8 as C
@@ -28,8 +28,7 @@ main = do
     case action of
         "dot" -> do
             c <- getContents
-            let time:_ = args'
-                line = head $ filter (time `isPrefixOf`) $ lines c
+            let line = last $ lines c
                 chrom = head $ mapMaybe readMaybe (lewords ';' line) :: Chromosome
             putStrLn $ chromosomeToDot chrom
         "net" ->

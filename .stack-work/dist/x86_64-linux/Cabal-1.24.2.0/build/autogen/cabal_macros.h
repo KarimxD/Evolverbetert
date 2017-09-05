@@ -126,6 +126,13 @@
   (major1) == 0 && (major2) <  0 || \
   (major1) == 0 && (major2) == 0 && (minor) <= 4)
 
+/* package safe-0.3.14 */
+#define VERSION_safe "0.3.14"
+#define MIN_VERSION_safe(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  3 || \
+  (major1) == 0 && (major2) == 3 && (minor) <= 14)
+
 /* package split-0.2.3.1 */
 #define VERSION_split "0.2.3.1"
 #define MIN_VERSION_split(major1,major2,minor) (\
@@ -245,7 +252,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-DwIkHcGf4431Ass7c1Avtq"
+#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-K4m1Pl8mdW5I6yWhqiQVs2"
 
-#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-DwIkHcGf4431Ass7c1Avtq"
+#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-K4m1Pl8mdW5I6yWhqiQVs2"
 
