@@ -1,6 +1,7 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE TypeOperators #-}
 
 module Types where
 import qualified Data.Map.Strict as Map
@@ -36,9 +37,6 @@ instance Eq Agent where
 type Genome = [Chromosome]
 type Chromosome = [Locus]
 type GeneStateTable = Map.Map ID GeneState
-
-
-
 data Locus
     = Transposon
     | CGene     Gene
@@ -53,11 +51,11 @@ data Gene = Gene {      geneID :: ID
                     ,   genSt :: GeneState } deriving (Show, Read, Eq)
 instance Ord Gene where
     Gene i1 t1 gs1 `compare` Gene i2 t2 gs2 =
-        if i1 == i2
-        then if gs1 == gs2
-             then compare t1 t2   --small thres first
-             else compare gs2 gs1 --largest state firster
-        else compare i1 i2        --smaller id firstest
+        if i1 == i2               --smaller id first
+        then if gs1 == gs2        --largest state second
+             then compare t1 t2   --small thres third
+             else compare gs2 gs1
+        else compare i1 i2
 instance GeneType Gene where iD = geneID
 
 data Tfbs = Tfbs {      tfbsID :: ID
@@ -169,3 +167,8 @@ instance GST Genome where
     toGST = toGST . concat
 instance GST Agent where
     toGST = geneStateTable
+
+
+
+-- henk :: Int !!! Bool
+-- henk = even

@@ -139,11 +139,11 @@ groupGeneTfbs loci = h: groupGeneTfbs t
 -- | takes a predicate and returns a pair of lists with the first ending with
 -- the element that satisfies the predicate
 takeWhileInclusive :: (a -> Bool) -> [a] -> ([a],[a])
-takeWhileInclusive f ls = takeWhileInclusive' ([], ls)
+takeWhileInclusive p ls = takeWhileInclusive' ([], ls)
     where
     takeWhileInclusive' (a,[]) = (a,[])
     takeWhileInclusive' (a,x:xs) =
-        if f x
+        if p x
             then (henk, xs)
             else takeWhileInclusive' (henk,xs)
                 where henk = a ++ [x]

@@ -11,7 +11,7 @@ import World (groupGeneTfbs)
 import           Misc (verticalHistogram)
 -- import qualified Data.Text as T
 import           Data.List          (isPrefixOf, find)
-
+import qualified Analysis as Anal
 
 import           System.Environment (getArgs)
 import qualified Data.ByteString.Char8 as C
@@ -22,15 +22,22 @@ import System.Directory
 main :: IO ()
 main = do
     args <- getArgs
-    let action:args' = args
-    let cwd:_ = args'
+    let cwd:args' = args
+    let action:args'' = args'
     setCurrentDirectory cwd
     case action of
+        "rnet" -> do
+            c <- getContents
+            let chrom = getLastChrom c
+                (edges, nodes) = Anal.chromosomeToRNet chrom
+                edgefile = head args''
+                nodefile = head $ tail args''
+            writeFile edgefile edges
+            writeFile nodefile nodes
         "dot" -> do
             c <- getContents
-            let line = last $ lines c
-                chrom = head $ mapMaybe readMaybe (lewords ';' line) :: Chromosome
-            putStrLn $ chromosomeToDot chrom
+            let chrom = getLastChrom c :: Chromosome
+            putStrLn $ Anal.chromosomeToDot chrom
         "net" ->
             interact $ unlines . lastToAvgIndegree . lines
         "twonet" -> do
@@ -91,6 +98,9 @@ main = do
 --
 -- compress :: Eq a => [a] -> [a]
 -- compress = map head . group
+
+getLastChrom :: String -> Chromosome
+getLastChrom s = head $ mapMaybe readMaybe (lewords ';' (last $ lines s))
 
 lineagelineToHd :: C.ByteString -> C.ByteString
 lineagelineToHd = C.unlines . map
@@ -180,59 +190,6 @@ timeGenome = map (readfstnlst . words) . drop 1 . lines
     where
         readfstnlst ws = (read (head ws), myRead (last ws))
 
--- | Make a dotfile from a genome (concatinates genome and calls 'chromosomeToDot')
-genomeToDot :: Genome -> String
-genomeToDot = chromosomeToDot . concat
-
--- | Make a dotfile from a chromosome
--- inhibiting edges are red, exciting blue
-chromosomeToDot :: Chromosome -> String
-chromosomeToDot c = "digraph geneNetwork {\n" ++
-    concat (groupedToDot Map.empty (groupGeneTfbs c) counts)
-    ++ "}"
-    where
-        counts = constructCounter (reduceChromToGenes c) Map.empty
-
-groupedToDot :: Counter -> [[Locus]] -> Counts -> [String]
-groupedToDot _ [] _ = []
-groupedToDot counter (loci:locis) counts = s : groupedToDot newcounter locis counts
-    where
-        ([CGene g], tfbss) = splitAt 1 $ reverse loci
-        c = 1 + fromMaybe (-1) (Map.lookup (iD g) counter)
-        s = tfbssGeneToDot (g,c) counts (mapMaybe getTfbs tfbss)
-        newcounter = Map.insert (iD g) c counter
-
-tfbssGeneToDot :: NumberedGene -> Counts -> [Tfbs] -> String
-tfbssGeneToDot g counts = concatMap (geneTfbsToDot g counts)
-
-geneTfbsToDot :: NumberedGene -> Counts -> Tfbs -> String
-geneTfbsToDot g counts t =
-    style ++
-    concat ( zipWith
-        (\i r -> "    " ++ i ++ r ++ color ++ ";\n")
-        its (repeat ("->" ++ ig)))
-
-    where
-        its = map ( (++) ("G" ++ myShow (iD t) ++ "x") . show)
-                  [ 0 .. ( fromMaybe 0 (Map.lookup (iD t) counts) ) ]
-        ig = "G" ++ myShow (iD (fst g)) ++ "x" ++ show (snd g)
-        color = case wt t of
-            (1) -> " [color=green]"
-            _   -> " [color=red]"
-        style = case genSt (fst g) of
-            GS 0       -> ""
-            GS _       -> "    " ++ ig ++ " [style = filled];\n"
-
-type NumberedGene = (Gene, Int)
-type Counter = Map.Map ID Int
-type Counts = Counter
-
-constructCounter :: [Gene] -> Counter -> Counter
-constructCounter [] c = c
-constructCounter (g:gs) counter = constructCounter gs newcounter
-    where c = 1 + fromMaybe (-1) (Map.lookup (iD g) counter)
-          newcounter = Map.insert (iD g) c counter
-
 nrGenes, nrTfbss :: Chromosome -> Int
 nrGenes = length . filter isGene
 nrTfbss = length . filter isGene
@@ -246,3 +203,59 @@ copyNumberGene gt = length . filter isgenetype
 fromTime :: Time -> [(Time, Env, Chromosome)] -> (Time, Env, Chromosome)
 fromTime t0 list = fromMaybe (error "time too big")
                            $ find (\(t, _, _) -> t0 >= t) list
+
+
+-- -- | Make a dotfile from a genome (concatinates genome and calls 'chromosomeToDot')
+-- genomeToDot :: Genome -> String
+-- genomeToDot = chromosomeToDot . concat
+--
+-- -- | Make a dotfile from a chromosome
+-- -- inhibiting edges are red, exciting blue
+-- chromosomeToDot :: Chromosome -> String
+-- chromosomeToDot c =
+--     "// " ++ myShow c ++ "\n" ++
+--     "digraph geneNetwork {\n" ++
+--     concat (groupedToDot Map.empty (groupGeneTfbs c) counts)
+--     ++ "}"
+--     where
+--         counts = constructCounter (reduceChromToGenes c) Map.empty
+--
+-- groupedToDot :: Counter -> [[Locus]] -> Counts -> [String]
+-- groupedToDot _ [] _ = []
+-- groupedToDot counter (loci:locis) counts = s : groupedToDot newcounter locis counts
+--     where
+--         ([CGene g], tfbss) = splitAt 1 $ reverse loci
+--         c = 1 + fromMaybe (-1) (Map.lookup (iD g) counter)
+--         s = tfbssGeneToDot (g,c) counts (mapMaybe getTfbs tfbss)
+--         newcounter = Map.insert (iD g) c counter
+--
+-- tfbssGeneToDot :: NumberedGene -> Counts -> [Tfbs] -> String
+-- tfbssGeneToDot g counts = concatMap (geneTfbsToDot g counts)
+--
+-- geneTfbsToDot :: NumberedGene -> Counts -> Tfbs -> String
+-- geneTfbsToDot g counts t =
+--     style ++
+--     concat ( zipWith
+--         (\i r -> "    " ++ i ++ r ++ color ++ ";\n")
+--         its (repeat ("->" ++ ig)))
+--
+--     where
+--         its = map ( (++) ("G" ++ myShow (iD t) ++ "x") . show)
+--                   [ 0 .. ( fromMaybe 0 (Map.lookup (iD t) counts) ) ]
+--         ig = "G" ++ myShow (iD (fst g)) ++ "x" ++ show (snd g)
+--         color = case wt t of
+--             (1) -> " [color=green]"
+--             _   -> " [color=red]"
+--         style = case genSt (fst g) of
+--             GS 0       -> ""
+--             GS _       -> "    " ++ ig ++ " [style = filled];\n"
+--
+-- type NumberedGene = (Gene, Int)
+-- type Counter = Map.Map ID Int
+-- type Counts = Counter
+--
+-- constructCounter :: [Gene] -> Counter -> Counter
+-- constructCounter [] c = c
+-- constructCounter (g:gs) counter = constructCounter gs newcounter
+--     where c = 1 + fromMaybe (-1) (Map.lookup (iD g) counter)
+--           newcounter = Map.insert (iD g) c counter

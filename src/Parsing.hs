@@ -19,7 +19,6 @@ class MyRead a where
     myRead = fromJust . readMaybe
     readMaybe :: String -> Maybe a
 
-
 instance MyShow Agent where
     myShow NoAgent = "NoAgent"
     myShow ag = show (concatMap myShow $ head $ genome ag, myShow $ geneStateTable ag) --Only works on agents with 1 chromosome
@@ -34,14 +33,11 @@ parseAgent str =  --Only works on agents with 1 chromosome
 
 instance MyShow GeneStateTable where
     myShow = List.intersperse ' ' . concatMap (myShow . snd) . Map.toList
-instance MyRead GeneStateTable where
-    myRead = Map.fromList . zip [0..] . map (myRead . pure) . filter (/= ' ')
-
+instance MyRead GeneStateTable where -- FIX: return Nothing if fails
+    readMaybe = Just . Map.fromList . zip [0..] . map (myRead . pure) . filter (/= ' ')
 
 instance MyShow ID where
-    myShow (ID i) = if i < 10
-                  then '0' : show i
-                  else show i
+    myShow (ID i) = if i < 10 then '0' : show i else show i
 instance MyRead ID where
     readMaybe = fmap ID . readMay
 
@@ -57,24 +53,36 @@ instance MyRead Weight where
 
 instance MyShow GeneState where
     myShow (GS a) = show a
-    -- myShow (GS True) = show (1 :: Int)
-    -- myShow _         = show (0 :: Int)
 instance MyRead GeneState where
     readMaybe = fmap fromInteger . readMay
 
+instance MyShow Gene where
+    myShow (Gene i t gs) = "G" ++ myShow i ++ ":" ++ myShow t ++ ":" ++ myShow gs
+instance MyRead Gene where
+    readMaybe str = Gene <$> (readMaybe =<< tailMay =<< headMay s)
+                         <*> (readMaybe =<< s `atMay` 1)
+                         <*> (readMaybe =<< s `atMay` 2)
+        where s = splitOn ":" str
+
+instance MyShow Tfbs where
+    myShow (Tfbs i w _) = myShow i ++ ":" ++ myShow w
+instance MyRead Tfbs where
+    readMaybe str = Tfbs <$> (readMaybe =<< headMay s)
+                         <*> (readMaybe =<< s `atMay` 1)
+                         <*> Just 0
+        where s = splitOn ":" str
+
 instance MyShow Locus where
     myShow Transposon = "T"
-    myShow (CGene (Gene i t gs)) = "G" ++ myShow i ++ ":" ++ myShow t ++ ":" ++ myShow gs
-    myShow (CTfbs (Tfbs i w _)) = myShow i ++ ":" ++ myShow w
+    myShow (CGene g) = myShow g
+    myShow (CTfbs t) = myShow t
 instance MyRead Locus where
     readMaybe str
-        | h == 'G'   = CGene <$> (Gene <$> (readMaybe =<< tailMay =<< headMay s) <*> (readMaybe =<< s `atMay` 1) <*> (readMaybe =<< s `atMay` 2)
-                                    )
+        | h == 'G'   = CGene <$> readMaybe str
         | str == "T" = Just Transposon
-        | otherwise  = fmap CTfbs $ Tfbs <$> (readMaybe =<< headMay s)
-                                         <*> (readMaybe =<< s `atMay` 1)
-                                         <*> Just 0
-             where h = head str; s = splitOn ":" str
+        | otherwise  = CTfbs <$> readMaybe str
+             where h = head str
+
 
 instance MyShow Chromosome where
     myShow loci = List.intercalate "," (map myShow loci)
