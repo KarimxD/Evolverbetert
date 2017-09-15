@@ -98,6 +98,13 @@
   (major1) == 0 && (major2) <  13 || \
   (major1) == 0 && (major2) == 13 && (minor) <= 5)
 
+/* package parallel-3.2.1.0 */
+#define VERSION_parallel "3.2.1.0"
+#define MIN_VERSION_parallel(major1,major2,minor) (\
+  (major1) <  3 || \
+  (major1) == 3 && (major2) <  2 || \
+  (major1) == 3 && (major2) == 2 && (minor) <= 1)
+
 /* package primitive-0.6.1.0 */
 #define VERSION_primitive "0.6.1.0"
 #define MIN_VERSION_primitive(major1,major2,minor) (\
@@ -252,7 +259,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-K4m1Pl8mdW5I6yWhqiQVs2"
+#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-32ijwLzmlVS7EG44Y2vn4z"
 
-#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-K4m1Pl8mdW5I6yWhqiQVs2"
+#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-32ijwLzmlVS7EG44Y2vn4z"
 

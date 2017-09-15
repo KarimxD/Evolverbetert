@@ -38,7 +38,7 @@ dupATfbs c = do
     i1 <- lift $ getRange (0, length tfbss - 1)
     i2 <- lift $ getRange (0, length c     - 1)
     let (h, t) = splitAt i2 c
-        loc = CTfbs $ tfbss!!i1
+        loc = CTfbs $ tfbss!!i1 :: Locus
     tell [TfbsDup $ iD loc]
     return $ h ++ [loc] ++ t
 
@@ -169,10 +169,10 @@ mutateLoci (h:rest) = case h of
                 list'' <- maybeChLog list' delATfbs pTfbsDel
                 -- list' <- maybeCh list' innovateTfbs pTfbsInnov -- Fix for scaling to # of genes
                 return $ map CTfbs list'' ++ rest'
-
-    _       -> do
-                rest' <- mutateLoci rest
-                return $ h:rest'
+    --
+    -- _       -> do
+    --             rest' <- mutateLoci rest
+    --             return $ h:rest'
 
 
 

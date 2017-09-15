@@ -2,11 +2,13 @@ module Landscapes
     where
 
 import Types
-import qualified Parameters as P
-import Misc (rmdups, mapIfPred)
-import World (devAg', updateChrom)
+-- import qualified Parameters as P
+import Misc (valueResultPairs)
+import World (updateChrom)
+import Data.Bifunctor
+-- import Control.Parallel.Strategies
 -- import Data.Vector.Mutable as V
-import qualified Data.Map as M
+-- import qualified Data.Map.Strict as M
 -- defaultAgent :: Agent
 -- defaultAgent = Agent [] defaultGst undefined undefined
 --
@@ -22,6 +24,14 @@ import qualified Data.Map as M
 --         n = P.nrGeneTypes'
 
 
+attrNum :: Chromosome -> Int
+attrNum = length . --withStrategy (parList rdeepseq) .
+    filter id . map (uncurry (==) . bimap (fmap toOnOff) (fmap toOnOff)) .
+    vertices
+
+vertices :: Chromosome -> [(GeneStateTable,GeneStateTable)]
+vertices c = valueResultPairs (nsf c) $ allGST c
+
 nsf :: Chromosome -> GeneStateTable -> GeneStateTable
 nsf c = toGST . flip updateChrom c
 
@@ -35,11 +45,12 @@ nsf c = toGST . flip updateChrom c
 turnLocusOn :: Locus -> Locus
 turnLocusOn (CTfbs t) = CTfbs $ t {tfbsSt = GS 1}
 turnLocusOn (CGene g) = CGene $ g {genSt  = GS 1}
-turnLocusOn        x  = x
 
+turnGeneOn :: Gene -> Gene
+turnGeneOn g = g {genSt  = GS 1}
 
 fullGST :: Chromosome -> GeneStateTable
-fullGST = toGST . mapIfPred isGene turnLocusOn
+fullGST = toGST . map (onGene turnGeneOn)
 
 
 allGST :: GST gst => gst -> [GeneStateTable]
@@ -56,6 +67,10 @@ prependAll (x:xs) ls = map (x:) ls ++ prependAll xs ls
 
 allCombinations :: Integral a => [a] -> [[a]]
 allCombinations = foldr (\ n -> prependAll [0 .. n]) [[]]
+
+toOnOff :: GeneState -> GeneState
+toOnOff (GS 0) = GS 0
+toOnOff _      = GS 1
 
 
 agent42 :: Agent

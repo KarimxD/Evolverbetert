@@ -14,7 +14,7 @@
 module Main where
 import           Misc                  (maybeCh, moore8)
 import           Mutations             (mutAg)
-import           MyGraphics            (showWorld)
+import           MyGraphics            (initializeWorld, callShowWorld)
 import           MyRandom
 import qualified Parameters            as P
 import           Parsing
@@ -27,7 +27,7 @@ import qualified Data.ByteString.Char8 as B (hPutStrLn)
 import           Data.IORef            (IORef, newIORef, readIORef, writeIORef)
 import           Data.String           (fromString)
 import           Data.Time.Clock
-import           Graphics.UI.GLUT      hiding (Help, initialize, mainLoop)
+-- import           Graphics.UI.GLUT      hiding (Help, initialize, mainLoop)
 import           System.Console.GetOpt
 import           System.Directory
 import           System.Environment    (getArgs, getEnv)
@@ -126,28 +126,11 @@ main = do
     (opts, _) <- compilerOpts args
     (worldRef, cwd, hs) <- initialize opts
 
+    print $ iterate updateAgent agent42 !! 1000
+
 
     -- All GLUT related stuff
-    when (optGraphics opts) $ do
-        _ <- getArgsAndInitialize
-        let pixelsPerUnit = 10
-            w = pixelsPerUnit * fromIntegral P.width
-            h = pixelsPerUnit * fromIntegral P.height
-        initialDisplayMode $= [RGBMode, DoubleBuffered]
-        initialWindowSize $= Size w h
-        (Size screenSizeX screenSizeY) <- get screenSize
-        let initialPos = Position
-                (fromIntegral (screenSizeX - w) `div` 2)
-                (fromIntegral (screenSizeY - h) `div` 2)
-        initialWindowPosition $= initialPos
-        _ <- createWindow "Evolverbetert v1"
-        matrixMode $= Projection
-        loadIdentity
-        ortho2D 0 (fromIntegral w / fromIntegral pixelsPerUnit)
-                0 (fromIntegral h / fromIntegral pixelsPerUnit)
-
-        displayCallback $= showWorld worldRef
-        actionOnWindowClose $= MainLoopReturns
+    when (optGraphics opts) (initializeWorld worldRef)
     -- Where the magic happens... Recursive function that ends on P.maxTime
     -- B.hPutStrLn (fromMaybe stdout $ hOutput hs) $ fromString "Hello, World!"
     mainLoop worldRef opts cwd hs 0
@@ -167,7 +150,7 @@ mainLoop worldRef opts cwd hs t = do
         _      -> return ()
 
     when (P.vOutputTime t) $ case hVOutput hs of
-        Just h -> B.hPutStrLn h (fromString $ show t ++ " ; " ++ show (cleanTrace w))
+        Just h -> B.hPutStrLn h (fromString $ show t ++ " ; " ++ show (orphanizeWorld w))
         _      -> return ()
 
     when (P.lineageTime t && optLineage opts) $ do
@@ -185,7 +168,7 @@ mainLoop worldRef opts cwd hs t = do
 
     writeIORef worldRef w'
 
-    when (optGraphics opts) $ mainLoopEvent >> postRedisplay Nothing
+    when (optGraphics opts) callShowWorld
 
     mainLoop worldRef opts cwd hs (t+1)
 
@@ -355,21 +338,11 @@ helpError :: [String] -> IO a
 helpError errs = ioError (userError (concat errs ++ usageInfo header options))
     where header = "Usage: ic [OPTION...] files..."
 
--- | Just a standard agent that can be used
--- should not be used though, as the tfbs weights have strange weights and such
--- genome0, genome1, genome2 :: Genome
--- genome2 = [map myRead $ splitOn "," "18:1,15:-2,G1:-1:0,0:-1,G5:-1:0,G12:-1:0,T,G10:-2:0,5:-1,15:1,G15:-1:0,G7:-2:0,T,T,7:1,6:1,G14:-1:0,15:-1,10:1,G19:-1:0,10:-1,3:-1,17:1,G11:-2:0,G6:-1:0,T,18:-1,3:-1,G9:-2:0,G3:-2:0,13:-1,8:1,G2:-1:0,11:-1,7:1,G16:-1:0,T,13:1,6:1,1:-1,G18:-1:0,G17:-1:0,6:1,2:1,G0:-2:0,17:1,6:-1,G8:-1:0,8:1,16:-1,G4:-2:0,G13:-1:1"]
--- genome1 = [map myRead $ splitOn "," "14:-1,9:-1,G17:0,16:-1,G12:0,G19:-1,6:-1,4:1,G16:0,G18:0,17:-1,9:-1,8:-1,G0:0,G14:0,9:-1,4:-1,G10:0,9:-1,2:-1,G6:-1,3:-1,G5:-1,7:-1,G1:-1,19:-1,G7:-1,17:1,4:-1,G2:-1,G9:-1,G11:-1,G4:1,17:-1,11:-1,17:1,G8:1,7:1,G3:1,10:-1,G13:1,10:-1,3:-1,G15:1"]
--- genome0 = [map myRead $ splitOn "," "18:6,15:-2,G1:-1:0,0:-4,G5:-1:0,G12:-1:0,T,G10:-2:0,5:-2,15:3,G15:-1:0,G7:-3:0,T,T,7:4,6:2,G14:-1:0,15:-6,10:5,G19:-1:0,10:-2,3:-6,17:2,G11:-2:0,G6:-1:0,T,18:-5,3:-1,G9:-3:0,G3:-3:0,13:-5,8:4,G2:-1:0,11:-5,7:4,G16:-1:0,T,13:3,6:5,1:-6,G18:-1:0,G17:-1:0,6:0,2:5,G0:-3:0,17:4,6:-1,G8:-1:0,8:5,16:-4,G4:-3:0,G13:-1:1"]
-
--- agent0 :: Agent
--- agent0 = devAg $ Agent genome0 defaultGst (NoAgent, 0)
-
-cleanTrace :: World -> World
-cleanTrace w =
-    w { agents = amap cleanParent $ agents w }
-    where cleanParent NoAgent = NoAgent
-          cleanParent a       = a {parent = NoAgent}
+orphanizeWorld :: World -> World
+orphanizeWorld w =
+    w { agents = amap orphanize $ agents w }
+    where orphanize NoAgent = NoAgent
+          orphanize a       = a {parent = NoAgent}
 
 agent42 :: Agent
 agent42 = read "Agent {genome = [[CTfbs (Tfbs {tfbsID = ID 19, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 3, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 15, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 2, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 0, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 16, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 5, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 8, thres = Thres 0, genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 19, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 18, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 0, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 9, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 7, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 7, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 17, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 16, thres = Thres 2, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 14, wt = Weight 1, tfbsSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 15, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 8, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 5, thres = Thres (-1), genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 12, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 10, thres = Thres 2, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 16, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 6, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 13, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 4, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 10, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 5, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 14, thres = Thres 0, genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 2, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 11, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 6, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 18, thres = Thres (-1), genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 8, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 9, thres = Thres (-1), genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 18, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 17, thres = Thres 2, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 0, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 19, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 2, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 3, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 4, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 14, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 11, thres = Thres 0, genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 13, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 7, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 9, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 12, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 13, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 15, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 10, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 11, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 1, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 12, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 1, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 4, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 17, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 3, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 1, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 6, thres = Thres 0, genSt = GS 0})]], geneStateTable = fromList [(ID 0,GS 0),(ID 1,GS 0),(ID 2,GS 0),(ID 3,GS 0),(ID 4,GS 0),(ID 5,GS 1),(ID 6,GS 0),(ID 7,GS 0),(ID 8,GS 1),(ID 9,GS 1),(ID 10,GS 0),(ID 11,GS 1),(ID 12,GS 0),(ID 13,GS 0),(ID 14,GS 1),(ID 15,GS 0),(ID 16,GS 0),(ID 17,GS 0),(ID 18,GS 1),(ID 19,GS 0)], bornTime = 0, bornEnv = 0, parent = NoAgent, diff = []}"

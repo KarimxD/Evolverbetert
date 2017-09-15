@@ -1,3 +1,4 @@
+{-# LANGUAGE BangPatterns #-}
 module World
 -- (
     -- World, Env, Agents, Agent(..), Genome, Chromosome, GeneStateTable, Locus(..), Gene(..), Tfbs(..), ID, Thres, GeneState
@@ -77,30 +78,27 @@ updateChrom :: GeneStateTable -> Chromosome -> Chromosome
 updateChrom = updateGenes ↞ updateTfbss
 
 updateTfbss :: GeneStateTable -> Chromosome -> Chromosome
-updateTfbss gst =
-    map (\l -> case l of
-                CTfbs (Tfbs i t _)
-                  -> if P.dosiseffect
-                      then CTfbs $ Tfbs i t (gst Map.! i)
-                      else CTfbs $ Tfbs i t $ bottom s
-                     where
-                         s = gst Map.! i
-                         bottom gs | gs == GS 0 = GS 0
-                                   | gs >  GS 0 = GS 1
-                                   | otherwise  = error "negative GeneState"
-                x -> x )
+updateTfbss !gst =
+    map (onTfbs $ \t -> if   P.dosiseffect
+                        then t {tfbsSt =          gst Map.! tfbsID t}
+                        else t {tfbsSt = bottom $ gst Map.! tfbsID t}
+        )
+    where bottom gs | gs == GS 0 = GS 0
+                    | gs >  GS 0 = GS 1
+                    | otherwise  = error "negative GeneState"
+
 updateGenes :: Chromosome -> Chromosome
 updateGenes = updateGenes' 0
     where updateGenes' :: Integer -> Chromosome -> Chromosome
           updateGenes' _ []     = []
-          updateGenes' a (l:ls) = case l of
+          updateGenes' !a (l:ls) = case l of
               CTfbs t -> l : updateGenes' (a + s * w) ls
                 where w = toInteger $ wt t; s = toInteger $ tfbsSt t
-              CGene g -> (CGene $ updateGene a g ) : updateGenes' 0 ls
-              x       -> x : updateGenes' a ls
+              _       -> onGene (updateGene a) l : updateGenes' 0 ls
+            --   x       -> x : updateGenes' a ls
 
 updateGene :: Integer -> Gene -> Gene
-updateGene a g = g {genSt = newState} where
+updateGene !a !g = g {genSt = newState} where
     newState    | a <= t    = GS 0 --Gene never stays the same: fix change <= to < uncomment next line
                         -- | a == t = st
                 | otherwise = GS 1

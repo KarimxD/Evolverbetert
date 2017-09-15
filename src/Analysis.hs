@@ -15,7 +15,7 @@ type AllTaggedGenes = Map.Map ID [TaggedGene]
 
 type Edge = (TaggedGene, TaggedGene, Weight)
 instance MyShow Edge where
-    myShow (source,target,wt) = myShow source ++"->"++myShow target ++ " " ++ myShow wt
+    myShow (source,target,w) = myShow source ++"->"++myShow target ++ " " ++ myShow w
 
 type Tag = Int
 instance MyShow Tag where
@@ -33,8 +33,7 @@ instance GeneType TaggedGene where
     iD = taggedGeneID
 
 instance MyShow TaggedGene where
-    myShow (TaggedGene i t th gs) = concat [myShow i, ".", myShow t, ":", myShow th]
-
+    myShow (TaggedGene i t th _) = concat [myShow i, ".", myShow t, ":", myShow th]
 
 chromToEdges :: Chromosome -> [Edge]
 chromToEdges c = concatMap (uncurry $ makeEdges table) $ concatMap pairAll taggedChromosome
@@ -60,7 +59,6 @@ tagChromosome c = concat result
           henk = groupBy ((==) `on` iD . snd) sorted -- same as above grouped by geneID
           result = map (zipWith giveTag [0..]) henk  -- same as above converted Gene to TaggedGene
 
-
 allTaggedGenes :: Chromosome -> AllTaggedGenes
 allTaggedGenes = Map.fromList . zip [ID 0..] . groupSameID . map snd . tagChromosome
     where groupSameID = groupBy ((==) `on` iD)
@@ -84,14 +82,12 @@ chromosomeToEdgeFile c =
           edgelines = map edgeToLine edges
           edgeToLine (src,tgt,w) = myShow src ++ "\t" ++ myShow tgt ++ "\t" ++ myShow w
 
-
 chromosomeToNodeFile :: Chromosome -> String
 chromosomeToNodeFile c =
     "ID\tON\tTarget\n" ++ unlines nodelines
     where nodes = concat $ Map.elems $ allTaggedGenes c
           nodelines = map taggedGeneToline nodes
           taggedGeneToline tg = myShow tg ++ "\t" ++ myShow (taggedGenSt tg) ++ "\t1"
-
 
 chromosomeToDot :: Chromosome -> String
 chromosomeToDot c =
@@ -110,7 +106,6 @@ nodeToDotLine tg = if taggedGenSt tg > GS 0
                     then Just $ taggedToDot tg ++ style
                     else Nothing
                     where style = " [style = filled];\n"
-
 
 edgesToNodes :: [Edge] -> [TaggedGene]
 edgesToNodes = rmdups . map (\(_,tgt,_) -> tgt)

@@ -1,17 +1,18 @@
 module PipeLines
 
     where
-import qualified Data.Map           as Map
+-- import qualified Data.Map           as Map
 import           Types
 import           Fitness
 -- import Misc
 import           Data.Maybe         (fromMaybe, mapMaybe)
 import           Parsing            (agentToLineageFile, myRead, myShow, cRead, cMyRead, cMyShow, cShow, readMaybe)
-import World (groupGeneTfbs)
+-- import World (groupGeneTfbs)
 import           Misc (verticalHistogram)
 -- import qualified Data.Text as T
-import           Data.List          (isPrefixOf, find)
+import           Data.List          (find)
 import qualified Analysis as Anal
+import qualified Landscapes as Land
 
 import           System.Environment (getArgs)
 import qualified Data.ByteString.Char8 as C
@@ -26,6 +27,8 @@ main = do
     let action:args'' = args'
     setCurrentDirectory cwd
     case action of
+        "attrnum" ->
+            interact (show . Land.attrNum . getLastChrom)
         "rnet" -> do
             c <- getContents
             let chrom = getLastChrom c
@@ -79,15 +82,29 @@ main = do
             c <- C.readFile "lineage"
                 -- [t,e,chrom,[muts]]
             let parsedls = cParseLineageFile c
-                envs      = C.unlines $ map (\(t,e,_,_)  -> cUnWords [cShow t, cShow e])               parsedls
-                hammdists = C.unlines $ map (\(t,e,ch,_) -> cUnWords [cShow t, cShow $ hammDist e ch]) parsedls
-                genlength = C.unlines $ map (\(t,_,ch,_) -> cUnWords [cShow t, cShow $ length ch]) parsedls
+                envs      = C.unlines $ map (\(t,e,_,_)  -> cUnWords
+                    [cShow t, cShow e])               parsedls
+                hammdists = C.unlines $ map (\(t,e,ch,_) -> cUnWords
+                    [cShow t, cShow $ hammDist e ch]) parsedls
+                genlength = C.unlines $ map (\(t,_,ch,_) -> cUnWords
+                    [cShow t, cShow $ length ch])     parsedls
+                mutations = C.unlines $ map (\(t,_,_,ms) -> cUnWords
+                    [cShow t, cShow ms])              parsedls
 
             createDirectoryIfMissing False $ cwd ++ "lineagedir"
             let cwd' = "lineagedir/"
             C.writeFile (cwd' ++ "envs"     ) envs
             C.writeFile (cwd' ++ "hammdists") hammdists
             C.writeFile (cwd' ++ "genlength") genlength
+            C.writeFile (cwd' ++ "mutations") mutations
+        "attractornumber" -> do
+            c <- C.readFile "lineage"
+            let parsedls = cParseLineageFile c
+                attrnums = C.unlines $ map (\(t,_,ch,_) -> cUnWords
+                    [cShow t, cShow (Land.attrNum ch)])    parsedls
+            createDirectoryIfMissing False $ cwd ++ "lineagedir"
+            let cwd' = "lineagedir/"
+            C.writeFile (cwd' ++ "attractornumbers") attrnums
 
         _ -> putStrLn "y u no put good action"
 
@@ -98,6 +115,8 @@ main = do
 --
 -- compress :: Eq a => [a] -> [a]
 -- compress = map head . group
+
+type LineageFile = [(Time,Env,Chromosome,[Mutation])]
 
 getLastChrom :: String -> Chromosome
 getLastChrom s = head $ mapMaybe readMaybe (lewords ';' (last $ lines s))
@@ -201,7 +220,7 @@ copyNumberGene gt = length . filter isgenetype
 
 
 fromTime :: Time -> [(Time, Env, Chromosome)] -> (Time, Env, Chromosome)
-fromTime t0 list = fromMaybe (error "time too big")
+fromTime t0 list = fromMaybe (last list)
                            $ find (\(t, _, _) -> t0 >= t) list
 
 

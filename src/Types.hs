@@ -2,12 +2,15 @@
 {-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE TypeOperators #-}
+-- {-# LANGUAGE DeriveFunctor #-}
+
 
 module Types where
 import qualified Data.Map.Strict as Map
 import Data.Array.IArray
 import Data.Maybe (mapMaybe, isJust)
 import Data.Foldable as F (foldr')
+import Data.Bifunctor
 
 type Time = Int
 type Prob = Double
@@ -15,8 +18,6 @@ type Prob = Double
 data World = World {    agents :: Agents
                     ,   env :: Env
                    } deriving (Show, Read, Eq)
-
-
 
 type Env = Int
 type Agents = Array (Int, Int) Agent
@@ -37,14 +38,26 @@ instance Eq Agent where
 type Genome = [Chromosome]
 type Chromosome = [Locus]
 type GeneStateTable = Map.Map ID GeneState
-data Locus
-    = Transposon
-    | CGene     Gene
-    | CTfbs     Tfbs     deriving (Show, Read, Eq, Ord)
+
+data CLocus a b
+    = CTfbs     a
+    | CGene     b   deriving (Show, Read, Ord)
+instance (Eq a, Eq b) => Eq (CLocus a b) where
+    CTfbs t1 == CTfbs t2 = t1 == t2
+    CGene t1 == CGene t2 = t1 == t2
+    _ == _ = False
+instance Bifunctor CLocus where
+    bimap f _ (CTfbs t) = CTfbs $ f t
+    bimap _ f (CGene g) = CGene $ f g
+onGene :: (Gene -> Gene) -> Locus -> Locus
+onGene = second
+onTfbs :: (Tfbs -> Tfbs) -> Locus -> Locus
+onTfbs = first
+
+type Locus = CLocus Tfbs Gene
 instance GeneType Locus where
     iD (CGene g) = iD g
     iD (CTfbs t) = iD t
-    iD Transposon = -1
 
 data Gene = Gene {      geneID :: ID
                     ,   thres :: Thres
@@ -70,29 +83,18 @@ newtype Thres     = Thres Int      deriving  (Show, Read, Eq, Ord, Real, Num, En
 
 newtype Weight    = Weight Int     deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded)
 
--- newtype GeneState = GS Bool deriving  (Show, Read, Eq, Ord, Enum, Bounded)
--- instance Real GeneState where
---     toRational (GS True)  = 1
---     toRational (GS False) = 0
--- instance Num GeneState where
---     GS a + GS b = GS $ a || b
---     GS a * GS b = GS $ not $ a || b
---     abs = id; signum = id;
---     negate (GS a) = GS $ not a
---     fromInteger a = if a > 0 then GS True else GS False
-
-newtype GeneState = GS Int deriving  (Show, Read, Ord, Enum, Real, Integral, Bounded)
+newtype GeneState = GS Int deriving  (Show, Read, Ord, Enum, Real, Integral, Bounded, Num)
 instance Eq GeneState where
     GS 0 == GS 0 = True
     GS 0 == GS _ = False
     GS _ == GS 0 = False
     GS _ == GS _ = True
-instance Num GeneState where
-    GS a + GS b = GS $ a + b
-    GS a * GS b = GS $ a * b
-    abs = id; signum = id;
-    negate (GS a) = GS $ -a
-    fromInteger a = GS $ fromInteger a
+-- instance Num GeneState where
+--     GS a + GS b = GS $ a + b
+--     GS a * GS b = GS $ a * b
+--     abs = id; signum = id;
+--     negate (GS a) = GS $ -a
+--     fromInteger a = GS $ fromInteger a
 
 newtype ID = ID Int deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded)
 

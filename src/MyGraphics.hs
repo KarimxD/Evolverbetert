@@ -1,4 +1,4 @@
-module MyGraphics (showWorld) where
+module MyGraphics (initializeWorld, callShowWorld) where
 import           Data.Array.IArray
 import           Data.Fixed        (mod')
 import           Data.IORef
@@ -6,6 +6,31 @@ import           Graphics.UI.GLUT
 import qualified Parameters        as P
 import           Fitness
 import Types
+
+callShowWorld :: IO ()
+callShowWorld = mainLoopEvent >> postRedisplay Nothing
+
+initializeWorld :: IORef World -> IO ()
+initializeWorld worldRef = do
+    _ <- getArgsAndInitialize
+    let pixelsPerUnit = 10
+        w = pixelsPerUnit * fromIntegral P.width
+        h = pixelsPerUnit * fromIntegral P.height
+    initialDisplayMode $= [RGBMode, DoubleBuffered]
+    initialWindowSize $= Size w h
+    (Size screenSizeX screenSizeY) <- get screenSize
+    let initialPos = Position
+            (fromIntegral (screenSizeX - w) `div` 2)
+            (fromIntegral (screenSizeY - h) `div` 2)
+    initialWindowPosition $= initialPos
+    _ <- createWindow "Evolverbetert v1"
+    matrixMode $= Projection
+    loadIdentity
+    ortho2D 0 (fromIntegral w / fromIntegral pixelsPerUnit)
+            0 (fromIntegral h / fromIntegral pixelsPerUnit)
+
+    displayCallback $= showWorld worldRef
+    actionOnWindowClose $= MainLoopReturns
 
 showWorld :: IORef World -> IO ()
 showWorld worldRef = do

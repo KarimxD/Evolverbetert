@@ -73,13 +73,13 @@ instance MyRead Tfbs where
         where s = splitOn ":" str
 
 instance MyShow Locus where
-    myShow Transposon = "T"
+    -- myShow Transposon = "T"
     myShow (CGene g) = myShow g
     myShow (CTfbs t) = myShow t
 instance MyRead Locus where
     readMaybe str
         | h == 'G'   = CGene <$> readMaybe str
-        | str == "T" = Just Transposon
+        -- | str == "T" = Just Transposon
         | otherwise  = CTfbs <$> readMaybe str
              where h = head str
 

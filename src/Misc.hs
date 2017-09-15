@@ -95,9 +95,9 @@ rotate =  reverse . transpose
 rectangulate :: a -> [[a]] -> [[a]]
 rectangulate pad rows = newrows
     where
-        width = maximum $ map length rows
+        width' = maximum $ map length rows
         infiniterows = map (++ repeat pad) rows
-        newrows = map (take width) infiniterows
+        newrows = map (take width') infiniterows
 
 mapIfPred :: Functor f => (a -> Bool) -> (a -> a) -> f a -> f a
 mapIfPred p f = fmap f'

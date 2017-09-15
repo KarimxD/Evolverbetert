@@ -9,7 +9,7 @@ import Types
 -- * Mode Parameters
 resetGeneStatesOnBirth = False :: Bool
 dosiseffect = True :: Bool
-nrNoEffect = 5 :: Int
+nrNoEffect = 0 :: Int
 
 -- defaultWorldSeed = 420 :: Int
 -- defaultInitialAgentSeed = 420 :: Int
