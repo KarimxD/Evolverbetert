@@ -18,7 +18,7 @@ executable Pipe
   other-modules:       Analysis, Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types, Parsing, PipeLines, Landscapes, Fitness
   main-is:             PipeLines.hs
   ghc-options:         -threaded -with-rtsopts=-N -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math -Wall -main-is PipeLines
-  build-depends:       parallel, safe, process, time, directory, bytestring, primitive, mwc-random, data-memocombinators, random-shuffle, monad-parallel, GLUT, text, ansi-terminal, split, MonadRandom, random, array, containers, mtl, mersenne-random-pure64, pcg-random, vector, base
+  build-depends:       fgl, parallel, safe, process, time, directory, bytestring, primitive, mwc-random, data-memocombinators, random-shuffle, monad-parallel, GLUT, text, ansi-terminal, split, MonadRandom, random, array, containers, mtl, mersenne-random-pure64, pcg-random, vector, base
   default-language:    Haskell2010
 
 executable Evolverbetert
@@ -33,7 +33,7 @@ library
   hs-source-dirs:      src
   exposed-modules:     Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types, Parsing, Landscapes, Fitness
   ghc-options:         -O2 -fexcess-precision -optc-O3 -optc-ffast-math -Wall
-  build-depends:       parallel, safe, process, time, directory, bytestring, primitive, mwc-random, data-memocombinators, random-shuffle, monad-parallel, GLUT, text, ansi-terminal, split, MonadRandom, random, array, containers, mtl, mersenne-random-pure64, vector, base >= 4.7 && < 5
+  build-depends:       fgl, parallel, safe, process, time, directory, bytestring, primitive, mwc-random, data-memocombinators, random-shuffle, monad-parallel, GLUT, text, ansi-terminal, split, MonadRandom, random, array, containers, mtl, mersenne-random-pure64, vector, base >= 4.7 && < 5
   default-language:    Haskell2010
 
 test-suite Evolverbetert-test

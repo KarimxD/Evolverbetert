@@ -27,8 +27,12 @@ main = do
     let action:args'' = args'
     setCurrentDirectory cwd
     case action of
+        "statenum" ->
+            interact (show . length . Land.allGSTofChrom . getLastChrom)
         "attrnum" ->
-            interact (show . Land.attrNum . getLastChrom)
+            interact (show . Land.attrNum' . getLastChrom)
+        "numrem" ->
+            interact (show . Land.numRemaining . getLastChrom)
         "rnet" -> do
             c <- getContents
             let chrom = getLastChrom c

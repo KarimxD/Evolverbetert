@@ -1,36 +1,70 @@
+{-# LANGUAGE FlexibleInstances #-}
 module Landscapes
     where
 
 import Types
 -- import qualified Parameters as P
-import Misc (valueResultPairs)
+import Misc (valueResultPairs, rmdups, horizontalHistogram)
 import World (updateChrom)
+-- import Data.List (find)
 import Data.Bifunctor
 -- import Control.Parallel.Strategies
 -- import Data.Vector.Mutable as V
--- import qualified Data.Map.Strict as M
--- defaultAgent :: Agent
--- defaultAgent = Agent [] defaultGst undefined undefined
---
--- nrAttr :: Agent -> Int
--- nrAttr = length . filter id . zipWith (==) [0..] . attractorLandscape
---
--- attractorLandscape :: Agent -> [Integer]
--- attractorLandscape a = map (gst2dec . newGst) states
---     where
---         newGst :: GeneStateTable -> GeneStateTable
---         newGst gst = geneStateTable $ updateAgent $ a {geneStateTable = gst}
---         states = map dec2gst [0..2^n-1]
---         n = P.nrGeneTypes'
+import qualified Data.Map.Strict as M
+import Data.Tuple (swap)
+import Data.Graph.Inductive
+import Data.Maybe (mapMaybe)
+import Parsing
 
+-- data Node a = Node { identity :: a
+--                    , numIn      :: Int
+--                    , inNodes    :: [Node a]
+--                    , allInNodes :: [a]
+--                    }
+-- instance GST (Node GeneStateTable) where
+--     toGST = identity
+--
+-- type Vertice = (GeneStateTable,GeneStateTable)
+--
+--
+-- nsfNode :: Chromosome -> Node GeneStateTable -> Maybe (Node GeneStateTable)
+-- nsfNode c n =
+--     if nextGST `elem` allInNodes n
+--     then Nothing
+--     else Just Node { identity   = nextGST
+--                    , numIn      = 1
+--                    , inNodes    = [n]
+--                    , allInNodes = [source]
+--                    }
+--     where
+--         source = identity n
+--         nextGST = nsf c source
+
+attrNum' :: Chromosome -> Int
+attrNum' = length . filter id . map (uncurry (==)) . edges . chromToGraph
+
+chromToGraph :: Chromosome -> Gr GeneStateTable ()
+chromToGraph c = mkGraph allNodes (blub allEdges)
+    where allNodes = zip [0..] (allGSTofChrom c)
+          nodeMap = M.fromList $ map swap allNodes
+          allEdges = zip [0..] $
+                     map (getLeNode . nsf c . snd) allNodes
+          getLeNode n = case M.lookup n nodeMap
+            of Just x -> x
+               _      -> error $ myShow n ++ "\n" ++
+                            horizontalHistogram (map iD $ reduceChromToGenes c)
+          blub = map (\(a,b) -> (a,b,()))
 
 attrNum :: Chromosome -> Int
 attrNum = length . --withStrategy (parList rdeepseq) .
-    filter id . map (uncurry (==) . bimap (fmap toOnOff) (fmap toOnOff)) .
-    vertices
+    filter id . map (uncurry (==)) . --bimap (fmap toOnOff) (fmap toOnOff)) .
+    chromToVertices
 
-vertices :: Chromosome -> [(GeneStateTable,GeneStateTable)]
-vertices c = valueResultPairs (nsf c) $ allGST c
+numRemaining :: Chromosome -> Int
+numRemaining = length . rmdups . take 20000 . map snd . chromToVertices
+
+chromToVertices :: Chromosome -> [(GeneStateTable,GeneStateTable)]
+chromToVertices c = valueResultPairs (nsf c) $ allGSTofChrom c
 
 nsf :: Chromosome -> GeneStateTable -> GeneStateTable
 nsf c = toGST . flip updateChrom c
@@ -52,10 +86,8 @@ turnGeneOn g = g {genSt  = GS 1}
 fullGST :: Chromosome -> GeneStateTable
 fullGST = toGST . map (onGene turnGeneOn)
 
-
 allGST :: GST gst => gst -> [GeneStateTable]
 allGST = map toGST . allCombinations . toGSL
-
 
 allGSTofChrom :: Chromosome -> [GeneStateTable]
 allGSTofChrom = allGST . fullGST

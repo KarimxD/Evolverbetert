@@ -67,18 +67,18 @@ updateAgent ag =
           newGST = toGST newGenome
 
 -- | Updates every Chromosome in Genome with updateChrom
-updateGenome :: GeneStateTable -> Genome -> Genome
+updateGenome :: GST gst => gst -> Genome -> Genome
 updateGenome = map . updateChrom --0
 
 (↞) :: (b -> c) -> (a1 -> a -> b) -> a1 -> a -> c
 (↞) = (.).(.)
 
 
-updateChrom :: GeneStateTable -> Chromosome -> Chromosome
+updateChrom :: GST gst => gst -> Chromosome -> Chromosome
 updateChrom = updateGenes ↞ updateTfbss
 
-updateTfbss :: GeneStateTable -> Chromosome -> Chromosome
-updateTfbss !gst =
+updateTfbss :: GST gst => gst -> Chromosome -> Chromosome
+updateTfbss !gst' =
     map (onTfbs $ \t -> if   P.dosiseffect
                         then t {tfbsSt =          gst Map.! tfbsID t}
                         else t {tfbsSt = bottom $ gst Map.! tfbsID t}
@@ -86,6 +86,7 @@ updateTfbss !gst =
     where bottom gs | gs == GS 0 = GS 0
                     | gs >  GS 0 = GS 1
                     | otherwise  = error "negative GeneState"
+          gst = toGST gst'
 
 updateGenes :: Chromosome -> Chromosome
 updateGenes = updateGenes' 0

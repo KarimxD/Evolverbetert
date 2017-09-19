@@ -70,6 +70,13 @@
   (major1) == 1 && (major2) <  3 || \
   (major1) == 1 && (major2) == 3 && (minor) <= 0)
 
+/* package fgl-5.5.3.1 */
+#define VERSION_fgl "5.5.3.1"
+#define MIN_VERSION_fgl(major1,major2,minor) (\
+  (major1) <  5 || \
+  (major1) == 5 && (major2) <  5 || \
+  (major1) == 5 && (major2) == 5 && (minor) <= 3)
+
 /* package mersenne-random-pure64-0.2.2.0 */
 #define VERSION_mersenne_random_pure64 "0.2.2.0"
 #define MIN_VERSION_mersenne_random_pure64(major1,major2,minor) (\
@@ -259,7 +266,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-32ijwLzmlVS7EG44Y2vn4z"
+#define CURRENT_COMPONENT_ID "Evolverbetert-0.1.0.0-HbOmoJJvLnPIxjrHtwTsai"
 
-#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-32ijwLzmlVS7EG44Y2vn4z"
+#define CURRENT_PACKAGE_KEY "Evolverbetert-0.1.0.0-HbOmoJJvLnPIxjrHtwTsai"
 

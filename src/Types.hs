@@ -8,6 +8,7 @@
 module Types where
 import qualified Data.Map.Strict as Map
 import Data.Array.IArray
+import Data.Array.Unboxed
 import Data.Maybe (mapMaybe, isJust)
 import Data.Foldable as F (foldr')
 import Data.Bifunctor
@@ -38,6 +39,7 @@ instance Eq Agent where
 type Genome = [Chromosome]
 type Chromosome = [Locus]
 type GeneStateTable = Map.Map ID GeneState
+type GeneStateTable' = UArray ID GeneState
 
 data CLocus a b
     = CTfbs     a
