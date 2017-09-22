@@ -1,6 +1,6 @@
-module Misc (
-      valueResultPairs
-    , maybeCh
+module Misc
+    ( valueResultPair
+    , valueResultPairs
     , moore8
     , repeatCollect
     , roundToNearest
@@ -14,12 +14,16 @@ module Misc (
     , verticalHistogram
     , mapIfPred
     , takeEvery
+    , sample
+    , lehead
+    , pickFromCombination
+    , antiPickFromCombination
+    , repeatApply
     )
 
     where
 
 import           Control.Monad
-import           MyRandom
 import           Parameters    as P
 import qualified Data.Set as Set
 import           Data.List (transpose)
@@ -46,24 +50,17 @@ outOfBounds :: (Int, Int) -> Bool
 outOfBounds (x, y) = x < 0 || y < 0 || x >= P.width || y >= P.height
 
 valueResultPairs :: (a->b) -> [a]  -> [(a, b)]
-valueResultPairs f = map (\x -> (x, f x))
+valueResultPairs = map . valueResultPair
 
--- hammDist :: Eq a => [a] -> [a] -> Int
--- hammDist (a:as) (b:bs) = if a /= b then 1 + hammDist as bs else hammDist as bs
--- hammDist _ _ = 0
---hammDist as bs = length $ filter (==True) $ zipWith (/=) as bs
-
-maybeCh :: a -> (a -> Rand a) -> Double -> Rand a
-maybeCh x f p = do
-    r <- getDouble
-    if r < p
-        then f x
-        else return x
-{-# INLINE maybeCh #-}
+valueResultPair :: (a->b) -> a -> (a, b)
+valueResultPair f x = (x, f x)
 
 -- | Repeats a monadic operation n times collecting the results
 repeatCollect :: Monad m => Int -> (a -> m a) -> a -> m a
 repeatCollect n f = foldr (<=<) return $ replicate n f
+
+repeatApply :: Int -> (a->a) -> a -> a
+repeatApply n f = foldr (.) id $ replicate n f
 
 roundToNearest :: Integral a => a -> a -> a
 roundToNearest i n = n - n `rem` i
@@ -110,3 +107,23 @@ takeEvery n xs = lehead ys ++ takeEvery n zs where (ys,zs) = splitAt n xs
 lehead :: [a] -> [a]
 lehead [] = []
 lehead (x:_) = [x]
+
+sample :: Int -> [a] -> [a]
+sample i xs = takeEvery n xs
+    where n = case length xs `div` i of
+                0 -> 1
+                x -> x
+
+pickFromCombination :: Int -> [Int] -> [Int]
+pickFromCombination _ [] = []
+pickFromCombination 0 (_:xs) = 0 : pickFromCombination 0 xs
+pickFromCombination n (_:xs) = n' : pickFromCombination r xs
+    where p = product $ map (+1) xs
+          (n', r) = n `quotRem` p
+
+antiPickFromCombination :: [Int] -> [Int] -> Int
+antiPickFromCombination [] [] = 0
+antiPickFromCombination (n:ns) (f:fs) = n' + antiPickFromCombination ns fs
+    where p  = product $ map (+1) (f:fs)
+          n' = n * (p `div` (f+1))
+antiPickFromCombination _ _ = error "nonmatching lists"

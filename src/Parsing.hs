@@ -31,9 +31,9 @@ parseAgent str =  --Only works on agents with 1 chromosome
         genes = [map myRead loci] :: Genome
         loci = splitOn "," str :: [String]
 
-instance MyShow GeneStateTable where
+instance MyShow GST where
     myShow = List.intersperse ' ' . concatMap (myShow . snd) . Map.toList
-instance MyRead GeneStateTable where -- FIX: return Nothing if fails
+instance MyRead GST where -- FIX: return Nothing if fails
     readMaybe = Just . Map.fromList . zip [0..] . map (myRead . pure) . filter (/= ' ')
 
 instance MyShow ID where
@@ -130,3 +130,19 @@ parseList (x:xs) = x `maybeAppend` parseList xs
 maybeAppend :: Maybe a -> Maybe [a] -> Maybe [a]
 maybeAppend (Just x) (Just xs) = Just $ x : xs
 maybeAppend _ _ = Nothing
+
+data Maybe' a = Nothing' | Just' a
+
+instance Functor Maybe' where
+    fmap _ Nothing' = Nothing'
+    fmap f (Just' a) = Just' (f a)
+
+instance Applicative Maybe' where
+    pure = return
+    Just' f <*> Just' x = Just' (f x)
+    _ <*> _ = Nothing'
+
+instance Monad Maybe' where
+    Nothing' >>= _ = Nothing'
+    Just' a >>= f = f a
+    return = Just'

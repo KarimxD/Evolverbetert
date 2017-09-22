@@ -6,17 +6,16 @@ import           Types
 import           Fitness
 -- import Misc
 import           Data.Maybe         (fromMaybe, mapMaybe)
-import           Parsing            (agentToLineageFile, myRead, myShow, cRead, cMyRead, cMyShow, cShow, readMaybe)
+import           Parsing
 -- import World (groupGeneTfbs)
-import           Misc (verticalHistogram)
+import           Misc --(verticalHistogram)
 -- import qualified Data.Text as T
 import           Data.List          (find)
 import qualified Analysis as Anal
-import qualified Landscapes as Land
+import           Landscapes
 
 import           System.Environment (getArgs)
 import qualified Data.ByteString.Char8 as C
-
 
 import System.Directory
 
@@ -27,12 +26,21 @@ main = do
     let action:args'' = args'
     setCurrentDirectory cwd
     case action of
+        "henk" -> error "henky penky"
         "statenum" ->
-            interact (show . length . Land.allGSTofChrom . getLastChrom)
+            onLast $ analyzeChrom nrOfStates
         "attrnum" ->
-            interact (show . Land.attrNum' . getLastChrom)
+            onLast $ analyzeChrom (attrNum 1000000)
+        "listattr" ->
+            onLast $ analyzeChrom (listAttr 1000000)
+        "targets" ->
+            onLast $ analyzeChrom targets
+        "startingGST" ->
+            onLast $ analyzeChrom startGSTAttr
         "numrem" ->
-            interact (show . Land.numRemaining . getLastChrom)
+            interact $
+                  show . zipWith (analyzeChrom . numRemaining) [10,100,1000,10000,100000,1000000]
+                . repeat . getLastChrom
         "rnet" -> do
             c <- getContents
             let chrom = getLastChrom c
@@ -105,7 +113,7 @@ main = do
             c <- C.readFile "lineage"
             let parsedls = cParseLineageFile c
                 attrnums = C.unlines $ map (\(t,_,ch,_) -> cUnWords
-                    [cShow t, cShow (Land.attrNum ch)])    parsedls
+                    [cShow t, cShow (analyzeChrom (attrNum 10000) ch)])    parsedls
             createDirectoryIfMissing False $ cwd ++ "lineagedir"
             let cwd' = "lineagedir/"
             C.writeFile (cwd' ++ "attractornumbers") attrnums
@@ -121,6 +129,9 @@ main = do
 -- compress = map head . group
 
 type LineageFile = [(Time,Env,Chromosome,[Mutation])]
+
+onLast :: Show a => (Chromosome -> a) -> IO ()
+onLast f = interact $ show . f . getLastChrom
 
 getLastChrom :: String -> Chromosome
 getLastChrom s = head $ mapMaybe readMaybe (lewords ';' (last $ lines s))

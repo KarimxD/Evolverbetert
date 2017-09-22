@@ -52,8 +52,8 @@ makeEdges atgs tfbs tg = zip3 sources targets weights
 
 tagChromosome :: Chromosome -> TaggedChromosome
 tagChromosome c = concat result
-    where groupedTfbss = map reduceChromToTfbss $ splitWhen isGene c -- List of [Tfbs]
-          genes = reduceChromToGenes c -- List of Gene
+    where groupedTfbss = map toTfbss $ splitWhen isGene c -- List of [Tfbs]
+          genes = toGenes c -- List of Gene
           grouped = zip groupedTfbss genes -- List of ([Tfbs],Gene)
           sorted = sortBy (compare `on` snd) grouped -- List of ([Tfbs],Gene)
           henk = groupBy ((==) `on` iD . snd) sorted -- same as above grouped by geneID

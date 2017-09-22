@@ -33,7 +33,7 @@ dupTfbss c = do
     repeatCollect n dupATfbs c
 dupATfbs :: Chromosome -> Mut Chromosome
 dupATfbs c = do
-    let tfbss = reduceChromToTfbss c
+    let tfbss = toTfbss c
 
     i1 <- lift $ getRange (0, length tfbss - 1)
     i2 <- lift $ getRange (0, length c     - 1)

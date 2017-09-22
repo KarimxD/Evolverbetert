@@ -18,6 +18,9 @@ module MyRandom
     , randomBool
     , pureMT
     , doifelse
+    , maybeCh
+    , withSeed
+    , randomsInRange
 )   where
 
 import           Control.Monad.State.Strict
@@ -41,6 +44,14 @@ import           System.IO.Unsafe                       (unsafePerformIO)
 type Rand = State PureMT
 --old monad
 
+maybeCh :: a -> (a -> Rand a) -> Double -> Rand a
+maybeCh x f p = do
+    r <- getDouble
+    if r < p
+        then f x
+        else return x
+{-# INLINE maybeCh #-}
+
 doifelse :: Double -> Rand a -> Rand a -> Rand a
 doifelse chance a b = do
     r <- getDouble
@@ -48,11 +59,11 @@ doifelse chance a b = do
         then a
         else b
 
-runRand :: State PureMT a -> PureMT -> (a, PureMT)
+runRand :: Rand a -> PureMT -> (a, PureMT)
 runRand = runState
 -- {-# INLINE runRand #-}
 
-evalRand :: State PureMT a -> PureMT -> a
+evalRand :: Rand a -> PureMT -> a
 evalRand = evalState
 -- {-# INLINE evalRand #-}
 
@@ -77,7 +88,15 @@ getRange :: Integral a => (Int,Int) -> Rand a
 getRange = fmap fromIntegral . state . randomR
 -- {-# INLINE getRange #-}
 
+randomsInRange :: (Int,Int) -> Int -> Rand [Int]
+randomsInRange r num
+    | num == 0  = return []
+    | otherwise = do n <- getRange r
+                     rest <- randomsInRange r (num-1)
+                     return $ n : rest
 
+withSeed :: Integral i => i -> Rand a -> a
+withSeed i f = evalRand f (pureMT i)
 
 -- Edited by Karim Hajji for ease of use
 -- {-# LANGUAGE CPP, ForeignFunctionInterface #-}
@@ -88,7 +107,7 @@ getRange = fmap fromIntegral . state . randomR
 -- Copyright  : Copyright (c) 2008, Don Stewart <dons@galois.com>
 -- License    : BSD3
 -- Maintainer : Don Stewart <dons@galois.com>
--- Stability  : experimental
+-- Stability  : experimentalpureMT
 -- Portability: CPP, FFI
 -- Tested with: GHC 6.8.3
 --

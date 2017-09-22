@@ -10,6 +10,7 @@ import qualified Parameters        as P
 
 import MyRandom
 import Types
+import Fitness (startingGST)
 
 import System.Random.Shuffle (shuffle')
 import Control.Monad.State (state)
@@ -37,7 +38,7 @@ sameGST _ NoAgent = False
 sameGST ag1 ag2 = geneStateTable ag1 == geneStateTable ag2
 
 -- | The default GeneStateTable where All genes have expression 0
-defaultGst :: GeneStateTable
+defaultGst :: GST
 defaultGst = Map.fromList defaultStates
     where defaultStates = take P.nrGeneTypes' $ zip [0..] (repeat 0) :: [(ID,GeneState)]
 
@@ -67,17 +68,17 @@ updateAgent ag =
           newGST = toGST newGenome
 
 -- | Updates every Chromosome in Genome with updateChrom
-updateGenome :: GST gst => gst -> Genome -> Genome
+updateGenome :: InferGST gst => gst -> Genome -> Genome
 updateGenome = map . updateChrom --0
 
 (↞) :: (b -> c) -> (a1 -> a -> b) -> a1 -> a -> c
 (↞) = (.).(.)
 
 
-updateChrom :: GST gst => gst -> Chromosome -> Chromosome
+updateChrom :: InferGST gst => gst -> Chromosome -> Chromosome
 updateChrom = updateGenes ↞ updateTfbss
 
-updateTfbss :: GST gst => gst -> Chromosome -> Chromosome
+updateTfbss :: InferGST gst => gst -> Chromosome -> Chromosome
 updateTfbss !gst' =
     map (onTfbs $ \t -> if   P.dosiseffect
                         then t {tfbsSt =          gst Map.! tfbsID t}
@@ -149,29 +150,6 @@ takeWhileInclusive p ls = takeWhileInclusive' ([], ls)
                 --
                 -- > foldr f z []     = z
                 -- > foldr f z (x:xs) = x `f` foldr f z xs
-
-
-
-
-
-
-{- | startingGST lays in between the attractors of targetExpression.
-    For instance nrEnv = 4 and nrHouseHold = 4, nrOverlap = 3, nrSpecific = 5
-    Env\Gene    0   1   2   3   4   5   6   7   8   9   10  11
-    0           1   1   1   1   0   1   1   1   0   0   0   1
-    1           1   1   1   1   1   0   1   0   1   0   0   0
-    2           1   1   1   1   1   1   0   0   0   1   0   0
-    3           1   1   1   1   0   1   1   0   0   0   1   0
-    start       1   1   0   0   1   1   0   1   1   1   0   0
--}
-startingGST :: GeneStateTable
-startingGST = Map.fromList $ zip [0..] $ fhsh hh ++ fhsh ov ++ fhsh sp ++ fhsh ne
-    where fhsh x -- firsthalfsecondhalf
-            | even x    = replicate (x `div` 2    ) 1 ++ replicate (x `div` 2) 0
-            | otherwise = replicate (x `div` 2 + 1) 1 ++ replicate (x `div` 2) 0
-          hh = P.nrHouseHold; ov = P.nrOverlap; sp = P.nrSpecific; ne = P.nrNoEffect
-
-
 
 -- | Answers the question: Does every gene of this genome have at least one associated transcription factor?
 connected :: Genome -> Bool

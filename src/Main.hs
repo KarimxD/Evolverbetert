@@ -12,7 +12,7 @@
 --
 -----------------------------------------------------------------------------
 module Main where
-import           Misc                  (maybeCh, moore8)
+import           Misc                  (moore8)
 import           Mutations             (mutAg)
 import           MyGraphics            (initializeWorld, callShowWorld)
 import           MyRandom

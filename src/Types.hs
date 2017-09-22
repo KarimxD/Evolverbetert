@@ -4,10 +4,17 @@
 {-# LANGUAGE TypeOperators #-}
 -- {-# LANGUAGE DeriveFunctor #-}
 
+-----------------------------------------------------------------------------
+-- |
+-- A list of types and their conversions
+--
+-----------------------------------------------------------------------------
+
+
 
 module Types where
 import qualified Data.Map.Strict as Map
-import Data.Array.IArray
+-- import Data.Array.IArray
 import Data.Array.Unboxed
 import Data.Maybe (mapMaybe, isJust)
 import Data.Foldable as F (foldr')
@@ -15,6 +22,7 @@ import Data.Bifunctor
 
 type Time = Int
 type Prob = Double
+type Seed = Int
 
 data World = World {    agents :: Agents
                     ,   env :: Env
@@ -23,7 +31,7 @@ data World = World {    agents :: Agents
 type Env = Int
 type Agents = Array (Int, Int) Agent
 data Agent = Agent {    genome         :: Genome
-                    ,   geneStateTable :: GeneStateTable
+                    ,   geneStateTable :: GST
                     ,   bornTime       :: Time
                     ,   bornEnv        :: Env
                     ,   parent         :: Agent
@@ -38,8 +46,8 @@ instance Eq Agent where
 
 type Genome = [Chromosome]
 type Chromosome = [Locus]
-type GeneStateTable = Map.Map ID GeneState
-type GeneStateTable' = UArray ID GeneState
+type GST = Map.Map ID GeneState
+type GST' = Array ID GeneState
 
 data CLocus a b
     = CTfbs     a
@@ -72,6 +80,8 @@ instance Ord Gene where
              else compare gs2 gs1
         else compare i1 i2
 instance GeneType Gene where iD = geneID
+addGenes :: Gene -> Gene -> Gene
+addGenes g1 g2 = g1 {genSt = genSt g1 + genSt g2}
 
 data Tfbs = Tfbs {      tfbsID :: ID
                     ,   wt :: Weight
@@ -91,6 +101,8 @@ instance Eq GeneState where
     GS 0 == GS _ = False
     GS _ == GS 0 = False
     GS _ == GS _ = True
+getGeneState :: GeneState -> Int
+getGeneState (GS i) = i
 -- instance Num GeneState where
 --     GS a + GS b = GS $ a + b
 --     GS a * GS b = GS $ a * b
@@ -98,7 +110,7 @@ instance Eq GeneState where
 --     negate (GS a) = GS $ -a
 --     fromInteger a = GS $ fromInteger a
 
-newtype ID = ID Int deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded)
+newtype ID = ID Int deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded, Ix)
 
 
 data Mutation = GenDup ID   | GenDel ID    | GenThresCh ID |
@@ -111,20 +123,18 @@ instance GeneType Mutation where
     iD (TfbsDup i) = i; iD (TfbsDel i) = i; iD (TfbsInnov i) = i;
     iD (TfbsWtCh i) = i; iD (TfbsPrefCh i) = i;
 
-
-reduceChromToTfbss :: Chromosome -> [Tfbs]
-reduceChromToTfbss = mapMaybe getTfbs
-
--- | Reduce a genome to a list of its transcription factor binding sites
-reduceGenomeToTfbss :: Genome -> [Tfbs]
-reduceGenomeToTfbss = reduceChromToTfbss . concat
-
-reduceChromToGenes :: Chromosome -> [Gene]
-reduceChromToGenes = mapMaybe getGene
-
--- | Reduce a genome to a list of its genes
-reduceGenomeToGenes :: Genome -> [Gene]
-reduceGenomeToGenes = reduceChromToGenes . concat
+class InferTfbss a where
+    toTfbss :: a -> [Tfbs]
+class InferGenes a where
+    toGenes :: a -> [Gene]
+instance InferTfbss Chromosome where
+    toTfbss = mapMaybe getTfbs
+instance InferTfbss Genome where
+    toTfbss = toTfbss . concat
+instance InferGenes Chromosome where
+    toGenes = mapMaybe getGene
+instance InferGenes Genome where
+    toGenes = toGenes . concat
 
 -- | Check whether a locus is a Gene or Tfbs
 isGene, isTfbs :: Locus -> Bool
@@ -140,39 +150,67 @@ getTfbs :: Locus -> Maybe Tfbs
 getTfbs (CTfbs t) = Just t
 getTfbs _         = Nothing
 
-geneStateListToGST :: [GeneState] -> GeneStateTable
-geneStateListToGST = Map.fromList . zip [0..]
-
-
-
-class GST a where
-    toGST   :: a -> GeneStateTable
+class InferGST a where
+    toGST   :: a -> GST
     toGSL :: a -> [GeneState]
     toGSL = map snd . Map.toList . toGST
 
-instance GST [GeneState] where
+instance InferGST [Int] where
+    toGST = toGST . map GS
+
+instance InferGST [GeneState] where
     toGST = Map.fromList . zip [0..]
 
-instance GST GeneStateTable where
+instance InferGST GST where
     toGST = id
 
-instance GST Chromosome where
+instance InferGST Chromosome where
     toGST = gSTFromChrom where
-        gSTFromChrom :: Chromosome -> GeneStateTable
-        gSTFromChrom = makeGST . reduceChromToGenes
+        gSTFromChrom :: Chromosome -> GST
+        gSTFromChrom = makeGST . toGenes
             where
-                makeGST :: [Gene] -> GeneStateTable
+                makeGST :: [Gene] -> GST
                 makeGST = F.foldr'
                     (\ !x !acc -> Map.insertWith (+)
                     (iD x) (genSt x) acc)
                     Map.empty
 
-instance GST Genome where
+instance InferGST Genome where
     toGST = toGST . concat
-instance GST Agent where
+
+instance InferGST Agent where
     toGST = geneStateTable
 
 
+-- New Shyt
+class InferGST' a where
+    toGST'   :: a -> GST'
+    toGSL' :: a -> [GeneState]
+    toGSL' = elems . toGST'
 
--- henk :: Int !!! Bool
--- henk = even
+instance InferGST' [GeneState] where
+    toGST' xs = listArray bounds' xs
+        where bounds' = (ID 0,ID $ length xs)
+
+instance InferGST' GST' where
+    toGST' = id
+
+instance InferGST' Chromosome where
+    toGST' = gSTFromChrom where
+        gSTFromChrom :: Chromosome -> GST'
+        gSTFromChrom = makeGST . toGenes
+            where
+                makeGST :: [Gene] -> GST'
+                makeGST gs = genSt <$> accum addGenes (listArray bounds' []) assocs'
+                    where bounds' = (ID 0, iD $ maximum gs)
+                          assocs' = map (\g -> (iD g, g)) gs
+
+                    -- F.foldr'
+                    -- (\ !x !acc -> Map.insertWith (+)
+                    -- (iD x) (genSt x) acc)
+                    -- Map.empty
+
+instance InferGST' Genome where
+    toGST' = toGST' . concat
+-- instance InferGST' Agent where
+    -- toGST' = geneStateTable
