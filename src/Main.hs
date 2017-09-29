@@ -1,3 +1,5 @@
+{-# LANGUAGE LambdaCase #-}
+
 -----------------------------------------------------------------------------
 -- |
 -- Module      :  Main
@@ -106,7 +108,7 @@ initialize opts = do
     --               else return handles''' {hLineage = Nothing}
 
     -- Display some info about the initialization and the header for the output table
-    forM_ [hOutput handles''', hConsole handles'''] $ \m -> case m of
+    forM_ [hOutput handles''', hConsole handles'''] $ \case
         Just h -> do B.hPutStrLn h $ fromString
                         $  "world-seed="   ++ show (optWorldSeed opts)
                         ++ "; agent-seed=" ++ show (optAgentSeed opts)
@@ -145,7 +147,7 @@ mainLoop _ _ _ _ t | t == P.maxTime = return ()
 mainLoop worldRef opts cwd hs t = do
     w <- readIORef worldRef
 
-    when (P.outputTime t) $ forM_ [hOutput hs, hConsole hs] $ \m -> case m of
+    when (P.outputTime t) $ forM_ [hOutput hs, hConsole hs] $ \case
         Just h -> B.hPutStrLn h (fromString $ outputString w t False) >> hFlush h
         _      -> return ()
 

@@ -1,4 +1,5 @@
 {-# OPTIONS_GHC -w #-}
+{-# LANGUAGE NumDecimals #-}
 
 module Parameters
     where
@@ -34,7 +35,7 @@ outputTime  = (0 ==) . (`mod` outputStep)  :: Time -> Bool
 vOutputTime = (0 ==) . (`mod` vOutputStep) :: Time -> Bool
 lineageTime = (0 ==) . (`mod` lineageStep) :: Time -> Bool
 
-maxTime = -1 --round 1e6 -- 500000
+maxTime = -1 -- 1e6 -- 500000
      :: Int
 -- * Fitness Parameters
 

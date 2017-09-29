@@ -5,29 +5,243 @@
 @package Evolverbetert
 @version 0.1.0.0
 
-module Parameters
+
+-- | A list of types and their conversions
+module Types
 type Time = Int
 type Prob = Double
-defaultOutputFile :: [Char]
+type Seed = Int
+data World
+World :: Agents -> Env -> World
+[agents] :: World -> Agents
+[env] :: World -> Env
+type Env = Int
+type Agents = Array (Int, Int) Agent
+data Agent
+Agent :: Genome -> GST -> Time -> Env -> Agent -> [Mutation] -> Agent
+[genome] :: Agent -> Genome
+[geneStateTable] :: Agent -> GST
+[bornTime] :: Agent -> Time
+[bornEnv] :: Agent -> Env
+[parent] :: Agent -> Agent
+[diff] :: Agent -> [Mutation]
+NoAgent :: Agent
+type Genome = [Chromosome]
+type Chromosome = [Locus]
+type GST = Map ID GeneState
+type GST' = Array ID GeneState
+data CLocus a b
+CTfbs :: a -> CLocus a b
+CGene :: b -> CLocus a b
+onGene :: (Gene -> Gene) -> Locus -> Locus
+onTfbs :: (Tfbs -> Tfbs) -> Locus -> Locus
+type Locus = CLocus Tfbs Gene
+data Gene
+Gene :: ID -> Thres -> GeneState -> Gene
+[geneID] :: Gene -> ID
+[thres] :: Gene -> Thres
+[genSt] :: Gene -> GeneState
+addGenes :: Gene -> Gene -> Gene
+data Tfbs
+Tfbs :: ID -> Weight -> GeneState -> Tfbs
+[tfbsID] :: Tfbs -> ID
+[wt] :: Tfbs -> Weight
+[tfbsSt] :: Tfbs -> GeneState
+class GeneType a
+iD :: GeneType a => a -> ID
+newtype Thres
+Thres :: Int -> Thres
+newtype Weight
+Weight :: Int -> Weight
+newtype GeneState
+GS :: Int -> GeneState
+getGeneState :: GeneState -> Int
+newtype ID
+ID :: Int -> ID
+data Mutation
+GenDup :: ID -> Mutation
+GenDel :: ID -> Mutation
+GenThresCh :: ID -> Mutation
+TfbsDup :: ID -> Mutation
+TfbsDel :: ID -> Mutation
+TfbsInnov :: ID -> Mutation
+TfbsWtCh :: ID -> Mutation
+TfbsPrefCh :: ID -> Mutation
+class InferTfbss a
+toTfbss :: InferTfbss a => a -> [Tfbs]
+class InferGenes a
+toGenes :: InferGenes a => a -> [Gene]
+
+-- | Check whether a locus is a Gene or Tfbs
+isGene :: Locus -> Bool
+
+-- | Check whether a locus is a Gene or Tfbs
+isTfbs :: Locus -> Bool
+
+-- | Returns Just Gene if Locus is a Gene else Nothing
+getGene :: Locus -> Maybe Gene
+
+-- | Returns Just Tfbs if Locus is a Tfbs else Nothing
+getTfbs :: Locus -> Maybe Tfbs
+class InferGST a where toGSL = elems . toGST
+toGST :: InferGST a => a -> GST
+toGSL :: InferGST a => a -> [GeneState]
+instance GHC.Classes.Eq Types.World
+instance GHC.Read.Read Types.World
+instance GHC.Show.Show Types.World
+instance GHC.Classes.Ord Types.Agent
+instance GHC.Read.Read Types.Agent
+instance GHC.Show.Show Types.Agent
+instance GHC.Classes.Ord Types.Mutation
+instance GHC.Read.Read Types.Mutation
+instance GHC.Classes.Eq Types.Mutation
+instance GHC.Show.Show Types.Mutation
+instance GHC.Classes.Eq Types.Gene
+instance GHC.Read.Read Types.Gene
+instance GHC.Show.Show Types.Gene
+instance GHC.Classes.Ord Types.Tfbs
+instance GHC.Classes.Eq Types.Tfbs
+instance GHC.Read.Read Types.Tfbs
+instance GHC.Show.Show Types.Tfbs
+instance GHC.Arr.Ix Types.ID
+instance GHC.Enum.Bounded Types.ID
+instance GHC.Real.Integral Types.ID
+instance GHC.Enum.Enum Types.ID
+instance GHC.Num.Num Types.ID
+instance GHC.Real.Real Types.ID
+instance GHC.Classes.Ord Types.ID
+instance GHC.Classes.Eq Types.ID
+instance GHC.Read.Read Types.ID
+instance GHC.Show.Show Types.ID
+instance GHC.Num.Num Types.GeneState
+instance GHC.Enum.Bounded Types.GeneState
+instance GHC.Real.Integral Types.GeneState
+instance GHC.Real.Real Types.GeneState
+instance GHC.Enum.Enum Types.GeneState
+instance GHC.Classes.Ord Types.GeneState
+instance GHC.Read.Read Types.GeneState
+instance GHC.Show.Show Types.GeneState
+instance GHC.Enum.Bounded Types.Weight
+instance GHC.Real.Integral Types.Weight
+instance GHC.Enum.Enum Types.Weight
+instance GHC.Num.Num Types.Weight
+instance GHC.Real.Real Types.Weight
+instance GHC.Classes.Ord Types.Weight
+instance GHC.Classes.Eq Types.Weight
+instance GHC.Read.Read Types.Weight
+instance GHC.Show.Show Types.Weight
+instance GHC.Enum.Bounded Types.Thres
+instance GHC.Real.Integral Types.Thres
+instance GHC.Enum.Enum Types.Thres
+instance GHC.Num.Num Types.Thres
+instance GHC.Real.Real Types.Thres
+instance GHC.Classes.Ord Types.Thres
+instance GHC.Classes.Eq Types.Thres
+instance GHC.Read.Read Types.Thres
+instance GHC.Show.Show Types.Thres
+instance (GHC.Classes.Ord b, GHC.Classes.Ord a) => GHC.Classes.Ord (Types.CLocus a b)
+instance (GHC.Read.Read b, GHC.Read.Read a) => GHC.Read.Read (Types.CLocus a b)
+instance (GHC.Show.Show b, GHC.Show.Show a) => GHC.Show.Show (Types.CLocus a b)
+instance GHC.Classes.Eq Types.Agent
+instance (GHC.Classes.Eq a, GHC.Classes.Eq b) => GHC.Classes.Eq (Types.CLocus a b)
+instance Data.Bifunctor.Bifunctor Types.CLocus
+instance Types.GeneType Types.Locus
+instance GHC.Classes.Ord Types.Gene
+instance Types.GeneType Types.Gene
+instance Types.GeneType Types.Tfbs
+instance GHC.Classes.Eq Types.GeneState
+instance Types.GeneType Types.Mutation
+instance Types.InferTfbss Types.Chromosome
+instance Types.InferTfbss Types.Genome
+instance Types.InferGenes Types.Chromosome
+instance Types.InferGenes Types.Genome
+instance Types.InferGST [GHC.Types.Int]
+instance Types.InferGST [Types.GeneState]
+instance Types.InferGST Types.GST
+instance Types.InferGST Types.Chromosome
+instance Types.InferGST Types.Genome
+instance Types.InferGST Types.Agent
+
+module Parsing
+class MyShow a
+myShow :: MyShow a => a -> String
+class MyRead a where myRead = fromJust . readMaybe
+myRead :: MyRead a => String -> a
+readMaybe :: MyRead a => String -> Maybe a
+parseAgent :: String -> Agent
+agentToLineageFile :: Agent -> String
+agentToLineage :: Agent -> [(Time, Env, Chromosome, [Mutation])]
+agentToLineageList :: Agent -> [Agent]
+cRead :: Read a => ByteString -> a
+cMyRead :: MyRead a => ByteString -> a
+cShow :: Show a => a -> ByteString
+cMyShow :: MyShow a => a -> ByteString
+parseList :: [Maybe a] -> Maybe [a]
+maybeAppend :: Maybe a -> Maybe [a] -> Maybe [a]
+data Maybe' a
+Nothing' :: Maybe' a
+Just' :: a -> Maybe' a
+instance Parsing.MyShow Types.Agent
+instance Parsing.MyShow Types.GST
+instance Parsing.MyRead Types.GST
+instance Parsing.MyShow Types.ID
+instance Parsing.MyRead Types.ID
+instance Parsing.MyShow Types.Thres
+instance Parsing.MyRead Types.Thres
+instance Parsing.MyShow Types.Weight
+instance Parsing.MyRead Types.Weight
+instance Parsing.MyShow Types.GeneState
+instance Parsing.MyRead Types.GeneState
+instance Parsing.MyShow Types.Gene
+instance Parsing.MyRead Types.Gene
+instance Parsing.MyShow Types.Tfbs
+instance Parsing.MyRead Types.Tfbs
+instance Parsing.MyShow Types.Locus
+instance Parsing.MyRead Types.Locus
+instance Parsing.MyShow Types.Chromosome
+instance Parsing.MyRead Types.Chromosome
+instance Parsing.MyShow Types.Genome
+instance Parsing.MyRead Types.Genome
+instance GHC.Base.Functor Parsing.Maybe'
+instance GHC.Base.Applicative Parsing.Maybe'
+instance GHC.Base.Monad Parsing.Maybe'
+
+module Parameters
+resetGeneStatesOnBirth :: Bool
+dosiseffect :: Bool
+nrNoEffect :: Int
+display :: Bool
 width :: Int
 height :: Int
-display :: Bool
-outputStep :: Time
-outputTime :: Time -> Bool
 worldBounds :: ((Int, Int), (Int, Int))
 worldCoods :: [(Int, Int)]
+nrEnv :: Int
+vOutputStep :: Time
+outputStep :: Time
+dumpStep :: Time
+lineageStep :: Time
+dumpTime :: Time -> Bool
+outputTime :: Time -> Bool
+vOutputTime :: Time -> Bool
+lineageTime :: Time -> Bool
 maxTime :: Int
 devTime :: Int
 selectionPressure :: Int
 deathRate :: Prob
-envSwitchProb :: Prob
-nrEnv :: Int
-nrGeneTypes :: Int
+
+-- | When only 2 environments are used, NrOverlap and NrSpecific contribute
+--   to the same (namely genes expressed in A, and not in B, and vice
+--   versa)
+nrGeneTypes' :: Int
+nrGeneTypes :: ID
+nrFitEffect :: ID
+nrFitEffect' :: Int
 nrHouseHold :: Int
 nrOverlap :: Int
 nrSpecific :: Int
 minThres :: Int
 maxThres :: Int
+envSwitchProb :: Prob
 pGenDel :: Prob
 pGenDup :: Prob
 pGenThresCh :: Prob
@@ -42,12 +256,12 @@ type Rand = State PureMT
 
 -- | <a>PureMT</a>, a pure mersenne twister pseudo-random number generator
 data PureMT :: *
-runRand :: State PureMT a -> PureMT -> (a, PureMT)
+runRand :: Rand a -> PureMT -> (a, PureMT)
 getModifyRand :: Rand PureMT
-evalRand :: State PureMT a -> PureMT -> a
+evalRand :: Rand a -> PureMT -> a
 getBool :: Rand Bool
 getDouble :: Rand Double
-getRange :: (Int, Int) -> Rand Int
+getRange :: Integral a => (Int, Int) -> Rand a
 getMyStdRandom :: (PureMT -> (a, PureMT)) -> IO a
 setMyStdGen :: PureMT -> IO ()
 
@@ -57,8 +271,8 @@ randomBool :: PureMT -> (Bool, PureMT)
 
 -- | Module : System.Random.Mersenne.Pure64 Copyright : Copyright (c) 2008,
 --   Don Stewart <a>dons@galois.com</a> License : BSD3 Maintainer : Don
---   Stewart <a>dons@galois.com</a> Stability : experimental Portability:
---   CPP, FFI Tested with: GHC 6.8.3
+--   Stewart <a>dons@galois.com</a> Stability : experimentalpureMT
+--   Portability: CPP, FFI Tested with: GHC 6.8.3
 --   
 --   A purely functional binding 64 bit binding to the classic mersenne
 --   twister random number generator. This is more flexible than the impure
@@ -71,123 +285,221 @@ randomBool :: PureMT -> (Bool, PureMT)
 --   
 --   Create a PureMT generator from an Integral seed.
 pureMT :: Integral a => a -> PureMT
+doifelse :: Double -> Rand a -> Rand a -> Rand a
+maybeCh :: a -> (a -> Rand a) -> Double -> Rand a
+withSeed :: Integral i => i -> Rand a -> a
+randomsInRange :: (Int, Int) -> Int -> Rand [Int]
 instance System.Random.RandomGen System.Random.Mersenne.Pure64.Internal.PureMT
 
 module Misc
+valueResultPair :: (a -> b) -> a -> (a, b)
 valueResultPairs :: (a -> b) -> [a] -> [(a, b)]
-maybeCh :: a -> (a -> Rand a) -> Double -> Rand a
 moore8 :: (Int, Int) -> [(Int, Int)]
 
 -- | Repeats a monadic operation n times collecting the results
 repeatCollect :: Monad m => Int -> (a -> m a) -> a -> m a
+roundToNearest :: Integral a => a -> a -> a
+rmdups :: Ord a => [a] -> [a]
+histogram :: (Ord a) => [a] -> [(a, Int)]
+count :: Eq a => a -> [a] -> Int
 
-module World
-type Env = Int
-data World
-World :: Agents -> Env -> World
-[agents] :: World -> Agents
-[env] :: World -> Env
-type Agents = Array (Int, Int) Agent
-data Agent
-Agent :: Genome -> GeneStateTable -> Agent
-[genome] :: Agent -> Genome
-[geneStateTable] :: Agent -> GeneStateTable
-NoAgent :: Agent
-type Genome = [Chromosome]
-type Chromosome = [Locus]
-type GeneStateTable = Map ID GeneState
-showGST :: GeneStateTable -> String
-data Locus
-Transposon :: Locus
-CGene :: Gene -> Locus
-CTfbs :: Tfbs -> Locus
-parseLoc :: [Char] -> Locus
-data Gene
-Gene :: ID -> Thres -> GeneState -> Gene
-[iD] :: Gene -> ID
-[thres] :: Gene -> Thres
-[genSt] :: Gene -> GeneState
-data Tfbs
-Tfbs :: ID -> Weight -> Tfbs
-type ID = Int
-type Thres = Int
-type GeneState = Int
-type Weight = Int
-devAg :: Agent -> Agent
-sameGST :: Agent -> Agent -> Bool
-defaultGst :: Map ID GeneState
+-- | counts "abc" "aacccb" = [(<tt>a</tt>,2),(<tt>b</tt>,1),(<tt>c</tt>,3)]
+counts :: Eq a => [a] -> [a] -> [(a, Int)]
+rotate :: [[a]] -> [[a]]
+rectangulate :: a -> [[a]] -> [[a]]
+horizontalHistogram :: (Show a, Ord a) => [a] -> String
+verticalHistogram :: (Show a, Ord a) => [a] -> String
+mapIfPred :: Functor f => (a -> Bool) -> (a -> a) -> f a -> f a
+takeEvery :: Int -> [a] -> [a]
+sample :: Int -> [a] -> [a]
+lehead :: [a] -> [a]
+pickFromCombination :: Int -> [Int] -> [Int]
+antiPickFromCombination :: [Int] -> [Int] -> Int
+repeatApply :: Int -> (a -> a) -> a -> a
 
--- | Check if locus is effected by expressed transcription factors | Return
---   the effect it has. 0 is no effect.
-locusEffect :: Locus -> GeneStateTable -> Int
-updateAgent :: Agent -> Agent
-updateGenome :: GeneStateTable -> Genome -> Genome
-updateChrom :: Int -> GeneStateTable -> Chromosome -> Chromosome
-updateLoc :: Int -> GeneStateTable -> Locus -> (Int, Locus)
-isGene :: Locus -> Bool
+module Fitness
+class HammDist a => HasFitness a where fitness e a = (1 - d / dmax) ^ p where p = selectionPressure dmax = fromIntegral nrGeneTypes d = fromIntegral $ hammDist e a
+fitness :: HasFitness a => Env -> a -> Double
+class InferGST a => HammDist a where hammDist e = hammingDistance (toList $ targetGST e) . toList . toGST
+hammDist :: HammDist a => Env -> a -> Int
 
--- | e.g. [TF, TF, Gene, TF, Gene, TF] -&gt; [[TF, TF, Gene], [TF, Gene],
---   [TF]]
-groupGeneTfbs :: [Locus] -> [[Locus]]
-takeWhileInclusive :: (a -> Bool) -> ([a], [a]) -> ([a], [a])
-
--- | Generate GST from a genome
-gSTFromGenome :: Genome -> GeneStateTable
-makeGst :: GeneStateTable -> [Gene] -> GeneStateTable
-
--- | Concatinate chromosomes and trim them of non-coding genes fix for
---   genomes with more genes
-reduceToTfbss :: Genome -> [Tfbs]
-reduceToGenes :: Genome -> [Gene]
-fitnessAgent :: Agent -> Env -> Double
-
--- | Uses targetGST to check fitness of passed GST
-fitnessGST :: Env -> GeneStateTable -> Double
-hammDist :: (Eq a) => [a] -> [a] -> Int
-hammDistAg :: Agent -> Env -> Int
+-- | Calculate Hamming distance between two lists. For lists with unequal
+--   lengths compares only the initial overlap
+hammingDistance :: (Eq a) => [a] -> [a] -> Int
 
 -- | Generate GeneStateTable based on targetExpression
-targetGST :: Env -> GeneStateTable
+targetGST :: Env -> GST
 
--- | example for nrEnv = 4 and nrHousInteractionType0 1 0 1 0 0 0 2 1 1 1 1
---   1 1 0 0 0 1 0 0 3 1 1 1 1 0 1 1 0 0 0 1 0
-targetExpression :: Env -> ID -> Int
-agent0 :: Agent
-randomAgent :: Rand Agent
-connected :: Genome -> Bool
-goodRandomGenome :: Rand Genome
-randomGenome :: Rand Genome
-randomChromosome :: Rand Chromosome
-randomTfbs :: Rand [Locus]
-randomGene :: Rand [Locus]
-instance GHC.Classes.Ord World.Agent
-instance GHC.Classes.Eq World.Agent
-instance GHC.Read.Read World.Agent
-instance GHC.Show.Show World.Agent
-instance GHC.Read.Read World.Locus
-instance GHC.Classes.Ord World.Locus
-instance GHC.Classes.Eq World.Locus
-instance GHC.Classes.Ord World.Tfbs
-instance GHC.Classes.Eq World.Tfbs
-instance GHC.Read.Read World.Tfbs
-instance GHC.Show.Show World.Tfbs
-instance GHC.Classes.Eq World.Gene
-instance GHC.Read.Read World.Gene
-instance GHC.Show.Show World.Gene
-instance GHC.Show.Show World.Locus
-instance GHC.Classes.Ord World.Gene
+-- | the targetExpression of a Gene in an Environment Considers all genes
+--   as Specific when the ID is bigger then nrHouseHold + nrOverlap example
+--   for nrEnv = 4 and nrHouseHold = 4, nrOverlap = 3, nrSpecific = 5
+--   EnvGene 0 1 2 3 4 5 6 7 8 9 10 11 0 1 1 1 1 0 1 1 1 0 0 0 1 1 1 1 1 1
+--   1 0 1 0 1 0 0 0 2 1 1 1 1 1 1 0 0 0 1 0 0 3 1 1 1 1 0 1 1 0 0 0 1 0
+targetExpression :: Env -> ID -> GeneState
 
-module Mutations
-mutAg :: Agent -> Rand Agent
+-- | startingGST lays in between the attractors of targetExpression. For
+--   instance nrEnv = 4 and nrHouseHold = 4, nrOverlap = 3, nrSpecific = 5
+--   EnvGene 0 1 2 3 4 5 6 7 8 9 10 11 0 1 1 1 1 0 1 1 1 0 0 0 1 1 1 1 1 1
+--   1 0 1 0 1 0 0 0 2 1 1 1 1 1 1 0 0 0 1 0 0 3 1 1 1 1 0 1 1 0 0 0 1 0
+--   start 1 1 0 0 1 1 0 1 1 1 0 0
+startingGST :: GST
+instance Fitness.HasFitness Types.Agent
+instance Fitness.HasFitness Types.Genome
+instance Fitness.HasFitness Types.Chromosome
+instance Fitness.HasFitness Types.GST
+instance Fitness.HammDist Types.Agent
+instance Fitness.HammDist Types.Genome
+instance Fitness.HammDist Types.Chromosome
+instance Fitness.HammDist Types.GST
 
 module MyGraphics
-showWorld :: IORef World -> IO ()
+initializeWorld :: IORef World -> IO ()
+callShowWorld :: IO ()
 
-module Evolverbetert
+module World
 
--- | Maybe initializes graphical display dependent on <a>display</a> in
---   <a>Parameters</a> calls <a>initialize</a> starts <a>mainLoop</a>
-main :: IO ()
-instance GHC.Show.Show Evolverbetert.Flag
-instance GHC.Classes.Ord Evolverbetert.Flag
-instance GHC.Classes.Eq Evolverbetert.Flag
+-- | Develops agents according to <a>devTime</a> and <a>updateAgent</a>
+devAg :: Agent -> Agent
+devAg' :: Agent -> Agent
+
+-- | Do two agents share GST
+sameGST :: Agent -> Agent -> Bool
+
+-- | The default GeneStateTable where All genes have expression 0
+defaultGst :: GST
+setToStart :: Agent -> Agent
+
+-- | Updates the genestates in the genome and the genestatetable with
+--   <a>updateGenome</a> and <tt>gSTFromGenome</tt> Kills the agent if it
+--   doesn't have all genes (when length gst /= <a>nrGeneTypes</a>)
+updateAgent :: Agent -> Agent
+
+-- | Updates every Chromosome in Genome with updateChrom
+updateGenome :: InferGST gst => gst -> Genome -> Genome
+(↞) :: (b -> c) -> (a1 -> a -> b) -> a1 -> a -> c
+updateChrom :: InferGST gst => gst -> Chromosome -> Chromosome
+updateTfbss :: InferGST gst => gst -> Chromosome -> Chromosome
+updateGenes :: Chromosome -> Chromosome
+updateGene :: Integer -> Gene -> Gene
+
+-- | Groups genes and preceding transcription factors together e.g. [TF,
+--   TF, Gene, TF, Gene, TF] -&gt; [[TF, TF, Gene], [TF, Gene], [TF]]
+groupGeneTfbs :: [Locus] -> [[Locus]]
+
+-- | takes a predicate and returns a pair of lists with the first ending
+--   with the element that satisfies the predicate
+takeWhileInclusive :: (a -> Bool) -> [a] -> ([a], [a])
+
+-- | Answers the question: Does every gene of this genome have at least one
+--   associated transcription factor?
+connected :: Genome -> Bool
+
+-- | Generate a random Agent using <a>goodRandomGenome</a>
+randomAgent :: Rand Agent
+
+-- | Generate a random genome that is <a>connected</a> loops until it finds
+--   one
+goodRandomGenome :: Rand Genome
+
+-- | Just a <a>randomChromosome</a>
+randomGenome :: Rand Genome
+
+-- | Generate a random chromosome by shuffling twice as many random Tfbss
+--   as random genes. using <a>randomTfbss</a> and <a>randomGenes</a> and
+--   <a>shuffle'</a>
+randomChromosome :: Rand Chromosome
+
+-- | Generate all possible Tfbss (0..nrGeneTypes) with each random weight
+randomTfbss :: Rand [Locus]
+
+-- | Generate all possible genes (0..nrGeneTypes) with each random
+--   threshold and state 0
+randomGenes :: Rand [Locus]
+dead :: Agent -> Bool
+living :: Agent -> Bool
+
+module Landscapes
+type SampleSize = Int
+type AnalyzeChrom a = Reader Chromosome a
+analyzeChrom :: AnalyzeChrom a -> Chromosome -> a
+rmdups' :: [(GST, Int)] -> [(GST, Int)]
+addgst :: (GST, Int) -> (GST, Int) -> (GST, Int)
+toCountList :: Ord a => [a] -> [(a, Int)]
+rmdupsWith :: Ord a => (a -> a -> a) -> (a -> a -> Bool) -> [a] -> [a]
+
+-- | Return for all # updates (0-11) a count of remaining unique states
+numRemaining :: SampleSize -> AnalyzeChrom [Int]
+
+-- | A list of remaining unique states after updating n times
+remaining :: Int -> SampleSize -> AnalyzeChrom [(GST, Int)]
+
+-- | A list of attractors and their basin of attraction
+listAttr :: SampleSize -> AnalyzeChrom [(Int, Int)]
+
+-- | A count of the number of attractors with a certain samplesize
+attrNum :: SampleSize -> AnalyzeChrom Int
+
+-- | The targetStates of the model
+targets :: AnalyzeChrom [Int]
+
+-- | Return a list of randomly sampled GeneStateTables
+randomGSTs :: Seed -> SampleSize -> AnalyzeChrom [GST]
+
+-- | A count of all genes in the genome in ascending order of geneID
+geneCounts :: AnalyzeChrom [Int]
+
+-- | Return pairs of GSTs of which the second is the update of the first
+chromToVertices :: AnalyzeChrom [(GST, GST)]
+
+-- | The updating function for GSTs
+nsf :: AnalyzeChrom (GST -> GST)
+
+-- | The attractor the startingGST goes to
+startGSTAttr :: AnalyzeChrom Int
+
+-- | A GST with all Genes maximum on
+fullGST :: AnalyzeChrom GST
+
+-- | Returns all states a Chromosome can be in (Warning: Slow!)
+allGST :: AnalyzeChrom [GST]
+
+-- | Returns the number of states a Chromosome can be in
+nrOfStates :: AnalyzeChrom Int
+
+-- | Prepend all lists with all combinations of elements from the first
+--   list
+prependAll :: [a] -> [[a]] -> [[a]]
+
+-- | Best explained by example:
+--   
+--   <pre>
+--   allCombinations [1,1,3] = [[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,1,1],[0,1,2],[0,1,3],[1,0,0],[1,0,1],[1,0,2],[1,0,3],[1,1,0],[1,1,1],[1,1,2],[1,1,3]]
+--   </pre>
+allCombinations :: Integral a => [a] -> [[a]]
+
+-- | Not reversible with numToGST. Reduces all states to either 0 or 1
+gstToNum :: AnalyzeChrom (GST -> Int)
+
+-- | Converts a number to a GST
+numToGST :: AnalyzeChrom (Int -> GST)
+
+-- | <pre>
+--   toOnOff (GS 0) = GS 0
+--   </pre>
+--   
+--   <pre>
+--   toOnOff _      = GS 1
+--   </pre>
+toOnOff :: GeneState -> GeneState
+
+-- | Also turns a gene with state &gt; 1 to state = 1
+turnLocusOn :: Locus -> Locus
+
+-- | Also turns a gene with genSt &gt; 1 to geneSt = 1
+turnGeneOn :: Gene -> Gene
+agent42 :: Agent
+
+module Mutations
+
+-- | mutates agent according to <tt>Parameters</tt>
+mutAg :: Agent -> Rand Agent

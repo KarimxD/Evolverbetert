@@ -1,3 +1,4 @@
+{-# LANGUAGE LambdaCase #-}
 module PipeLines
 
     where
@@ -26,17 +27,15 @@ main = do
     let action:args'' = args'
     setCurrentDirectory cwd
     case action of
-        "henk" -> error "henky penky"
-        "statenum" ->
-            onLast $ analyzeChrom nrOfStates
-        "attrnum" ->
-            onLast $ analyzeChrom (attrNum 1000000)
-        "listattr" ->
-            onLast $ analyzeChrom (listAttr 1000000)
-        "targets" ->
-            onLast $ analyzeChrom targets
-        "startingGST" ->
-            onLast $ analyzeChrom startGSTAttr
+        "henk" -> interact (show . (myRead ::String->Chromosome) . last . lines) -- onLast id --error "henky penky"
+        "statenum"    -> onLast $ analyzeChrom nrOfStates
+        "attrnum"     -> onLast $ analyzeChrom (attrNum 1000000)
+        "listattr"    -> onLast $ analyzeChrom (listAttr 100000)
+        "targets"     -> onLast $ analyzeChrom targets
+        "startingGST" -> onLast $ analyzeChrom startGSTAttr
+        "rem"         -> onLast $ analyzeChrom (remaining 10000 20)
+        "statenet"    -> interact $ analyzeChrom stateNetwork . getLastChrom
+        "allstatenet" -> interact $ analyzeChrom allStateNetwork . getLastChrom
         "numrem" ->
             interact $
                   show . zipWith (analyzeChrom . numRemaining) [10,100,1000,10000,100000,1000000]
@@ -82,7 +81,7 @@ main = do
             let parsedls = parseLineageFile c
                 mutations = concatMap (\(_,_,_,muts) -> muts) parsedls
                 dupdels = filter (
-                    \x -> case x of
+                    \case
                            GenDup _ -> True
                            GenDel _ -> True
                            _        -> False
@@ -109,14 +108,14 @@ main = do
             C.writeFile (cwd' ++ "hammdists") hammdists
             C.writeFile (cwd' ++ "genlength") genlength
             C.writeFile (cwd' ++ "mutations") mutations
-        "attractornumber" -> do
-            c <- C.readFile "lineage"
-            let parsedls = cParseLineageFile c
-                attrnums = C.unlines $ map (\(t,_,ch,_) -> cUnWords
-                    [cShow t, cShow (analyzeChrom (attrNum 10000) ch)])    parsedls
-            createDirectoryIfMissing False $ cwd ++ "lineagedir"
-            let cwd' = "lineagedir/"
-            C.writeFile (cwd' ++ "attractornumbers") attrnums
+        -- "attractornumber" -> do
+        --     c <- C.readFile "lineage"
+        --     let parsedls = cParseLineageFile c
+        --         attrnums = C.unlines $ map (\(t,_,ch,_) -> cUnWords
+        --             [cShow t, cShow (analyzeChrom (attrNum 10000) ch)])    parsedls
+        --     createDirectoryIfMissing False $ cwd ++ "lineagedir"
+        --     let cwd' = "lineagedir/"
+        --     C.writeFile (cwd' ++ "attractornumbers") attrnums
 
         _ -> putStrLn "y u no put good action"
 

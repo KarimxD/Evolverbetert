@@ -79,7 +79,7 @@ instance MyShow Locus where
 instance MyRead Locus where
     readMaybe str
         | h == 'G'   = CGene <$> readMaybe str
-        -- | str == "T" = Just Transposon
+        -- str == "T" = Just Transposon
         | otherwise  = CTfbs <$> readMaybe str
              where h = head str
 

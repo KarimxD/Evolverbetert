@@ -30,35 +30,289 @@ Preprocessing library fgl-5.5.3.1...
 [27 of 29] Compiling Data.Graph.Inductive.Query.MaxFlow ( Data/Graph/Inductive/Query/MaxFlow.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/MaxFlow.o )
 [28 of 29] Compiling Data.Graph.Inductive.Query ( Data/Graph/Inductive/Query.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query.o )
 [29 of 29] Compiling Data.Graph.Inductive ( Data/Graph/Inductive.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive.o )
-[ 1 of 29] Compiling Paths_fgl        ( .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/autogen/Paths_fgl.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Paths_fgl.p_o )
-[ 2 of 29] Compiling Data.Graph.Inductive.Internal.Thread ( Data/Graph/Inductive/Internal/Thread.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Internal/Thread.p_o )
-[ 3 of 29] Compiling Data.Graph.Inductive.Internal.Queue ( Data/Graph/Inductive/Internal/Queue.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Internal/Queue.p_o )
-[ 4 of 29] Compiling Data.Graph.Inductive.Internal.Heap ( Data/Graph/Inductive/Internal/Heap.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Internal/Heap.p_o )
-[ 5 of 29] Compiling Data.Graph.Inductive.Graph ( Data/Graph/Inductive/Graph.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Graph.p_o )
-[ 6 of 29] Compiling Data.Graph.Inductive.Internal.RootPath ( Data/Graph/Inductive/Internal/RootPath.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Internal/RootPath.p_o )
-[ 7 of 29] Compiling Data.Graph.Inductive.Monad ( Data/Graph/Inductive/Monad.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Monad.p_o )
-[ 8 of 29] Compiling Data.Graph.Inductive.Monad.IOArray ( Data/Graph/Inductive/Monad/IOArray.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Monad/IOArray.p_o )
-[ 9 of 29] Compiling Data.Graph.Inductive.Monad.STArray ( Data/Graph/Inductive/Monad/STArray.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Monad/STArray.p_o )
-[10 of 29] Compiling Data.Graph.Inductive.NodeMap ( Data/Graph/Inductive/NodeMap.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/NodeMap.p_o )
-[11 of 29] Compiling Data.Graph.Inductive.PatriciaTree ( Data/Graph/Inductive/PatriciaTree.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/PatriciaTree.p_o )
-[12 of 29] Compiling Data.Graph.Inductive.Query.ArtPoint ( Data/Graph/Inductive/Query/ArtPoint.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/ArtPoint.p_o )
-[13 of 29] Compiling Data.Graph.Inductive.Query.BFS ( Data/Graph/Inductive/Query/BFS.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/BFS.p_o )
-[14 of 29] Compiling Data.Graph.Inductive.Query.Indep ( Data/Graph/Inductive/Query/Indep.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/Indep.p_o )
-[15 of 29] Compiling Data.Graph.Inductive.Query.MST ( Data/Graph/Inductive/Query/MST.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/MST.p_o )
-[16 of 29] Compiling Data.Graph.Inductive.Query.MaxFlow2 ( Data/Graph/Inductive/Query/MaxFlow2.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/MaxFlow2.p_o )
-[17 of 29] Compiling Data.Graph.Inductive.Query.Monad ( Data/Graph/Inductive/Query/Monad.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/Monad.p_o )
-[18 of 29] Compiling Data.Graph.Inductive.Query.SP ( Data/Graph/Inductive/Query/SP.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/SP.p_o )
-[19 of 29] Compiling Data.Graph.Inductive.Query.TransClos ( Data/Graph/Inductive/Query/TransClos.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/TransClos.p_o )
-[20 of 29] Compiling Data.Graph.Inductive.Tree ( Data/Graph/Inductive/Tree.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Tree.p_o )
-[21 of 29] Compiling Data.Graph.Inductive.Example ( Data/Graph/Inductive/Example.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Example.p_o )
-[22 of 29] Compiling Data.Graph.Inductive.Basic ( Data/Graph/Inductive/Basic.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Basic.p_o )
-[23 of 29] Compiling Data.Graph.Inductive.Query.DFS ( Data/Graph/Inductive/Query/DFS.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/DFS.p_o )
-[24 of 29] Compiling Data.Graph.Inductive.Query.BCC ( Data/Graph/Inductive/Query/BCC.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/BCC.p_o )
-[25 of 29] Compiling Data.Graph.Inductive.Query.Dominators ( Data/Graph/Inductive/Query/Dominators.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/Dominators.p_o )
-[26 of 29] Compiling Data.Graph.Inductive.Query.GVD ( Data/Graph/Inductive/Query/GVD.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/GVD.p_o )
-[27 of 29] Compiling Data.Graph.Inductive.Query.MaxFlow ( Data/Graph/Inductive/Query/MaxFlow.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query/MaxFlow.p_o )
-[28 of 29] Compiling Data.Graph.Inductive.Query ( Data/Graph/Inductive/Query.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive/Query.p_o )
-[29 of 29] Compiling Data.Graph.Inductive ( Data/Graph/Inductive.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/Data/Graph/Inductive.p_o )
+Running Haddock for fgl-5.5.3.1...
+Preprocessing library fgl-5.5.3.1...
+Haddock coverage:
+   0% (  0 /  9) in 'Paths_fgl'
+  Missing documentation for:
+    Module header
+    version (.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/autogen/Paths_fgl.hs:28)
+    getBinDir (.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/autogen/Paths_fgl.hs:39)
+    getLibDir (.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/autogen/Paths_fgl.hs:39)
+    getDynLibDir (.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/autogen/Paths_fgl.hs:39)
+    getDataDir (.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/autogen/Paths_fgl.hs:39)
+    getLibexecDir (.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/autogen/Paths_fgl.hs:39)
+    getDataFileName (.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/autogen/Paths_fgl.hs:47)
+    getSysconfDir (.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/autogen/Paths_fgl.hs:39)
+  23% (  3 / 13) in 'Data.Graph.Inductive.Internal.Thread'
+  Missing documentation for:
+    Split (Data/Graph/Inductive/Internal/Thread.hs:73)
+    SplitM (Data/Graph/Inductive/Internal/Thread.hs:106)
+    Thread (Data/Graph/Inductive/Internal/Thread.hs:74)
+    Collect (Data/Graph/Inductive/Internal/Thread.hs:75)
+    threadList' (Data/Graph/Inductive/Internal/Thread.hs:79)
+    threadList (Data/Graph/Inductive/Internal/Thread.hs:91)
+    threadMaybe' (Data/Graph/Inductive/Internal/Thread.hs:108)
+    threadMaybe (Data/Graph/Inductive/Internal/Thread.hs:119)
+    splitPar (Data/Graph/Inductive/Internal/Thread.hs:130)
+    splitParM (Data/Graph/Inductive/Internal/Thread.hs:135)
+  22% (  2 /  9) in 'Data.Graph.Inductive.Internal.Queue'
+  Missing documentation for:
+    Module header
+    Queue (Data/Graph/Inductive/Internal/Queue.hs:10)
+    mkQueue (Data/Graph/Inductive/Internal/Queue.hs:12)
+    queuePut (Data/Graph/Inductive/Internal/Queue.hs:15)
+    queuePutList (Data/Graph/Inductive/Internal/Queue.hs:18)
+    queueGet (Data/Graph/Inductive/Internal/Queue.hs:21)
+    queueEmpty (Data/Graph/Inductive/Internal/Queue.hs:25)
+  17% (  3 / 18) in 'Data.Graph.Inductive.Internal.Heap'
+  Missing documentation for:
+    Heap (Data/Graph/Inductive/Internal/Heap.hs:21)
+    prettyHeap (Data/Graph/Inductive/Internal/Heap.hs:30)
+    printPrettyHeap (Data/Graph/Inductive/Internal/Heap.hs:38)
+    empty (Data/Graph/Inductive/Internal/Heap.hs:45)
+    unit (Data/Graph/Inductive/Internal/Heap.hs:48)
+    insert (Data/Graph/Inductive/Internal/Heap.hs:51)
+    merge (Data/Graph/Inductive/Internal/Heap.hs:54)
+    mergeAll (Data/Graph/Inductive/Internal/Heap.hs:61)
+    isEmpty (Data/Graph/Inductive/Internal/Heap.hs:66)
+    findMin (Data/Graph/Inductive/Internal/Heap.hs:70)
+    deleteMin (Data/Graph/Inductive/Internal/Heap.hs:74)
+    splitMin (Data/Graph/Inductive/Internal/Heap.hs:78)
+    build (Data/Graph/Inductive/Internal/Heap.hs:88)
+    toList (Data/Graph/Inductive/Internal/Heap.hs:91)
+    heapsort (Data/Graph/Inductive/Internal/Heap.hs:96)
+  97% ( 96 / 99) in 'Data.Graph.Inductive.Graph'
+  Missing documentation for:
+    MContext (Data/Graph/Inductive/Graph.hs:118)
+    DynGraph (Data/Graph/Inductive/Graph.hs:179)
+    equal (Data/Graph/Inductive/Graph.hs:518)
+  33% (  3 /  9) in 'Data.Graph.Inductive.Internal.RootPath'
+  Missing documentation for:
+    RTree (Data/Graph/Inductive/Internal/RootPath.hs:15)
+    LRTree (Data/Graph/Inductive/Internal/RootPath.hs:14)
+    getPath (Data/Graph/Inductive/Internal/RootPath.hs:29)
+    getLPath (Data/Graph/Inductive/Internal/RootPath.hs:32)
+    getDistance (Data/Graph/Inductive/Internal/RootPath.hs:35)
+    getLPathNodes (Data/Graph/Inductive/Internal/RootPath.hs:38)
+  47% (  8 / 17) in 'Data.Graph.Inductive.Monad'
+  Missing documentation for:
+    GraphM (Data/Graph/Inductive/Monad.hs:42)
+    nodesM (Data/Graph/Inductive/Monad.hs:104)
+    edgesM (Data/Graph/Inductive/Monad.hs:107)
+    newNodesM (Data/Graph/Inductive/Monad.hs:110)
+    delNodeM (Data/Graph/Inductive/Monad.hs:120)
+    delNodesM (Data/Graph/Inductive/Monad.hs:123)
+    mkUGraphM (Data/Graph/Inductive/Monad.hs:128)
+    contextM (Data/Graph/Inductive/Monad.hs:144)
+    labM (Data/Graph/Inductive/Monad.hs:147)
+  40% (  4 / 10) in 'Data.Graph.Inductive.Monad.IOArray'
+  Missing documentation for:
+    SGr (Data/Graph/Inductive/Monad/IOArray.hs:27)
+    GraphRep (Data/Graph/Inductive/Monad/IOArray.hs:29)
+    Context' (Data/Graph/Inductive/Monad/IOArray.hs:30)
+    USGr (Data/Graph/Inductive/Monad/IOArray.hs:32)
+    defaultGraphSize (Data/Graph/Inductive/Monad/IOArray.hs:97)
+    emptyN (Data/Graph/Inductive/Monad/IOArray.hs:100)
+  40% (  4 / 10) in 'Data.Graph.Inductive.Monad.STArray'
+  Missing documentation for:
+    SGr (Data/Graph/Inductive/Monad/STArray.hs:28)
+    GraphRep (Data/Graph/Inductive/Monad/STArray.hs:30)
+    Context' (Data/Graph/Inductive/Monad/STArray.hs:31)
+    USGr (Data/Graph/Inductive/Monad/STArray.hs:33)
+    defaultGraphSize (Data/Graph/Inductive/Monad/STArray.hs:97)
+    emptyN (Data/Graph/Inductive/Monad/STArray.hs:100)
+  48% ( 21 / 44) in 'Data.Graph.Inductive.NodeMap'
+  Missing documentation for:
+    NodeMap (Data/Graph/Inductive/NodeMap.hs:41)
+    insMapNode (Data/Graph/Inductive/NodeMap.hs:105)
+    insMapNode_ (Data/Graph/Inductive/NodeMap.hs:110)
+    insMapEdge (Data/Graph/Inductive/NodeMap.hs:115)
+    delMapNode (Data/Graph/Inductive/NodeMap.hs:120)
+    delMapEdge (Data/Graph/Inductive/NodeMap.hs:125)
+    insMapNodes (Data/Graph/Inductive/NodeMap.hs:130)
+    insMapNodes_ (Data/Graph/Inductive/NodeMap.hs:135)
+    insMapEdges (Data/Graph/Inductive/NodeMap.hs:140)
+    delMapNodes (Data/Graph/Inductive/NodeMap.hs:145)
+    delMapEdges (Data/Graph/Inductive/NodeMap.hs:150)
+    mkMapGraph (Data/Graph/Inductive/NodeMap.hs:156)
+    mkNodesM (Data/Graph/Inductive/NodeMap.hs:229)
+    mkEdgeM (Data/Graph/Inductive/NodeMap.hs:232)
+    mkEdgesM (Data/Graph/Inductive/NodeMap.hs:235)
+    insMapNodeM (Data/Graph/Inductive/NodeMap.hs:238)
+    insMapEdgeM (Data/Graph/Inductive/NodeMap.hs:241)
+    delMapNodeM (Data/Graph/Inductive/NodeMap.hs:244)
+    delMapEdgeM (Data/Graph/Inductive/NodeMap.hs:247)
+    insMapNodesM (Data/Graph/Inductive/NodeMap.hs:250)
+    insMapEdgesM (Data/Graph/Inductive/NodeMap.hs:253)
+    delMapNodesM (Data/Graph/Inductive/NodeMap.hs:256)
+    delMapEdgesM (Data/Graph/Inductive/NodeMap.hs:259)
+  33% (  1 /  3) in 'Data.Graph.Inductive.PatriciaTree'
+  Missing documentation for:
+    Gr (Data/Graph/Inductive/PatriciaTree.hs:60)
+    UGr (Data/Graph/Inductive/PatriciaTree.hs:68)
+  50% (  1 /  2) in 'Data.Graph.Inductive.Query.ArtPoint'
+  Missing documentation for:
+    Module header
+  32% (  6 / 19) in 'Data.Graph.Inductive.Query.BFS'
+  Missing documentation for:
+    bfs (Data/Graph/Inductive/Query/BFS.hs:47)
+    bfsn (Data/Graph/Inductive/Query/BFS.hs:41)
+    bfsWith (Data/Graph/Inductive/Query/BFS.hs:44)
+    bfsnWith (Data/Graph/Inductive/Query/BFS.hs:38)
+    level (Data/Graph/Inductive/Query/BFS.hs:53)
+    leveln (Data/Graph/Inductive/Query/BFS.hs:59)
+    bfe (Data/Graph/Inductive/Query/BFS.hs:81)
+    bfen (Data/Graph/Inductive/Query/BFS.hs:78)
+    bft (Data/Graph/Inductive/Query/BFS.hs:104)
+    lbft (Data/Graph/Inductive/Query/BFS.hs:123)
+    RTree (Data/Graph/Inductive/Internal/RootPath.hs:15)
+    esp (Data/Graph/Inductive/Query/BFS.hs:115)
+    lesp (Data/Graph/Inductive/Query/BFS.hs:137)
+ 100% (  3 /  3) in 'Data.Graph.Inductive.Query.Indep'
+  43% (  3 /  7) in 'Data.Graph.Inductive.Query.MST'
+  Missing documentation for:
+    msTreeAt (Data/Graph/Inductive/Query/MST.hs:28)
+    msTree (Data/Graph/Inductive/Query/MST.hs:31)
+    msPath (Data/Graph/Inductive/Query/MST.hs:34)
+    LRTree (Data/Graph/Inductive/Internal/RootPath.hs:14)
+  20% (  1 /  5) in 'Data.Graph.Inductive.Query.MaxFlow2'
+  Missing documentation for:
+    Network (Data/Graph/Inductive/Query/MaxFlow2.hs:24)
+    ekSimple (Data/Graph/Inductive/Query/MaxFlow2.hs:219)
+    ekFused (Data/Graph/Inductive/Query/MaxFlow2.hs:130)
+    ekList (Data/Graph/Inductive/Query/MaxFlow2.hs:252)
+  30% ( 13 / 43) in 'Data.Graph.Inductive.Query.Monad'
+  Missing documentation for:
+    mapFst (Data/Graph/Inductive/Query/Monad.hs:43)
+    mapSnd (Data/Graph/Inductive/Query/Monad.hs:45)
+    >< (Data/Graph/Inductive/Query/Monad.hs:49)
+    orP (Data/Graph/Inductive/Query/Monad.hs:52)
+    GT (Data/Graph/Inductive/Query/Monad.hs:60)
+    apply (Data/Graph/Inductive/Query/Monad.hs:62)
+    apply' (Data/Graph/Inductive/Query/Monad.hs:65)
+    applyWith (Data/Graph/Inductive/Query/Monad.hs:68)
+    applyWith' (Data/Graph/Inductive/Query/Monad.hs:71)
+    runGT (Data/Graph/Inductive/Query/Monad.hs:74)
+    condMGT' (Data/Graph/Inductive/Query/Monad.hs:88)
+    recMGT' (Data/Graph/Inductive/Query/Monad.hs:91)
+    condMGT (Data/Graph/Inductive/Query/Monad.hs:95)
+    recMGT (Data/Graph/Inductive/Query/Monad.hs:98)
+    getNode (Data/Graph/Inductive/Query/Monad.hs:110)
+    getContext (Data/Graph/Inductive/Query/Monad.hs:113)
+    getNodes' (Data/Graph/Inductive/Query/Monad.hs:119)
+    getNodes (Data/Graph/Inductive/Query/Monad.hs:122)
+    sucGT (Data/Graph/Inductive/Query/Monad.hs:128)
+    sucM (Data/Graph/Inductive/Query/Monad.hs:135)
+    graphRec' (Data/Graph/Inductive/Query/Monad.hs:156)
+    graphUFold (Data/Graph/Inductive/Query/Monad.hs:160)
+    graphNodesM0 (Data/Graph/Inductive/Query/Monad.hs:171)
+    graphNodesM (Data/Graph/Inductive/Query/Monad.hs:174)
+    graphNodes (Data/Graph/Inductive/Query/Monad.hs:177)
+    graphFilterM (Data/Graph/Inductive/Query/Monad.hs:180)
+    graphFilter (Data/Graph/Inductive/Query/Monad.hs:184)
+    dfsM' (Data/Graph/Inductive/Query/Monad.hs:212)
+    graphDff (Data/Graph/Inductive/Query/Monad.hs:231)
+    graphDff' (Data/Graph/Inductive/Query/Monad.hs:234)
+  71% (  5 /  7) in 'Data.Graph.Inductive.Query.SP'
+  Missing documentation for:
+    LRTree (Data/Graph/Inductive/Internal/RootPath.hs:14)
+    Heap (Data/Graph/Inductive/Internal/Heap.hs:21)
+  75% (  3 /  4) in 'Data.Graph.Inductive.Query.TransClos'
+  Missing documentation for:
+    Module header
+  33% (  1 /  3) in 'Data.Graph.Inductive.Tree'
+  Missing documentation for:
+    Gr (Data/Graph/Inductive/Tree.hs:40)
+    UGr (Data/Graph/Inductive/Tree.hs:48)
+  23% ( 14 / 61) in 'Data.Graph.Inductive.Example'
+  Missing documentation for:
+    a (Data/Graph/Inductive/Example.hs:47)
+    b (Data/Graph/Inductive/Example.hs:47)
+    c (Data/Graph/Inductive/Example.hs:47)
+    e (Data/Graph/Inductive/Example.hs:47)
+    loop (Data/Graph/Inductive/Example.hs:47)
+    ab (Data/Graph/Inductive/Example.hs:47)
+    abb (Data/Graph/Inductive/Example.hs:47)
+    dag3 (Data/Graph/Inductive/Example.hs:47)
+    e3 (Data/Graph/Inductive/Example.hs:48)
+    cyc3 (Data/Graph/Inductive/Example.hs:49)
+    g3 (Data/Graph/Inductive/Example.hs:49)
+    g3b (Data/Graph/Inductive/Example.hs:49)
+    dag4 (Data/Graph/Inductive/Example.hs:50)
+    d1 (Data/Graph/Inductive/Example.hs:51)
+    d3 (Data/Graph/Inductive/Example.hs:51)
+    a' (Data/Graph/Inductive/Example.hs:82)
+    b' (Data/Graph/Inductive/Example.hs:82)
+    c' (Data/Graph/Inductive/Example.hs:82)
+    e' (Data/Graph/Inductive/Example.hs:82)
+    loop' (Data/Graph/Inductive/Example.hs:82)
+    ab' (Data/Graph/Inductive/Example.hs:82)
+    abb' (Data/Graph/Inductive/Example.hs:82)
+    dag3' (Data/Graph/Inductive/Example.hs:82)
+    e3' (Data/Graph/Inductive/Example.hs:83)
+    dag4' (Data/Graph/Inductive/Example.hs:84)
+    d1' (Data/Graph/Inductive/Example.hs:85)
+    d3' (Data/Graph/Inductive/Example.hs:85)
+    ucycle (Data/Graph/Inductive/Example.hs:104)
+    star (Data/Graph/Inductive/Example.hs:108)
+    ucycleM (Data/Graph/Inductive/Example.hs:111)
+    starM (Data/Graph/Inductive/Example.hs:115)
+    clr479 (Data/Graph/Inductive/Example.hs:119)
+    clr489 (Data/Graph/Inductive/Example.hs:119)
+    clr486 (Data/Graph/Inductive/Example.hs:120)
+    clr508 (Data/Graph/Inductive/Example.hs:121)
+    clr528 (Data/Graph/Inductive/Example.hs:121)
+    clr595 (Data/Graph/Inductive/Example.hs:122)
+    gr1 (Data/Graph/Inductive/Example.hs:122)
+    kin248 (Data/Graph/Inductive/Example.hs:123)
+    vor (Data/Graph/Inductive/Example.hs:124)
+    clr479' (Data/Graph/Inductive/Example.hs:159)
+    clr489' (Data/Graph/Inductive/Example.hs:159)
+    clr486' (Data/Graph/Inductive/Example.hs:160)
+    clr508' (Data/Graph/Inductive/Example.hs:161)
+    clr528' (Data/Graph/Inductive/Example.hs:161)
+    kin248' (Data/Graph/Inductive/Example.hs:162)
+    vor' (Data/Graph/Inductive/Example.hs:163)
+ 100% ( 18 / 18) in 'Data.Graph.Inductive.Basic'
+  61% ( 23 / 38) in 'Data.Graph.Inductive.Query.DFS'
+  Missing documentation for:
+    CFun (Data/Graph/Inductive/Query/DFS.hs:63)
+    dfs' (Data/Graph/Inductive/Query/DFS.hs:99)
+    dff' (Data/Graph/Inductive/Query/DFS.hs:162)
+    dfsWith (Data/Graph/Inductive/Query/DFS.hs:93)
+    dfsWith' (Data/Graph/Inductive/Query/DFS.hs:96)
+    dffWith (Data/Graph/Inductive/Query/DFS.hs:156)
+    dffWith' (Data/Graph/Inductive/Query/DFS.hs:159)
+    udfs' (Data/Graph/Inductive/Query/DFS.hs:108)
+    udff' (Data/Graph/Inductive/Query/DFS.hs:178)
+    udffWith (Data/Graph/Inductive/Query/DFS.hs:172)
+    udffWith' (Data/Graph/Inductive/Query/DFS.hs:175)
+    rdff' (Data/Graph/Inductive/Query/DFS.hs:192)
+    rdfs' (Data/Graph/Inductive/Query/DFS.hs:116)
+    rdffWith (Data/Graph/Inductive/Query/DFS.hs:186)
+    rdffWith' (Data/Graph/Inductive/Query/DFS.hs:189)
+  50% (  1 /  2) in 'Data.Graph.Inductive.Query.BCC'
+  Missing documentation for:
+    Module header
+  67% (  2 /  3) in 'Data.Graph.Inductive.Query.Dominators'
+  Missing documentation for:
+    Module header
+  89% (  8 /  9) in 'Data.Graph.Inductive.Query.GVD'
+  Missing documentation for:
+    LRTree (Data/Graph/Inductive/Internal/RootPath.hs:14)
+ 100% (  9 /  9) in 'Data.Graph.Inductive.Query.MaxFlow'
+Warning: Data.Graph.Inductive.Query: Could not find documentation for exported module: Q
+   0% (  0 /  1) in 'Data.Graph.Inductive.Query'
+  Missing documentation for:
+    Module header
+Warning: Data.Graph.Inductive: Could not find documentation for exported module: I
+  67% (  2 /  3) in 'Data.Graph.Inductive'
+  Missing documentation for:
+    Module header
+Documentation created:
+.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/doc/html/fgl/index.html,
+.stack-work/dist/x86_64-linux/Cabal-1.24.2.0/doc/html/fgl/fgl.txt
 Installing library in
 /home/karim/.stack/snapshots/x86_64-linux/lts-8.5/8.0.2/lib/x86_64-linux-ghc-8.0.2/fgl-5.5.3.1-BBO2AKBsFGnFCFJiVxJiz
 Registering fgl-5.5.3.1...

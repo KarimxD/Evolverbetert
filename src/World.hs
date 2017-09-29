@@ -101,8 +101,8 @@ updateGenes = updateGenes' 0
 
 updateGene :: Integer -> Gene -> Gene
 updateGene !a !g = g {genSt = newState} where
-    newState    | a <= t    = GS 0 --Gene never stays the same: fix change <= to < uncomment next line
-                        -- | a == t = st
+    newState    | a < t     = GS 0 --Gene never stays the same: fix change <= to < uncomment next line
+                | a == t    = genSt g
                 | otherwise = GS 1
         where t = toInteger $ thres g
 

@@ -2,6 +2,8 @@
 {-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE TypeOperators #-}
+{-# LANGUAGE MultiWayIf #-}
+{-# LANGUAGE LambdaCase #-}
 -- {-# LANGUAGE DeriveFunctor #-}
 
 -----------------------------------------------------------------------------
@@ -74,11 +76,14 @@ data Gene = Gene {      geneID :: ID
                     ,   genSt :: GeneState } deriving (Show, Read, Eq)
 instance Ord Gene where
     Gene i1 t1 gs1 `compare` Gene i2 t2 gs2 =
-        if i1 == i2               --smaller id first
-        then if gs1 == gs2        --largest state second
-             then compare t1 t2   --small thres third
-             else compare gs2 gs1
-        else compare i1 i2
+        if | i1 == i2  -> if | gs1 == gs2 -> compare t1 t2
+                             | otherwise  -> compare gs2 gs1
+           | otherwise -> compare i1 i2
+        -- if i1 == i2               --smaller id first
+        -- then if gs1 == gs2        --largest state second
+        --      then compare t1 t2   --small thres third
+        --      else compare gs2 gs1
+        -- else compare i1 i2
 instance GeneType Gene where iD = geneID
 addGenes :: Gene -> Gene -> Gene
 addGenes g1 g2 = g1 {genSt = genSt g1 + genSt g2}
@@ -153,7 +158,7 @@ getTfbs _         = Nothing
 class InferGST a where
     toGST   :: a -> GST
     toGSL :: a -> [GeneState]
-    toGSL = map snd . Map.toList . toGST
+    toGSL = Map.elems . toGST
 
 instance InferGST [Int] where
     toGST = toGST . map GS
@@ -183,34 +188,34 @@ instance InferGST Agent where
 
 
 -- New Shyt
-class InferGST' a where
-    toGST'   :: a -> GST'
-    toGSL' :: a -> [GeneState]
-    toGSL' = elems . toGST'
-
-instance InferGST' [GeneState] where
-    toGST' xs = listArray bounds' xs
-        where bounds' = (ID 0,ID $ length xs)
-
-instance InferGST' GST' where
-    toGST' = id
-
-instance InferGST' Chromosome where
-    toGST' = gSTFromChrom where
-        gSTFromChrom :: Chromosome -> GST'
-        gSTFromChrom = makeGST . toGenes
-            where
-                makeGST :: [Gene] -> GST'
-                makeGST gs = genSt <$> accum addGenes (listArray bounds' []) assocs'
-                    where bounds' = (ID 0, iD $ maximum gs)
-                          assocs' = map (\g -> (iD g, g)) gs
-
-                    -- F.foldr'
-                    -- (\ !x !acc -> Map.insertWith (+)
-                    -- (iD x) (genSt x) acc)
-                    -- Map.empty
-
-instance InferGST' Genome where
-    toGST' = toGST' . concat
--- instance InferGST' Agent where
-    -- toGST' = geneStateTable
+-- class InferGST' a where
+--     toGST'   :: a -> GST'
+--     toGSL' :: a -> [GeneState]
+--     toGSL' = elems . toGST'
+--
+-- instance InferGST' [GeneState] where
+--     toGST' xs = listArray bounds' xs
+--         where bounds' = (ID 0,ID $ length xs)
+--
+-- instance InferGST' GST' where
+--     toGST' = id
+--
+-- instance InferGST' Chromosome where
+--     toGST' = gSTFromChrom where
+--         gSTFromChrom :: Chromosome -> GST'
+--         gSTFromChrom = makeGST . toGenes
+--             where
+--                 makeGST :: [Gene] -> GST'
+--                 makeGST gs = genSt <$> accum addGenes (listArray bounds' []) assocs'
+--                     where bounds' = (ID 0, iD $ maximum gs)
+--                           assocs' = map (\g -> (iD g, g)) gs
+--
+--                     -- F.foldr'
+--                     -- (\ !x !acc -> Map.insertWith (+)
+--                     -- (iD x) (genSt x) acc)
+--                     -- Map.empty
+--
+-- instance InferGST' Genome where
+--     toGST' = toGST' . concat
+-- -- instance InferGST' Agent where
+--     -- toGST' = geneStateTable
