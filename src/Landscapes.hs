@@ -122,14 +122,14 @@ allGST = allGST' <$!> fullGST
 nrOfStates :: AnalyzeChrom Int
 nrOfStates = product <$> geneCounts
 
-toDot :: AnalyzeChrom String
-toDot = do
-    leaves <- remaining 4 1000
-    f <- nsfWithCount
-    let edges = valueResultPairs f leaves
-        newleaves = rmdupsWithCount $ map snd edges
-        edges2 = valueResultPairs f newleaves
-    return ""
+-- toDot :: AnalyzeChrom String
+-- toDot = do
+--     leaves <- remaining 4 1000
+--     f <- nsfWithCount
+--     let edges = valueResultPairs f leaves
+--         newleaves = rmdupsWithCount $ map snd edges
+--         edges2 = valueResultPairs f newleaves
+--     return ""
 
 makeEdges'' :: AnalyzeChrom [(Int,Int)]
 makeEdges'' = do
@@ -228,18 +228,23 @@ prependAll (x:xs) ls = map (x:) ls ++ prependAll xs ls
 allCombinations :: Integral a => [a] -> [[a]]
 allCombinations = foldr (\n -> prependAll [0 .. n]) [[]]
 
+allCombinations' :: Integral a => [a] -> [[a]]
+allCombinations' = mapM (enumFromTo 0)
+
 -- | Not reversible with numToGST. Reduces all states to either 0 or 1
 gstToNum :: AnalyzeChrom (GST -> Int)
 gstToNum = do
-    full <- toOnOffList <$> fullGST
-    return $ \this -> antiPickFromCombination (toOnOffList this) full
+    full <- toIntList <$> fullGST
+    return $ \gst -> antiPickFromCombination (toOnOffList gst) full
         where toOnOffList = map (getGeneState . toOnOff) . toGSL
+              toIntList = map getGeneState . M.elems
 
 -- | Converts a number to a GST
 numToGST :: AnalyzeChrom (Int -> GST)
 numToGST = do
-    gst <- fullGST
-    return $ \i -> toGST $ uncurry pickFromCombination $ bimap id toIntList (i, gst)
+    full <- fullGST
+    -- return $ \i -> toGST $ pickFromCombination
+    return $ \i -> toGST $ pickFromCombination i (toIntList full)
         where toIntList = map getGeneState . M.elems
 
 -- | prop> toOnOff (GS 0) = GS 0

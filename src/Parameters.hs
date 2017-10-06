@@ -8,7 +8,7 @@ import Types
 
 
 -- * Mode Parameters
-resetGeneStatesOnBirth = False :: Bool
+resetGeneStatesOnBirth = True :: Bool
 dosiseffect = True :: Bool
 nrNoEffect = 0 :: Int
 

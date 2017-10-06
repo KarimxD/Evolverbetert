@@ -1,4 +1,5 @@
 {-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE OverloadedStrings #-}
 module PipeLines
 
     where
@@ -14,6 +15,7 @@ import           Misc --(verticalHistogram)
 import           Data.List          (find)
 import qualified Analysis as Anal
 import           Landscapes
+import Safe
 
 import           System.Environment (getArgs)
 import qualified Data.ByteString.Char8 as C
@@ -23,17 +25,21 @@ import System.Directory
 main :: IO ()
 main = do
     args <- getArgs
-    let cwd:args' = args
-    let action:args'' = args'
+    let cwd     :args'    = args
+        action  :args''   = args'
+        t       :args'''  = args''
+        n'      :args'''' = args'''
+        n = read n'
+
     setCurrentDirectory cwd
     case action of
-        "henk" -> interact (show . (myRead ::String->Chromosome) . last . lines) -- onLast id --error "henky penky"
-        "statenum"    -> onLast $ analyzeChrom nrOfStates
-        "attrnum"     -> onLast $ analyzeChrom (attrNum 1000000)
-        "listattr"    -> onLast $ analyzeChrom (listAttr 100000)
-        "targets"     -> onLast $ analyzeChrom targets
-        "startingGST" -> onLast $ analyzeChrom startGSTAttr
-        "rem"         -> onLast $ analyzeChrom (remaining 10000 20)
+        "fullgst"     -> putStrLn =<< (myShow <$> onTime t (analyzeChrom fullGST))
+        "statenum"    -> print =<< onTime t (analyzeChrom nrOfStates)
+        "attrnum"     -> print =<< onTime t (analyzeChrom $ attrNum n)
+        "listattr"    -> print =<< onTime t (analyzeChrom $ listAttr n)
+        "targets"     -> print =<< onTime t (analyzeChrom targets)
+        "startingGST" -> print =<< onTime t (analyzeChrom startGSTAttr)
+        "rem"         -> print =<< onTime t (analyzeChrom $ remaining n 20)
         "statenet"    -> interact $ analyzeChrom stateNetwork . getLastChrom
         "allstatenet" -> interact $ analyzeChrom allStateNetwork . getLastChrom
         "numrem" ->
@@ -129,11 +135,27 @@ main = do
 
 type LineageFile = [(Time,Env,Chromosome,[Mutation])]
 
-onLast :: Show a => (Chromosome -> a) -> IO ()
-onLast f = interact $ show . f . getLastChrom
+onTime :: Show a => String -> (Chromosome -> a) -> IO a
+onTime s f = f <$> getTimeChrom s
+
+getTimeChrom :: String -> IO Chromosome
+getTimeChrom "last" = getLastChrom <$> getContents
+getTimeChrom t      = do
+    wds <- map (C.split ';') . C.lines <$> C.getContents
+    let l' = find ((>= (read t :: Time))
+                . cRead . head) wds
+        l = fromMaybe (error "no time found") l'
+        c = mapMaybe (readMaybe . C.unpack) l
+    return $ head c
+
+onLast :: (Chromosome -> a) -> IO a
+onLast f = f . getLastChrom <$> getContents
 
 getLastChrom :: String -> Chromosome
 getLastChrom s = head $ mapMaybe readMaybe (lewords ';' (last $ lines s))
+
+extractChromFromLine :: String -> Maybe Chromosome
+extractChromFromLine = headMay . mapMaybe readMaybe . lewords ';'
 
 lineagelineToHd :: C.ByteString -> C.ByteString
 lineagelineToHd = C.unlines . map
