@@ -49,7 +49,7 @@ instance Eq Agent where
 type Genome = [Chromosome]
 type Chromosome = [Locus]
 type GST = Map.Map ID GeneState
-type GST' = Array ID GeneState
+-- type GST' = Array ID GeneState
 
 data CLocus a b
     = CTfbs     a
@@ -100,12 +100,12 @@ newtype Thres     = Thres Int      deriving  (Show, Read, Eq, Ord, Real, Num, En
 
 newtype Weight    = Weight Int     deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded)
 
-newtype GeneState = GS Int deriving  (Show, Read, Ord, Enum, Real, Integral, Bounded, Num)
-instance Eq GeneState where
-    GS 0 == GS 0 = True
-    GS 0 == GS _ = False
-    GS _ == GS 0 = False
-    GS _ == GS _ = True
+newtype GeneState = GS Int deriving  (Eq, Show, Read, Ord, Enum, Real, Integral, Bounded, Num)
+-- instance Eq GeneState where
+--     GS 0 == GS 0 = True
+--     GS 0 == GS _ = False
+--     GS _ == GS 0 = False
+--     GS _ == GS _ = True
 getGeneState :: GeneState -> Int
 getGeneState (GS i) = i
 -- instance Num GeneState where

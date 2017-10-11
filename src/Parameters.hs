@@ -18,7 +18,6 @@ nrNoEffect = 0 :: Int
 display = False :: Bool
 
 -- * World Parameters
-
 width  = 150 :: Int
 height = 50 :: Int
 worldBounds = ((0::Int, 0::Int), (width-1, height-1))
@@ -37,8 +36,8 @@ lineageTime = (0 ==) . (`mod` lineageStep) :: Time -> Bool
 
 maxTime = -1 -- 1e6 -- 500000
      :: Int
--- * Fitness Parameters
 
+-- * Fitness Parameters
 devTime = 20 :: Int -- # of steps agent gets to find attractor of network
 selectionPressure = 10 :: Int
 deathRate = 0.3 :: Prob
@@ -60,7 +59,6 @@ nrHouseHold = 8 :: Int; nrOverlap = 0 :: Int; nrSpecific = 12 :: Int;
 minThres = -1 :: Int; maxThres = 2 :: Int -- -1 and 0 turn off, 1 and 2 turn on
 
 -- * Probabilities for mutation and environmental change
-
 envSwitchProb = 3e-4 :: Prob
 
 pGenDel     = 3e-4 :: Prob

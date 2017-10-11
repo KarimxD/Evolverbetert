@@ -7,14 +7,16 @@ import Types
 -- import qualified Parameters as P
 import Misc -- (valueResultPairs, rmdups, horizontalHistogram, pickFromCombination, repeatApply)--, antiPickFromCombination)
 import World --(updateChrom)
+import Parameters
+import MyRandom (withSeed, randomsInRange)
+import Fitness
+
 import Data.Bifunctor
 import qualified Data.Map.Strict as M
 -- import Data.Graph.Inductive
-import MyRandom (withSeed, randomsInRange)
 import Control.Monad.Reader
-import Fitness (targetGST, startingGST)
+import Data.List
 
-import Data.List (sort)
 
 -- import qualified Data.Set as S
 type SampleSize = Int
@@ -33,13 +35,12 @@ toCountList :: Ord a => [a] -> [(a, Int)]
 toCountList = map (\x -> (x,1)) . sort
 
 rmdupsWith :: Ord a => (a -> a -> a) -> (a -> a -> Bool) -> [a] -> [a]
-rmdupsWith f' eq' = rmdupsWith' f' eq' . sort
+rmdupsWith f eq = go . sort
     where
-        rmdupsWith' _ _ []           = []
-        rmdupsWith' _ _ [x]          = [x]
-        rmdupsWith' f eq (x1:x2:xs)
-            | x1 `eq` x2 =      rmdupsWith' f eq $ f x1 x2 : xs
-            | otherwise  = x1 : rmdupsWith' f eq       (x2 : xs)
+        go (x1:x2:xs)
+            | x1 `eq` x2 =      go $ f x1 x2 : xs
+            | otherwise  = x1 : go       (x2 : xs)
+        go x = x
 
 
 -- | Return for all # updates (0-11) a count of remaining unique states
@@ -62,11 +63,22 @@ remaining n samplesize = do
 nsfWithCount :: AnalyzeChrom ((GST, Int) -> (GST, Int))
 nsfWithCount = first <$> nsf
 
+
 -- | A list of attractors and their basin of attraction
-listAttr :: SampleSize -> AnalyzeChrom [(Int, Int)]
+--   returns (Attr, )
+listAttr :: SampleSize
+         -> AnalyzeChrom [(Int   -- | Attractor
+                         , Int   -- | Basin of attraction
+                         , [Int] -- | List of HammDists to targets
+                         )]
 listAttr samplesize = do
-    convert <- gstToNum
-    map (first convert) <$> remaining 100 samplesize
+    (attractors, basins) <- unzip <$> remaining 100 samplesize
+    attractors' <- map <$> gstToNum <*> return attractors
+    let envs = [0..nrEnv-1]
+        fs = map hammDist envs :: [GST -> Int]
+        hds = map (\a -> map ($ a) fs) attractors :: [[Int]]
+        -- attractors' = convert attractors
+    return $ zip3 attractors' basins hds
 
 -- | A count of the number of attractors with a certain samplesize
 attrNum :: SampleSize -> AnalyzeChrom Int
@@ -80,11 +92,19 @@ targets = mapM (ap gstToNum . return) [targetGST 0, targetGST 1]
 randomGSTs :: Seed -> SampleSize -> AnalyzeChrom [GST]
 randomGSTs s samplesize = do
     leFull <- geneCounts
-    totalStates <- nrOfStates
-    let randoms = withSeed s $ randomsInRange (0,totalStates - 1) samplesize
+    randoms <- randomGSTs' s samplesize
+
+    x <- ($ startingGST) <$> gstToNum
+
     return $ map (toGST
                   . map (GS . subtract 1)
-                  . flip pickFromCombination leFull) randoms
+                  . flip pickFromCombination leFull) (x:randoms)
+
+-- | Return a list of randomly sampled Ints (corresponding to GSTs)
+randomGSTs' :: Seed -> SampleSize -> AnalyzeChrom [Int]
+randomGSTs' s samplesize = do
+    totalStates <- nrOfStates
+    return $ withSeed s $ randomsInRange (0,totalStates - 1) samplesize
 
 -- | A count of all genes in the genome in ascending order of geneID
 geneCounts :: AnalyzeChrom [Int]
@@ -99,8 +119,16 @@ nsf :: AnalyzeChrom (GST -> GST)
 -- nsf = reader $ \c -> toGST . flip updateChrom c
 nsf = do
     c <- ask
-    return $ \gst -> toGST $ updateChrom gst (setChrom gst c)
+    return $ \g -> toGST $ updateChrom g c
+    -- return $ \gst -> toGST $ updateChrom gst (setChrom gst c)
         where setChrom gst = map (onGene $ \g -> g {genSt = gst M.! geneID g})
+
+nsf' :: AnalyzeChrom (Int -> Int)
+nsf' = do
+    f <- nsf
+    g <- gstToNum
+    n <- numToGST
+    return $ g . f . n
 
 -- | The attractor the startingGST goes to
 startGSTAttr :: AnalyzeChrom Int
@@ -131,69 +159,84 @@ nrOfStates = product <$> geneCounts
 --         edges2 = valueResultPairs f newleaves
 --     return ""
 
-makeEdges'' :: AnalyzeChrom [(Int,Int)]
-makeEdges'' = do
-    list <- makeEdges
-    g    <- gstToNum
-    let list' = map f list
-    return $ map (bimap g g) list'
+-- makeEdges'' :: AnalyzeChrom [(Int,Int)]
+-- makeEdges'' = do
+--     list <- makeEdges
+--     g    <- gstToNum
+--     let list' = map f list
+--     return $ map (bimap g g) list'
+--
+--     where f ((a,_), (b,_)) = (a, b)
 
-    where f ((a,_), (b,_)) = (a, b)
+-- makeEdges :: AnalyzeChrom [((GST,Int),(GST,Int))]
+-- makeEdges = do
+--     leaves <- remaining 0 100
+--     let eq ((g,_),(f,_)) ((h,_),(j,_)) = (g,f) == (h,j)
+--
+--     rmdupsWith biggest eq <$> makeEdges' 12 leaves
+--     where
+--           biggest f@((_,i1),_) g@((_,j1),_)
+--             | i1 > j1 = f
+--             | otherwise = g
+--         --   initials =
 
-makeEdges :: AnalyzeChrom [((GST,Int),(GST,Int))]
-makeEdges = do
-    leaves <- remaining 0 100
-    let eq ((g,_),(f,_)) ((h,_),(j,_)) = (g,f) == (h,j)
-
-    rmdupsWith biggest eq <$> makeEdges' 12 leaves
-    where
-          biggest f@((_,i1),_) g@((_,j1),_)
-            | i1 > j1 = f
-            | otherwise = g
-        --   initials =
-
-makeEdges' :: Int -> [(GST,Int)] -> AnalyzeChrom [((GST,Int),(GST,Int))]
-makeEdges' n leaves
+makeEdges :: Int -> [(GST,Int)] -> AnalyzeChrom [((GST,Int),(GST,Int))]
+makeEdges n leaves
     | n == 0    = return []
     | otherwise = do
         f <- nsfWithCount
         let edges = valueResultPairs f leaves
-            newleaves = rmdupsWithCount $ map snd edges
-        (edges ++) <$> makeEdges' (n - 1) newleaves
+            (_,newleaves) = unzip edges
+        moreEdges <- makeEdges (n - 1) newleaves
+        return $ edges ++ moreEdges
 
-stateNetwork :: AnalyzeChrom String
-stateNetwork = do
-    edges <- makeEdges''
-    let edgelines = map f edges
-    return $ "SOURCE\tTarget\n" ++
+updateTillSmaller :: [(GST,Int)] -> Int -> AnalyzeChrom [(GST,Int)]
+updateTillSmaller input n
+    | length input <= n
+      = return input
+    | otherwise = do
+        f <- nsfWithCount
+        let out = rmdupsWithCount $ map f input
+        updateTillSmaller out n
+
+
+stateNetwork :: SampleSize -> AnalyzeChrom String
+stateNetwork ss = do
+    samp <- valueResultPairs (const 1) <$> randomGSTs 420 ss
+    reduced <- samp `updateTillSmaller` 1000
+    gtn <- gstToNum
+    let toNums = map (\((x,i),(y,j)) -> ((gtn x,i),(gtn y, j)))
+    edges <- toNums . rmDupEdges <$> makeEdges 20 reduced
+    let f ((i,x),(j,_)) = show i ++ "\t" ++ show j ++ "\t" ++ show x
+        edgelines = map f edges
+    return $ "SOURCE\tTARGET\tINSOURCE\n" ++
            unlines edgelines
-        where
-              f (i,j) = show i ++ "\t" ++ show j
+
 
 allStateNetwork :: AnalyzeChrom String
 allStateNetwork = do
     edges <- makeEdges''
     let edgelines = map f edges
-    return $ "SOURCE\tTarget\n" ++
+    return $ "SOURCE\tTARGET\n" ++
            unlines edgelines
         where
             f (i,j) = show i ++ "\t" ++ show j
 
             makeEdges'' :: AnalyzeChrom [(Int,Int)]
             makeEdges'' = do
-                list <- makeEdges
+                list <- makeEdges'
                 g    <- gstToNum
                 let list' = map f list
                 return $ map (bimap g g) list'
 
                 where f ((a,_), (b,_)) = (a, b)
 
-            makeEdges :: AnalyzeChrom [((GST,Int),(GST,Int))]
-            makeEdges = do
+            makeEdges' :: AnalyzeChrom [((GST,Int),(GST,Int))]
+            makeEdges' = do
                 leaves <- map (\g -> (g,1)) <$> allGST
                 let eq ((g,_),(f,_)) ((h,_),(j,_)) = (g,f) == (h,j)
 
-                rmdupsWith biggest eq <$> makeEdges' 12 leaves
+                rmdupsWith biggest eq <$> makeEdges 12 leaves
                 where
                       biggest f@((_,i1),_) g@((_,j1),_)
                         | i1 > j1 = f
@@ -202,6 +245,11 @@ allStateNetwork = do
 
 
 
+rmDupEdges :: [((GST,Int),(GST,Int))] -> [((GST,Int),(GST,Int))]
+rmDupEdges = rmdupsWith f eq
+        where eq ((w,_),(x,_)) ((y,_),(z,_))
+                    = (w, x) == (y, z)
+              f (x,i) (y,j) = (addgst x y, i)
 
 
 
@@ -235,8 +283,8 @@ allCombinations' = mapM (enumFromTo 0)
 gstToNum :: AnalyzeChrom (GST -> Int)
 gstToNum = do
     full <- toIntList <$> fullGST
-    return $ \gst -> antiPickFromCombination (toOnOffList gst) full
-        where toOnOffList = map (getGeneState . toOnOff) . toGSL
+    return $ \gst -> antiPickFromCombination (toIntList gst) full
+        where --toOnOffList = map (getGeneState . toOnOff) . toGSL
               toIntList = map getGeneState . M.elems
 
 -- | Converts a number to a GST

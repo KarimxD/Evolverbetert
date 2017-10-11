@@ -29,7 +29,7 @@ main = do
         action  :args''   = args'
         t       :args'''  = args''
         n'      :args'''' = args'''
-        n = read n'
+        n = read n' :: SampleSize
 
     setCurrentDirectory cwd
     case action of
@@ -40,7 +40,7 @@ main = do
         "targets"     -> print =<< onTime t (analyzeChrom targets)
         "startingGST" -> print =<< onTime t (analyzeChrom startGSTAttr)
         "rem"         -> print =<< onTime t (analyzeChrom $ remaining n 20)
-        "statenet"    -> interact $ analyzeChrom stateNetwork . getLastChrom
+        "statenet"    -> putStrLn =<< onTime t (analyzeChrom $ stateNetwork n)
         "allstatenet" -> interact $ analyzeChrom allStateNetwork . getLastChrom
         "numrem" ->
             interact $

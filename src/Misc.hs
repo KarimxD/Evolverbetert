@@ -15,7 +15,7 @@ module Misc
     , mapIfPred
     , takeEvery
     , sample
-    , lehead
+    , listHead
     , pickFromCombination
     , antiPickFromCombination
     , repeatApply
@@ -102,11 +102,11 @@ mapIfPred p f = fmap f'
 
 takeEvery :: Int -> [a] -> [a]
 takeEvery _ [] = []
-takeEvery n xs = lehead ys ++ takeEvery n zs where (ys,zs) = splitAt n xs
+takeEvery n xs = listHead ys ++ takeEvery n zs where (ys,zs) = splitAt n xs
 
-lehead :: [a] -> [a]
-lehead [] = []
-lehead (x:_) = [x]
+listHead :: [a] -> [a]
+listHead [] = []
+listHead (x:_) = [x]
 
 sample :: Int -> [a] -> [a]
 sample i xs = takeEvery n xs
