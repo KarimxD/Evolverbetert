@@ -3,7 +3,7 @@ module Misc
     , valueResultPairs
     , moore8
     , repeatCollect
-    , roundToNearest
+    , bottomToNearest
     , rmdups
     , histogram
     , count
@@ -19,6 +19,8 @@ module Misc
     , pickFromCombination
     , antiPickFromCombination
     , repeatApply
+    , slice
+    , average
     )
 
     where
@@ -26,7 +28,7 @@ module Misc
 import           Control.Monad
 import           Parameters    as P
 import qualified Data.Set as Set
-import           Data.List (transpose)
+import           Data.List (transpose, genericLength)
 
 
 
@@ -62,8 +64,8 @@ repeatCollect n f = foldr (<=<) return $ replicate n f
 repeatApply :: Int -> (a->a) -> a -> a
 repeatApply n f = foldr (.) id $ replicate n f
 
-roundToNearest :: Integral a => a -> a -> a
-roundToNearest i n = n - n `rem` i
+bottomToNearest :: Integral a => a -> a -> a
+bottomToNearest i n = n - n `rem` i
 
 
 -- Histogram stuff
@@ -127,3 +129,9 @@ antiPickFromCombination (n:ns) (f:fs) = n' + antiPickFromCombination ns fs
     where p  = product $ map (+1) (f:fs)
           n' = n * (p `div` (f+1))
 antiPickFromCombination _ _ = error "nonmatching lists"
+
+slice :: Int -> Int -> [a] -> [a]
+slice i j = take (j-i) . drop i
+
+average :: (Real a, Fractional b) => [a] -> b
+average xs = realToFrac (sum xs) / genericLength xs

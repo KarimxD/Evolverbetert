@@ -17,7 +17,7 @@ executable Pipe
   hs-source-dirs:      src
   other-modules:       Analysis, Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types, Parsing, PipeLines, Landscapes, Fitness
   main-is:             PipeLines.hs
-  ghc-options:         -threaded -with-rtsopts=-N -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math -Wall -main-is PipeLines
+  ghc-options:         -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math -Wall -main-is PipeLines
   build-depends:       fgl, parallel, safe, process, time, directory, bytestring, primitive, mwc-random, data-memocombinators, random-shuffle, monad-parallel, GLUT, text, ansi-terminal, split, MonadRandom, random, array, containers, mtl, mersenne-random-pure64, pcg-random, vector, base
   default-language:    Haskell2010
 
@@ -25,7 +25,7 @@ executable Evolverbetert
   hs-source-dirs:      src
   other-modules:       Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types, Parsing, Fitness
   main-is:             Main.hs
-  ghc-options:         -threaded -with-rtsopts=-N -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math -Wall
+  ghc-options:         -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math -Wall
   build-depends:       parallel, safe, process, time, directory, bytestring, primitive, mwc-random, data-memocombinators, random-shuffle, monad-parallel, GLUT, text, ansi-terminal, split, MonadRandom, random, array, containers, mtl, mersenne-random-pure64, pcg-random, vector, base
   default-language:    Haskell2010
 
@@ -42,7 +42,7 @@ test-suite Evolverbetert-test
   main-is:             Test.hs
   build-depends:       base
                      , Evolverbetert
-  ghc-options:         -threaded -rtsopts -with-rtsopts=-N -O2
+  ghc-options:         -threaded -rtsopts -O2
   default-language:    Haskell2010
 
 source-repository head

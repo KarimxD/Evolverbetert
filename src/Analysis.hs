@@ -18,8 +18,8 @@ instance MyShow Edge where
     myShow (source,target,w) = myShow source ++"->"++myShow target ++ " " ++ myShow w
 
 type Tag = Int
-instance MyShow Tag where
-    myShow = show
+-- instance MyShow Tag where
+--     myShow = show
 
 data TaggedGene = TaggedGene {      taggedGeneID :: ID
                     ,   tag :: Tag
@@ -33,7 +33,7 @@ instance GeneType TaggedGene where
     iD = taggedGeneID
 
 instance MyShow TaggedGene where
-    myShow (TaggedGene i t th _) = concat [myShow i, ".", myShow t, ":", myShow th]
+    myShow (TaggedGene i t th _) = concat [myShow i, ".", show t, ":", myShow th]
 
 chromToEdges :: Chromosome -> [Edge]
 chromToEdges c = concatMap (uncurry $ makeEdges table) $ concatMap pairAll taggedChromosome
@@ -116,4 +116,4 @@ edgeToDotline (source,target,weight) =
         where style = if weight > 0 then " [color=green];\n" else " [color=red];\n"
 
 taggedToDot :: TaggedGene -> String
-taggedToDot tg = "G" ++ myShow (taggedGeneID tg) ++ "x" ++ myShow (tag tg) ++ "x" ++ myShow (taggedGenSt tg)
+taggedToDot tg = "G" ++ myShow (taggedGeneID tg) ++ "x" ++ show (tag tg) ++ "x" ++ myShow (taggedGenSt tg)

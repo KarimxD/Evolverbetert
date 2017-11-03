@@ -12,13 +12,17 @@ import           Parsing
 -- import World (groupGeneTfbs)
 import           Misc --(verticalHistogram)
 -- import qualified Data.Text as T
-import           Data.List          (find)
+import           Data.List
 import qualified Analysis as Anal
 import           Landscapes
 import Safe
 
 import           System.Environment (getArgs)
+
 import qualified Data.ByteString.Char8 as C
+import qualified Data.Text as T
+-- import qualified Data.Text.IO as TIO
+-- import Data.String
 
 import System.Directory
 
@@ -28,11 +32,12 @@ main = do
     let cwd     :args'    = args
         action  :args''   = args'
         t       :args'''  = args''
-        n'      :args'''' = args'''
+        n'      :_        = args'''
         n = read n' :: SampleSize
 
     setCurrentDirectory cwd
     case action of
+        -- "henk"        -> print =<< onTime t (analyzeChrom (avgFitness 1 [1,2] n))
         "fullgst"     -> putStrLn =<< (myShow <$> onTime t (analyzeChrom fullGST))
         "statenum"    -> print =<< onTime t (analyzeChrom nrOfStates)
         "attrnum"     -> print =<< onTime t (analyzeChrom $ attrNum n)
@@ -42,6 +47,15 @@ main = do
         "rem"         -> print =<< onTime t (analyzeChrom $ remaining n 20)
         "statenet"    -> putStrLn =<< onTime t (analyzeChrom $ stateNetwork n)
         "allstatenet" -> interact $ analyzeChrom allStateNetwork . getLastChrom
+        "state"       -> print =<< onTime t (analyzeChrom stateOfChrom)
+        -- "makenetworks"-> do
+        --     c <- T.lines <$> TIO.getContents
+        --     createDirectoryIfMissing False $ cwd ++ "networks"
+        --     let cwd' = cwd ++ "networks/"
+        --         ts = map tRead $ T.splitOn "-" $ T.pack t :: [Time]
+        --         i:j:_ = map (`findTime` c) ts :: [Int]
+        --         ls = slice i j c :: [T.Text]
+        --     undefined
         "numrem" ->
             interact $
                   show . zipWith (analyzeChrom . numRemaining) [10,100,1000,10000,100000,1000000]
@@ -95,18 +109,47 @@ main = do
                 ids = map iD dupdels
                 printthis = verticalHistogram ids
             putStr printthis
+        "attrs" -> do
+            c <- C.readFile "lineage"
+            let parsedls = cParseLineageFile c
+                f = analyzeChrom $ listAttr (read t)
+                showAttrs :: Int -> [(Int,Int,[Int])] -> [C.ByteString]
+                showAttrs t' ((a,b,[x,y]):xs) = cUnWords (map cShow [t',a,b,x,y]) : showAttrs t' xs
+                showAttrs _ _ = []
+                avghammdists = C.unlines $ concatMap (\(t',_,ch,_) -> showAttrs t' $ f ch) parsedls
+            C.writeFile "lineagedir/attrs" avghammdists
+        "states" -> do
+            c <- C.readFile "lineage"
+            let parsedls = cParseLineageFile c
+                f = analyzeChrom stateOfChrom
+                avghammdists = C.unlines $ map (\(t',_,ch,_) -> cUnWords
+                    [cShow t', cShow (f ch)]) parsedls
+            C.writeFile "lineagedir/states" avghammdists
+
+        "avghammdist" -> do
+            c <- C.readFile "lineage"
+            let parsedls = cParseLineageFile c
+                f = analyzeChrom (avgFitness 1 [0,1] n)
+                henk (x:y:_) = [cShow x, cShow y]
+                henk _ = error "dont do this plz"
+                avghammdists = C.unlines $ map (\(t',_,ch,_) -> cUnWords
+                    (cShow t' : henk (f ch)) ) parsedls
+            C.writeFile "lineagedir/avghammdists" avghammdists
+
         "splitlineage" -> do
             c <- C.readFile "lineage"
                 -- [t,e,chrom,[muts]]
             let parsedls = cParseLineageFile c
-                envs      = C.unlines $ map (\(t,e,_,_)  -> cUnWords
-                    [cShow t, cShow e])               parsedls
-                hammdists = C.unlines $ map (\(t,e,ch,_) -> cUnWords
-                    [cShow t, cShow $ hammDist e ch]) parsedls
-                genlength = C.unlines $ map (\(t,_,ch,_) -> cUnWords
-                    [cShow t, cShow $ length ch])     parsedls
-                mutations = C.unlines $ map (\(t,_,_,ms) -> cUnWords
-                    [cShow t, cShow ms])              parsedls
+                envs      = C.unlines $ map (\(t',e,_,_)  -> cUnWords
+                    [cShow t', cShow e])               parsedls
+                hammdists = C.unlines $ map (\(t',e,ch,_) -> cUnWords
+                    [cShow t', cShow $ hammDist e ch]) parsedls
+                genlength = C.unlines $ map (\(t',_,ch,_) -> cUnWords
+                    [cShow t', cShow $ length ch])     parsedls
+                mutations = C.unlines $ map (\(t',_,_,ms) -> cUnWords
+                    [cShow t', cShow ms])              parsedls
+                attrnums = C.unlines $ map (\(t',e,ch,_) -> cUnWords
+                    [cShow t', cShow e, cShow $ analyzeChrom (attrNum 1000) ch]) parsedls
 
             createDirectoryIfMissing False $ cwd ++ "lineagedir"
             let cwd' = "lineagedir/"
@@ -114,6 +157,7 @@ main = do
             C.writeFile (cwd' ++ "hammdists") hammdists
             C.writeFile (cwd' ++ "genlength") genlength
             C.writeFile (cwd' ++ "mutations") mutations
+            C.writeFile (cwd' ++ "attrnums" ) attrnums
         -- "attractornumber" -> do
         --     c <- C.readFile "lineage"
         --     let parsedls = cParseLineageFile c
@@ -133,7 +177,8 @@ main = do
 -- compress :: Eq a => [a] -> [a]
 -- compress = map head . group
 
-type LineageFile = [(Time,Env,Chromosome,[Mutation])]
+type LineageLine = (Time,Env,Chromosome,[Mutation])
+type LineageFile = [LineageLine]
 
 onTime :: Show a => String -> (Chromosome -> a) -> IO a
 onTime s f = f <$> getTimeChrom s
@@ -144,9 +189,14 @@ getTimeChrom t      = do
     wds <- map (C.split ';') . C.lines <$> C.getContents
     let l' = find ((>= (read t :: Time))
                 . cRead . head) wds
-        l = fromMaybe (error "no time found") l'
+        l = fromMaybe (error "time not found") l'
         c = mapMaybe (readMaybe . C.unpack) l
     return $ head c
+
+findTime :: Time -> [T.Text] -> Int
+findTime t =
+    fromMaybe (error "time not found") . findIndex (>= t)
+    . map (tRead . head . T.splitOn ";")
 
 onLast :: (Chromosome -> a) -> IO a
 onLast f = f . getLastChrom <$> getContents
@@ -157,6 +207,11 @@ getLastChrom s = head $ mapMaybe readMaybe (lewords ';' (last $ lines s))
 extractChromFromLine :: String -> Maybe Chromosome
 extractChromFromLine = headMay . mapMaybe readMaybe . lewords ';'
 
+extractChromFromLine' :: T.Text -> Maybe Chromosome
+extractChromFromLine' t = case map tRead $ T.splitOn ";" t of
+    x:_ -> Just x
+    _   -> Nothing
+
 lineagelineToHd :: C.ByteString -> C.ByteString
 lineagelineToHd = C.unlines . map
     (cUnWords .
@@ -164,7 +219,7 @@ lineagelineToHd = C.unlines . map
              hammDist (read $ C.unpack e) (myRead $ C.unpack c :: Chromosome)])
     . cWords) . C.lines
 
-cParseLineageFile :: C.ByteString -> [(Time,Env,Chromosome,[Mutation])]
+cParseLineageFile :: C.ByteString -> LineageFile
 cParseLineageFile content = parsedls
     where
         ls = C.lines content

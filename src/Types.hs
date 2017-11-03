@@ -101,6 +101,11 @@ newtype Thres     = Thres Int      deriving  (Show, Read, Eq, Ord, Real, Num, En
 newtype Weight    = Weight Int     deriving  (Show, Read, Eq, Ord, Real, Num, Enum, Integral, Bounded)
 
 newtype GeneState = GS Int deriving  (Eq, Show, Read, Ord, Enum, Real, Integral, Bounded, Num)
+-- | prop> toOnOff (GS 0) = GS 0
+--   prop> toOnOff _      = GS 1
+toOnOff :: GeneState -> GeneState
+toOnOff (GS 0) = GS 0
+toOnOff _      = GS 1
 -- instance Eq GeneState where
 --     GS 0 == GS 0 = True
 --     GS 0 == GS _ = False

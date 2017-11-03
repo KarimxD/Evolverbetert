@@ -1,4 +1,4 @@
-{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE FlexibleInstances, OverloadedStrings #-}
 module Parsing  where
 import Types
 import           Data.List.Split     (splitOn)
@@ -10,14 +10,29 @@ import qualified Data.List as List
 import Data.Maybe (fromJust)
 
 import qualified Data.ByteString.Char8 as C
+import qualified Data.Text as T
+import Data.String
+
+class IsString a => ToString a where
+    toString   :: a -> String
+
+instance ToString C.ByteString where
+    toString   = C.unpack
+instance ToString T.Text where
+    toString   = T.unpack
+
 
 class MyShow a where
-    myShow :: a -> String
+    myShow  :: a -> String
+    myShow' :: IsString s => a -> s
+    myShow' = fromString . myShow
 
 class MyRead a where
     myRead :: String -> a
     myRead = fromJust . readMaybe
     readMaybe :: String -> Maybe a
+    readMaybe' :: ToString s => s -> Maybe a
+    readMaybe' = readMaybe . toString
 
 instance MyShow Agent where
     myShow NoAgent = "NoAgent"
@@ -94,6 +109,15 @@ instance MyShow Genome where
 instance MyRead Genome where
     readMaybe s = parseList [readMaybe s]
 
+instance (MyShow a) => MyShow (Maybe a) where
+    myShow (Just x) = "Just " ++ myShow x
+    myShow Nothing  = "Nothing"
+
+instance (MyRead a) => MyRead (Maybe a) where
+    readMaybe ('J':'u':'s':'t':' ':xs) = readMaybe xs
+    readMaybe _        = Nothing
+
+
 agentToLineageFile :: Agent -> String
 agentToLineageFile = unlines . map (\(t,e,c,ms) -> List.intercalate ";" [show t, show e, myShow c, show ms])
     . reverse . agentToLineage
@@ -121,6 +145,18 @@ cShow = C.pack . show
 
 cMyShow :: MyShow a => a -> C.ByteString
 cMyShow = C.pack . myShow
+
+tRead :: Read a => T.Text -> a
+tRead = read . T.unpack
+
+tShow :: Show a => a -> T.Text
+tShow = T.pack . show
+
+tMyRead :: MyRead a => T.Text -> a
+tMyRead = myRead . T.unpack
+
+tMyShow :: MyShow a => a -> T.Text
+tMyShow = T.pack . myShow
 
 parseList :: [Maybe a] -> Maybe [a]
 parseList [] = Just []

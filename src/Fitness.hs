@@ -24,7 +24,8 @@ instance HasFitness GST
 
 class InferGST a => HammDist a where
     hammDist :: Env -> a -> Int
-    hammDist e = hammingDistance (Map.toList $ targetGST e) . Map.toList . toGST
+    hammDist e x = hammingDistance (Map.elems $ targetGST e) list
+        where list = map toOnOff $ Map.elems $ toGST x
 instance HammDist Agent where
     hammDist _ NoAgent = P.nrGeneTypes'
     hammDist e a = hammDist e $ geneStateTable a

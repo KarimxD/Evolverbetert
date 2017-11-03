@@ -10,10 +10,12 @@ import plotly.tools as tls
 import plotly.plotly as py
 
 def main(argv):
-    # parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser()
     # parser.add_argument("-i", "--ifile", required=False, default = "output")
     # parser.add_argument("-l", "--lfile", required=False, default = "lineage")
-    # args = parser.parse_args()
+    parser.add_argument("-d", "--do", required=False, default="")
+    args = parser.parse_args()
+
 
     if os.path.isdir("./lineagedir"):
         print("found dir!")
@@ -28,14 +30,37 @@ def main(argv):
     #     arg1 = argv[0]
 
 
+    # if args.do == "attr":
+    #     plot_attractors()
+    # else:
     myplot()
     # lineage2("output", "lineagedir/hammdists")
 
     # otherotherdoplot(args.ifile)
+    plt.title(os.getcwd())
     plt.show()
+# 
+# def plot_attractors():
+#     fig = plt.figure()
+#
+#     gs = gridspec.GridSpec(2, 1, height_ratios=[4, 1])
+#     ax0 = fig.add_subplot(gs[0])
+#     ax1 = fig.add_subplot(gs[1], sharex=ax0)
+#
+#     os.chdir("lineagedir")
+#
+#     if os.path.isfile("envs"):
+#         t, env = np.loadtxt("envs", delimiter=';').T
+#         ax1.set_xlabel('time')
+#         ax1.set_ylabel('env', color='g')
+#         ax1.plot(t, env, 'g')
+#         ax1.set_ybound(-.5,1.5)
+#
+#     if os.path.isfile("attractors"):
+#
+
 
 def myplot():
-
     fig = plt.figure()
     gs = gridspec.GridSpec(2, 1, height_ratios=[4, 1])
     ax0 = fig.add_subplot(gs[0])
@@ -52,7 +77,7 @@ def myplot():
         ax0.plot(t,minhammdist, 'red')
 
     if os.path.isdir("lineagedir"):
-        os.chdir("lineagedir") 
+        os.chdir("lineagedir")
 
     if os.path.isfile("envs"):
         t, env = np.loadtxt("envs", delimiter=';').T
@@ -65,13 +90,18 @@ def myplot():
         t, hD = np.loadtxt("hammdists", delimiter=';').T
         ax0.plot(t,hD,c='blue')
 
-    if os.path.isfile("genlength"):
-        t, genlength = np.loadtxt("genlength", delimiter=';').T
+    if os.path.isfile("avghammdists"):
+        t, avghammdists0, avghammdists1 = np.loadtxt("avghammdists", delimiter=';').T
         ax2 = ax1.twinx()
-        ax2.set_ylabel('genlength', color='b')
-        ax2.plot(t,genlength,'b-')
+        ax2.set_ylabel('avghammdists', color='b')
+        ax2.plot(t,avghammdists0,'b-')
+        ax2.plot(t,avghammdists1,'r-')
 
-
+    if os.path.isfile("attrnums"):
+        t, env, attrnum = np.loadtxt("attrnums", delimiter=';').T
+        ax3 = ax1.twinx()
+        ax3.set_ylabel('attrnum', color='r')
+        ax3.plot(t,attrnum,'y-')
 
 def lineage2(f0,f1):
     data = np.loadtxt(f0, delimiter=';', usecols=(range(7)), skiprows = 2)
