@@ -113,7 +113,7 @@ edgesToNodes = rmdups . map (\(_,tgt,_) -> tgt)
 edgeToDotline :: Edge -> String
 edgeToDotline (source,target,weight) =
     taggedToDot source ++ "->" ++ taggedToDot target ++ style
-        where style = if weight > 0 then " [color=green];\n" else " [color=red];\n"
+        where style = if weight > 0 then " [color=black];\n" else " [color=red];\n"
 
 taggedToDot :: TaggedGene -> String
 taggedToDot tg = "G" ++ myShow (taggedGeneID tg) ++ "x" ++ show (tag tg) ++ "x" ++ myShow (taggedGenSt tg)

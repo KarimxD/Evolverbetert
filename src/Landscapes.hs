@@ -10,6 +10,7 @@ import World --(updateChrom)
 import Parameters
 import MyRandom (withSeed, randomsInRange)
 import Fitness
+import Parsing
 
 import qualified Data.Map.Strict as M
 -- import Data.Graph.Inductive
@@ -41,6 +42,12 @@ instance HasFitness Node
 
 startingNode :: Node
 startingNode = Node startingGST 1 ["start"]
+
+attr1 :: Node
+attr1 = Node (myRead "5 1 2 1 2 1 1 1 0 3 0 1 0 1 0 1 0 2 0 2") 1 ["start"]
+
+attr2 :: Node
+attr2 = Node (myRead "5 3 2 1 1 1 1 1 1 0 3 0 1 0 1 0 3 0 1 0") 1 ["start"]
 
 
 type Edge = (Node, Node)
@@ -131,7 +138,7 @@ randomGSTs s samplesize = do
     return $ map convert randoms
 
 randomNodes :: Seed -> SampleSize -> AnalyzeChrom [Node]
-randomNodes s ss = (startingNode:) . toNodes <$> randomGSTs s ss
+randomNodes s ss = (attr1:) . toNodes <$> randomGSTs s ss
 
 allNodes :: AnalyzeChrom [Node]
 allNodes = toNodes <$> allGST

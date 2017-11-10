@@ -144,9 +144,9 @@ takeWhileInclusive p ls = takeWhileInclusive' ([], ls)
     takeWhileInclusive' (a,[]) = (a,[])
     takeWhileInclusive' (a,x:xs) =
         if p x
-            then (henk, xs)
-            else takeWhileInclusive' (henk,xs)
-                where henk = a ++ [x]
+        then (henk, xs)
+        else takeWhileInclusive' (henk,xs)
+            where henk = a ++ [x]
                 --
                 -- > foldr f z []     = z
                 -- > foldr f z (x:xs) = x `f` foldr f z xs

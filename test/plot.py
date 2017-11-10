@@ -37,9 +37,10 @@ def main(argv):
     # lineage2("output", "lineagedir/hammdists")
 
     # otherotherdoplot(args.ifile)
-    plt.title(os.getcwd())
-    plt.show()
-# 
+    # plt.title(os.getcwd())
+
+    # plt.show()
+#
 # def plot_attractors():
 #     fig = plt.figure()
 #
@@ -72,9 +73,9 @@ def myplot():
         t, env, minhammdist, minotherhammdist, maxhammdist, avghammdist, gen_length = data.T #, avg_indegree = data.T
         ax0.set_ylabel('hamm_dist', color='r')
 
-        ax0.plot(t,minotherhammdist, c='pink')
-        ax0.plot(t,avghammdist, c='grey', linestyle='dashed', alpha=0.5)
-        ax0.plot(t,minhammdist, 'red')
+        ax0.plot(t,minotherhammdist, c='pink', drawstyle='steps')
+        ax0.plot(t,avghammdist, c='grey', linestyle='dashed', alpha=0.5, drawstyle='steps')
+        ax0.plot(t,minhammdist, 'red', drawstyle='steps')
 
     if os.path.isdir("lineagedir"):
         os.chdir("lineagedir")
@@ -83,25 +84,37 @@ def myplot():
         t, env = np.loadtxt("envs", delimiter=';').T
         ax1.set_xlabel('time')
         ax1.set_ylabel('env', color='g')
-        ax1.plot(t, env, 'g')
+        ax1.plot(t, env, 'g', drawstyle='steps')
         ax1.set_ybound(-.5,1.5)
+        ax1.set_yticks([0,1])
 
     if os.path.isfile("hammdists"):
         t, hD = np.loadtxt("hammdists", delimiter=';').T
-        ax0.plot(t,hD,c='blue')
+        ax0.plot(t, hD,c='blue', drawstyle='steps')
 
     if os.path.isfile("avghammdists"):
         t, avghammdists0, avghammdists1 = np.loadtxt("avghammdists", delimiter=';').T
         ax2 = ax1.twinx()
         ax2.set_ylabel('avghammdists', color='b')
-        ax2.plot(t,avghammdists0,'b-')
-        ax2.plot(t,avghammdists1,'r-')
+        ax2.plot(t,avghammdists0,'b-', drawstyle='steps')
+        ax2.plot(t,avghammdists1,'r-', drawstyle='steps')
 
     if os.path.isfile("attrnums"):
         t, env, attrnum = np.loadtxt("attrnums", delimiter=';').T
         ax3 = ax1.twinx()
-        ax3.set_ylabel('attrnum', color='r')
-        ax3.plot(t,attrnum,'y-')
+        ax3.set_ylabel('attrnum', color='y')
+        ax3.plot(t,attrnum,'y-', drawstyle='steps')
+        ax3.set_yticks([0,10,20,30,40])
+
+    # ax0.
+
+    ax0.set_xbound(0,30000)
+    plt.savefig("henk.png")
+
+    ax0.set_xbound(1110000,1140000)
+    plt.savefig("henk2.png", dpi=500)
+
+
 
 def lineage2(f0,f1):
     data = np.loadtxt(f0, delimiter=';', usecols=(range(7)), skiprows = 2)

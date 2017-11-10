@@ -12,7 +12,7 @@ module Misc
     , rectangulate
     , horizontalHistogram
     , verticalHistogram
-    , mapIfPred
+    , mapIf
     , takeEvery
     , sample
     , listHead
@@ -60,6 +60,7 @@ valueResultPair f x = (x, f x)
 -- | Repeats a monadic operation n times collecting the results
 repeatCollect :: Monad m => Int -> (a -> m a) -> a -> m a
 repeatCollect n f = foldr (<=<) return $ replicate n f
+-- repeatCollect n f = replicateM
 
 repeatApply :: Int -> (a->a) -> a -> a
 repeatApply n f = foldr (.) id $ replicate n f
@@ -98,8 +99,8 @@ rectangulate pad rows = newrows
         infiniterows = map (++ repeat pad) rows
         newrows = map (take width') infiniterows
 
-mapIfPred :: Functor f => (a -> Bool) -> (a -> a) -> f a -> f a
-mapIfPred p f = fmap f'
+mapIf :: Functor f => (a -> Bool) -> (a -> a) -> f a -> f a
+mapIf p f = fmap f'
     where f' x = if p x then f x else x
 
 takeEvery :: Int -> [a] -> [a]

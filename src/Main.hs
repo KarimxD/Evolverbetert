@@ -77,6 +77,15 @@ initialize opts = do
 
     userName <- getEnv "USER"
     UTCTime date _ <- getCurrentTime
+    -- let outputDir = "/linuxhome/tmp/" ++ userName ++ "/Evolverbetert/"
+    --              ++ show date ++ "_" ++ fromJust (optOutput opts) ++ "/"-- takeWhile (/= '.') (show time) ++ "/"
+    --     opts = opts {optOutput = Just outputDir}
+    -- when (isJust (optOutput opts) || optVOutput opts) $ do
+    --     createDirectory outputDir
+    --     putStrLn $ "outputDir=" ++ show outputDir
+    --     callCommand $ "cp -r ./src/ " ++ outputDir ++ "src/"
+    --     putStrLn "copied source directories"
+
     let outputDir = "/linuxhome/tmp/" ++ userName ++ "/Evolverbetert/" ++ show date ++ "_" ++ fromJust (optOutput opts) ++ "/"-- takeWhile (/= '.') (show time) ++ "/"
         -- opts = opts {optOutput = Just outputDir}
     when (isJust (optOutput opts) || optVOutput opts) $ do
@@ -84,7 +93,6 @@ initialize opts = do
         putStrLn $ "outputDir=" ++ show outputDir
         callCommand $ "cp -r ./src/ " ++ outputDir ++ "src/"
         putStrLn "copied source directories"
-
 
     let handles = stdHandles
 

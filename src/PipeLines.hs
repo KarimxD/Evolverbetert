@@ -68,10 +68,12 @@ main = do
                 nodefile = head $ tail args''
             writeFile edgefile edges
             writeFile nodefile nodes
-        "dot" -> do
-            c <- getContents
-            let chrom = getLastChrom c :: Chromosome
-            putStrLn $ Anal.chromosomeToDot chrom
+        "dot" -> --do
+            -- c <- getContents
+            -- let chrom = getLastChrom c :: Chromosome
+            --
+            -- putStrLn $ Anal.chromosomeToDot chrom
+            putStrLn =<< onTime t (Anal.chromosomeToDot)
         "net" ->
             interact $ unlines . lastToAvgIndegree . lines
         "twonet" -> do
@@ -95,7 +97,6 @@ main = do
             -- putStrLn $ unlines $ compress $ lines $ henk timeEnvs lineage
             putStrLn . agentToLineageFile $ ag
         "lineagetohd" -> C.interact lineagelineToHd
-
         "dupdels" -> do --feed it the lineagefile
             c <- getContents
             let parsedls = parseLineageFile c
@@ -135,7 +136,6 @@ main = do
                 avghammdists = C.unlines $ map (\(t',_,ch,_) -> cUnWords
                     (cShow t' : henk (f ch)) ) parsedls
             C.writeFile "lineagedir/avghammdists" avghammdists
-
         "splitlineage" -> do
             c <- C.readFile "lineage"
                 -- [t,e,chrom,[muts]]
