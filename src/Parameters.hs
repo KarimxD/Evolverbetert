@@ -4,7 +4,7 @@
 module Parameters
     where
 import Types
-
+import Data.Map as Map
 
 
 -- * Mode Parameters
@@ -34,7 +34,7 @@ outputTime  = (0 ==) . (`mod` outputStep)  :: Time -> Bool
 vOutputTime = (0 ==) . (`mod` vOutputStep) :: Time -> Bool
 lineageTime = (0 ==) . (`mod` lineageStep) :: Time -> Bool
 
-maxTime = -1 -- 1e6 -- 500000
+maxTime = 200 -- 1e6 -- 500000
      :: Int
 
 -- * Fitness Parameters
@@ -71,3 +71,20 @@ pTfbsPrefCh = 2e-5 :: Prob
 pTfbsDel    = 3e-5 :: Prob
 pTfbsInnov  = 1e-5 :: Prob -- scales with number of loci in genome FIX: scale with genes
 pTfbsDup    = 2e-5 :: Prob
+
+
+{- | startingGST lays in between the attractors of targetExpression.
+    For instance nrEnv = 4 and nrHouseHold = 4, nrOverlap = 3, nrSpecific = 5
+    Env\Gene    0   1   2   3   4   5   6   7   8   9   10  11
+    0           1   1   1   1   0   1   1   1   0   0   0   1
+    1           1   1   1   1   1   0   1   0   1   0   0   0
+    2           1   1   1   1   1   1   0   0   0   1   0   0
+    3           1   1   1   1   0   1   1   0   0   0   1   0
+    start       1   1   0   0   1   1   0   1   1   1   0   0
+-}
+startingGST :: GST
+startingGST = Map.fromList $ zip [0..] $ fhsh hh ++ fhsh ov ++ fhsh sp ++ fhsh ne
+    where fhsh x -- firsthalfsecondhalf
+            | even x    = replicate (x `div` 2    ) 1 ++ replicate (x `div` 2) 0
+            | otherwise = replicate (x `div` 2 + 1) 1 ++ replicate (x `div` 2) 0
+          hh = nrHouseHold; ov = nrOverlap; sp = nrSpecific; ne = nrNoEffect

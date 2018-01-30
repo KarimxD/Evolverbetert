@@ -108,12 +108,14 @@ def myplot():
 
     # ax0.
 
-    ax0.set_xbound(0,30000)
-    plt.savefig("henk.png")
+    # ax0.set_xbound(0,30000)
+    # plt.savefig("henk.png")
 
-    ax0.set_xbound(1110000,1140000)
-    plt.savefig("henk2.png", dpi=500)
+    # ax0.set_xbound(1110000,1140000)
+    # plt.savefig("henk2.png", dpi=500)
+    plt.title(os.getcwd())
 
+    plt.show()
 
 
 def lineage2(f0,f1):

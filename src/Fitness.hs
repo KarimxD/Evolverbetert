@@ -6,6 +6,7 @@ import Types
 import qualified Parameters as P
 import qualified Data.Map as Map
 import Misc
+import World (updateAgent)
 
 class HammDist a => HasFitness a where
     fitness :: Env -> a -> Double
@@ -16,8 +17,16 @@ class HammDist a => HasFitness a where
             d = fromIntegral $ hammDist e a
 instance HasFitness Agent where
     -- | The fitness of an Agent in an Environment
-    fitness _  NoAgent      = 0
-    fitness e  a = fitness e $ toGST a
+    fitness _  NoAgent = 0
+    fitness e  a       = --fitness e $ toGST a
+        if gst == toGST (updateAgent a)
+            then fitness e gst
+            else avergageOfFive e a
+            where gst = toGST a
+
+avergageOfFive :: Env -> Agent -> Double
+avergageOfFive e = average . map (fitness e . toGST) . take 5 . iterate updateAgent
+
 instance HasFitness Genome
 instance HasFitness Chromosome
 instance HasFitness GST
@@ -66,19 +75,3 @@ targetExpression e i'
     | (i - hh - ov - e) `mod` P.nrEnv == 0 = 1
     | otherwise                            = 0 -- specific
     where hh = P.nrHouseHold; ov = P.nrOverlap; i = (\(ID a) -> a) i'
-
-{- | startingGST lays in between the attractors of targetExpression.
-    For instance nrEnv = 4 and nrHouseHold = 4, nrOverlap = 3, nrSpecific = 5
-    Env\Gene    0   1   2   3   4   5   6   7   8   9   10  11
-    0           1   1   1   1   0   1   1   1   0   0   0   1
-    1           1   1   1   1   1   0   1   0   1   0   0   0
-    2           1   1   1   1   1   1   0   0   0   1   0   0
-    3           1   1   1   1   0   1   1   0   0   0   1   0
-    start       1   1   0   0   1   1   0   1   1   1   0   0
--}
-startingGST :: GST
-startingGST = Map.fromList $ zip [0..] $ fhsh hh ++ fhsh ov ++ fhsh sp ++ fhsh ne
-    where fhsh x -- firsthalfsecondhalf
-            | even x    = replicate (x `div` 2    ) 1 ++ replicate (x `div` 2) 0
-            | otherwise = replicate (x `div` 2 + 1) 1 ++ replicate (x `div` 2) 0
-          hh = P.nrHouseHold; ov = P.nrOverlap; sp = P.nrSpecific; ne = P.nrNoEffect

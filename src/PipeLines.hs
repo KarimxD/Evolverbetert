@@ -21,8 +21,11 @@ import           System.Environment (getArgs)
 
 import qualified Data.ByteString.Char8 as C
 import qualified Data.Text as T
--- import qualified Data.Text.IO as TIO
+import qualified Data.Text.IO as TIO
 -- import Data.String
+
+-- import Data.Traversable
+import Data.Foldable
 
 import System.Directory
 
@@ -48,6 +51,7 @@ main = do
         "statenet"    -> putStrLn =<< onTime t (analyzeChrom $ stateNetwork n)
         "allstatenet" -> interact $ analyzeChrom allStateNetwork . getLastChrom
         "state"       -> print =<< onTime t (analyzeChrom stateOfChrom)
+
         -- "makenetworks"-> do
         --     c <- T.lines <$> TIO.getContents
         --     createDirectoryIfMissing False $ cwd ++ "networks"
@@ -73,7 +77,7 @@ main = do
             -- let chrom = getLastChrom c :: Chromosome
             --
             -- putStrLn $ Anal.chromosomeToDot chrom
-            putStrLn =<< onTime t (Anal.chromosomeToDot)
+            putStrLn =<< onTime t Anal.chromosomeToDot
         "net" ->
             interact $ unlines . lastToAvgIndegree . lines
         "twonet" -> do
@@ -126,7 +130,17 @@ main = do
                 avghammdists = C.unlines $ map (\(t',_,ch,_) -> cUnWords
                     [cShow t', cShow (f ch)]) parsedls
             C.writeFile "lineagedir/states" avghammdists
+        "genestates"  -> do
+            c <- TIO.readFile "lineage"
+            let parsedls = tParseLineageFile c
+                f = T.words . tMyShow . toGST
+            --     genestates = T.unlines $ map (\(t',_,ch,_) -> tUnWords
+            --         (tShow t' : f ch)) parsedls
+            -- TIO.writeFile "lineagedir/genestates" genestates
 
+            let genestates = map (\(t',_,ch,_) -> tUnWords
+                    (tShow t' : f ch) `T.append` "\n") parsedls
+            forM_ genestates $ TIO.appendFile "lineagedir/genestates"
         "avghammdist" -> do
             c <- C.readFile "lineage"
             let parsedls = cParseLineageFile c
@@ -226,6 +240,13 @@ cParseLineageFile content = parsedls
         splittedls = map (C.split ';') ls
         parsedls = map (\(t:e:c:m:_) -> (cRead t, cRead e, cMyRead c, cRead m)) splittedls
 
+tParseLineageFile :: T.Text -> LineageFile
+tParseLineageFile content = parsedls
+    where
+        ls = T.lines content
+        splittedls = map (T.splitOn ";") ls
+        parsedls = map (\(t:e:c:m:_) -> (tRead t, tRead e, tMyRead c, tRead m)) splittedls
+
 parseLineageFile :: String -> [(Time,Env,Chromosome,[Mutation])]
 parseLineageFile content = parsedls
     where
@@ -251,7 +272,13 @@ cWords :: C.ByteString -> [C.ByteString]
 cWords = C.split ';'
 
 cUnWords :: [C.ByteString] -> C.ByteString
-cUnWords = C.intercalate (C.pack ";")
+cUnWords = C.intercalate ";"
+
+tWords :: T.Text -> [T.Text]
+tWords = T.splitOn ";"
+
+tUnWords :: [T.Text] -> T.Text
+tUnWords = T.intercalate ";"
 
 lewords                   :: Char -> String -> [String]
 lewords c s               =  case dropWhile (==c) s of

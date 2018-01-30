@@ -4,13 +4,13 @@ module World
     -- World, Env, Agents, Agent(..), Genome, Chromosome, GeneStateTable, Locus(..), Gene(..), Tfbs(..), ID, Thres, GeneState
     -- , devAg, agent0, groupGeneTfbs, gSTFromGenome, fitnessAgent, showGST, hammDist, targetGST, hammDistAg)
     where
+import Data.Maybe (fromMaybe)
 import Control.Monad
 import qualified Data.Map.Strict          as Map
 import qualified Parameters        as P
 
 import MyRandom
 import Types
-import Fitness (startingGST)
 
 import System.Random.Shuffle (shuffle')
 import Control.Monad.State (state)
@@ -18,17 +18,17 @@ import Control.Monad.State (state)
 
 -- | Develops agents according to 'P.devTime' and 'updateAgent'
 devAg :: Agent -> Agent
-devAg = if   P.resetGeneStatesOnBirth
-        then devAg' . setToStart
-        else devAg'
+devAg a = if   P.resetGeneStatesOnBirth
+        then fromMaybe NoAgent $ devAg' $ setToStart a
+        else fromMaybe NoAgent $ devAg' a
 
-devAg' :: Agent -> Agent
+devAg' :: Agent -> Maybe Agent
 devAg' = takeUntilSame . take P.devTime . iterate updateAgent
     where
-        takeUntilSame [_,_] = NoAgent; takeUntilSame [_] = NoAgent; takeUntilSame [] = NoAgent
+        takeUntilSame [_,_] = Nothing; takeUntilSame [_] = Nothing; takeUntilSame [] = Nothing
         takeUntilSame (a:b:rest) =
             if sameGST a b
-                then   a
+                then   Just a
                 else   takeUntilSame $ b:rest
 
 -- | Do two agents share GST
@@ -51,8 +51,8 @@ defaultGst = Map.fromList defaultStates
 -- locusEffect _ _ = 0
 
 setToStart :: Agent -> Agent
-setToStart ag = ag { genome = updateGenome startingGST $ genome ag
-                   , geneStateTable = startingGST }
+setToStart ag = ag { genome = updateGenome P.startingGST $ genome ag
+                   , geneStateTable = P.startingGST }
 
 -- | Updates the genestates in the genome and the genestatetable with
 -- 'updateGenome' and 'gSTFromGenome'
@@ -162,7 +162,7 @@ randomAgent = do
     let  agent = devAg $ Agent randGenome defaultGst 0 0 NoAgent []
     if   agent == NoAgent
         then randomAgent
-        else return agent
+        else return $ devAg agent
 
 
 -- | Generate a random genome that is 'connected'
