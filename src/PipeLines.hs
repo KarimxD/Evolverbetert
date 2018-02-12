@@ -32,25 +32,36 @@ import System.Directory
 main :: IO ()
 main = do
     args <- getArgs
-    let cwd     :args'    = args
-        action  :args''   = args'
-        t       :args'''  = args''
-        n'      :_        = args'''
-        n = read n' :: SampleSize
+    -- let _     :args'    = args
+    --     arg1  :args''   = args'
+    --     arg2       :args'''  = args''
+    --     arg3      :_        = args'''
+        -- n = read n' :: SampleSize
+    let cwd :t1 = args
+        arg1:t2 = t1
+        arg2:t3 = t2
+        arg3:t4 = t3
+        arg4:_  = t4
 
     setCurrentDirectory cwd
-    case action of
-        -- "henk"        -> print =<< onTime t (analyzeChrom (avgFitness 1 [1,2] n))
-        "fullgst"     -> putStrLn =<< (myShow <$> onTime t (analyzeChrom fullGST))
-        "statenum"    -> print =<< onTime t (analyzeChrom nrOfStates)
-        "attrnum"     -> print =<< onTime t (analyzeChrom $ attrNum n)
-        "listattr"    -> print =<< onTime t (analyzeChrom $ listAttr n)
-        "targets"     -> print =<< onTime t (analyzeChrom targets)
-        "startingGST" -> print =<< onTime t (analyzeChrom startGSTAttr)
-        "rem"         -> print =<< onTime t (analyzeChrom $ remaining n 20)
-        "statenet"    -> putStrLn =<< onTime t (analyzeChrom $ stateNetwork n)
-        "allstatenet" -> interact $ analyzeChrom allStateNetwork . getLastChrom
-        "state"       -> print =<< onTime t (analyzeChrom stateOfChrom)
+    case arg1 of
+        "ontime" -> let t = arg2; n = read arg4 :: SampleSize
+            in case arg3 of
+                "gst"     -> putStrLn =<< (myShow <$> onTime arg2 (analyzeChrom fullGST))
+                "statenum"    -> print    =<< onTime t (analyzeChrom nrOfStates)
+                "attrnum"     -> print    =<< onTime t (analyzeChrom $ attrNum n)
+                "listattr"    -> print    =<< onTime t (analyzeChrom $ listAttr n)
+                "listpointattr" -> print  =<< onTime t (analyzeChrom $ listPointAttr n)
+                "pointattrnum" -> print   =<< onTime t (analyzeChrom $ pointAttrNum n)
+                "targets"     -> print    =<< onTime t (analyzeChrom targets)
+                "startingGST" -> print    =<< onTime t (analyzeChrom startGSTAttr)
+                "rem"         -> print    =<< onTime t (analyzeChrom $ remaining n 20)
+                "statenet"    -> putStrLn =<< onTime t (analyzeChrom $ stateNetwork n)
+                "state"       -> print    =<< onTime t (analyzeChrom stateOfChrom)
+                "chromosome"  -> print    =<< onTime t id
+                "dot"         -> putStrLn =<< onTime t Anal.chromosomeToDot
+                "allstatenet" -> interact $ analyzeChrom allStateNetwork . getLastChrom
+                _ -> error "No valid action given: Pipelines"
 
         -- "makenetworks"-> do
         --     c <- T.lines <$> TIO.getContents
@@ -68,16 +79,16 @@ main = do
             c <- getContents
             let chrom = getLastChrom c
                 (edges, nodes) = Anal.chromosomeToRNet chrom
-                edgefile = head args''
-                nodefile = head $ tail args''
+                edgefile = arg2
+                nodefile = arg3
             writeFile edgefile edges
             writeFile nodefile nodes
-        "dot" -> --do
-            -- c <- getContents
-            -- let chrom = getLastChrom c :: Chromosome
-            --
-            -- putStrLn $ Anal.chromosomeToDot chrom
-            putStrLn =<< onTime t Anal.chromosomeToDot
+        -- "dot" -> --do
+        --     -- c <- getContents
+        --     -- let chrom = getLastChrom c :: Chromosome
+        --     --
+        --     -- putStrLn $ Anal.chromosomeToDot chrom
+        --     putStrLn =<< onTime t Anal.chromosomeToDot
         "net" ->
             interact $ unlines . lastToAvgIndegree . lines
         "twonet" -> do
@@ -117,7 +128,7 @@ main = do
         "attrs" -> do
             c <- C.readFile "lineage"
             let parsedls = cParseLineageFile c
-                f = analyzeChrom $ listAttr (read t)
+                f = analyzeChrom $ listAttr (read arg2)
                 showAttrs :: Int -> [(Int,Int,[Int])] -> [C.ByteString]
                 showAttrs t' ((a,b,[x,y]):xs) = cUnWords (map cShow [t',a,b,x,y]) : showAttrs t' xs
                 showAttrs _ _ = []
@@ -144,34 +155,19 @@ main = do
         "avghammdist" -> do
             c <- C.readFile "lineage"
             let parsedls = cParseLineageFile c
-                f = analyzeChrom (avgFitness 1 [0,1] n)
+                f = analyzeChrom (avgFitness 1 [0,1] (read arg2))
                 henk (x:y:_) = [cShow x, cShow y]
                 henk _ = error "dont do this plz"
                 avghammdists = C.unlines $ map (\(t',_,ch,_) -> cUnWords
                     (cShow t' : henk (f ch)) ) parsedls
             C.writeFile "lineagedir/avghammdists" avghammdists
         "splitlineage" -> do
-            c <- C.readFile "lineage"
-                -- [t,e,chrom,[muts]]
-            let parsedls = cParseLineageFile c
-                envs      = C.unlines $ map (\(t',e,_,_)  -> cUnWords
-                    [cShow t', cShow e])               parsedls
-                hammdists = C.unlines $ map (\(t',e,ch,_) -> cUnWords
-                    [cShow t', cShow $ hammDist e ch]) parsedls
-                genlength = C.unlines $ map (\(t',_,ch,_) -> cUnWords
-                    [cShow t', cShow $ length ch])     parsedls
-                mutations = C.unlines $ map (\(t',_,_,ms) -> cUnWords
-                    [cShow t', cShow ms])              parsedls
-                attrnums = C.unlines $ map (\(t',e,ch,_) -> cUnWords
-                    [cShow t', cShow e, cShow $ analyzeChrom (attrNum 1000) ch]) parsedls
-
-            createDirectoryIfMissing False $ cwd ++ "lineagedir"
-            let cwd' = "lineagedir/"
-            C.writeFile (cwd' ++ "envs"     ) envs
-            C.writeFile (cwd' ++ "hammdists") hammdists
-            C.writeFile (cwd' ++ "genlength") genlength
-            C.writeFile (cwd' ++ "mutations") mutations
-            C.writeFile (cwd' ++ "attrnums" ) attrnums
+            let def s extraInfo = makeFile (lineageConverter s extraInfo) (cwd ++ "lineagedir/")
+            def "envs" []
+            def "hammdists" []
+            def "genlength" []
+            def "mutations" []
+            def "attrnums"  [1000] -- default sample of 1000 states
         -- "attractornumber" -> do
         --     c <- C.readFile "lineage"
         --     let parsedls = cParseLineageFile c
@@ -193,6 +189,30 @@ main = do
 
 type LineageLine = (Time,Env,Chromosome,[Mutation])
 type LineageFile = [LineageLine]
+type ConverterName = String
+type LineageConverter = (LineageLine -> T.Text, ConverterName)
+
+lineageConverter :: String -> [Int] -> LineageConverter
+lineageConverter name extraInfo =
+    (
+    case name of
+        "envs"      -> \(t,e,_,_) -> tUnWords [tShow t, tShow e]
+        "hammdists" -> \(t,e,c,_) -> tUnWords [tShow t, tShow $ hammDist e c]
+        "genlength" -> \(t,_,c,_) -> tUnWords [tShow t, tShow $ length c]
+        "mutations" -> \(t,_,_,m) -> tUnWords [tShow t, tShow   m]
+        "attrnums"  -> \(t,_,c,_) -> tUnWords [tShow t, tShow $ analyzeChrom (attrNum n1) c]
+        _           -> error "undefined converter: Pipelines.lineageConverter"
+    , name)
+        where n1 = fromMaybe (error "No Samplesize given: Pipelines.lineageConverter")
+                           $ Safe.headMay extraInfo
+
+makeFile :: LineageConverter
+         -> FilePath -- | to write to
+         -> IO ()
+makeFile (f, converterName) outputPath = do
+    c <- TIO.getContents
+    let output = T.unlines $ map f $ tParseLineageFile c
+    TIO.writeFile (outputPath ++ converterName) output
 
 onTime :: Show a => String -> (Chromosome -> a) -> IO a
 onTime s f = f <$> getTimeChrom s

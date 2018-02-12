@@ -26,8 +26,8 @@ type Time = Int
 type Prob = Double
 type Seed = Int
 
-data World = World {    agents :: Agents
-                    ,   env :: Env
+data World = World {    agents :: !Agents
+                    ,   env :: !Env
                    } deriving (Show, Read, Eq)
 
 type Env = Int
@@ -38,6 +38,7 @@ data Agent = Agent {    genome         :: Genome
                     ,   bornEnv        :: Env
                     ,   parent         :: Agent
                     ,   diff           :: [Mutation]
+                    ,   hasCyclicAttractor :: Bool
                    }
            | NoAgent deriving (Show, Read, Ord)
 instance Eq Agent where

@@ -34,7 +34,7 @@ outputTime  = (0 ==) . (`mod` outputStep)  :: Time -> Bool
 vOutputTime = (0 ==) . (`mod` vOutputStep) :: Time -> Bool
 lineageTime = (0 ==) . (`mod` lineageStep) :: Time -> Bool
 
-maxTime = 200 -- 1e6 -- 500000
+maxTime = 400 -- 1e6 -- 500000
      :: Int
 
 -- * Fitness Parameters

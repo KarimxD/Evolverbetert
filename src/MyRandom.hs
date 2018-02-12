@@ -12,9 +12,14 @@ module MyRandom
     , getBool
     , getDouble
     , getRange
+
     , getMyStdRandom
     , setMyStdGen
     , getMyStdGen
+
+    , setMyEnvGen
+    , getMyEnvGen
+
     , randomBool
     , pureMT
     , doifelse
@@ -227,6 +232,14 @@ randomR (lo, hi) g =
             then (lo,g') --error $ "lo: " ++ show lo ++ " hi: " ++ show hi ++ " r: " ++ show r ++ " d: " ++ show d --  (0,g') --randomR (lo,hi) g'
             else (r,g')
 
+
+
+
+{-# NOINLINE theMyStdGen #-}
+theMyStdGen :: IORef PureMT
+theMyStdGen  = unsafePerformIO $
+    newIORef $ pureMT 42
+
 setMyStdGen :: PureMT -> IO ()
 setMyStdGen = writeIORef theMyStdGen
 
@@ -234,11 +247,19 @@ setMyStdGen = writeIORef theMyStdGen
 getMyStdGen :: IO PureMT
 getMyStdGen  = readIORef theMyStdGen
 
+{-# NOINLINE theMyEnvGen #-}
+theMyEnvGen :: IORef PureMT
+theMyEnvGen  = unsafePerformIO $
+    newIORef $ pureMT 42
 
-{-# NOINLINE theMyStdGen #-}
-theMyStdGen :: IORef PureMT
-theMyStdGen  = unsafePerformIO $
-   newIORef $ pureMT 42
+setMyEnvGen :: PureMT -> IO ()
+setMyEnvGen = writeIORef theMyEnvGen
+
+-- |Gets the global random number generator.
+getMyEnvGen :: IO PureMT
+getMyEnvGen  = readIORef theMyEnvGen
+
+
 
 
 getMyStdRandom :: (PureMT -> (a, PureMT)) -> IO a

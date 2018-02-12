@@ -40,7 +40,7 @@ instance MyShow Agent where
 parseAgent :: String -> Agent
 parseAgent "NoAgent" = NoAgent
 parseAgent str =  --Only works on agents with 1 chromosome
-    Agent genes gst 0 0 NoAgent []
+    Agent genes gst 0 0 NoAgent [] False
     where
         gst = toGST genes
         genes = [map myRead loci] :: Genome

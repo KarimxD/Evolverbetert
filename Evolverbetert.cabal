@@ -1,50 +1,135 @@
-name:                Evolverbetert
-version:             0.1.0.0
--- synopsis:
--- description:
-homepage:            https://github.com/githubuser/Evolverbetert#readme
-license:             BSD3
-license-file:        LICENSE
-author:              Karim Hajji
-maintainer:          k.hajji@students.uu.nl
-copyright:           2017 Karim Hajji
-category:            wat
-build-type:          Simple
-extra-source-files:  README.md
-cabal-version:       >=1.10
+-- This file has been generated from package.yaml by hpack version 0.20.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 20de461049493ca63b417c2ace26c8decabb9aa055a9c9ff7f5dd520635cef7f
 
-executable Pipe
-  hs-source-dirs:      src
-  other-modules:       Analysis, Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types, Parsing, PipeLines, Landscapes, Fitness
-  main-is:             PipeLines.hs
-  ghc-options:         -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math -Wall -main-is PipeLines
-  build-depends:       fgl, parallel, safe, process, time, directory, bytestring, primitive, mwc-random, data-memocombinators, random-shuffle, monad-parallel, GLUT, text, ansi-terminal, split, MonadRandom, random, array, containers, mtl, mersenne-random-pure64, pcg-random, vector, base
-  default-language:    Haskell2010
-
-executable Evolverbetert
-  hs-source-dirs:      src
-  other-modules:       Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types, Parsing, Fitness
-  main-is:             Main.hs
-  ghc-options:         -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math -Wall
-  build-depends:       parallel, safe, process, time, directory, bytestring, primitive, mwc-random, data-memocombinators, random-shuffle, monad-parallel, GLUT, text, ansi-terminal, split, MonadRandom, random, array, containers, mtl, mersenne-random-pure64, pcg-random, vector, base
-  default-language:    Haskell2010
+name:           Evolverbetert
+version:        0.1.0.0
+category:       Model
+homepage:       https://github.com/githubuser/Evolverbetert#readme
+author:         Karim Hajji
+maintainer:     k.hajji@students.uu.nl
+copyright:      2017 Karim Hajji
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
 
 library
-  hs-source-dirs:      src
-  exposed-modules:     Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types, Parsing, Landscapes, Fitness
-  ghc-options:         -O2 -fexcess-precision -optc-O3 -optc-ffast-math -Wall
-  build-depends:       fgl, parallel, safe, process, time, directory, bytestring, primitive, mwc-random, data-memocombinators, random-shuffle, monad-parallel, GLUT, text, ansi-terminal, split, MonadRandom, random, array, containers, mtl, mersenne-random-pure64, vector, base >= 4.7 && < 5
-  default-language:    Haskell2010
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math
+  build-depends:
+      GLUT
+    , MonadRandom
+    , ansi-terminal
+    , array
+    , base
+    , bytestring
+    , containers
+    , data-memocombinators
+    , directory
+    , mersenne-random-pure64
+    , monad-parallel
+    , mtl
+    , primitive
+    , process
+    , random
+    , random-shuffle
+    , safe
+    , split
+    , text
+    , time
+    , vector
+  exposed-modules:
+      Landscapes
+  other-modules:
+      Analysis
+      Fitness
+      Main
+      Misc
+      Mutations
+      MyGraphics
+      MyRandom
+      Parameters
+      Parsing
+      PipeLines
+      Types
+      World
+      Paths_Evolverbetert
+  default-language: Haskell2010
 
-test-suite Evolverbetert-test
-  type:                exitcode-stdio-1.0
-  hs-source-dirs:      test
-  main-is:             Test.hs
-  build-depends:       base
-                     , Evolverbetert
-  ghc-options:         -threaded -rtsopts -O2
-  default-language:    Haskell2010
+executable Evolverbetert
+  main-is: Main.hs
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math
+  build-depends:
+      GLUT
+    , MonadRandom
+    , ansi-terminal
+    , array
+    , base
+    , bytestring
+    , containers
+    , data-memocombinators
+    , directory
+    , mersenne-random-pure64
+    , monad-parallel
+    , mtl
+    , primitive
+    , process
+    , random
+    , random-shuffle
+    , safe
+    , split
+    , text
+    , time
+    , vector
+  other-modules:
+      Analysis
+      Fitness
+      Landscapes
+      Misc
+      Mutations
+      MyGraphics
+      MyRandom
+      Parameters
+      Parsing
+      PipeLines
+      Types
+      World
+      Paths_Evolverbetert
+  default-language: Haskell2010
 
-source-repository head
-  type:     git
-  location: https://github.com/githubuser/Evolverbetert
+executable Pipe
+  main-is: PipeLines.hs
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math -main-is PipeLines
+  build-depends:
+      GLUT
+    , MonadRandom
+    , ansi-terminal
+    , array
+    , base
+    , bytestring
+    , containers
+    , data-memocombinators
+    , directory
+    , mersenne-random-pure64
+    , monad-parallel
+    , mtl
+    , primitive
+    , process
+    , random
+    , random-shuffle
+    , safe
+    , split
+    , text
+    , time
+    , vector
+  other-modules:
+      Analysis, Parameters, World, Misc, Mutations, MyRandom, Types, Parsing, Landscapes, Fitness
+  default-language: Haskell2010
