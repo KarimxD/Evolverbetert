@@ -1,5 +1,6 @@
 {-# LANGUAGE FlexibleInstances #-}
 -- {-# LANGUAGE BangPatterns #-}
+
 module Landscapes
     where
 
@@ -24,6 +25,23 @@ import Data.Ord
 -- import qualified Data.Set as S
 type SampleSize = Int
 type AnalyzeChrom a = Reader Chromosome a
+type Attractor = (Int   -- | Attractor
+                , Int   -- | Basin of attraction
+                , [Int] -- | List of HammDists to targets
+                )--
+--
+-- data Attractor' =
+--       CyclicAttractor { states :: [GST]
+--                       , basin  :: Int
+--                       }
+--     | PointAttractor { states :: [GST]
+--                      , basin :: Int
+--                      }
+
+isPointAttr :: AnalyzeChrom (Attractor ->  Bool)
+isPointAttr = do
+    f <- nsf'
+    return $ \(a, _, _) -> f a == a
 
 data Node = Node { nodeGST :: GST
                  , nodeBasin :: Int
@@ -125,6 +143,19 @@ listAttr samplesize = do
 -- | A count of the number of attractors with a certain samplesize
 attrNum :: SampleSize -> AnalyzeChrom Int
 attrNum ss = length <$> listAttr ss
+
+listPointAttr :: SampleSize -> AnalyzeChrom [Attractor]
+listPointAttr ss = do
+    list <- listAttr ss
+    p <- isPointAttr
+    return $ filter p list
+
+-- listCyclicAttr :: SampleSize -> AnalyzeChrom [Attractor]
+-- listCyclicAttr =
+
+-- | A count of the number of point attractors with a certain samplesize
+pointAttrNum :: SampleSize -> AnalyzeChrom Int
+pointAttrNum ss = length <$> listPointAttr ss
 
 -- | The targetStates of the model
 targets :: AnalyzeChrom [Int]

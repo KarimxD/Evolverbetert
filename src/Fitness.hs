@@ -19,13 +19,12 @@ instance HasFitness Agent where
     -- | The fitness of an Agent in an Environment
     fitness _  NoAgent = 0
     fitness e  a       = --fitness e $ toGST a
-        if gst == toGST (updateAgent a)
-            then fitness e gst
-            else avergageOfFive e a
-            where gst = toGST a
+        if not $ hasCyclicAttractor a
+            then fitness e $ toGST a
+            else avergageOfFive e fitness a
 
-avergageOfFive :: Env -> Agent -> Double
-avergageOfFive e = average . map (fitness e . toGST) . take 5 . iterate updateAgent
+avergageOfFive :: (Real a, Fractional b) => Env -> (Env -> GST -> a) -> Agent -> b
+avergageOfFive e fitnessOrHammDist = average . map (fitnessOrHammDist e . toGST) . take 5 . iterate updateAgent
 
 instance HasFitness Genome
 instance HasFitness Chromosome
@@ -37,7 +36,10 @@ class InferGST a => HammDist a where
         where list = map toOnOff $ Map.elems $ toGST x
 instance HammDist Agent where
     hammDist _ NoAgent = P.nrGeneTypes'
-    hammDist e a = hammDist e $ geneStateTable a
+    hammDist e a =
+        if not $ hasCyclicAttractor a
+            then hammDist e $ geneStateTable a
+            else ceiling (avergageOfFive e hammDist a :: Double)
 instance HammDist Genome
 instance HammDist Chromosome
 instance HammDist GST

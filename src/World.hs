@@ -25,10 +25,12 @@ devAg a = if   P.resetGeneStatesOnBirth
 devAg' :: Agent -> Maybe Agent
 devAg' = takeUntilSame . take P.devTime . iterate updateAgent
     where
-        takeUntilSame [_,_] = Nothing; takeUntilSame [_] = Nothing; takeUntilSame [] = Nothing
+        -- takeUntilSame [_,_] = Nothing; takeUntilSame [_] = Nothing; takeUntilSame [] = Nothing
+        takeUntilSame [] = Nothing
+        takeUntilSame [a] = Just $ a { hasCyclicAttractor = True }
         takeUntilSame (a:b:rest) =
             if sameGST a b
-                then   Just a
+                then   Just $ a { hasCyclicAttractor = False }
                 else   takeUntilSame $ b:rest
 
 -- | Do two agents share GST
@@ -159,7 +161,7 @@ connected = all (>1) . map length . groupGeneTfbs . concat
 randomAgent :: Rand Agent
 randomAgent = do
     randGenome <- goodRandomGenome
-    let  agent = devAg $ Agent randGenome defaultGst 0 0 NoAgent []
+    let  agent = devAg $ Agent randGenome defaultGst 0 0 NoAgent [] False
     if   agent == NoAgent
         then randomAgent
         else return $ devAg agent
