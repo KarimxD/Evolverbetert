@@ -2,5 +2,18 @@ flags: {}
 extra-package-dbs: []
 packages:
 - '.'
-extra-deps: [pcg-random-0.1.3.4, dotgen-0.4.2, Graphalyze-0.14.1.1, bktrees-0.3.1]
+allow-newer: true
+extra-deps:
+    - pcg-random-0.1.3.4
+    - dotgen-0.4.2
+    - Graphalyze-0.14.1.1
+    - bktrees-0.3.1
+    # # for ghc-mod
+    # - Cabal-1.24.2.0
+    # - base-4.9.1.0
+    # - cabal-helper-0.7.3.0
+    # - extra-1.5.3
+    # - monad-journal-0.7.2
+    # - optparse-applicative-0.13.2.0
+
 resolver: lts-10.4

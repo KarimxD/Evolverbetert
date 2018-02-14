@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 20de461049493ca63b417c2ace26c8decabb9aa055a9c9ff7f5dd520635cef7f
+-- hash: beb76a5f0132dbccd4d523f168a712be0d225a61eb195e2ea167e11ac124ccd0
 
 name:           Evolverbetert
 version:        0.1.0.0
@@ -16,55 +16,12 @@ license-file:   LICENSE
 build-type:     Simple
 cabal-version:  >= 1.10
 
-library
-  hs-source-dirs:
-      src
-  ghc-options: -Wall -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math
-  build-depends:
-      GLUT
-    , MonadRandom
-    , ansi-terminal
-    , array
-    , base
-    , bytestring
-    , containers
-    , data-memocombinators
-    , directory
-    , mersenne-random-pure64
-    , monad-parallel
-    , mtl
-    , primitive
-    , process
-    , random
-    , random-shuffle
-    , safe
-    , split
-    , text
-    , time
-    , vector
-  exposed-modules:
-      Landscapes
-  other-modules:
-      Analysis
-      Fitness
-      Main
-      Misc
-      Mutations
-      MyGraphics
-      MyRandom
-      Parameters
-      Parsing
-      PipeLines
-      Types
-      World
-      Paths_Evolverbetert
-  default-language: Haskell2010
-
 executable Evolverbetert
   main-is: Main.hs
   hs-source-dirs:
       src
-  ghc-options: -Wall -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math
+  default-extensions: LambdaCase BangPatterns OverloadedStrings MultiWayIf TypeOperators FlexibleInstances GeneralizedNewtypeDeriving
+  ghc-options: -Wall -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math -Wcompat
   build-depends:
       GLUT
     , MonadRandom
@@ -78,6 +35,7 @@ executable Evolverbetert
     , mersenne-random-pure64
     , monad-parallel
     , mtl
+    , parallel
     , primitive
     , process
     , random
@@ -85,29 +43,19 @@ executable Evolverbetert
     , safe
     , split
     , text
+    , text-show
     , time
     , vector
   other-modules:
-      Analysis
-      Fitness
-      Landscapes
-      Misc
-      Mutations
-      MyGraphics
-      MyRandom
-      Parameters
-      Parsing
-      PipeLines
-      Types
-      World
-      Paths_Evolverbetert
+      Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types, Parsing, Fitness
   default-language: Haskell2010
 
 executable Pipe
   main-is: PipeLines.hs
   hs-source-dirs:
       src
-  ghc-options: -Wall -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math -main-is PipeLines
+  default-extensions: LambdaCase BangPatterns OverloadedStrings MultiWayIf TypeOperators FlexibleInstances GeneralizedNewtypeDeriving
+  ghc-options: -Wall -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math -Wcompat -main-is PipeLines
   build-depends:
       GLUT
     , MonadRandom
@@ -121,6 +69,7 @@ executable Pipe
     , mersenne-random-pure64
     , monad-parallel
     , mtl
+    , parallel
     , primitive
     , process
     , random
@@ -128,6 +77,7 @@ executable Pipe
     , safe
     , split
     , text
+    , text-show
     , time
     , vector
   other-modules:

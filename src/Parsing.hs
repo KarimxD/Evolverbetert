@@ -149,9 +149,6 @@ cMyShow = C.pack . myShow
 tRead :: Read a => T.Text -> a
 tRead = read . T.unpack
 
-tShow :: Show a => a -> T.Text
-tShow = T.pack . show
-
 tMyRead :: MyRead a => T.Text -> a
 tMyRead = myRead . T.unpack
 

@@ -1,9 +1,6 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
-{-# LANGUAGE BangPatterns #-}
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE TypeOperators #-}
-{-# LANGUAGE MultiWayIf #-}
-{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# OPTIONS_GHC -Wno-orphans #-}
 -- {-# LANGUAGE DeriveFunctor #-}
 
 -----------------------------------------------------------------------------
@@ -11,8 +8,6 @@
 -- A list of types and their conversions
 --
 -----------------------------------------------------------------------------
-
-
 
 module Types where
 import qualified Data.Map.Strict as Map
@@ -22,23 +17,25 @@ import Data.Maybe (mapMaybe, isJust)
 import Data.Foldable as F (foldr')
 import Data.Bifunctor
 
+import TextShow.TH
+
 type Time = Int
 type Prob = Double
 type Seed = Int
 
-data World = World {    agents :: !Agents
-                    ,   env :: !Env
+data World = World { agents :: !Agents
+                   , env    :: !Env
                    } deriving (Show, Read, Eq)
 
 type Env = Int
 type Agents = Array (Int, Int) Agent
-data Agent = Agent {    genome         :: Genome
-                    ,   geneStateTable :: GST
-                    ,   bornTime       :: Time
-                    ,   bornEnv        :: Env
-                    ,   parent         :: Agent
-                    ,   diff           :: [Mutation]
-                    ,   hasCyclicAttractor :: Bool
+data Agent = Agent { genome         :: Genome
+                   , geneStateTable :: GST
+                   , bornTime       :: Time
+                   , bornEnv        :: Env
+                   , parent         :: Agent
+                   , diff           :: [Mutation]
+                   , hasCyclicAttractor :: Bool
                    }
            | NoAgent deriving (Show, Read, Ord)
 instance Eq Agent where
@@ -225,3 +222,14 @@ instance InferGST Agent where
 --     toGST' = toGST' . concat
 -- -- instance InferGST' Agent where
 --     -- toGST' = geneStateTable
+
+$(deriveTextShow ''Mutation)
+$(deriveTextShow ''Agent)
+$(deriveTextShow ''Map.Map)
+$(deriveTextShow ''CLocus)
+$(deriveTextShow ''Gene)
+$(deriveTextShow ''Tfbs)
+$(deriveTextShow ''ID)
+$(deriveTextShow ''Thres)
+$(deriveTextShow ''Weight)
+$(deriveTextShow ''GeneState)

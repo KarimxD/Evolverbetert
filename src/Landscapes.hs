@@ -1,4 +1,5 @@
 {-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE TemplateHaskell #-}
 -- {-# LANGUAGE BangPatterns #-}
 
 module Landscapes
@@ -11,7 +12,6 @@ import World --(updateChrom)
 import Parameters
 import MyRandom (withSeed, randomsInRange)
 import Fitness
-import Parsing
 
 import qualified Data.Map.Strict as M
 -- import Data.Graph.Inductive
@@ -20,11 +20,17 @@ import Data.List
 import Data.Function (on)
 import Data.Maybe
 import Data.Ord
-
+import TextShow.TH
+import qualified Data.Text as T
 
 -- import qualified Data.Set as S
 type SampleSize = Int
 type AnalyzeChrom a = Reader Chromosome a
+data Parameters = Parameters { sampleSize :: SampleSize
+                             , numberOfUpdates :: Int
+                             , seed :: Seed
+                             , chromConverter :: Maybe (Chromosome -> T.Text)
+                             }
 type Attractor = (Int   -- | Attractor
                 , Int   -- | Basin of attraction
                 , [Int] -- | List of HammDists to targets
@@ -38,7 +44,7 @@ type Attractor = (Int   -- | Attractor
 --                      , basin :: Int
 --                      }
 
-isPointAttr :: AnalyzeChrom (Attractor ->  Bool)
+isPointAttr :: AnalyzeChrom (Attractor -> Bool)
 isPointAttr = do
     f <- nsf'
     return $ \(a, _, _) -> f a == a
@@ -58,15 +64,9 @@ instance HammDist Node
 instance HasFitness Node
 
 
+
 startingNode :: Node
 startingNode = Node startingGST 1 ["start"]
-
-attr1 :: Node
-attr1 = Node (myRead "5 1 2 1 2 1 1 1 0 3 0 1 0 1 0 1 0 2 0 2") 1 ["start"]
-
-attr2 :: Node
-attr2 = Node (myRead "5 3 2 1 1 1 1 1 1 0 3 0 1 0 1 0 3 0 1 0") 1 ["start"]
-
 
 type Edge = (Node, Node)
 
@@ -100,21 +100,20 @@ rmdupsWith g f eq = go . sortBy g
 
 
 -- | Return for all # updates (0-11) a count of remaining unique states
-numRemaining :: SampleSize -> AnalyzeChrom [Int]
-numRemaining samplesize = do
+numRemaining :: Parameters -> AnalyzeChrom [Int]
+numRemaining params = do
     f <- nsf
     take 12
         . map length
         . iterate (rmdups . map f)
-        <$> randomGSTs 42 samplesize
+        <$> randomGSTs params
 
 -- | A list of remaining unique states after updating n times
-remaining :: Int -- ^ The number of updates
-          -> SampleSize -> AnalyzeChrom [Node]
-remaining n samplesize = do
+remaining :: Parameters -> AnalyzeChrom [Node]
+remaining params@Parameters {numberOfUpdates = n} = do
     f <- nsfWithCount
     (!!n) . iterate (rmdupsWithCount . map f) . toNodes
-        <$> randomGSTs 420 samplesize
+        <$> randomGSTs params
 
 nsfWithCount :: AnalyzeChrom (Node -> Node)
 nsfWithCount = do
@@ -124,14 +123,14 @@ nsfWithCount = do
 
 -- | A list of attractors and their basin of attraction
 --   returns (Attr, )
-listAttr :: SampleSize
+listAttr :: Parameters
          -> AnalyzeChrom [(Int   -- | Attractor
                          , Int   -- | Basin of attraction
                          , [Int] -- | List of HammDists to targets
                          )]
-listAttr samplesize = do
+listAttr params = do
     -- (attractors, basins) <- unzip <$> remaining 100 samplesize
-    nodes <- remaining 100 samplesize
+    nodes <- remaining (params {numberOfUpdates = 100})
     let (attractors, basins) = unzip $ map (\n -> (nodeGST n, nodeBasin n)) nodes
 
     attractors' <- map <$> gstToNum <*> return attractors
@@ -141,20 +140,20 @@ listAttr samplesize = do
     return $ zip3 attractors' basins hds
 
 -- | A count of the number of attractors with a certain samplesize
-attrNum :: SampleSize -> AnalyzeChrom Int
+attrNum :: Parameters -> AnalyzeChrom Int
 attrNum ss = length <$> listAttr ss
 
-listPointAttr :: SampleSize -> AnalyzeChrom [Attractor]
+listPointAttr :: Parameters -> AnalyzeChrom [Attractor]
 listPointAttr ss = do
     list <- listAttr ss
     p <- isPointAttr
     return $ filter p list
 
--- listCyclicAttr :: SampleSize -> AnalyzeChrom [Attractor]
+-- listCyclicAttr :: Parameters -> AnalyzeChrom [Attractor]
 -- listCyclicAttr =
 
 -- | A count of the number of point attractors with a certain samplesize
-pointAttrNum :: SampleSize -> AnalyzeChrom Int
+pointAttrNum :: Parameters -> AnalyzeChrom Int
 pointAttrNum ss = length <$> listPointAttr ss
 
 -- | The targetStates of the model
@@ -162,23 +161,23 @@ targets :: AnalyzeChrom [Int]
 targets = mapM (ap gstToNum . return) [targetGST 0, targetGST 1]
 
 -- | Return a list of randomly sampled GeneStateTables
-randomGSTs :: Seed -> SampleSize -> AnalyzeChrom [GST]
-randomGSTs s samplesize = do
-    randoms <- randomGSTs' s samplesize
+randomGSTs :: Parameters -> AnalyzeChrom [GST]
+randomGSTs params = do
+    randoms <- randomGSTs' params
     convert <- numToGST
     return $ map convert randoms
 
-randomNodes :: Seed -> SampleSize -> AnalyzeChrom [Node]
-randomNodes s ss = (attr1:) . toNodes <$> randomGSTs s ss
+randomNodes :: Parameters -> AnalyzeChrom [Node]
+randomNodes params = toNodes <$> randomGSTs params
 
 allNodes :: AnalyzeChrom [Node]
 allNodes = toNodes <$> allGST
 
 -- | Return a list of randomly sampled Ints (corresponding to GSTs)
-randomGSTs' :: Seed -> SampleSize -> AnalyzeChrom [Int]
-randomGSTs' s samplesize = do
+randomGSTs' :: Parameters -> AnalyzeChrom [Int]
+randomGSTs' Parameters {sampleSize = ss, seed = s} = do
     totalStates <- nrOfStates
-    return $ withSeed s $ randomsInRange (0,totalStates - 1) samplesize
+    return $ withSeed s $ randomsInRange (0,totalStates - 1) ss
 
 -- | A count of all genes in the genome in ascending order of geneID
 geneCounts :: AnalyzeChrom [Int]
@@ -257,19 +256,19 @@ updateTillSmaller input n = do
     --     updateTillSmaller out n
 
         -- remaining :: Int -- ^ The number of updates
-        --           -> SampleSize -> AnalyzeChrom [Node]
+        --           -> Parameters -> AnalyzeChrom [Node]
         -- remaining n samplesize = do
         --     f <- nsfWithCount
         --     (!!n) . iterate (map f . rmdupsWithCount) . toNodes
         --         <$> randomGSTs 420 samplesize
 
 
-stateNetwork :: SampleSize -> AnalyzeChrom String
-stateNetwork ss = do
+stateNetwork :: Parameters -> AnalyzeChrom String
+stateNetwork params = do
     f <- nsfWithCount
     nodes <- take 500 . nub --rmdupsWith max' (==)
             . reverse . concat . take 100 . iterate (rmdupsWithCount . map f)
-             <$> randomNodes 420 ss
+             <$> randomNodes params
     let edges = valueResultPairs f nodes
     printEdges edges
         -- where max' = maxBy (comparing nodeBasin)
@@ -286,7 +285,7 @@ stateNetwork ss = do
 
     -- -- | A list of remaining unique states after updating n times
     -- remaining :: Int -- ^ The number of updates
-    --           -> SampleSize -> AnalyzeChrom [Node]
+    --           -> Parameters -> AnalyzeChrom [Node]
     -- remaining n samplesize = do
     --     f <- nsfWithCount
     --     (!!n) . iterate (rmdupsWithCount . map f) . toNodes
@@ -379,10 +378,10 @@ rmDupEdges p = rmdupsWith compare f (==)
 -- | Check the average fitness in the different environments after a number of updates
 avgFitness :: Int -- | Number of updates
            -> [Env] -- | Which envirnments to check
-           -> SampleSize -- | How many things to check
+           -> Parameters -- | How many things to check, needs sampleSize
            -> AnalyzeChrom [Double] -- | The average hamming distances
-avgFitness n es ss = do
-    rs <- randomGSTs 420 ss
+avgFitness n es params = do
+    rs <- randomGSTs params
     f  <- repeatApply n <$> nsf
     let updated = map f rs
 
@@ -446,3 +445,5 @@ turnGeneOn g = g {genSt  = GS 1}
 agent42 :: Agent
 agent42 = read $ "Agent {genome = [[CTfbs (Tfbs {tfbsID = ID 19, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 3, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 15, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 2, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 0, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 16, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 5, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 8, thres = Thres 0, genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 19, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 18, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 0, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 9, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 7, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 7, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 17, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 16, thres = Thres 2, genSt = GS 0}),"
     ++ "CTfbs (Tfbs {tfbsID = ID 14, wt = Weight 1, tfbsSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 15, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 8, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 5, thres = Thres (-1), genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 12, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 10, thres = Thres 2, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 16, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 6, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 13, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 4, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 10, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 5, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 14, thres = Thres 0, genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 2, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 11, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 6, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 18, thres = Thres (-1), genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 8, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 9, thres = Thres (-1), genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 18, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 17, thres = Thres 2, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 0, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 19, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 2, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 3, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 4, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 14, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 11, thres = Thres 0, genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 13, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 7, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 9, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 12, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 13, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 15, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 10, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 11, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 1, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 12, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 1, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 4, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 17, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 3, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 1, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 6, thres = Thres 0, genSt = GS 0})]], geneStateTable = fromList [(ID 0,GS 0),(ID 1,GS 0),(ID 2,GS 0),(ID 3,GS 0),(ID 4,GS 0),(ID 5,GS 1),(ID 6,GS 0),(ID 7,GS 0),(ID 8,GS 1),(ID 9,GS 1),(ID 10,GS 0),(ID 11,GS 1),(ID 12,GS 0),(ID 13,GS 0),(ID 14,GS 1),(ID 15,GS 0),(ID 16,GS 0),(ID 17,GS 0),(ID 18,GS 1),(ID 19,GS 0)], bornTime = 0, bornEnv = 0, parent = NoAgent, diff = []}"
+
+$(deriveTextShow ''Node)

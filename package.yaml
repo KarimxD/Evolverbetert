@@ -11,6 +11,19 @@ category:            Model
 # extra-source-files:  README.md
 # cabal-version:       >=1.10
 
+source-dirs:
+    - src
+
+executables:
+    Pipe:
+        main: PipeLines.hs
+        other-modules: Analysis, Parameters, World, Misc, Mutations, MyRandom, Types, Parsing, Landscapes, Fitness
+        ghc-options:         -main-is PipeLines
+        
+    Evolverbetert:
+        main:             Main.hs
+        other-modules:       Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types, Parsing, Fitness
+
 ghc-options:
     -Wall
     -rtsopts
@@ -18,6 +31,18 @@ ghc-options:
     -fexcess-precision
     -optc-O3
     -optc-ffast-math
+    -Wcompat
+#    -Wincomplete-uni-patterns
+#    -Wredundant-constraints
+
+default-extensions:
+    - LambdaCase
+    - BangPatterns
+    - OverloadedStrings
+    - MultiWayIf
+    - TypeOperators
+    - FlexibleInstances
+    - GeneralizedNewtypeDeriving
 
 dependencies:
     - safe
@@ -42,38 +67,5 @@ dependencies:
     - base
     - array
     - mersenne-random-pure64
-
-# default-language:    Haskell2010
-source-dirs:
-    - src
-
-executables:
-    Pipe:
-        main: PipeLines.hs
-        other-modules: Analysis, Parameters, World, Misc, Mutations, MyRandom, Types, Parsing, Landscapes, Fitness
-        # main-is:             PipeLines.hs
-        ghc-options:         -main-is PipeLines
-
-
-    Evolverbetert:
-        main:             Main.hs
-        # other-modules:       Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types, Parsing, Fitness
-
-library:
-    exposed-modules: Landscapes
-
-# library:
-#     exposed-modules:     Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types, Parsing, Landscapes, Fitness
-
-# test-suite Evolverbetert-test
-#   type:                exitcode-stdio-1.0
-#   hs-source-dirs:      test
-#   main-is:             Test.hs
-#   build-depends:       base
-#                      , Evolverbetert
-#   ghc-options:         -threaded -rtsopts -O2
-#   default-language:    Haskell2010
-
-# source-repository head
-#   type:     git
-#   location: https://github.com/githubuser/Evolverbetert
+    - text-show
+    - parallel

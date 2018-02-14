@@ -1,6 +1,3 @@
-{-# LANGUAGE LambdaCase #-}
-{-# LANGUAGE BangPatterns #-}
-
 -----------------------------------------------------------------------------
 -- |
 -- Module      :  Main
@@ -42,7 +39,7 @@ import           System.Process        (callCommand)
 import           Control.Monad         (forM_, unless, when)
 import           Data.Fixed            (mod')
 import           Data.Function         (on)
-import           Data.Maybe            (fromJust, isJust)
+import           Data.Maybe            (fromJust, isJust, fromMaybe)
 
 import           Data.Array.IArray     (amap, array, assocs, elems, (!))
 import           Data.List             (find, genericLength, intercalate,
@@ -229,32 +226,32 @@ outputString (World ags e) t r =
         _t = (t, "time")
         _e = (e, "env")
 
-        _bestAgent         = (maximumBy (compare `on` fitness e) els,        "bestAgent")
-        _bestOtherAgent    = (maximumBy (compare `on` fitness otherenv) els, "bestOtherAgent")
+        _bestAgent         = (maximumBy (compare `on` fitness e) els,        "bestAgent" :: String)
+        _bestOtherAgent    = (maximumBy (compare `on` fitness otherenv) els, "bestOtherAgent" :: String)
 
-        _worstAgent        = (minimumBy (compare `on` fitness e) els,        "worstAgent")
-        _worstOtherAgent   = (minimumBy (compare `on` fitness otherenv) els, "worstOtherAgent")
+        _worstAgent        = (minimumBy (compare `on` fitness e) els,        "worstAgent" :: String)
+        _worstOtherAgent   = (minimumBy (compare `on` fitness otherenv) els, "worstOtherAgent" :: String)
 
-        _bestChrom         = (concat . genome $ fst _bestAgent,       "bestChrom")
-        _bestOtherChrom    = (concat . genome $ fst _bestOtherAgent,  "bestOtherChrom")
-        _worstChrom        = (concat . genome $ fst _worstAgent,      "worstChrom")
-        _worstOtherChrom   = (concat . genome $ fst _worstOtherAgent, "worstOtherChrom")
+        _bestChrom         = (concat . genome $ fst _bestAgent,       "bestChrom" :: String)
+        _bestOtherChrom    = (concat . genome $ fst _bestOtherAgent,  "bestOtherChrom" :: String)
+        _worstChrom        = (concat . genome $ fst _worstAgent,      "worstChrom" :: String)
+        _worstOtherChrom   = (concat . genome $ fst _worstOtherAgent, "worstOtherChrom" :: String)
 
-        _lenBestChrom      = (length $ fst _bestChrom,      "lenBestChrom")
-        _lenBestOtherChrom = (length $ fst _bestOtherChrom, "lenBestOtherChrom")
-        _lenWorstChrom     = (length $ fst _worstChrom,     "lenWorstChrom")
-        _lenWorstOtherCrom = (length $ fst _bestOtherChrom, "lenWorstOtherChrom")
+        _lenBestChrom      = (length $ fst _bestChrom,      "lenBestChrom" :: String)
+        _lenBestOtherChrom = (length $ fst _bestOtherChrom, "lenBestOtherChrom" :: String)
+        _lenWorstChrom     = (length $ fst _worstChrom,     "lenWorstChrom" :: String)
+        _lenWorstOtherCrom = (length $ fst _bestOtherChrom, "lenWorstOtherChrom" :: String)
 
-        _maxFitness        = (fitness e $ fst _bestAgent,  "maxFitness")
-        _minFitness        = (fitness e $ fst _worstAgent, "minFitness")
+        _maxFitness        = (fitness e $ fst _bestAgent,  "maxFitness" :: String)
+        _minFitness        = (fitness e $ fst _worstAgent, "minFitness" :: String)
 
-        _minHammDist       = (hammDist e $ fst _bestAgent,              "minHammDist")
-        _minOtherHammDist  = (hammDist otherenv $ fst _bestOtherAgent,  "minOtherHammDist")
-        _maxHammDist       = (hammDist e $ fst _worstAgent,             "maxHammDist")
-        _maxOtherHammDist  = (hammDist otherenv $ fst _worstOtherAgent, "maxOtherHammDist")
+        _minHammDist       = (hammDist e $ fst _bestAgent,              "minHammDist" :: String)
+        _minOtherHammDist  = (hammDist otherenv $ fst _bestOtherAgent,  "minOtherHammDist" :: String)
+        _maxHammDist       = (hammDist e $ fst _worstAgent,             "maxHammDist" :: String)
+        _maxOtherHammDist  = (hammDist otherenv $ fst _worstOtherAgent, "maxOtherHammDist" :: String)
 
-        _avgHammDist       = (average $ map (hammDist e) els,        "avgHammDist")
-        _avgOtherHammDist  = (average $ map (hammDist otherenv) els, "avgHammDist")
+        _avgHammDist       = (average $ map (hammDist e) els,        "avgHammDist" :: String)
+        _avgOtherHammDist  = (average $ map (hammDist otherenv) els, "avgHammDist" :: String)
 
         els = filter living $ elems ags
         otherenv = 1 + (-1)*e
@@ -278,7 +275,7 @@ reproduceAgent t (World ags e) ix = do
         if ags ! ix == NoAgent --if cell is empty, give every neighbour a weighted probability for getting chosen to reproduce
         then do
             temp2 <- getDouble
-            let Just (_, iChooseYou) = find ((>=r) . fst) cumFitAg
+            let (_, iChooseYou) = fromMaybe (error "field empty") $ find ((>=r) . fst) cumFitAg
                 neighbours = map (ags !) (moore8 ix) ++ [NoAgent] --list of the neighbours
                 fitnesses = map (fitness e) (init neighbours)
                             ++ [0.4^P.selectionPressure]  --list of fitnesses

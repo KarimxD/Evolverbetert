@@ -30,7 +30,7 @@ dupTfbss :: Chromosome -> Mut Chromosome
 dupTfbss c = do
     n <- lift $ binomial (length c) pTfbsDup
     repeatCollect n dupATfbs c
-    
+
 dupATfbs :: Chromosome -> Mut Chromosome
 dupATfbs c = do
     let tfbss = toTfbss c

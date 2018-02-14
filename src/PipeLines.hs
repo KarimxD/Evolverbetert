@@ -1,5 +1,7 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-}
+{-# OPTIONS_GHC -Wno-missing-fields #-}
 module PipeLines
 
     where
@@ -7,7 +9,7 @@ module PipeLines
 import           Types
 import           Fitness
 -- import Misc
-import           Data.Maybe         (fromMaybe, mapMaybe)
+import           Data.Maybe         (fromMaybe, mapMaybe, fromJust)
 import           Parsing
 -- import World (groupGeneTfbs)
 import           Misc --(verticalHistogram)
@@ -22,12 +24,15 @@ import           System.Environment (getArgs)
 import qualified Data.ByteString.Char8 as C
 import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
+import TextShow
 -- import Data.String
 
 -- import Data.Traversable
 import Data.Foldable
 
 import System.Directory
+import Control.Parallel.Strategies
+
 
 main :: IO ()
 main = do
@@ -40,28 +45,31 @@ main = do
     let cwd :t1 = args
         arg1:t2 = t1
         arg2:t3 = t2
-        arg3:t4 = t3
-        arg4:_  = t4
+        arg3:_ = t3
+
+        params' = parseParameters args
+        params  = params' { chromConverter = headMay $ mapMaybe (`parseConverter` params') args }
 
     setCurrentDirectory cwd
     case arg1 of
-        "ontime" -> let t = arg2; n = read arg4 :: SampleSize
-            in case arg3 of
-                "gst"     -> putStrLn =<< (myShow <$> onTime arg2 (analyzeChrom fullGST))
-                "statenum"    -> print    =<< onTime t (analyzeChrom nrOfStates)
-                "attrnum"     -> print    =<< onTime t (analyzeChrom $ attrNum n)
-                "listattr"    -> print    =<< onTime t (analyzeChrom $ listAttr n)
-                "listpointattr" -> print  =<< onTime t (analyzeChrom $ listPointAttr n)
-                "pointattrnum" -> print   =<< onTime t (analyzeChrom $ pointAttrNum n)
-                "targets"     -> print    =<< onTime t (analyzeChrom targets)
-                "startingGST" -> print    =<< onTime t (analyzeChrom startGSTAttr)
-                "rem"         -> print    =<< onTime t (analyzeChrom $ remaining n 20)
-                "statenet"    -> putStrLn =<< onTime t (analyzeChrom $ stateNetwork n)
-                "state"       -> print    =<< onTime t (analyzeChrom stateOfChrom)
-                "chromosome"  -> print    =<< onTime t id
-                "dot"         -> putStrLn =<< onTime t Anal.chromosomeToDot
-                "allstatenet" -> interact $ analyzeChrom allStateNetwork . getLastChrom
-                _ -> error "No valid action given: Pipelines"
+        "ontime" -> let t = arg2
+            in print =<< onTime t (fromJust $ chromConverter params)
+               -- case arg3 of (fromJust $ chromConverter params)
+                -- "gst"           -> putStrLn =<< (myShow <$> onTime arg2 (analyzeChrom fullGST))
+                -- "statenum"      -> print    =<< onTime t (fromJust $ chromConverter params)
+                -- "attrnum"       -> print    =<< onTime t (fromJust $ chromConverter params)
+                -- "listattr"      -> print    =<< onTime t (fromJust $ chromConverter params)
+                -- "listpointattr" -> print    =<< onTime t (fromJust $ chromConverter params)
+                -- "pointattrnum"  -> print    =<< onTime t (fromJust $ chromConverter params)
+                -- "targets"       -> print    =<< onTime t (fromJust $ chromConverter params)
+                -- "startingGST"   -> print    =<< onTime t (fromJust $ chromConverter params)
+                -- "rem"           -> print    =<< onTime t (fromJust $ chromConverter params)
+                -- "statenet"      -> putStrLn =<< onTime t (fromJust $ chromConverter params)
+                -- "state"         -> print    =<< onTime t (fromJust $ chromConverter params)
+                -- "chromosome"    -> print    =<< onTime t (fromJust $ chromConverter params)
+                -- "dot"           -> putStrLn =<< onTime t Anal.chromosomeToDot
+                -- "allstatenet"   -> interact $ analyzeChrom allStateNetwork . getLastChrom
+                -- _ -> error "No valid action given: Pipelines"
 
         -- "makenetworks"-> do
         --     c <- T.lines <$> TIO.getContents
@@ -73,7 +81,7 @@ main = do
         --     undefined
         "numrem" ->
             interact $
-                  show . zipWith (analyzeChrom . numRemaining) [10,100,1000,10000,100000,1000000]
+                  show . zipWith (analyzeChrom . numRemaining) (map (\n->Parameters{sampleSize=n})[10,100,1000,10000,100000,1000000])
                 . repeat . getLastChrom
         "rnet" -> do
             c <- getContents
@@ -128,7 +136,7 @@ main = do
         "attrs" -> do
             c <- C.readFile "lineage"
             let parsedls = cParseLineageFile c
-                f = analyzeChrom $ listAttr (read arg2)
+                f = analyzeChrom $ listAttr params
                 showAttrs :: Int -> [(Int,Int,[Int])] -> [C.ByteString]
                 showAttrs t' ((a,b,[x,y]):xs) = cUnWords (map cShow [t',a,b,x,y]) : showAttrs t' xs
                 showAttrs _ _ = []
@@ -146,28 +154,31 @@ main = do
             let parsedls = tParseLineageFile c
                 f = T.words . tMyShow . toGST
             --     genestates = T.unlines $ map (\(t',_,ch,_) -> tUnWords
-            --         (tShow t' : f ch)) parsedls
+            --         (showt t' : f ch)) parsedls
             -- TIO.writeFile "lineagedir/genestates" genestates
 
             let genestates = map (\(t',_,ch,_) -> tUnWords
-                    (tShow t' : f ch) `T.append` "\n") parsedls
+                    (showt t' : f ch) `T.append` "\n") parsedls
             forM_ genestates $ TIO.appendFile "lineagedir/genestates"
         "avghammdist" -> do
             c <- C.readFile "lineage"
             let parsedls = cParseLineageFile c
-                f = analyzeChrom (avgFitness 1 [0,1] (read arg2))
+                f = analyzeChrom (avgFitness 1 [0,1] params)
                 henk (x:y:_) = [cShow x, cShow y]
                 henk _ = error "dont do this plz"
                 avghammdists = C.unlines $ map (\(t',_,ch,_) -> cUnWords
                     (cShow t' : henk (f ch)) ) parsedls
             C.writeFile "lineagedir/avghammdists" avghammdists
         "splitlineage" -> do
-            let def s extraInfo = makeFile (lineageConverter s extraInfo) (cwd ++ "lineagedir/")
-            def "envs" []
-            def "hammdists" []
-            def "genlength" []
-            def "mutations" []
-            def "attrnums"  [1000] -- default sample of 1000 states
+            c <- TIO.getContents
+            let defaultparams = params {sampleSize = 1000, seed = 420}
+                def s = makeFile c (lineConverter s defaultparams) (cwd ++ "lineagedir/")
+
+            def "envs"
+            def "hammdists"
+            def "genlength"
+            def "mutations"
+            def "attrnums"
         -- "attractornumber" -> do
         --     c <- C.readFile "lineage"
         --     let parsedls = cParseLineageFile c
@@ -178,6 +189,8 @@ main = do
         --     C.writeFile (cwd' ++ "attractornumbers") attrnums
 
         _ -> putStrLn "y u no put good action"
+
+
 
 --
 -- -- | Takes a function applies it on sublist not containing first n elements
@@ -190,31 +203,58 @@ main = do
 type LineageLine = (Time,Env,Chromosome,[Mutation])
 type LineageFile = [LineageLine]
 type ConverterName = String
-type LineageConverter = (LineageLine -> T.Text, ConverterName)
+type LineConverter = (LineageLine -> T.Text, ConverterName)
 
-lineageConverter :: String -> [Int] -> LineageConverter
-lineageConverter name extraInfo =
+parseParameters :: [String] -> Parameters
+parseParameters = flip pp Parameters{}
+    where
+        pp :: [String] -> Parameters -> Parameters
+        pp [] p = p
+        pp ("samplesize":n:rest) p = pp rest $ p {sampleSize = read n}
+        pp ("updates":n:rest)    p = pp rest $ p {numberOfUpdates = read n}
+        pp ("seed":n:rest)       p = pp rest $ p {seed = read n}
+        pp (_:xs) p = pp xs p
+
+parseConverter :: String -> Parameters -> Maybe (Chromosome -> T.Text)
+parseConverter "genlength" _     = Just $ showt . length
+parseConverter "statenum"      _ = Just $ showt . analyzeChrom nrOfStates
+parseConverter "attrnum"       p = Just $ showt . analyzeChrom (attrNum p)
+parseConverter "listattr"      p = Just $ showt . analyzeChrom (listAttr p)
+parseConverter "listpointattr" p = Just $ showt . analyzeChrom (listPointAttr p)
+parseConverter "pointattrnum"  p = Just $ showt . analyzeChrom (pointAttrNum p)
+parseConverter "targets"       _ = Just $ showt . analyzeChrom targets
+parseConverter "startingGST"   _ = Just $ showt . analyzeChrom startGSTAttr
+parseConverter "rem"           p = Just $ showt . analyzeChrom (remaining p)
+parseConverter "statenet"      p = Just $ showt . analyzeChrom (stateNetwork p)
+parseConverter "state"         _ = Just $ showt . analyzeChrom stateOfChrom
+parseConverter "chromosome"    _ = Just   showt
+parseConverter "dot"           _ = Just $ showt . Anal.chromosomeToDot
+parseConverter "allstatenet"   _ = Just $ showt . analyzeChrom allStateNetwork
+parseConverter _               _ = Nothing
+
+
+lineConverter :: String -> Parameters -> LineConverter
+lineConverter name params =
     (
     case name of
-        "envs"      -> \(t,e,_,_) -> tUnWords [tShow t, tShow e]
-        "hammdists" -> \(t,e,c,_) -> tUnWords [tShow t, tShow $ hammDist e c]
-        "genlength" -> \(t,_,c,_) -> tUnWords [tShow t, tShow $ length c]
-        "mutations" -> \(t,_,_,m) -> tUnWords [tShow t, tShow   m]
-        "attrnums"  -> \(t,_,c,_) -> tUnWords [tShow t, tShow $ analyzeChrom (attrNum n1) c]
-        _           -> error "undefined converter: Pipelines.lineageConverter"
+        "envs"      -> \(t,e,_,_) -> tUnWords [showt t, showt e]
+        "hammdists" -> \(t,e,c,_) -> tUnWords [showt t, showt $ hammDist e c]
+        "genlength" -> \(t,_,c,_) -> tUnWords [showt t, showt $ length c]
+        "mutations" -> \(t,_,_,m) -> tUnWords [showt t, showt   m]
+        "attrnums"  -> \(t,_,c,_) -> tUnWords [showt t, showt $ analyzeChrom (attrNum params) c]
+        _           -> error "undefined converter: Pipelines.lineConverter"
     , name)
-        where n1 = fromMaybe (error "No Samplesize given: Pipelines.lineageConverter")
-                           $ Safe.headMay extraInfo
 
-makeFile :: LineageConverter
+makeFile :: T.Text -- | Contents
+         -> LineConverter
          -> FilePath -- | to write to
          -> IO ()
-makeFile (f, converterName) outputPath = do
-    c <- TIO.getContents
-    let output = T.unlines $ map f $ tParseLineageFile c
+makeFile c (f, converterName) outputPath = do
+    -- let output = T.unlines $ map f $ tParseLineageFile c
+    let output = T.unlines $ withStrategy (parBuffer 100 rseq) $ map f $ tParseLineageFile c
     TIO.writeFile (outputPath ++ converterName) output
 
-onTime :: Show a => String -> (Chromosome -> a) -> IO a
+onTime :: String -> (Chromosome -> a) -> IO a
 onTime s f = f <$> getTimeChrom s
 
 getTimeChrom :: String -> IO Chromosome

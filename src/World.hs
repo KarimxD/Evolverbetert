@@ -1,4 +1,5 @@
 {-# LANGUAGE BangPatterns #-}
+{-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-}
 module World
 -- (
     -- World, Env, Agents, Agent(..), Genome, Chromosome, GeneStateTable, Locus(..), Gene(..), Tfbs(..), ID, Thres, GeneState
@@ -27,7 +28,9 @@ devAg' = takeUntilSame . take P.devTime . iterate updateAgent
     where
         -- takeUntilSame [_,_] = Nothing; takeUntilSame [_] = Nothing; takeUntilSame [] = Nothing
         takeUntilSame [] = Nothing
-        takeUntilSame [a] = Just $ a { hasCyclicAttractor = True }
+        takeUntilSame [a] = case a of
+            Agent {} -> Just $ a { hasCyclicAttractor = True }
+            NoAgent -> error "updateAgent returned dead agent"
         takeUntilSame (a:b:rest) =
             if sameGST a b
                 then   Just $ a { hasCyclicAttractor = False }
@@ -53,6 +56,7 @@ defaultGst = Map.fromList defaultStates
 -- locusEffect _ _ = 0
 
 setToStart :: Agent -> Agent
+setToStart NoAgent = error "Cannot set NoAgent to start. World.hs:setToStart"
 setToStart ag = ag { genome = updateGenome P.startingGST $ genome ag
                    , geneStateTable = P.startingGST }
 
