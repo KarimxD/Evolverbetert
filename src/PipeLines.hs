@@ -9,16 +9,18 @@ module PipeLines
 import           Types
 import           Fitness
 -- import Misc
-import           Data.Maybe         (fromMaybe, mapMaybe, fromJust)
+import           Data.Maybe         (fromMaybe, mapMaybe)
 import           Parsing
 -- import World (groupGeneTfbs)
 import           Misc --(verticalHistogram)
 -- import qualified Data.Text as T
 import           Data.List
+import qualified Data.Map as Map
 import qualified Analysis as Anal
 import           Landscapes
 import Safe
 
+import System.Directory (getCurrentDirectory, makeRelativeToCurrentDirectory)
 import           System.Environment (getArgs)
 
 import qualified Data.ByteString.Char8 as C
@@ -30,8 +32,10 @@ import TextShow
 -- import Data.Traversable
 import Data.Foldable
 
-import System.Directory
 import Control.Parallel.Strategies
+
+import Data.Time.Clock
+import System.IO
 
 
 main :: IO ()
@@ -42,46 +46,39 @@ main = do
     --     arg2       :args'''  = args''
     --     arg3      :_        = args'''
         -- n = read n' :: SampleSize
-    let cwd :t1 = args
-        arg1:t2 = t1
-        arg2:t3 = t2
-        arg3:_ = t3
 
-        params' = parseParameters args
-        params  = params' { chromConverter = headMay $ mapMaybe (`parseConverter` params') args }
+    currentdir <- makeRelativeToCurrentDirectory =<< getCurrentDirectory
+    let arg1:t1 = args
+        arg2:t2 = t1
+        arg3:_ = t2
 
-    setCurrentDirectory cwd
+        params'' = parseParameters t1
+        params'  = params'' { chromConverter = headDef (error "no metric specified") $ mapMaybe (`parseConverter` params') args }
+        params   = params' { resetGeneStatesOnBirth = "reset1" `isPrefixOf` currentdir
+                           }
+
+    -- let lineageHandle = withFile "lineage" ReadMode
     case arg1 of
-        "ontime" -> let t = arg2
-            in print =<< onTime t (fromJust $ chromConverter params)
-               -- case arg3 of (fromJust $ chromConverter params)
-                -- "gst"           -> putStrLn =<< (myShow <$> onTime arg2 (analyzeChrom fullGST))
-                -- "statenum"      -> print    =<< onTime t (fromJust $ chromConverter params)
-                -- "attrnum"       -> print    =<< onTime t (fromJust $ chromConverter params)
-                -- "listattr"      -> print    =<< onTime t (fromJust $ chromConverter params)
-                -- "listpointattr" -> print    =<< onTime t (fromJust $ chromConverter params)
-                -- "pointattrnum"  -> print    =<< onTime t (fromJust $ chromConverter params)
-                -- "targets"       -> print    =<< onTime t (fromJust $ chromConverter params)
-                -- "startingGST"   -> print    =<< onTime t (fromJust $ chromConverter params)
-                -- "rem"           -> print    =<< onTime t (fromJust $ chromConverter params)
-                -- "statenet"      -> putStrLn =<< onTime t (fromJust $ chromConverter params)
-                -- "state"         -> print    =<< onTime t (fromJust $ chromConverter params)
-                -- "chromosome"    -> print    =<< onTime t (fromJust $ chromConverter params)
-                -- "dot"           -> putStrLn =<< onTime t Anal.chromosomeToDot
-                -- "allstatenet"   -> interact $ analyzeChrom allStateNetwork . getLastChrom
-                -- _ -> error "No valid action given: Pipelines"
+        "help" -> TIO.putStrLn "Check the source file... run inside data folder (with files output and lineage)"
+        "ontime" -> TIO.putStrLn =<< withFile "lineage" ReadMode (onTime arg2 (chromConverter params))
+        "convert" -> do
+            c <- TIO.getContents
+            let action = arg2
+            makeFile c (lineConverter action params) ("lineagedir/" ++ action)
+        "convert2" -> do
+            c <- TIO.getContents
+            let action = fromJustDef (error "parser not found") $ parseConverter2 arg2 params :: Chromosome -> Chromosome -> T.Text
+                timeandchromosomes = map (\(t,_,chrom,_) -> (t,chrom)) $ tParseLineageFile c :: [(Time,Chromosome)]
+                (times, chromosomes) = unzip timeandchromosomes
+                times' = map showt times
+                chromPairs = combineListToTuples chromosomes :: [(Chromosome, Chromosome)]
+                output' = withStrategy (parBuffer 100 rseq) $ map (uncurry action) chromPairs
+                output = T.unlines $ map tUnWords $ zipWith (\x y -> [x,y]) times' output'
 
-        -- "makenetworks"-> do
-        --     c <- T.lines <$> TIO.getContents
-        --     createDirectoryIfMissing False $ cwd ++ "networks"
-        --     let cwd' = cwd ++ "networks/"
-        --         ts = map tRead $ T.splitOn "-" $ T.pack t :: [Time]
-        --         i:j:_ = map (`findTime` c) ts :: [Int]
-        --         ls = slice i j c :: [T.Text]
-        --     undefined
+            TIO.writeFile ("lineagedir/" ++ arg2) output
         "numrem" ->
             interact $
-                  show . zipWith (analyzeChrom . numRemaining) (map (\n->Parameters{sampleSize=n})[10,100,1000,10000,100000,1000000])
+                  show . zipWith (analyzeChrom . numRemaining) (map (\n->params{sampleSize=n})[10,100,1000,10000,100000,1000000])
                 . repeat . getLastChrom
         "rnet" -> do
             c <- getContents
@@ -91,35 +88,11 @@ main = do
                 nodefile = arg3
             writeFile edgefile edges
             writeFile nodefile nodes
-        -- "dot" -> --do
-        --     -- c <- getContents
-        --     -- let chrom = getLastChrom c :: Chromosome
-        --     --
-        --     -- putStrLn $ Anal.chromosomeToDot chrom
-        --     putStrLn =<< onTime t Anal.chromosomeToDot
-        "net" ->
-            interact $ unlines . lastToAvgIndegree . lines
-        "twonet" -> do
-            c <- getContents
-            putStrLn . skiplines 2 lastTwoToAvgIndegree $ c
-            -- putStrLn . T.unpack . T.unlines . skip 2 lastTwoToAvgIndegree . T.lines $ T.pack c
-        "onlynet" -> do
-            c <- getContents
-            putStrLn $ networkproperties (timeGenome c)
         "lineage" -> do
-            -- let output:_ = args'
             c <- getContents
-            -- o <- readFile output
             let line = last $ lines c
                 ag = read $ last $ lewords ';' line
-                -- lineage = reverse $ agentToLineage ag
-                -- timeEnvs = outputToTimeEnv o
-
-            -- putStrLn $ show $ fitnessAgent 0 ag
-            -- print lineage
-            -- putStrLn $ unlines $ compress $ lines $ henk timeEnvs lineage
             putStrLn . agentToLineageFile $ ag
-        "lineagetohd" -> C.interact lineagelineToHd
         "dupdels" -> do --feed it the lineagefile
             c <- getContents
             let parsedls = parseLineageFile c
@@ -133,24 +106,8 @@ main = do
                 ids = map iD dupdels
                 printthis = verticalHistogram ids
             putStr printthis
-        "attrs" -> do
-            c <- C.readFile "lineage"
-            let parsedls = cParseLineageFile c
-                f = analyzeChrom $ listAttr params
-                showAttrs :: Int -> [(Int,Int,[Int])] -> [C.ByteString]
-                showAttrs t' ((a,b,[x,y]):xs) = cUnWords (map cShow [t',a,b,x,y]) : showAttrs t' xs
-                showAttrs _ _ = []
-                avghammdists = C.unlines $ concatMap (\(t',_,ch,_) -> showAttrs t' $ f ch) parsedls
-            C.writeFile "lineagedir/attrs" avghammdists
-        "states" -> do
-            c <- C.readFile "lineage"
-            let parsedls = cParseLineageFile c
-                f = analyzeChrom stateOfChrom
-                avghammdists = C.unlines $ map (\(t',_,ch,_) -> cUnWords
-                    [cShow t', cShow (f ch)]) parsedls
-            C.writeFile "lineagedir/states" avghammdists
         "genestates"  -> do
-            c <- TIO.readFile "lineage"
+            c <- TIO.getContents
             let parsedls = tParseLineageFile c
                 f = T.words . tMyShow . toGST
             --     genestates = T.unlines $ map (\(t',_,ch,_) -> tUnWords
@@ -169,26 +126,29 @@ main = do
                 avghammdists = C.unlines $ map (\(t',_,ch,_) -> cUnWords
                     (cShow t' : henk (f ch)) ) parsedls
             C.writeFile "lineagedir/avghammdists" avghammdists
-        "splitlineage" -> do
-            c <- TIO.getContents
-            let defaultparams = params {sampleSize = 1000, seed = 420}
-                def s = makeFile c (lineConverter s defaultparams) (cwd ++ "lineagedir/")
-
-            def "envs"
-            def "hammdists"
-            def "genlength"
-            def "mutations"
-            def "attrnums"
-        -- "attractornumber" -> do
-        --     c <- C.readFile "lineage"
-        --     let parsedls = cParseLineageFile c
-        --         attrnums = C.unlines $ map (\(t,_,ch,_) -> cUnWords
-        --             [cShow t, cShow (analyzeChrom (attrNum 10000) ch)])    parsedls
-        --     createDirectoryIfMissing False $ cwd ++ "lineagedir"
-        --     let cwd' = "lineagedir/"
-        --     C.writeFile (cwd' ++ "attractornumbers") attrnums
-
+        "splitlineage" ->
+            let defaultparams = params {sampleSize = 1000, seed = 420, numberOfUpdates = 20}
+                def s = withFile "lineage" ReadMode (\h ->
+                  do
+                    c <- TIO.hGetContents h
+                    time1 <- getCurrentTime
+                    putStr $ "Step: " ++ s ++ ". Time: "
+                    hFlush stdout
+                    makeFile c (lineConverter s defaultparams) ("lineagedir/" ++ s)
+                    time2 <- getCurrentTime
+                    print $ diffUTCTime time2 time1
+                  )
+            in  mapM_ def [ "env", "hammdist", "mutations"
+                          , "statenum"
+                          , "attrnum", "listattr", "listpointattr", "pointattrnum"
+                          , "targets", "startinggst"
+                          , "chromosome", "chromosome_p", "genlength"
+                          , "gst", "gst_p"
+                          , "copynumbers"
+                          , "developmenttime"
+                          ]
         _ -> putStrLn "y u no put good action"
+
 
 
 
@@ -203,7 +163,7 @@ main = do
 type LineageLine = (Time,Env,Chromosome,[Mutation])
 type LineageFile = [LineageLine]
 type ConverterName = String
-type LineConverter = (LineageLine -> T.Text, ConverterName)
+type LineConverter = LineageLine -> T.Text
 
 parseParameters :: [String] -> Parameters
 parseParameters = flip pp Parameters{}
@@ -213,54 +173,65 @@ parseParameters = flip pp Parameters{}
         pp ("samplesize":n:rest) p = pp rest $ p {sampleSize = read n}
         pp ("updates":n:rest)    p = pp rest $ p {numberOfUpdates = read n}
         pp ("seed":n:rest)       p = pp rest $ p {seed = read n}
+        pp ("reset":n:rest)      p = pp rest $ p {resetGeneStatesOnBirth = numToBool n}
         pp (_:xs) p = pp xs p
+        numToBool "0" = False; numToBool _ = True
 
 parseConverter :: String -> Parameters -> Maybe (Chromosome -> T.Text)
-parseConverter "genlength" _     = Just $ showt . length
 parseConverter "statenum"      _ = Just $ showt . analyzeChrom nrOfStates
 parseConverter "attrnum"       p = Just $ showt . analyzeChrom (attrNum p)
 parseConverter "listattr"      p = Just $ showt . analyzeChrom (listAttr p)
 parseConverter "listpointattr" p = Just $ showt . analyzeChrom (listPointAttr p)
 parseConverter "pointattrnum"  p = Just $ showt . analyzeChrom (pointAttrNum p)
 parseConverter "targets"       _ = Just $ showt . analyzeChrom targets
-parseConverter "startingGST"   _ = Just $ showt . analyzeChrom startGSTAttr
-parseConverter "rem"           p = Just $ showt . analyzeChrom (remaining p)
-parseConverter "statenet"      p = Just $ showt . analyzeChrom (stateNetwork p)
-parseConverter "state"         _ = Just $ showt . analyzeChrom stateOfChrom
+parseConverter "startinggst"   _ = Just $ showt . analyzeChrom startGSTAttr
+parseConverter "attractorbasin" p= Just $ showt . fromJustDef (-1) . analyzeChrom (theAttractorBasin p)
+parseConverter "developmenttime"p= Just $ showt . analyzeChrom (developmentTime p)
+-- parseConverter "rem"           p = Just $ showt . analyzeChrom (remaining p)
+parseConverter "avgindegree"   _ = Just $ showt . avgIndegreeChrom
+parseConverter "genlength"     _ = Just $ showt . length
 parseConverter "chromosome"    _ = Just   showt
-parseConverter "dot"           _ = Just $ showt . Anal.chromosomeToDot
-parseConverter "allstatenet"   _ = Just $ showt . analyzeChrom allStateNetwork
-parseConverter _               _ = Nothing
+parseConverter "chromosome_p"  _ = Just $ T.pack . myShow
+parseConverter "gst"           _ = Just $ showt . toGST
+parseConverter "gst_p"         _ = Just $ T.pack . myShow . toGST
+parseConverter "statenet"      p = Just $ T.pack . analyzeChrom (stateNetwork p)
+parseConverter "dot"           _ = Just $ T.pack . Anal.chromosomeToDot
+parseConverter "copynumbers"   _ = Just $ tUnWords . map tMyShow . Map.elems . analyzeChrom fullGST
+parseConverter "allstatenet"   _ = Just $ T.pack . analyzeChrom allStateNetwork -- | Don't use on big chromosomes (have >1000000 states)
+parseConverter _               _ = Nothing --error $ "undefined converter: Pipelines.parseConverter. was given : " ++ n
 
+parseConverter2 :: String -> Parameters -> Maybe (Chromosome -> Chromosome -> T.Text)
+parseConverter2 "divergence"   _ = Just $ (showt .) . divergencePointOfTrajectory
+parseConverter2 "divergencehd" _ = Just $ (showt .) . divergencePointOfTrajectoryOnOff
+parseConverter2 "distancebetween" _ = Just$ (showt .) . distanceAfterMutation
+parseConverter2 _            _   = Nothing
 
 lineConverter :: String -> Parameters -> LineConverter
 lineConverter name params =
-    (
     case name of
-        "envs"      -> \(t,e,_,_) -> tUnWords [showt t, showt e]
-        "hammdists" -> \(t,e,c,_) -> tUnWords [showt t, showt $ hammDist e c]
-        "genlength" -> \(t,_,c,_) -> tUnWords [showt t, showt $ length c]
+        "env"      -> \(t,e,_,_) -> tUnWords [showt t, showt   e]
+        "hammdist"  -> \(t,e,c,_) -> tUnWords [showt t, showt $ hammDist e c]
         "mutations" -> \(t,_,_,m) -> tUnWords [showt t, showt   m]
-        "attrnums"  -> \(t,_,c,_) -> tUnWords [showt t, showt $ analyzeChrom (attrNum params) c]
-        _           -> error "undefined converter: Pipelines.lineConverter"
-    , name)
+        _           -> \(t,_,c,_) -> tUnWords [showt t, func    c]
+    where func = fromJustDef (error ("\nParser with name {"++name++"} not found: Pipelines.lineConverter"))
+                            $ parseConverter name params
 
 makeFile :: T.Text -- | Contents
          -> LineConverter
          -> FilePath -- | to write to
          -> IO ()
-makeFile c (f, converterName) outputPath = do
+makeFile c f outputFile = do
     -- let output = T.unlines $ map f $ tParseLineageFile c
     let output = T.unlines $ withStrategy (parBuffer 100 rseq) $ map f $ tParseLineageFile c
-    TIO.writeFile (outputPath ++ converterName) output
+    TIO.writeFile outputFile output
 
-onTime :: String -> (Chromosome -> a) -> IO a
-onTime s f = f <$> getTimeChrom s
+onTime :: String -> (Chromosome -> a) -> Handle -> IO a
+onTime s f h = f <$> getTimeChrom s h
 
-getTimeChrom :: String -> IO Chromosome
-getTimeChrom "last" = getLastChrom <$> getContents
-getTimeChrom t      = do
-    wds <- map (C.split ';') . C.lines <$> C.getContents
+getTimeChrom :: String -> Handle -> IO Chromosome
+getTimeChrom "last" h = getLastChrom <$> hGetContents h
+getTimeChrom t      h = do
+    wds <- map (C.split ';') . C.lines <$> C.hGetContents h
     let l' = find ((>= (read t :: Time))
                 . cRead . head) wds
         l = fromMaybe (error "time not found") l'
@@ -285,13 +256,6 @@ extractChromFromLine' :: T.Text -> Maybe Chromosome
 extractChromFromLine' t = case map tRead $ T.splitOn ";" t of
     x:_ -> Just x
     _   -> Nothing
-
-lineagelineToHd :: C.ByteString -> C.ByteString
-lineagelineToHd = C.unlines . map
-    (cUnWords .
-       (\(t : e : c : _) -> [t, C.pack $ show $
-             hammDist (read $ C.unpack e) (myRead $ C.unpack c :: Chromosome)])
-    . cWords) . C.lines
 
 cParseLineageFile :: C.ByteString -> LineageFile
 cParseLineageFile content = parsedls
@@ -351,27 +315,10 @@ leunwords                 :: Char -> [String] -> String
 leunwords _ [] =  ""
 leunwords c ws =  foldr1 (\w s -> w ++ c:s) ws
 
-lastTwoToAvgIndegree :: SplittedLine -> SplittedLine
-lastTwoToAvgIndegree = reverse .
-    (\(x:y:r) -> (show . avgIndegree $ read $ f x) : (show . avgIndegree $ read $ f y) : r)
-    . reverse
-        where f a = "[" ++ a ++ "]" :: String
---
--- lastTwoToAvgIndegree =
---
--- type Lines = [T.Text]
--- type Splitted = [[T.Text]]
---
-
 lastToAvgIndegree :: [String] -> [String]
 lastToAvgIndegree = map (
     unwords .
     (\ws -> init ws ++ [show . avgIndegree . myRead . last $ ws] ) . words)
-
-
--- | Displays time and avg_indegree
-networkproperties :: [(Time,Genome)] -> String
-networkproperties = unlines . map (\(i,g) -> unwords [show i, show (avgIndegree g)])
 
 avgIndegree :: Genome -> Double
 avgIndegree = avgIndegreeChrom . concat

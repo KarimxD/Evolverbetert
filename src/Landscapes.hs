@@ -2,8 +2,8 @@
 {-# LANGUAGE TemplateHaskell #-}
 -- {-# LANGUAGE BangPatterns #-}
 
-module Landscapes
-    where
+module Landscapes where
+
 
 import Types
 -- import qualified Parameters as P
@@ -22,6 +22,10 @@ import Data.Maybe
 import Data.Ord
 import TextShow.TH
 import qualified Data.Text as T
+import Safe
+
+{-# ANN module ("HLint: ignore Use &&&" :: String) #-}
+
 
 -- import qualified Data.Set as S
 type SampleSize = Int
@@ -29,7 +33,8 @@ type AnalyzeChrom a = Reader Chromosome a
 data Parameters = Parameters { sampleSize :: SampleSize
                              , numberOfUpdates :: Int
                              , seed :: Seed
-                             , chromConverter :: Maybe (Chromosome -> T.Text)
+                             , chromConverter :: Chromosome -> T.Text
+                             , resetGeneStatesOnBirth :: Bool
                              }
 type Attractor = (Int   -- | Attractor
                 , Int   -- | Basin of attraction
@@ -151,6 +156,15 @@ listPointAttr ss = do
 
 -- listCyclicAttr :: Parameters -> AnalyzeChrom [Attractor]
 -- listCyclicAttr =
+
+theAttractor :: Parameters -> AnalyzeChrom (Maybe Attractor)
+theAttractor params = do
+    list <- listAttr params
+    attr <- stateOfChrom
+    return $ find (\(x,_,_) -> x == attr) list
+
+theAttractorBasin :: Parameters -> AnalyzeChrom (Maybe Int)
+theAttractorBasin params = fmap (\(_,x,_) -> x) <$> theAttractor params
 
 -- | A count of the number of point attractors with a certain samplesize
 pointAttrNum :: Parameters -> AnalyzeChrom Int
@@ -378,7 +392,7 @@ rmDupEdges p = rmdupsWith compare f (==)
 -- | Check the average fitness in the different environments after a number of updates
 avgFitness :: Int -- | Number of updates
            -> [Env] -- | Which envirnments to check
-           -> Parameters -- | How many things to check, needs sampleSize
+           -> Parameters -- | How many things to check, needs sampleSize and seed
            -> AnalyzeChrom [Double] -- | The average hamming distances
 avgFitness n es params = do
     rs <- randomGSTs params
@@ -390,9 +404,44 @@ avgFitness n es params = do
     return $ map average fitnesses
 
 
+developmentTime :: Parameters -> AnalyzeChrom Int
+developmentTime params = do
+    c <- ask
+    let proto_a = emptyAgent {geneStateTable = toGST c, genome = [c]}
+        a = if Landscapes.resetGeneStatesOnBirth params
+            then setToStart proto_a
+            else proto_a
+    case trajectory a of
+        Nothing -> return (-1)
+        Just x  -> return $ length x
+
+trajectory :: Agent -> Maybe [Agent]
+trajectory = takeUntilSame . take 100 . iterate updateAgent
+    where
+        takeUntilSame :: [Agent] -> Maybe [Agent]
+        takeUntilSame (a:b:rest)
+            | sameGST a b = Just [a]
+            | otherwise   = (a:) <$> takeUntilSame (b:rest)
+        takeUntilSame _ = Nothing
 
 
+divergencePointOfTrajectory :: Chromosome -> Chromosome -> Int
+divergencePointOfTrajectory      c1 c2 = length $ takeWhile id $ zipWith (==)        g1 g2
+    where g1 = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c1)
+          g2 = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c2)
+divergencePointOfTrajectoryOnOff :: Chromosome -> Chromosome -> Int
+divergencePointOfTrajectoryOnOff c1 c2 = length $ takeWhile id $ zipWith equalsOnOFF g1 g2
+    where g1 = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c1)
+          g2 = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c2)
+          equalsOnOFF gst1 gst2 = 0 == hammingDistance (f gst1) (f gst2)
+            where f gst = map toOnOff $ M.elems gst
 
+distanceAfterMutation :: Chromosome -> Chromosome -> Int
+distanceAfterMutation before after = length $ fromJustDef [] $ trajectory beforeAgent
+    where beforeAgent = (agentFromChromosome after) {geneStateTable = toGST before}
+
+agentFromChromosome :: Chromosome -> Agent
+agentFromChromosome c = emptyAgent {geneStateTable = toGST c, genome = [c]}
 
 
 -- | Prepend all lists with all combinations of elements from the first list

@@ -14,6 +14,8 @@ import           Control.Monad.Writer
 import           Data.List
 import           World
 
+import Control.DeepSeq
+
 
 
 dupChr :: Chromosome -> Mut Chromosome
@@ -207,7 +209,7 @@ mutAg NoAgent = return NoAgent
 mutAg !ag = do
     (genome', mutations) <- runWriterT $ mapM dupChr (genome ag)
     let gst' = toGST genome'
-    return $ ag { genome = genome',
+    return $ force $ ag { genome = genome',
                   geneStateTable = gst',
                   diff = mutations }
 

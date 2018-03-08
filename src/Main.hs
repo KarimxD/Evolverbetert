@@ -46,6 +46,9 @@ import           Data.List             (find, genericLength, intercalate,
                                         maximumBy, minimumBy)
 -- import           Data.List.Split       (splitOn)
 
+-- import Control.Parallel.Strategies
+-- import Control.DeepSeq
+
 type CWD = String
 data Handles = Handles {
       hOutput  :: Maybe Handle
@@ -92,23 +95,23 @@ initialize opts = do
         createDirectory outputDir
         putStrLn $ "outputDir=" ++ show outputDir
         callCommand $ "cp -r ~/Evolverbetert/src/ " ++ outputDir ++ "src/"
-        putStrLn "copied source directories"
+        putStrLn "copied source directories\n"
 
     let handles = stdHandles
 
     handles' <- if isJust $ optOutput opts
-                then do file <- openFile (outputDir++"output") ReadWriteMode
+                then do file <- openFile (outputDir++"output") WriteMode
                         return handles {hOutput = Just file}
                 else return handles {hOutput = Nothing}
 
     handles'' <- if optVOutput opts
-                 then do file <- openFile (outputDir++"voutput") ReadWriteMode
+                 then do file <- openFile (outputDir++"voutput") WriteMode
                          return handles' {hVOutput = Just file}
                  else return handles' {hVOutput = Nothing}
 
-    handles''' <- if optConsole opts
-                  then return handles'' {hConsole = Just stdout}
-                  else return handles'' {hConsole = Nothing}
+    let handles''' = if optConsole opts
+                      then handles'' {hConsole = Just stdout}
+                      else handles'' {hConsole = Nothing}
 
     -- handles''''<- if optLineage opts
     --               then do file <- openFile (outputDir++"lineage") ReadWriteMode
@@ -121,6 +124,7 @@ initialize opts = do
                         $  "world-seed="   ++ show (optWorldSeed opts)
                         ++ "; agent-seed=" ++ show (optAgentSeed opts)
                         ++ "; env-seed=" ++ show (optEnvSeed opts)
+                        ++ "; reset=" ++ show P.resetGeneStatesOnBirth
                         ++ "; initialAgent = " ++ myShow initialAgent
                      B.hPutStrLn h $ fromString $ outputString initialWorld 0 True
         _      -> return ()
@@ -288,7 +292,7 @@ reproduceAgent t (World ags e) ix = do
             then return NoAgent
             else --return $ devAg $ iMutU {parent = (iChooseYou, t)}
                 if   null $ diff iMutU
-                then return         iMutU {diff = diff iChooseYou}
+                then return         iMutU { diff = diff iChooseYou}
                 else return $ devAg iMutU { parent = iChooseYou, bornTime = t, bornEnv = e }        else return $ ags!ix
     else return NoAgent -- if you die
 
@@ -359,6 +363,7 @@ helpError :: [String] -> IO a
 helpError errs = ioError (userError (concat errs ++ usageInfo header options))
     where header = "Usage: ic [OPTION...] files..."
 
+-- | Make all agents in the world orphans (not having a reference to parent)
 orphanizeWorld :: World -> World
 orphanizeWorld w =
     w { agents = amap orphanize $ agents w }

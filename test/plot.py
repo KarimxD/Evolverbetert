@@ -21,7 +21,7 @@ def main(argv):
         print("found dir!")
     else:
         print("not found dir!")
-        subprocess.call(['/bin/bash', '-i', '-c' ,'pipeline splitlineage'])
+        subprocess.call(['/bin/bash', '-i', '-c' ,'pipeline splitlineage +RTS -N12'])
 
     #     ifile, lfile = "output", "trail"
     # if not argv:
@@ -88,8 +88,8 @@ def myplot():
         ax1.set_ybound(-.5,1.5)
         ax1.set_yticks([0,1])
 
-    if os.path.isfile("hammdists"):
-        t, hD = np.loadtxt("hammdists", delimiter=';').T
+    if os.path.isfile("hammdist"):
+        t, hD = np.loadtxt("hammdist", delimiter=';').T
         ax0.plot(t, hD,c='blue', drawstyle='steps')
 
     if os.path.isfile("avghammdists"):

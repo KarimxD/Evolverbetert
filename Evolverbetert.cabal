@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: beb76a5f0132dbccd4d523f168a712be0d225a61eb195e2ea167e11ac124ccd0
+-- hash: cb86b3a9f5af9efc814a5d7b2fa617c29b1cbaffba30b7d2566b0da6b8b42a36
 
 name:           Evolverbetert
 version:        0.1.0.0
@@ -31,6 +31,7 @@ executable Evolverbetert
     , bytestring
     , containers
     , data-memocombinators
+    , deepseq
     , directory
     , mersenne-random-pure64
     , monad-parallel
@@ -55,7 +56,7 @@ executable Pipe
   hs-source-dirs:
       src
   default-extensions: LambdaCase BangPatterns OverloadedStrings MultiWayIf TypeOperators FlexibleInstances GeneralizedNewtypeDeriving
-  ghc-options: -Wall -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math -Wcompat -main-is PipeLines
+  ghc-options: -Wall -rtsopts -O2 -fexcess-precision -optc-O3 -optc-ffast-math -Wcompat -main-is PipeLines -threaded -with-rtsopts=-N12
   build-depends:
       GLUT
     , MonadRandom
@@ -65,6 +66,7 @@ executable Pipe
     , bytestring
     , containers
     , data-memocombinators
+    , deepseq
     , directory
     , mersenne-random-pure64
     , monad-parallel

@@ -126,9 +126,9 @@ agentToLineageFile = unlines . map (\(t,e,c,ms) -> List.intercalate ";" [show t,
 -- agentToLineage _ = []
 
 agentToLineage :: Agent -> [(Time, Env, Chromosome, [Mutation])]
-agentToLineage = map relevents . agentToLineageList
-    where   relevents NoAgent = (0,0,[],[])
-            relevents a = (bornTime a, bornEnv a, head (genome a), diff a)
+agentToLineage = map relevants . agentToLineageList
+    where   relevants NoAgent = (0,0,[],[])
+            relevants a = (bornTime a, bornEnv a, head (genome a), diff a)
 
 agentToLineageList :: Agent -> [Agent]
 agentToLineageList NoAgent = []

@@ -21,6 +21,7 @@ module Misc
     , repeatApply
     , slice
     , average
+    , combineListToTuples
     )
 
     where
@@ -29,6 +30,7 @@ import           Control.Monad
 import           Parameters    as P
 import qualified Data.Set as Set
 import           Data.List (transpose, genericLength)
+
 
 
 
@@ -136,3 +138,8 @@ slice i j = take (j-i) . drop i
 
 average :: (Real a, Fractional b) => [a] -> b
 average xs = realToFrac (sum xs) / genericLength xs
+
+combineListToTuples :: [a] -> [(a,a)]
+combineListToTuples []       = []
+combineListToTuples [_]      = []
+combineListToTuples (x:y:xs) = (x,y) : combineListToTuples (y:xs)

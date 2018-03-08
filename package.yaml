@@ -18,8 +18,11 @@ executables:
     Pipe:
         main: PipeLines.hs
         other-modules: Analysis, Parameters, World, Misc, Mutations, MyRandom, Types, Parsing, Landscapes, Fitness
-        ghc-options:         -main-is PipeLines
-        
+        ghc-options:
+            -main-is PipeLines
+            -threaded
+            -with-rtsopts=-N12
+
     Evolverbetert:
         main:             Main.hs
         other-modules:       Parameters, World, Misc, Mutations, MyRandom, MyGraphics, Types, Parsing, Fitness
@@ -32,6 +35,7 @@ ghc-options:
     -optc-O3
     -optc-ffast-math
     -Wcompat
+
 #    -Wincomplete-uni-patterns
 #    -Wredundant-constraints
 
@@ -69,3 +73,4 @@ dependencies:
     - mersenne-random-pure64
     - text-show
     - parallel
+    - deepseq
