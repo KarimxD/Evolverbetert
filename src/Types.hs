@@ -39,10 +39,11 @@ data Agent = Agent { genome         :: !Genome
                    , parent         :: !Agent
                    , diff           :: ![Mutation]
                    , hasCyclicAttractor :: !Bool
+                   , agentFitness   :: Map.Map Env Double
                    }
            | NoAgent deriving (Show, Read, Ord, Generic)
 emptyAgent :: Agent
-emptyAgent = Agent [] Map.empty (-1) (-1) NoAgent [] False
+emptyAgent = Agent [] Map.empty (-1) (-1) NoAgent [] False Map.empty
 instance Eq Agent where
     NoAgent == NoAgent = True
     NoAgent == _ = False

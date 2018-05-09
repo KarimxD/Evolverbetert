@@ -16,6 +16,7 @@ import Fitness
 import qualified Data.Map.Strict as M
 -- import Data.Graph.Inductive
 import Control.Monad.Reader
+import Control.Applicative (liftA2)
 import Data.List
 import Data.Function (on)
 import Data.Maybe
@@ -23,6 +24,8 @@ import Data.Ord
 import TextShow.TH
 import qualified Data.Text as T
 import Safe
+
+import qualified Data.IntMap.Strict as IntMap
 
 {-# ANN module ("HLint: ignore Use &&&" :: String) #-}
 
@@ -39,15 +42,32 @@ data Parameters = Parameters { sampleSize :: SampleSize
 type Attractor = (Int   -- | Attractor
                 , Int   -- | Basin of attraction
                 , [Int] -- | List of HammDists to targets
-                )--
---
--- data Attractor' =
---       CyclicAttractor { states :: [GST]
---                       , basin  :: Int
---                       }
---     | PointAttractor { states :: [GST]
---                      , basin :: Int
---                      }
+                )
+
+data Attractor' =
+      CyclicAttractor { states :: [Int]
+                      , basin  :: Int
+                      , theOne :: Bool
+                      }
+    | PointAttractor { states :: [Int]
+                     , basin :: Int
+                     , theOne :: Bool
+                     }
+instance Show Attractor' where
+    show a = show (length $ states a) ++ ";" ++ show (basin a) ++ ";" ++ show (theOne a)
+
+combineAttractor' :: Attractor' -> Attractor' -> Attractor'
+combineAttractor' a1 a2 = CyclicAttractor { states = states a1 ++ states a2
+                                          , basin =  basin  a1 +  basin a2
+                                          , theOne = theOne a1 || theOne a2
+                                          }
+fromAttractor :: Attractor -> Attractor'
+fromAttractor (a,b,_) = PointAttractor [a] b False
+
+isPointAttr' :: Attractor' -> Bool
+isPointAttr' = \case
+    PointAttractor {} -> True
+    _ -> False
 
 isPointAttr :: AnalyzeChrom (Attractor -> Bool)
 isPointAttr = do
@@ -68,6 +88,44 @@ instance InferGST Node where
 instance HammDist Node
 instance HasFitness Node
 
+
+
+listOfAttractors :: Parameters -> AnalyzeChrom [Attractor']
+listOfAttractors params = do
+    as <- map fromAttractor <$> listAttr params
+
+    newAs <- go as
+    state <- stateOfChrom
+    return $ map (\a -> a {theOne = state `elem` states a}) -- finds out if it is the attractor that is used
+                  newAs
+    where
+        go :: [Attractor'] -> AnalyzeChrom [Attractor']
+        go [] = return []
+        go (x:xs) = do
+            let current_state = last $ states x
+            updated_x_state <- nsf' <*> pure current_state
+
+            let addToList :: Attractor' -> [Attractor'] -> [Attractor']
+                addToList _ [] = []
+                addToList a (y:ys) = if updated_x_state `elem` states y
+                    then combineAttractor' a y : ys
+                    else y : addToList a ys
+
+            if updated_x_state `elem` states x then (x:) <$> go xs
+                else go (addToList x xs)
+
+
+        -- go ()
+        -- go :: [(Int, Int)] -> AnalyzeChrom [(Int, Int)]
+        -- go [] = return []
+        -- go ((a,b):as) = do
+        --     updated_a <- nsf' <*> pure a
+        --     if updated_a `elem` map fst as
+        --         then go $ addToList (updated_a, b) as
+        --         else ((a,b):) <$> go as
+        --     where addToList :: (Int, Int) -> [(Int, Int)] -> [(Int, Int)]
+        --           addToList x = map (combine x)
+        --           combine (a1,b1) (a2,b2) = if a1 == a2 then (a2,b1+b2) else (a2,b2)
 
 
 startingNode :: Node
@@ -117,8 +175,16 @@ numRemaining params = do
 remaining :: Parameters -> AnalyzeChrom [Node]
 remaining params@Parameters {numberOfUpdates = n} = do
     f <- nsfWithCount
-    (!!n) . iterate (rmdupsWithCount . map f) . toNodes
+    (!!n) . iterate (rmdupsWithCount . map f . rmdupsWithCount . map2 f) . toNodes
         <$> randomGSTs params
+    where map2 :: (a -> a) -> [a] -> [a]
+          map2 _ [] = []
+          map2 f (x:xs) = x:f x: map2 f xs
+          -- remaining :: Parameters -> AnalyzeChrom [Node]
+          -- remaining params@Parameters {numberOfUpdates = n} = do
+          --     f <- nsfWithCount
+          --     (!!n) . iterate (rmdupsWithCount . map f) . toNodes
+          --         <$> randomGSTs params
 
 nsfWithCount :: AnalyzeChrom (Node -> Node)
 nsfWithCount = do
@@ -157,6 +223,12 @@ listPointAttr ss = do
 -- listCyclicAttr :: Parameters -> AnalyzeChrom [Attractor]
 -- listCyclicAttr =
 
+inPointAttractor :: AnalyzeChrom Int
+inPointAttractor = do
+    s <- stateOfChrom
+    f <- nsf'
+    return $ if f s == s then 1 else 0
+
 theAttractor :: Parameters -> AnalyzeChrom (Maybe Attractor)
 theAttractor params = do
     list <- listAttr params
@@ -182,7 +254,13 @@ randomGSTs params = do
     return $ map convert randoms
 
 randomNodes :: Parameters -> AnalyzeChrom [Node]
-randomNodes params = toNodes <$> randomGSTs params
+randomNodes params =
+    (if Landscapes.resetGeneStatesOnBirth params
+     then ((startingNode:) <$>)
+     else id)
+            toNodes <$> randomGSTs params
+
+
 
 allNodes :: AnalyzeChrom [Node]
 allNodes = toNodes <$> allGST
@@ -191,7 +269,7 @@ allNodes = toNodes <$> allGST
 randomGSTs' :: Parameters -> AnalyzeChrom [Int]
 randomGSTs' Parameters {sampleSize = ss, seed = s} = do
     totalStates <- nrOfStates
-    return $ withSeed s $ randomsInRange (0,totalStates - 1) ss
+    return $ rmdups $ withSeed s $ randomsInRange (0,totalStates - 1) ss
 
 -- | A count of all genes in the genome in ascending order of geneID
 geneCounts :: AnalyzeChrom [Int]
@@ -280,8 +358,11 @@ updateTillSmaller input n = do
 stateNetwork :: Parameters -> AnalyzeChrom String
 stateNetwork params = do
     f <- nsfWithCount
-    nodes <- take 500 . nub --rmdupsWith max' (==)
-            . reverse . concat . take 100 . iterate (rmdupsWithCount . map f)
+    nodes <- take 100 . nub
+            . sortBy (flip compare `on` nodeBasin)-- . reverse
+            . concat
+            . take 100 . --max 100 updates
+            iterate (rmdupsWithCount . map f)
              <$> randomNodes params
     let edges = valueResultPairs f nodes
     printEdges edges
@@ -430,10 +511,9 @@ divergencePointOfTrajectory      c1 c2 = length $ takeWhile id $ zipWith (==)   
     where g1 = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c1)
           g2 = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c2)
 divergencePointOfTrajectoryOnOff :: Chromosome -> Chromosome -> Int
-divergencePointOfTrajectoryOnOff c1 c2 = length $ takeWhile id $ zipWith equalsOnOFF g1 g2
+divergencePointOfTrajectoryOnOff c1 c2 = length $ takeWhile id $ zipWith sameExpression g1 g2
     where g1 = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c1)
           g2 = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c2)
-          equalsOnOFF gst1 gst2 = 0 == hammingDistance (f gst1) (f gst2)
             where f gst = map toOnOff $ M.elems gst
 
 distanceAfterMutation :: Chromosome -> Chromosome -> Int
@@ -495,4 +575,127 @@ agent42 :: Agent
 agent42 = read $ "Agent {genome = [[CTfbs (Tfbs {tfbsID = ID 19, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 3, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 15, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 2, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 0, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 16, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 5, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 8, thres = Thres 0, genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 19, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 18, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 0, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 9, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 7, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 7, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 17, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 16, thres = Thres 2, genSt = GS 0}),"
     ++ "CTfbs (Tfbs {tfbsID = ID 14, wt = Weight 1, tfbsSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 15, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 8, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 5, thres = Thres (-1), genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 12, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 10, thres = Thres 2, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 16, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 6, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 13, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 4, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 10, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 5, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 14, thres = Thres 0, genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 2, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 11, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 6, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 18, thres = Thres (-1), genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 8, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 9, thres = Thres (-1), genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 18, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 17, thres = Thres 2, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 0, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 19, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 2, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 3, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 4, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 14, wt = Weight 1, tfbsSt = GS 1}),CGene (Gene {geneID = ID 11, thres = Thres 0, genSt = GS 1}),CTfbs (Tfbs {tfbsID = ID 13, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 7, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 9, wt = Weight (-1), tfbsSt = GS 1}),CGene (Gene {geneID = ID 12, thres = Thres 0, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 13, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 15, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 10, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 11, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 1, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 12, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 1, wt = Weight (-1), tfbsSt = GS 0}),CGene (Gene {geneID = ID 4, thres = Thres 1, genSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 17, wt = Weight 1, tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 3, wt = Weight (-1), tfbsSt = GS 0}),CTfbs (Tfbs {tfbsID = ID 1, wt = Weight 1, tfbsSt = GS 0}),CGene (Gene {geneID = ID 6, thres = Thres 0, genSt = GS 0})]], geneStateTable = fromList [(ID 0,GS 0),(ID 1,GS 0),(ID 2,GS 0),(ID 3,GS 0),(ID 4,GS 0),(ID 5,GS 1),(ID 6,GS 0),(ID 7,GS 0),(ID 8,GS 1),(ID 9,GS 1),(ID 10,GS 0),(ID 11,GS 1),(ID 12,GS 0),(ID 13,GS 0),(ID 14,GS 1),(ID 15,GS 0),(ID 16,GS 0),(ID 17,GS 0),(ID 18,GS 1),(ID 19,GS 0)], bornTime = 0, bornEnv = 0, parent = NoAgent, diff = []}"
 
+
+type State = Int
+type Basin = Int
+type Counter = Int
+type Timer =  Int
+type M = IntMap.IntMap Basin
+-- basins :: Parameters -> AnalyzeChrom M -- map of states to basins
+-- basins params = do
+--     f <- nsf'
+--     randomStates <- liftA2 map gstToNum $ randomGSTs params
+--
+--     -- counter tells how many states have been passed new
+--     let go :: Timer -> Counter -> [State] -> M -> M
+--         go _ _ [] m     = m
+--         go t c (x:xs) m
+--             | t > 0 =
+--               let next = f x in
+--                 if next `IntMap.member` m
+--                     then go (t-1) c     (next : xs) (IntMap.insertWith (+) next c     m)
+--                     else go (t-1) (c+1) (next : xs) (IntMap.insertWith (+) next (c+1) m)
+--             | head xs `IntMap.member` m
+--                 = go 20 1 (tail xs) m
+--             | otherwise =
+--                 go 20 1 xs m
+--
+--     return $ go 20 1 randomStates $
+
+basins :: Parameters -> AnalyzeChrom M -- map of states to basins
+basins params = do
+    f <- nsf'
+    randomStates <- randomGSTs' params
+
+    -- counter tells how many states have been passed new
+    let
+        result = makeMap f 20 1 randomStates IntMap.empty
+        inits = IntMap.fromList $ zip randomStates $ repeat 1
+
+    return $ IntMap.union result inits
+
+makeMap :: (State -> State) -> Timer -> Counter -> [State] -> M -> M
+makeMap _ _ _ [] m     = m
+makeMap f t c (x:xs) m
+    | t > 0 =
+      let next = f x in
+        if next `IntMap.member` m
+            then makeMap f (t-1) c     (next : xs) (IntMap.insertWith (+) next c     m)
+            else makeMap f (t-1) (c+1) (next : xs) (IntMap.insertWith (+) next (c+1) m)
+    | headDef (-1) xs `IntMap.member` m
+        = makeMap f 20 1 (tail xs) m
+    | otherwise =
+        makeMap f 20 1 xs m
+
+stateNetwork2 :: Parameters -> AnalyzeChrom String
+stateNetwork2 params = do
+    f <- nsf'
+    nodes <- basins params
+    let es = valueResultPairs f (IntMap.keys nodes) :: [(State,State)]
+        bs = IntMap.elems nodes                     :: [Basin]
+    printEdges2 $ zipWith (\(s,t) b -> (s,t,b)) es bs
+
+printEdges2 :: [(State,State,Basin)] -> AnalyzeChrom String
+printEdges2 edges = do
+    let f (s, t, b) =  show s
+            ++ "\t" ++ show t
+            ++ "\t" ++ show b
+        edgelines = map f edges
+    return $ "SOURCE\tTARGET\tBASIN\n" ++
+           unlines edgelines
+
+convergence :: Parameters -> AnalyzeChrom Double
+convergence params = do
+    bs <- basins params
+    attrs <- remaining $ params {numberOfUpdates = 100}
+    f <- gstToNum
+    let attrs' = IntMap.fromList $ map (\n -> (f $ nodeGST n, 1 :: Int)) attrs
+
+    return $ average $ IntMap.elems $ IntMap.difference bs attrs'
+
+actualConvergence :: Parameters -> AnalyzeChrom Double
+actualConvergence params = do
+    f <- nsf'
+    g <- gstToNum
+    nodes <- basins params
+    attrs <- remaining $ params {numberOfUpdates = 100}
+    let attrs' = IntMap.fromList $ map (\n -> (g $ nodeGST n, 1 :: Int)) attrs
+        nodes' = IntMap.difference nodes attrs'
+        edges = IntMap.mapWithKey
+            (\n k -> (f n, k)) nodes' :: IntMap.IntMap (State, Basin)
+        path :: (State, Basin) -> [Basin]
+        path (s, b) = case IntMap.lookup s edges of
+            Just t  -> b : path t
+            Nothing -> [b]
+    return $ (average :: [Double] -> Double)
+        $ map (average . path) $ IntMap.elems edges
+
+-- actualConvergence2 :: Parameters -> AnalyzeChrom [Double]
+-- actualConvergence2 params = do
+--     f <- nsf'
+--     g <- gstToNum
+--     nodes <- basins params
+--     attrs <- remaining $ params {numberOfUpdates = 100}
+--     let attrs' = IntMap.fromList $ map (\n -> (g $ nodeGST n, 1 :: Int)) attrs
+--         nodes' = IntMap.difference nodes attrs'
+--         edges = IntMap.mapWithKey
+--             (\n k -> (f n, k)) nodes' :: IntMap.IntMap (State, Basin)
+--         path :: (State, Basin) -> [Basin]
+--         path (s, b) = case IntMap.lookup s edges of
+--             Just t  -> b : path t
+--             Nothing -> [b]
+--     return $ map (average . path) $ IntMap.elems edges
+
+-- path :: AnalyzeChrom [GST]
+
+
+
+sameExpression :: GST -> GST -> Bool
+sameExpression gst1 gst2 = go (M.elems gst1) (M.elems gst2)
+    where go (x:xs) (y:ys) = x `eq` y && go xs ys
+          go _ _ = True
+          eq 0 0 = True; eq 0 _ = False; eq _ 0 = False; eq _ _ = True
+
+
 $(deriveTextShow ''Node)
+$(deriveTextShow ''Attractor')

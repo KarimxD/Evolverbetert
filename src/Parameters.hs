@@ -8,7 +8,7 @@ import Data.Map as Map
 
 
 -- * Mode Parameters
-resetGeneStatesOnBirth = True :: Bool
+resetGeneStatesOnBirth = False :: Bool
 dosiseffect = True :: Bool
 nrNoEffect = 0 :: Int
 
@@ -34,7 +34,7 @@ outputTime  = (0 ==) . (`mod` outputStep)  :: Time -> Bool
 vOutputTime = (0 ==) . (`mod` vOutputStep) :: Time -> Bool
 lineageTime = (0 ==) . (`mod` lineageStep) :: Time -> Bool
 
-maxTime = 202 -- 1e6 -- 500000
+maxTime = -1 -- 1e6 -- 500000
      :: Int
 
 -- * Fitness Parameters
@@ -59,7 +59,7 @@ nrHouseHold = 8 :: Int; nrOverlap = 0 :: Int; nrSpecific = 12 :: Int;
 minThres = -1 :: Int; maxThres = 2 :: Int -- -1 and 0 turn off, 1 and 2 turn on
 
 -- * Probabilities for mutation and environmental change
-envSwitchProb = 3e-4 :: Prob
+envSwitchProb = 0 * 3e-4 * fromIntegral outputStep :: Prob
 
 pGenDel     = 3e-4 :: Prob
 pGenDup     = 2e-4 :: Prob

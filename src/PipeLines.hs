@@ -140,12 +140,13 @@ main = do
                   )
             in  mapM_ def [ "env", "hammdist", "mutations"
                           , "statenum"
-                          , "attrnum", "listattr", "listpointattr", "pointattrnum"
+                          , "attractornum", "listattr", "listpointattr", "pointattrnum"
                           , "targets", "startinggst"
                           , "chromosome", "chromosome_p", "genlength"
                           , "gst", "gst_p"
                           , "copynumbers"
                           , "developmenttime"
+                          , "attractors"
                           ]
         _ -> putStrLn "y u no put good action"
 
@@ -179,10 +180,11 @@ parseParameters = flip pp Parameters{}
 
 parseConverter :: String -> Parameters -> Maybe (Chromosome -> T.Text)
 parseConverter "statenum"      _ = Just $ showt . analyzeChrom nrOfStates
-parseConverter "attrnum"       p = Just $ showt . analyzeChrom (attrNum p)
+-- parseConverter "attrnum"       p = Just $ showt . analyzeChrom (attrNum p)
 parseConverter "listattr"      p = Just $ showt . analyzeChrom (listAttr p)
 parseConverter "listpointattr" p = Just $ showt . analyzeChrom (listPointAttr p)
 parseConverter "pointattrnum"  p = Just $ showt . analyzeChrom (pointAttrNum p)
+parseConverter "attrispoint"   _ = Just $ showt . analyzeChrom inPointAttractor
 parseConverter "targets"       _ = Just $ showt . analyzeChrom targets
 parseConverter "startinggst"   _ = Just $ showt . analyzeChrom startGSTAttr
 parseConverter "attractorbasin" p= Just $ showt . fromJustDef (-1) . analyzeChrom (theAttractorBasin p)
@@ -198,6 +200,13 @@ parseConverter "statenet"      p = Just $ T.pack . analyzeChrom (stateNetwork p)
 parseConverter "dot"           _ = Just $ T.pack . Anal.chromosomeToDot
 parseConverter "copynumbers"   _ = Just $ tUnWords . map tMyShow . Map.elems . analyzeChrom fullGST
 parseConverter "allstatenet"   _ = Just $ T.pack . analyzeChrom allStateNetwork -- | Don't use on big chromosomes (have >1000000 states)
+parseConverter "attractors"    p = Just $ tUnWords . map (T.pack . show) . analyzeChrom (listOfAttractors p)
+parseConverter "attractornum"  p = Just $ showt . length . analyzeChrom (listOfAttractors p)
+parseConverter "basins"        p = Just $ T.pack . show . analyzeChrom (basins p)
+parseConverter "statenet2"     p = Just $ T.pack . analyzeChrom (stateNetwork2 p)
+parseConverter "convergence"    p = Just $ showt . analyzeChrom (convergence p)
+parseConverter "actualconvergence"    p = Just $ showt . analyzeChrom (actualConvergence p)
+
 parseConverter _               _ = Nothing --error $ "undefined converter: Pipelines.parseConverter. was given : " ++ n
 
 parseConverter2 :: String -> Parameters -> Maybe (Chromosome -> Chromosome -> T.Text)
@@ -403,3 +412,20 @@ fromTime t0 list = fromMaybe (last list)
 -- constructCounter (g:gs) counter = constructCounter gs newcounter
 --     where c = 1 + fromMaybe (-1) (Map.lookup (iD g) counter)
 --           newcounter = Map.insert (iD g) c counter
+
+
+data L = L { timeL   :: Time,
+             envL    :: Env,
+             chromL  :: Chromosome,
+             mutsL   :: [Mutation]
+           }
+type Period = [L]
+
+makePeriods :: [L] -> [Period]
+makePeriods list = go 0 list []
+    where go  :: Int -> [L] -> [L] -> [Period]
+          go _ [] accum = [accum]
+          go e (l:ls) accum =
+              if e == envL l
+                  then go e (l:accum) ls
+                  else accum : go (envL l) [] ls

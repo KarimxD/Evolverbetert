@@ -8,6 +8,14 @@ import qualified Data.Map as Map
 import Misc
 import World (updateAgent)
 
+checkAgentFitness :: Env -> Agent -> Double
+checkAgentFitness _  NoAgent = 0
+checkAgentFitness e  a =
+    Map.findWithDefault
+        (fitness e a) -- If not in map calculate
+        e
+        (agentFitness a)
+
 class HammDist a => HasFitness a where
     fitness :: Env -> a -> Double
     fitness e a = (1 - d / dmax)^p

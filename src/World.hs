@@ -165,7 +165,7 @@ connected = all (>1) . map length . groupGeneTfbs . concat
 randomAgent :: Rand Agent
 randomAgent = do
     randGenome <- goodRandomGenome
-    let  agent = devAg $ Agent randGenome defaultGst 0 0 NoAgent [] False
+    let  agent = devAg $ emptyAgent {genome = randGenome, geneStateTable = defaultGst}
     if   agent == NoAgent
         then randomAgent
         else return $ devAg agent

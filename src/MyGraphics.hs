@@ -66,7 +66,7 @@ colorHammDist ag e = myHSV (1 - relHammDist) 0.5 1
 _colorFit :: Agent -> Env -> Color4 Float
 _colorFit NoAgent _ = Color4 0 0 0 0
 _colorFit ag e = myHSV (realToFrac fit) 0.7 1
-        where fit = fitness e ag
+        where fit = checkAgentFitness e ag
 
 myHSV :: Float -> Float -> Float -> Color4 Float
 myHSV h s v

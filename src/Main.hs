@@ -12,7 +12,7 @@
 --
 -----------------------------------------------------------------------------
 module Main where
-import           Misc                  (moore8)
+import           Misc                  (moore8, valueResultPairs)
 import           Mutations             (mutAg)
 import           MyGraphics            (initializeWorld, callShowWorld)
 import           MyRandom
@@ -177,10 +177,13 @@ mainLoop worldRef opts cwd hs t = do
                 --    in B.hPutStrLn h (fromString $ show t ++ ";" ++ show (env w) ++ ";" ++ show b)
         -- _      -> return ()
 
-    envGen <- getMyEnvGen
-    let (newEnv, envGen') = runRand (maybeCh (env w) chEnv P.envSwitchProb) envGen
-        -- w' = w {env = newEnv}
-    setMyEnvGen envGen'
+    newEnv <- if t `mod` 50 == 0 then do
+        envGen <- getMyEnvGen
+        let (newEnv', envGen') = runRand (maybeCh (env w) chEnv P.envSwitchProb) envGen
+            -- w' = w {env = newEnv}
+        setMyEnvGen envGen'
+        return newEnv'
+        else return $ env w
 
 
     std <- getMyStdGen
@@ -274,14 +277,16 @@ newAssoc t w (ix, _) = do
 reproduceAgent :: Time -> World -> (Int, Int) -> Rand Agent
 reproduceAgent t (World ags e) ix = do
     temp1 <- getDouble
-    if temp1 > P.deathRate --if you survive
-    then
-        if ags ! ix == NoAgent --if cell is empty, give every neighbour a weighted probability for getting chosen to reproduce
-        then do
+    if temp1 <= P.deathRate --if you die
+    then return NoAgent
+    else
+        if living $ ags ! ix--if cell is empty, give every neighbour a weighted probability for getting chosen to reproduce
+        then return $ ags!ix
+        else do
             temp2 <- getDouble
             let (_, iChooseYou) = fromMaybe (error "field empty") $ find ((>=r) . fst) cumFitAg
                 neighbours = map (ags !) (moore8 ix) ++ [NoAgent] --list of the neighbours
-                fitnesses = map (fitness e) (init neighbours)
+                fitnesses = map (checkAgentFitness e) (init neighbours)
                             ++ [0.4^P.selectionPressure]  --list of fitnesses
                 cumFitnesses = scanl1 (+) fitnesses --cumulative list of fitnesses
                 cumFitAg = zip cumFitnesses neighbours --list of (cumfit, agent) pairs
@@ -293,8 +298,12 @@ reproduceAgent t (World ags e) ix = do
             else --return $ devAg $ iMutU {parent = (iChooseYou, t)}
                 if   null $ diff iMutU
                 then return         iMutU { diff = diff iChooseYou}
-                else return $ devAg iMutU { parent = iChooseYou, bornTime = t, bornEnv = e }        else return $ ags!ix
-    else return NoAgent -- if you die
+                else do
+                    let a = devAg iMutU { parent = iChooseYou, bornTime = t, bornEnv = e }
+                        fitlist = valueResultPairs (`fitness` iMutU) [0..P.nrEnv-1]
+                        a' = a {agentFitness = Map.fromList fitlist}
+                    return a'
+
 
 
 data Options = Options
