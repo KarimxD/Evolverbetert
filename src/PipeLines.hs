@@ -15,6 +15,8 @@ import           Parsing
 import           Misc --(verticalHistogram)
 -- import qualified Data.Text as T
 import           Data.List
+import           Data.Ord (comparing)
+import           Data.Function (on)
 import qualified Data.Map as Map
 import qualified Analysis as Anal
 import           Landscapes
@@ -65,7 +67,7 @@ main = do
             c <- TIO.getContents
             let action = arg2
             makeFile c (lineConverter action params) ("lineagedir/" ++ action)
-        "convert2" -> do
+        "convert_compare_all" -> do
             c <- TIO.getContents
             let action = fromJustDef (error "parser not found") $ parseConverter2 arg2 params :: Chromosome -> Chromosome -> T.Text
                 timeandchromosomes = map (\(t,_,chrom,_) -> (t,chrom)) $ tParseLineageFile c :: [(Time,Chromosome)]
@@ -76,6 +78,70 @@ main = do
                 output = T.unlines $ map tUnWords $ zipWith (\x y -> [x,y]) times' output'
 
             TIO.writeFile ("lineagedir/" ++ arg2) output
+        "convert_compare_firstbest" -> do
+            c <- TIO.getContents
+            let ls = map firstBestLine $ makePeriods $ tParseLineageFileL c
+                action = fromJustDef (error "parser not found") $ parseConverter2 arg2 params :: Chromosome -> Chromosome -> T.Text
+                output' = withStrategy (parBuffer 100 rseq) $
+                          map (\(l1,l2) -> [showt $ timeL l1, action (chromL l1) (chromL l2)])
+                          $ combineListToTuples ls
+                output = T.unlines $ map tUnWords output'
+            TIO.writeFile ("lineagedir/" ++ arg2) output
+        "convert_compare4" -> do
+            c <- TIO.getContents
+            let ls = concatMap interestingLines $ makePeriods $ tParseLineageFileL c
+                action = fromJustDef (error "parser not found") $ parseConverter2 arg2 params :: Chromosome -> Chromosome -> T.Text
+                output' = withStrategy (parBuffer 100 rseq) $
+                          map (\(l1,l2) -> [showt $ timeL l1, action (chromL l1) (chromL l2)])
+                          $ combineListToTuples ls
+                output = T.unlines $ map tUnWords output'
+            TIO.writeFile ("lineagedir/" ++ arg2) output
+        "convert_env" -> do
+            c <- TIO.getContents
+            let ls = map firstBestLine $ makePeriods $ tParseLineageFileL c
+                evens = takeEvery 2 $ tail ls
+                odds  = takeEvery 2 ls
+                action = fromJustDef (error "parser not found") $ parseConverter2 arg2 params :: Chromosome -> Chromosome -> T.Text
+                output_env0' = withStrategy (parBuffer 100 rseq) $
+                          map (\(l1,l2) -> [showt $ timeL l1, action (chromL l1) (chromL l2)])
+                          $ combineListToTuples odds
+                output_env1' = withStrategy (parBuffer 100 rseq) $
+                          map (\(l1,l2) -> [showt $ timeL l1, action (chromL l1) (chromL l2)])
+                          $ combineListToTuples evens
+                output_env0 = T.unlines $ map tUnWords output_env0'
+                output_env1 = T.unlines $ map tUnWords output_env1'
+            TIO.writeFile ("lineagedir/" ++ arg2 ++ "_env0") output_env0
+            TIO.writeFile ("lineagedir/" ++ arg2 ++ "_env1") output_env1
+        "convert_env2" -> do
+            c <- TIO.getContents
+            let ls = map (\p -> (firstBestLine p, lastBestLine p))
+                        $ makePeriods $ tParseLineageFileL c
+                evens = concatTuples $ takeEvery 2 $ tail ls
+                odds  = concatTuples $ takeEvery 2 ls
+                action = fromJustDef (error "parser not found") $ parseConverter2 arg2 params :: Chromosome -> Chromosome -> T.Text
+                output_env0' = withStrategy (parBuffer 100 rseq) $
+                          map (\(l1,l2) -> [showt $ timeL l1, action (chromL l1) (chromL l2)])
+                          $ combineListToTuples odds
+                output_env1' = withStrategy (parBuffer 100 rseq) $
+                          map (\(l1,l2) -> [showt $ timeL l1, action (chromL l1) (chromL l2)])
+                          $ combineListToTuples evens
+                output_env0 = T.unlines $ map tUnWords output_env0'
+                output_env1 = T.unlines $ map tUnWords output_env1'
+            TIO.writeFile ("lineagedir/" ++ arg2 ++ "_env0") output_env0
+            TIO.writeFile ("lineagedir/" ++ arg2 ++ "_env1") output_env1
+        "convert_evolvability" -> do
+            c <- TIO.getContents
+            let periods = makePeriods $ tParseLineageFileL c
+                times = map (timeL . head) periods
+                evolvabilities = map evolvability periods
+                xs = zip times evolvabilities
+                output = T.unlines $ concatMap (
+                    \(t,e) -> case e of
+                        Just e' -> [tUnWords [showt t, showt e']]
+                        _       -> []
+                    )
+                    xs
+            TIO.writeFile "lineagedir/evolvability" output
         "numrem" ->
             interact $
                   show . zipWith (analyzeChrom . numRemaining) (map (\n->params{sampleSize=n})[10,100,1000,10000,100000,1000000])
@@ -212,8 +278,12 @@ parseConverter _               _ = Nothing --error $ "undefined converter: Pipel
 parseConverter2 :: String -> Parameters -> Maybe (Chromosome -> Chromosome -> T.Text)
 parseConverter2 "divergence"   _ = Just $ (showt .) . divergencePointOfTrajectory
 parseConverter2 "divergencehd" _ = Just $ (showt .) . divergencePointOfTrajectoryOnOff
-parseConverter2 "distancebetween" _ = Just$ (showt .) . distanceAfterMutation
+parseConverter2 "distancebetween" _ = Just $ (showt .) . distanceAfterMutation
+parseConverter2 "divergencestats" _ = Just (\c1 c2 -> tUnWords $ map showt $ divergenceStats c1 c2)
+parseConverter2 "divergencestats2" _ = Just (\c1 c2 -> tUnWords $ map showt $ divergenceStats2 c1 c2)
+parseConverter2 "henk" _ = Just (\_ _ -> "henk")
 parseConverter2 _            _   = Nothing
+
 
 lineConverter :: String -> Parameters -> LineConverter
 lineConverter name params =
@@ -418,14 +488,48 @@ data L = L { timeL   :: Time,
              envL    :: Env,
              chromL  :: Chromosome,
              mutsL   :: [Mutation]
-           }
+           } deriving (Show, Read, Eq)
 type Period = [L]
 
+fitnessL :: L -> Double
+fitnessL l = fitness (envL l) (chromL l)
+hammDistL :: L -> Int
+hammDistL l = hammDist (envL l) (chromL l)
+
+firstBestLine :: Period -> L
+firstBestLine = minimumBy $ comparing hammDistL
+lastBestLine :: Period -> L
+lastBestLine  = firstBestLine . reverse
+
+-- | all points that are in the fitness enhancing part
+interestingLines :: Period -> [L]
+interestingLines p = starts ++ [startMinimum, endMinimum] ++ ends
+    where
+        startMinimum = firstBestLine p
+        endMinimum   = lastBestLine  p
+        starts       =           takeWhile (/= startMinimum)         p
+        ends         = reverse $ takeWhile (/= endMinimum) $ reverse p
+
+-- makePeriods :: [L] -> [Period]
+-- makePeriods list = go 0 list []
+--     where go  :: Int -> [L] -> [L] -> [Period]
+--           go _ [] accum = [accum]
+--           go e (l:ls) accum =
+--               if e == envL l
+--                   then go e (l:accum) ls
+--                   else accum : go (envL l) [l] ls
+
 makePeriods :: [L] -> [Period]
-makePeriods list = go 0 list []
-    where go  :: Int -> [L] -> [L] -> [Period]
-          go _ [] accum = [accum]
-          go e (l:ls) accum =
-              if e == envL l
-                  then go e (l:accum) ls
-                  else accum : go (envL l) [] ls
+makePeriods [] = []
+makePeriods list@(l:_) = firstPart : makePeriods rest
+    where (firstPart, rest) = span (((==) `on` envL) l) list
+
+
+tParseLineageFileL :: T.Text -> [L]
+tParseLineageFileL = map convert . tParseLineageFile
+    where convert :: LineageLine -> L
+          convert (t,e,c,ms) = L t e c ms
+
+evolvability :: Period -> Maybe Time
+evolvability p = flip (-) (timeL $ head p) <$> firstSmallerThan1
+    where firstSmallerThan1 = timeL <$> find ((<=1) . hammDistL) p

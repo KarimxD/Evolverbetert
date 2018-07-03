@@ -70,7 +70,7 @@ initialize opts = do
         $ helpError ["\ny u no want output?!\n"]
 
     let initialAgent = evalRand randomAgent $ pureMT $ optAgentSeed opts
-        initialWorld = World startAgents 0
+        initialWorld = World startAgents 1
             where startAgents = array P.worldBounds $ zip P.worldCoods $ repeat initialAgent
 
     w <- newIORef initialWorld

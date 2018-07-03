@@ -22,6 +22,7 @@ module Misc
     , slice
     , average
     , combineListToTuples
+    , concatTuples
     )
 
     where
@@ -143,3 +144,6 @@ combineListToTuples :: [a] -> [(a,a)]
 combineListToTuples []       = []
 combineListToTuples [_]      = []
 combineListToTuples (x:y:xs) = (x,y) : combineListToTuples (y:xs)
+
+concatTuples :: [(a,a)] -> [a]
+concatTuples = concatMap (\(x,y) -> [x,y])

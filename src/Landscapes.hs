@@ -16,11 +16,11 @@ import Fitness
 import qualified Data.Map.Strict as M
 -- import Data.Graph.Inductive
 import Control.Monad.Reader
-import Control.Applicative (liftA2)
 import Data.List
 import Data.Function (on)
 import Data.Maybe
 import Data.Ord
+import qualified Data.Set as Set
 import TextShow.TH
 import qualified Data.Text as T
 import Safe
@@ -209,6 +209,7 @@ listAttr params = do
         fs = map hammDist envs :: [GST -> Int]
         hds = map (\a -> map ($ a) fs) attractors :: [[Int]]
     return $ zip3 attractors' basins hds
+
 
 -- | A count of the number of attractors with a certain samplesize
 attrNum :: Parameters -> AnalyzeChrom Int
@@ -497,14 +498,17 @@ developmentTime params = do
         Just x  -> return $ length x
 
 trajectory :: Agent -> Maybe [Agent]
-trajectory = takeUntilSame . take 100 . iterate updateAgent
+trajectory = fmap (\xs -> if length xs >= 90 then take 20 xs else xs)
+    . takeUntilSame . take 100 . iterate updateAgent
     where
         takeUntilSame :: [Agent] -> Maybe [Agent]
         takeUntilSame (a:b:rest)
             | sameGST a b = Just [a]
             | otherwise   = (a:) <$> takeUntilSame (b:rest)
-        takeUntilSame _ = Nothing
+        takeUntilSame _ = Just []
 
+-- trajectoryFrom :: Chromosome -> Chromosome -> [GST]
+-- trajectoryFrom from c = trajectory $ agentFromChromosome c {geneStateTable = toGST from}
 
 divergencePointOfTrajectory :: Chromosome -> Chromosome -> Int
 divergencePointOfTrajectory      c1 c2 = length $ takeWhile id $ zipWith (==)        g1 g2
@@ -514,11 +518,25 @@ divergencePointOfTrajectoryOnOff :: Chromosome -> Chromosome -> Int
 divergencePointOfTrajectoryOnOff c1 c2 = length $ takeWhile id $ zipWith sameExpression g1 g2
     where g1 = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c1)
           g2 = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c2)
-            where f gst = map toOnOff $ M.elems gst
 
 distanceAfterMutation :: Chromosome -> Chromosome -> Int
 distanceAfterMutation before after = length $ fromJustDef [] $ trajectory beforeAgent
     where beforeAgent = (agentFromChromosome after) {geneStateTable = toGST before}
+
+divergenceStats :: Chromosome -> Chromosome -> [Int]
+divergenceStats before after = [length pathBefore, length pathAfter, overlap]
+    where path :: Chromosome -> [GST]
+          path c = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c)
+          pathBefore = path before; pathAfter = path after
+          overlap = length $ takeWhile id $ zipWith sameExpression pathBefore pathAfter
+
+divergenceStats2 :: Chromosome -> Chromosome -> [Int]
+divergenceStats2 before after = [Set.size pathBefore, Set.size pathAfter, Set.size overlap]
+    where path :: Chromosome -> [GST]
+          path c = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c)
+          pathBefore = Set.fromList $ map (M.map toOnOff) $ path before;
+          pathAfter  = Set.fromList $ map (M.map toOnOff) $ path after;
+          overlap = Set.intersection pathBefore pathAfter
 
 agentFromChromosome :: Chromosome -> Agent
 agentFromChromosome c = emptyAgent {geneStateTable = toGST c, genome = [c]}
