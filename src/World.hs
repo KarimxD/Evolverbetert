@@ -182,7 +182,7 @@ goodRandomGenome = do
 
 -- | Just a 'randomChromosome'
 randomGenome :: Rand Genome
-randomGenome = fmap (:[]) randomChromosome
+randomGenome = fmap (:[]) randomChromosomeLonger
 
 -- | Generate a random chromosome by shuffling twice as many random Tfbss
 -- as random genes. using 'randomTfbss' and 'randomGenes' and 'shuffle''
@@ -191,6 +191,14 @@ randomChromosome = do
     r <- getModifyRand
     randomChrom <- concat <$> sequence [randomTfbss,randomTfbss,randomGenes]
     return $ shuffle' randomChrom (length randomChrom) r
+
+randomChromosomeLonger :: Rand Chromosome
+randomChromosomeLonger = do
+    r <- getModifyRand
+    randomChrom <- concat <$>
+        sequence (replicate 5 randomTfbss ++ [randomGenes, randomGenes])
+    return $ shuffle' randomChrom (length randomChrom) r
+
 
 -- | Generate all possible Tfbss (0..nrGeneTypes) with each random weight
 randomTfbss :: Rand [Locus]

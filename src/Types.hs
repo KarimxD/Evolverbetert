@@ -183,8 +183,12 @@ instance InferGST GST where
 instance InferGST Chromosome where
     toGST = gSTFromChrom where
         gSTFromChrom :: Chromosome -> GST
-        gSTFromChrom = makeGST . toGenes
+        gSTFromChrom c = if Map.size gst > 20
+                            then error "how"
+                            else gst
             where
+                gst = makeGST $ toGenes c
+
                 makeGST :: [Gene] -> GST
                 makeGST = F.foldr'
                     (\ !x !acc -> Map.insertWith (+)

@@ -8,7 +8,7 @@ import Data.Map as Map
 
 
 -- * Mode Parameters
-resetGeneStatesOnBirth = True :: Bool
+resetGeneStatesOnBirth = False :: Bool
 dosiseffect = True :: Bool
 nrNoEffect = 0 :: Int
 
@@ -59,7 +59,7 @@ nrHouseHold = 8 :: Int; nrOverlap = 0 :: Int; nrSpecific = 12 :: Int;
 minThres = -1 :: Int; maxThres = 2 :: Int -- -1 and 0 turn off, 1 and 2 turn on
 
 -- * Probabilities for mutation and environmental change
-envSwitchProb = 0 * 3e-4 * fromIntegral outputStep :: Prob
+envSwitchProb = 3e-4 * fromIntegral outputStep :: Prob
 
 pGenDel     = 3e-4 :: Prob
 pGenDup     = 2e-4 :: Prob

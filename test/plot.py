@@ -69,8 +69,8 @@ def myplot():
 
 
     if os.path.isfile("output"):
-        data = np.loadtxt("output", delimiter=';', usecols=(range(7)), skiprows = 2)
-        t, env, minhammdist, minotherhammdist, maxhammdist, avghammdist, gen_length = data.T #, avg_indegree = data.T
+        data = np.loadtxt("output", delimiter=';', usecols=(range(6)), skiprows = 2)
+        t, env, minhammdist, minotherhammdist, maxhammdist, avghammdist= data.T #, avg_indegree = data.T
         ax0.set_ylabel('hamm_dist', color='r')
 
         ax0.plot(t,minotherhammdist, c='pink', drawstyle='steps')

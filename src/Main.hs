@@ -32,7 +32,7 @@ import           System.Console.GetOpt
 import           System.Directory
 import           System.Environment    (getArgs, getEnv)
 import           System.IO             (Handle, IOMode (..), hFlush, openFile,
-                                        stdout)
+                                        stdout, withFile, hGetLine, hClose)
 import           System.Process        (callCommand)
 
 
@@ -130,25 +130,86 @@ initialize opts = do
         _      -> return ()
     return (w, outputDir, handles''')
 
+-- | Uses a list of flags to initialize a IORef to a world and a handle for
+-- output.
+-- Opens the voutput file and reads the first entry of time = 50000
+-- Sets the PRNG
+reinitialize50000 :: Options -> IO (IORef World, CWD, Handles)
+reinitialize50000 opts = do
+    when (optHelp opts) $ helpError []
+
+    dir <- makeAbsolute $ "./" --fromJust (optOutput opts)
+
+    h <- openFile (dir ++ "voutput") ReadMode
+    _ <- hGetLine h
+    line <- drop 8 <$> hGetLine h
+    hClose h
+    -- voutputFile <- withFile (dir ++ "voutput") ReadMode hGetContents
+    -- let line = drop 8 $ lines voutputFile !! 1 -- second line, after "50000 ; " which is 8 characters
+
+
+    let initialWorld = read line
+
+    w <- newIORef initialWorld
+
+    setMyStdGen $ pureMT $ optWorldSeed opts
+    setMyEnvGen $ pureMT $ optEnvSeed opts
+
+    -- let outputDir = "/linuxhome/tmp/" ++ userName ++ "/Evolverbetert/"
+    --              ++ show date ++ "_" ++ fromJust (optOutput opts) ++ "/"-- takeWhile (/= '.') (show time) ++ "/"
+    --     opts = opts {optOutput = Just outputDir}
+    when (isJust (optOutput opts) || optVOutput opts) $ do
+        callCommand $ "cp -r ~/Evolverbetert/src/ " ++ dir ++ "src2/"
+        putStrLn "copied source directories"
+
+    let outputDir = dir
+        -- opts = opts {optOutput = Just outputDir}
+
+    let handles = stdHandles
+
+    handles' <- if isJust $ optOutput opts
+                then do file <- openFile (outputDir++"output") AppendMode
+                        return handles {hOutput = Just file}
+                else return handles {hOutput = Nothing}
+
+    handles'' <- if optVOutput opts
+                 then do file <- openFile (outputDir++"voutput") AppendMode
+                         return handles' {hVOutput = Just file}
+                 else return handles' {hVOutput = Nothing}
+
+    let handles''' = if optConsole opts
+                      then handles'' {hConsole = Just stdout}
+                      else handles'' {hConsole = Nothing}
+
+    -- handles''''<- if optLineage opts
+    --               then do file <- openFile (outputDir++"lineage") ReadWriteMode
+    --                       return handles''' {hLineage= Just file}
+    --               else return handles''' {hLineage = Nothing}
+
+    return (w, outputDir, handles''')
+
 
 -- | Maybe initializes graphical display dependent on 'P.display' in "Parameters"
 -- calls 'initialize'
 -- starts 'mainLoop'
 main :: IO ()
 main = do
-
     args <- getArgs
     (opts, _) <- compilerOpts args
-    (worldRef, cwd, hs) <- initialize opts
 
-    -- print $ iterate updateAgent agent42 !! 1000
-
-
-    -- All GLUT related stuff
-    when (optGraphics opts) (initializeWorld worldRef)
     -- Where the magic happens... Recursive function that ends on P.maxTime
     -- B.hPutStrLn (fromMaybe stdout $ hOutput hs) $ fromString "Hello, World!"
-    mainLoop worldRef opts cwd hs 0
+    if optResume opts
+        then do
+            (worldRef, cwd, hs) <- reinitialize50000 opts
+            -- All GLUT related stuff
+            when (optGraphics opts) (initializeWorld worldRef)
+            mainLoop worldRef opts cwd hs 50000
+        else do
+            (worldRef, cwd, hs) <- initialize opts
+            -- All GLUT related stuff
+            when (optGraphics opts) (initializeWorld worldRef)
+            mainLoop worldRef opts cwd hs 0
     -- B.hPutStrLn (fromMaybe stdout $ hOutput hs) $ fromString "Goodbye World!"
 
 -- | Recursive function that reads the IORef of the world, changes it with
@@ -286,7 +347,7 @@ reproduceAgent t (World ags e) ix = do
             temp2 <- getDouble
             let (_, iChooseYou) = fromMaybe (error "field empty") $ find ((>=r) . fst) cumFitAg
                 neighbours = map (ags !) (moore8 ix) ++ [NoAgent] --list of the neighbours
-                fitnesses = map (checkAgentFitness e) (init neighbours)
+                fitnesses = map (fitness e) (init neighbours)
                             ++ [0.4^P.selectionPressure]  --list of fitnesses
                 cumFitnesses = scanl1 (+) fitnesses --cumulative list of fitnesses
                 cumFitAg = zip cumFitnesses neighbours --list of (cumfit, agent) pairs
@@ -300,7 +361,7 @@ reproduceAgent t (World ags e) ix = do
                 then return         iMutU { diff = diff iChooseYou}
                 else do
                     let a = devAg iMutU { parent = iChooseYou, bornTime = t, bornEnv = e }
-                        fitlist = valueResultPairs (`fitness` iMutU) [0..P.nrEnv-1]
+                        fitlist = valueResultPairs (`fitness` iMutU) [0..P.nrEnv-1] -- FIX: this is just stupid
                         a' = a {agentFitness = Map.fromList fitlist}
                     return a'
 
@@ -316,6 +377,7 @@ data Options = Options
     , optLineage   :: Bool
     , optConsole   :: Bool
     , optGraphics  :: Bool
+    , optResume    :: Bool
     } deriving Show
 
 defaultOptions :: Options
@@ -329,6 +391,7 @@ defaultOptions = Options
     , optLineage     = False
     , optConsole     = False
     , optGraphics    = False
+    , optResume      = False
     }
 
 options :: [OptDescr (Options -> Options)]
@@ -360,6 +423,9 @@ options =
     , Option ['g']     ["graphics"]
         (NoArg (\opts -> opts { optGraphics = True }))
         "Display CA in graphical window"
+    , Option []     ["resume50000"]
+        (NoArg (\opts -> opts { optResume = True }))
+        "Resume in this directory from 50000 timesteps"
     ]
 
 compilerOpts :: [String] -> IO (Options, [String])

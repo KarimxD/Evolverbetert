@@ -175,11 +175,8 @@ numRemaining params = do
 remaining :: Parameters -> AnalyzeChrom [Node]
 remaining params@Parameters {numberOfUpdates = n} = do
     f <- nsfWithCount
-    (!!n) . iterate (rmdupsWithCount . map f . rmdupsWithCount . map2 f) . toNodes
+    (!!n) . iterate (rmdupsWithCount . map f) . toNodes
         <$> randomGSTs params
-    where map2 :: (a -> a) -> [a] -> [a]
-          map2 _ [] = []
-          map2 f (x:xs) = x:f x: map2 f xs
           -- remaining :: Parameters -> AnalyzeChrom [Node]
           -- remaining params@Parameters {numberOfUpdates = n} = do
           --     f <- nsfWithCount
@@ -485,6 +482,10 @@ avgFitness n es params = do
     let fitnesses = map (\e -> map (hammDist e) updated) es :: [[Int]]
     return $ map average fitnesses
 
+path :: AnalyzeChrom [GST]
+path = do
+    c <- ask
+    return $ fromJustDef [] $ map toGST <$> trajectory (agentFromChromosome c)
 
 developmentTime :: Parameters -> AnalyzeChrom Int
 developmentTime params = do
@@ -525,17 +526,17 @@ distanceAfterMutation before after = length $ fromJustDef [] $ trajectory before
 
 divergenceStats :: Chromosome -> Chromosome -> [Int]
 divergenceStats before after = [length pathBefore, length pathAfter, overlap]
-    where path :: Chromosome -> [GST]
-          path c = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c)
-          pathBefore = path before; pathAfter = path after
+    where path' :: Chromosome -> [GST]
+          path' c = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c)
+          pathBefore = path' before; pathAfter = path' after
           overlap = length $ takeWhile id $ zipWith sameExpression pathBefore pathAfter
 
 divergenceStats2 :: Chromosome -> Chromosome -> [Int]
 divergenceStats2 before after = [Set.size pathBefore, Set.size pathAfter, Set.size overlap]
-    where path :: Chromosome -> [GST]
-          path c = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c)
-          pathBefore = Set.fromList $ map (M.map toOnOff) $ path before;
-          pathAfter  = Set.fromList $ map (M.map toOnOff) $ path after;
+    where path' :: Chromosome -> [GST]
+          path' c = fromJustDef [] $ map toGST <$> trajectory (setToStart $ agentFromChromosome c)
+          pathBefore = Set.fromList $ map (M.map toOnOff) $ path' before;
+          pathAfter  = Set.fromList $ map (M.map toOnOff) $ path' after;
           overlap = Set.intersection pathBefore pathAfter
 
 agentFromChromosome :: Chromosome -> Agent

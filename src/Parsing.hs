@@ -48,7 +48,7 @@ parseAgent str =  --Only works on agents with 1 chromosome
         loci = splitOn "," str :: [String]
 
 instance MyShow GST where
-    myShow = List.intersperse ' ' . concatMap (myShow . snd) . Map.toList
+    myShow = unwords . map myShow . Map.elems
 instance MyRead GST where -- FIX: return Nothing if fails
     readMaybe = Just . Map.fromList . zip [0..] . map (myRead . pure) . filter (/= ' ')
 

@@ -83,7 +83,16 @@ main = do
             let ls = map firstBestLine $ makePeriods $ tParseLineageFileL c
                 action = fromJustDef (error "parser not found") $ parseConverter2 arg2 params :: Chromosome -> Chromosome -> T.Text
                 output' = withStrategy (parBuffer 100 rseq) $
-                          map (\(l1,l2) -> [showt $ timeL l1, action (chromL l1) (chromL l2)])
+                          map (\(l1,l2) -> [showt $ timeL l2, action (chromL l1) (chromL l2)])
+                          $ combineListToTuples ls
+                output = T.unlines $ map tUnWords output'
+            TIO.writeFile ("lineagedir/" ++ arg2) output
+        "convert_compare_firstlastbest" -> do
+            c <- TIO.getContents
+            let ls = concatMap firstlastBestLines $ makePeriods $ tParseLineageFileL c
+                action = fromJustDef (error "parser not found") $ parseConverter2 arg2 params :: Chromosome -> Chromosome -> T.Text
+                output' = withStrategy (parBuffer 100 rseq) $
+                          map (\(l1,l2) -> [showt $ timeL l2, action (chromL l1) (chromL l2)])
                           $ combineListToTuples ls
                 output = T.unlines $ map tUnWords output'
             TIO.writeFile ("lineagedir/" ++ arg2) output
@@ -92,7 +101,7 @@ main = do
             let ls = concatMap interestingLines $ makePeriods $ tParseLineageFileL c
                 action = fromJustDef (error "parser not found") $ parseConverter2 arg2 params :: Chromosome -> Chromosome -> T.Text
                 output' = withStrategy (parBuffer 100 rseq) $
-                          map (\(l1,l2) -> [showt $ timeL l1, action (chromL l1) (chromL l2)])
+                          map (\(l1,l2) -> [showt $ timeL l2, action (chromL l1) (chromL l2)])
                           $ combineListToTuples ls
                 output = T.unlines $ map tUnWords output'
             TIO.writeFile ("lineagedir/" ++ arg2) output
@@ -206,7 +215,7 @@ main = do
                   )
             in  mapM_ def [ "env", "hammdist", "mutations"
                           , "statenum"
-                          , "attractornum", "listattr", "listpointattr", "pointattrnum"
+                          , "attractornum", "listattr", "listpointattr", "pointattrnum", "attrispoint"
                           , "targets", "startinggst"
                           , "chromosome", "chromosome_p", "genlength"
                           , "gst", "gst_p"
@@ -231,6 +240,9 @@ type LineageLine = (Time,Env,Chromosome,[Mutation])
 type LineageFile = [LineageLine]
 type ConverterName = String
 type LineConverter = LineageLine -> T.Text
+
+lineTime  (t,_,_,_) = t; lineEnv (_,e,_,_) = e;
+lineChrom (_,_,c,_) = c; lineMut (_,_,_,m) = m;
 
 parseParameters :: [String] -> Parameters
 parseParameters = flip pp Parameters{}
@@ -272,6 +284,8 @@ parseConverter "basins"        p = Just $ T.pack . show . analyzeChrom (basins p
 parseConverter "statenet2"     p = Just $ T.pack . analyzeChrom (stateNetwork2 p)
 parseConverter "convergence"    p = Just $ showt . analyzeChrom (convergence p)
 parseConverter "actualconvergence"    p = Just $ showt . analyzeChrom (actualConvergence p)
+parseConverter "path"          _ = Just $ T.pack . unlines . map myShow . analyzeChrom path
+
 
 parseConverter _               _ = Nothing --error $ "undefined converter: Pipelines.parseConverter. was given : " ++ n
 
@@ -344,11 +358,14 @@ cParseLineageFile content = parsedls
         parsedls = map (\(t:e:c:m:_) -> (cRead t, cRead e, cMyRead c, cRead m)) splittedls
 
 tParseLineageFile :: T.Text -> LineageFile
-tParseLineageFile content = parsedls
+tParseLineageFile content = takeWhile (\l -> lineTime l /= -100) parsedls --TODO: remove init?
     where
         ls = T.lines content
         splittedls = map (T.splitOn ";") ls
-        parsedls = map (\(t:e:c:m:_) -> (tRead t, tRead e, tMyRead c, tRead m)) splittedls
+        parsedls = map (\case
+            (t:e:c:m:_) -> (tRead t, tRead e, tMyRead c, tRead m)
+            _ -> (-100, -1, [], [])
+            ) splittedls
 
 parseLineageFile :: String -> [(Time,Env,Chromosome,[Mutation])]
 parseLineageFile content = parsedls
@@ -501,6 +518,13 @@ firstBestLine = minimumBy $ comparing hammDistL
 lastBestLine :: Period -> L
 lastBestLine  = firstBestLine . reverse
 
+-- | best points before and after switch
+firstlastBestLines :: Period -> [L]
+firstlastBestLines p = [startMinimum, endMinimum]
+    where
+        startMinimum = firstBestLine p
+        endMinimum   = lastBestLine  p
+
 -- | all points that are in the fitness enhancing part
 interestingLines :: Period -> [L]
 interestingLines p = starts ++ [startMinimum, endMinimum] ++ ends
@@ -509,6 +533,8 @@ interestingLines p = starts ++ [startMinimum, endMinimum] ++ ends
         endMinimum   = lastBestLine  p
         starts       =           takeWhile (/= startMinimum)         p
         ends         = reverse $ takeWhile (/= endMinimum) $ reverse p
+
+
 
 -- makePeriods :: [L] -> [Period]
 -- makePeriods list = go 0 list []

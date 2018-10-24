@@ -58,11 +58,16 @@ hammingDistance :: (Eq a) => [a] -> [a] -> Int
 hammingDistance xs ys = length $ filter (==True) $ zipWith (/=) xs (take (P.nrHouseHold + P.nrOverlap + P.nrSpecific) ys)
 
 -- | Generate GeneStateTable based on targetExpression
+-- targetGST 0 = Map.fromList $ valueResultPairs (targetExpression 0) [0..P.nrFitEffect-1]
+-- targetGST 1 = Map.fromList $ valueResultPairs (targetExpression 1) [0..P.nrFitEffect-1]
+-- targetGST e = Map.fromList $
+--     take P.nrFitEffect' $ valueResultPairs (targetExpression e) [0..]
+
+--TODO: this is just for analysis code
 targetGST :: Env -> GST
-targetGST 0 = Map.fromList $ valueResultPairs (targetExpression 0) [0..P.nrFitEffect-1]
-targetGST 1 = Map.fromList $ valueResultPairs (targetExpression 1) [0..P.nrFitEffect-1]
-targetGST e = Map.fromList $
-    take P.nrFitEffect' $ valueResultPairs (targetExpression e) [0..]
+targetGST 0 = Map.fromList $ zip [0..] [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0]
+targetGST 1 = Map.fromList $ zip [0..] [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]
+targetGST _ = error "target not defined"
 
 {- | the targetExpression of a Gene in an Environment
 Considers all genes as Specific when the ID is bigger then nrHouseHold + nrOverlap
